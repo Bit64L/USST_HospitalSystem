@@ -32,8 +32,8 @@ public class Administrator extends Person{
 		//writeAccount("hospitalDepartment.txt");
 	}
 	//添加药品
-	public void addMedicine(String name,String shortName,String unit,double price,String no) throws IOException{
-		Administrator.medicines.add(new Medicine(name,shortName,unit,price,no));
+	public void addMedicine(String name,String shortName,String unit,double price,String no,int deposit) throws IOException{
+		Administrator.medicines.add(new Medicine(name,shortName,unit,price,no,deposit));
 		//writeAccount("medicine.txt");
 	}
 	//添加收费项目
