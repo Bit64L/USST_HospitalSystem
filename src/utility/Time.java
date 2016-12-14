@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Time {
 	
-	public String getCurrentTime(){ //»ñÈ¡µ±Ç°ÏµÍ³Ê±¼ä
+	public String getCurrentTime(){ //è·å–å½“å‰ç³»ç»Ÿæ—¶é—´
 		Date date=new Date();
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		String currentTime=sdf.format(date);
@@ -14,7 +14,7 @@ public class Time {
 	
 	
 	public long timeMinus(String currentTime,String orderTime){  
-		//·µ»Ø µ±Ç°Ê±¼ä-Ô¤Ô¼Ê±¼ä £¬Õı¸º¶¼ÓĞ¿ÉÄÜ £¬µ¥Î»ÊÇÃë
+		//è¿”å› å½“å‰æ—¶é—´-é¢„çº¦æ—¶é—´ ï¼Œæ­£è´Ÿéƒ½æœ‰å¯èƒ½ ï¼Œå•ä½æ˜¯ç§’
 		int curD,orderD;
 		int curH,orderH;
 		int curM,orderM;

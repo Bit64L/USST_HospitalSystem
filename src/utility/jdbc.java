@@ -10,7 +10,7 @@ public class jdbc {
 	private Connection conn;
 	private Statement st; 
 
-	public jdbc() { //³õÊ¼»¯,Á¬½ÓÊı¾İ¿â  Êı¾İ¿âÃûhospitalSystem ÓÃ»§Ãû"sa" ÃÜÂë"sa"
+	public jdbc() { //åˆå§‹åŒ–,è¿æ¥æ•°æ®åº“  æ•°æ®åº“åhospitalSystem ç”¨æˆ·å"sa" å¯†ç "sa"
 		conn=null;
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -24,7 +24,7 @@ public class jdbc {
 			e.printStackTrace();
 		}
 	}
-	public boolean insert(String sqlStr){ //²åÈë
+	public boolean insert(String sqlStr){ //æ’å…¥
 		int rowCount=0;
 		try {
 			rowCount=st.executeUpdate(sqlStr);
@@ -36,7 +36,7 @@ public class jdbc {
 		else return false;
 	}
 	
-	public boolean delete(String sqlStr){ //É¾³ı
+	public boolean delete(String sqlStr){ //åˆ é™¤
 		int rowCount=0;
 		try {
 			rowCount=st.executeUpdate(sqlStr);
@@ -48,7 +48,7 @@ public class jdbc {
 		else return false;
 	}
 	
-	public boolean update(String sqlStr){ //¸Ä
+	public boolean update(String sqlStr){ //æ”¹
 		int rowCount=0;
 		try {
 			rowCount=st.executeUpdate(sqlStr);
@@ -60,7 +60,7 @@ public class jdbc {
 		else return false;
 	}
 	
-	public ResultSet select(String sqlStr){ //²éÑ¯£¬Èç¹ûÃ»²éÑ¯µ½·µ»Ønull,·ñÔò·µ»ØÒ»¸ö½á¹û¼¯ResultSet
+	public ResultSet select(String sqlStr){ //æŸ¥è¯¢ï¼Œå¦‚æœæ²¡æŸ¥è¯¢åˆ°è¿”å›null,å¦åˆ™è¿”å›ä¸€ä¸ªç»“æœé›†ResultSet
 		ResultSet rs=null;
 		try {
 			rs=st.executeQuery(sqlStr);
