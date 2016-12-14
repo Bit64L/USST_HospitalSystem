@@ -9,13 +9,14 @@ import java.sql.SQLException;
 public class jdbc {
 	private Connection conn;
 	private Statement st; 
-
-	public jdbc() { //åˆå§‹åŒ–,è¿æ¥æ•°æ®åº“  æ•°æ®åº“åhospitalSystem ç”¨æˆ·å"sa" å¯†ç "sa"
+	
+	public jdbc() { //³õÊ¼»¯,Á¬½ÓÊı¾İ¿â  Êı¾İ¿âÃûhospitalSystem ÓÃ»§Ãû"sa" ÃÜÂë"sa"
 		conn=null;
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			conn=DriverManager.getConnection("jdbc:sqlserver://localhost:1433;DatabaseName=hospitalSystem","sa","sa");;
-			st=conn.createStatement();
+			this.conn=DriverManager.getConnection("jdbc:sqlserver://localhost:1433;DatabaseName=hospitalSystem","sa","sa");;
+			if(conn!=null)System.out.println("Á¬½Ó³É¹¦");
+			this.st=conn.createStatement();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -24,7 +25,7 @@ public class jdbc {
 			e.printStackTrace();
 		}
 	}
-	public boolean insert(String sqlStr){ //æ’å…¥
+	public boolean insert(String sqlStr){ //²åÈë
 		int rowCount=0;
 		try {
 			rowCount=st.executeUpdate(sqlStr);
@@ -36,7 +37,7 @@ public class jdbc {
 		else return false;
 	}
 	
-	public boolean delete(String sqlStr){ //åˆ é™¤
+	public boolean delete(String sqlStr){ //É¾³ı
 		int rowCount=0;
 		try {
 			rowCount=st.executeUpdate(sqlStr);
@@ -48,7 +49,7 @@ public class jdbc {
 		else return false;
 	}
 	
-	public boolean update(String sqlStr){ //æ”¹
+	public boolean update(String sqlStr){ //¸Ä
 		int rowCount=0;
 		try {
 			rowCount=st.executeUpdate(sqlStr);
@@ -60,7 +61,7 @@ public class jdbc {
 		else return false;
 	}
 	
-	public ResultSet select(String sqlStr){ //æŸ¥è¯¢ï¼Œå¦‚æœæ²¡æŸ¥è¯¢åˆ°è¿”å›null,å¦åˆ™è¿”å›ä¸€ä¸ªç»“æœé›†ResultSet
+	public ResultSet select(String sqlStr){ //²éÑ¯,·µ»ØÒ»¸ö½á¹û¼¯ResultSet,²»¿ÉÄÜÎªnull
 		ResultSet rs=null;
 		try {
 			rs=st.executeQuery(sqlStr);
@@ -70,5 +71,18 @@ public class jdbc {
 		}
 		return rs;
 	}
+	
+	public void closeAll(){
+		try {
+			st.close();
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
 	
 }

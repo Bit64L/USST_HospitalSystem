@@ -8,6 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Iterator;
 
 public class server {
 	// ip="192.168.0.103";
@@ -42,9 +43,7 @@ public class server {
 
 					jdbc sqlServer=new jdbc();
 					ResultSet rs=sqlServer.select(selectsqlStr);
-					
-					
-					if(rs!=null){
+					if(rs.next()){
 						System.out.println("µÇÂ¼³É¹¦");
 						PrintWriter os=new PrintWriter(socket.getOutputStream());
 						String send="";
@@ -65,6 +64,9 @@ public class server {
 			}
 			}
 	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
