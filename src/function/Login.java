@@ -25,10 +25,10 @@ public class Login {
 			s=new Socket("127.0.0.1",8888);
 			in=new Scanner(s.getInputStream(),"UTF-8");
 			out=new PrintWriter(s.getOutputStream());
-			/*ËÍµ½·şÎñÆ÷*/
+			/*é€åˆ°æœåŠ¡å™¨*/
 			out.println(userName+" "+password+" "+type);
 			out.flush();
-			/*»ñÈ¡·şÎñÆ÷½á¹û*/
+			/*è·å–æœåŠ¡å™¨ç»“æœ*/
 			String str=in.nextLine();
 			s.close();
 			in.close();
