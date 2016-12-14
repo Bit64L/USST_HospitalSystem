@@ -14,13 +14,13 @@ import javax.swing.JButton;
 public class Add {
 
 	private JFrame frame;
-	private JTextField textField;
-	private JPasswordField passwordField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
 	private JLabel label_5;
-	private JTextField textField_1;
+	private JTextField textField_3;
+	private JTextField textField;
+	private JTextField textField_2;
 	private JPasswordField passwordField;
+	private JPasswordField passwordField_1;
+	private JTextField textField_1;
 
 	/**
 	 * Launch the application.

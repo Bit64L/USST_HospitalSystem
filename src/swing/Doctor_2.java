@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 public class Doctor_2 {
 
 	private JFrame frame;
+	private JTextArea textArea;
 
 	/**
 	 * Launch the application.
@@ -53,18 +54,18 @@ public class Doctor_2 {
 		
 		
 		
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		textArea.setBounds(10, 0, 414, 157);
 		textArea.getScrollableTracksViewportHeight();
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setViewportView(textArea);
-		textArea.setText("²¡ÈËÐÅÏ¢£¿");
+		textArea.setText("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½");
 		scrollPane.setBounds(10, 10, 414, 151);	
 		panel.add(scrollPane);
 		
-		JButton button = new JButton("¿ª´¦·½");
+		JButton button = new JButton("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -72,7 +73,7 @@ public class Doctor_2 {
 		button.setBounds(32, 189, 93, 23);
 		panel.add(button);
 		
-		JButton button_1 = new JButton("Éú³É¾ÍÕï½á¹û");
+		JButton button_1 = new JButton("ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}

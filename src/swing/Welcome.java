@@ -22,6 +22,7 @@ public class Welcome {
 	private JFrame frame;
 	private JTextField textField;
 	private JPasswordField passwordField;
+	private JLabel label_3;
 
 	/**
 	 * Launch the application.
@@ -57,7 +58,7 @@ public class Welcome {
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.NORTH);
 		
-		JLabel label = new JLabel("欢迎使用门诊系统");
+		JLabel label = new JLabel("锟斤拷迎使锟斤拷锟斤拷锟斤拷系统");
 		panel.add(label);
 		
 		JPanel panel_1 = new JPanel();
@@ -68,7 +69,7 @@ public class Welcome {
 		label_2.setBounds(145, 94, 54, 15);
 		panel_1.add(label_2);
 		
-		JLabel label_3 = new JLabel("\u5BC6\u7801");
+		label_3 = new JLabel("\u5BC6\u7801");
 		label_3.setBounds(145, 143, 156, 15);
 		panel_1.add(label_3);
 		
@@ -85,7 +86,7 @@ public class Welcome {
 		passwordField.setBounds(181, 140, 120, 21);
 		panel_1.add(passwordField);
 		
-		String[] identify = {"医生","收费人员","管理员","药师","院长"};
+		String[] identify = {"医锟斤拷","锟秸凤拷锟斤拷员","锟斤拷锟斤拷员","药师","院锟斤拷"};
 		JComboBox comboBox = new JComboBox(identify);
 		comboBox.setSelectedIndex(4);
 		

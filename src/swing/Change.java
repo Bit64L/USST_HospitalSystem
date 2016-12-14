@@ -16,6 +16,7 @@ public class Change {
 
 	private JFrame frame;
 	private JTextField textField;
+	private JTextArea textArea;
 
 	/**
 	 * Launch the application.
@@ -71,7 +72,7 @@ public class Change {
 		button_1.setBounds(242, 228, 103, 23);
 		panel.add(button_1);
 		
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		textArea.setBounds(10, 0, 414, 157);
 		textArea.getScrollableTracksViewportHeight();
 		

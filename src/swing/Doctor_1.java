@@ -13,6 +13,7 @@ import javax.swing.JButton;
 public class Doctor_1 {
 
 	private JFrame frame;
+	private JTextArea textArea;
 
 	/**
 	 * Launch the application.
@@ -49,14 +50,14 @@ public class Doctor_1 {
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		textArea.setBounds(10, 0, 414, 157);
 		textArea.getScrollableTracksViewportHeight();
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setViewportView(textArea);
-		textArea.setText("╤сапё©");
+		textArea.setText("О©╫О©╫О©╫пёО©╫");
 		scrollPane.setBounds(10, 10, 414, 151);	
 		panel.add(scrollPane);
 		

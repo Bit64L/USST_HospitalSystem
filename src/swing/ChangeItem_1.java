@@ -18,6 +18,7 @@ public class ChangeItem_1 {
 
 	private JFrame frame;
 	private JTextField textField;
+	private JTextArea textArea;
 
 	/**
 	 * Launch the application.
@@ -92,7 +93,7 @@ public class ChangeItem_1 {
 					.addContainerGap())
 		);
 		panel.setLayout(gl_panel);
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		textArea.setBounds(10, 0, 414, 157);
 		textArea.getScrollableTracksViewportHeight();
 		

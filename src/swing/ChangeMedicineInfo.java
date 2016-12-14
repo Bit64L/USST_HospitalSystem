@@ -18,6 +18,7 @@ public class ChangeMedicineInfo {
 
 	private JFrame frame;
 	private JTextField textField;
+	private JTextArea textArea;
 
 	/**
 	 * Launch the application.
@@ -54,7 +55,7 @@ public class ChangeMedicineInfo {
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		textArea.setBounds(10, 0, 414, 157);
 		textArea.getScrollableTracksViewportHeight();
 		
