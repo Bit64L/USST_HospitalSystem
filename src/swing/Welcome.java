@@ -1,29 +1,27 @@
 package swing;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import javax.swing.JLabel;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
-import javax.swing.BoxLayout;
-import java.awt.GridLayout;
-import java.awt.FlowLayout;
-import javax.swing.JSeparator;
-import javax.swing.Box;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
 import javax.swing.JComboBox;
-import javax.swing.JList;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+import function.Login;
 
 public class Welcome {
 
 	private JFrame frame;
 	private JTextField textField;
 	private JPasswordField passwordField;
-	private JLabel label_3;
-
+	JComboBox<String> comboBox;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -58,7 +56,7 @@ public class Welcome {
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.NORTH);
 		
-		JLabel label = new JLabel("��ӭʹ������ϵͳ");
+		JLabel label = new JLabel("欢迎使用门诊系统");
 		panel.add(label);
 		
 		JPanel panel_1 = new JPanel();
@@ -69,7 +67,7 @@ public class Welcome {
 		label_2.setBounds(145, 94, 54, 15);
 		panel_1.add(label_2);
 		
-		label_3 = new JLabel("\u5BC6\u7801");
+		JLabel label_3 = new JLabel("\u5BC6\u7801");
 		label_3.setBounds(145, 143, 156, 15);
 		panel_1.add(label_3);
 		
@@ -81,13 +79,24 @@ public class Welcome {
 		JButton button = new JButton("\u767B\u5F55");
 		button.setBounds(181, 186, 93, 23);
 		panel_1.add(button);
-		
+		button.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String type=(String)comboBox.getSelectedItem();
+				String userName=textField.getText();
+				String password=passwordField.getText();
+				Login login=new Login(userName,password,type);
+				System.out.println(login.login());
+			}
+			
+		});
 		passwordField = new JPasswordField();
 		passwordField.setBounds(181, 140, 120, 21);
 		panel_1.add(passwordField);
 		
-		String[] identify = {"ҽ��","�շ���Ա","����Ա","ҩʦ","Ժ��"};
-		JComboBox comboBox = new JComboBox(identify);
+		String[] identify = {"医生","收费人员","管理员","药师","院长"};
+		comboBox = new JComboBox<>(identify);
 		comboBox.setSelectedIndex(4);
 		
 		comboBox.setBounds(181, 41, 120, 21);
