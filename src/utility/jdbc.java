@@ -9,14 +9,9 @@ import java.sql.SQLException;
 public class jdbc {
 	private Connection conn;
 	private Statement st; 
-	private ResultSet rs;
-public static void main(String[] args) {
-	new jdbc();
-}
+
 	public jdbc() { //初始化,连接数据库  数据库名hospitalSystem 用户名"sa" 密码"sa"
 		conn=null;
-		Statement st=null;
-		ResultSet rs=null;
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			conn=DriverManager.getConnection("jdbc:sqlserver://localhost:1433;DatabaseName=hospitalSystem","sa","sa");;
