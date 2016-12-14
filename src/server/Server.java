@@ -16,7 +16,7 @@ public class Server {
             s = new ServerSocket(8888);
             while(true){
                 Socket client = s.accept();
-                System.out.println("连接已建立！");
+                System.out.println(i+1+" 连接已建立！");
                 Runnable r=new NewClient(client);
                 Thread t=new Thread(r);
                 t.start();
@@ -35,28 +35,23 @@ class NewClient implements Runnable{
     public NewClient(Socket i){
         this.i=i;
     }
-    public void run(){
-        InputStream inStream;
-        OutputStream outStream;
+    public void run() {
+        InputStream inStream;//输入流
+        OutputStream outStream;//输出流
         Scanner in = null;
         PrintWriter out = null;
         try {
-            inStream=i.getInputStream();
-            outStream=i.getOutputStream();
+            inStream = i.getInputStream();
+            outStream = i.getOutputStream();
 
-            in=new Scanner(inStream);
-            out = new PrintWriter(outStream,true/*autoFlush*/);
-            
-            String str=in.nextLine();//读入客户端送来的数据
+            in = new Scanner(inStream);
+            out = new PrintWriter(outStream, true/*autoFlush*/);
+            String str = in.nextLine();//读入功能
 
-            String[] strs=str.split("\\s");
-            if(strs[0].equals("123")){
-                out.print("true");
-                out.flush();
-            }
-            else {
-                out.print("false");
-                out.flush();
+            if(str.equals("001")){//登录验证
+                str=in.nextLine();
+                String[] strs=str.split("\\s");
+
             }
 
         } catch (IOException e) {
