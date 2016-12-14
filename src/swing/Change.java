@@ -64,11 +64,11 @@ public class Change {
 		panel.add(textField);
 		textField.setColumns(10);
 		
-		JButton button = new JButton("\u786E\u5B9A");
+		JButton button = new JButton("确定");
 		button.setBounds(62, 228, 103, 23);
 		panel.add(button);
 		
-		JButton button_1 = new JButton("\u53D6\u6D88");
+		JButton button_1 = new JButton("取消");
 		button_1.setBounds(242, 228, 103, 23);
 		panel.add(button_1);
 		

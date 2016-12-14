@@ -57,19 +57,19 @@ public class Add {
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel label = new JLabel("鐠愶箑褰�");
+		JLabel label = new JLabel("账号");
 		label.setBounds(119, 39, 54, 15);
 		panel.add(label);
 		
-		JLabel label_1 = new JLabel("鐎靛棛鐖�");
+		JLabel label_1 = new JLabel("密码");
 		label_1.setBounds(119, 64, 54, 15);
 		panel.add(label_1);
 		
-		JLabel label_2 = new JLabel("绾喛顓荤�靛棛鐖�");
+		JLabel label_2 = new JLabel("确认密码");
 		label_2.setBounds(119, 89, 54, 15);
 		panel.add(label_2);
 		
-		JLabel label_3 = new JLabel("\u771F\u5B9E\u59D3\u540D");
+		JLabel label_3 = new JLabel("真实姓名");
 		label_3.setBounds(119, 114, 54, 15);
 		panel.add(label_3);
 		
@@ -77,7 +77,7 @@ public class Add {
 		lblId.setBounds(119, 139, 54, 15);
 		panel.add(lblId);
 		
-		JLabel label_4 = new JLabel("\u90E8\u95E8");
+		JLabel label_4 = new JLabel("部门");
 		label_4.setBounds(119, 164, 54, 15);
 		panel.add(label_4);
 		
@@ -100,11 +100,11 @@ public class Add {
 		panel.add(textField_3);
 		textField_3.setColumns(10);
 		
-		label_5 = new JLabel("\u65B0\u589E\u8D26\u53F7");
+		label_5 = new JLabel("身份");
 		label_5.setBounds(173, 10, 54, 15);
 		panel.add(label_5);
 		
-		String[] identify = {"闂勩垽鏆�","閸栬崵鏁�","閺�鎯板瀭娴滃搫鎲�","缁狅紕鎮婇崨锟�","閼筋垰绗�"};
+		String[] identify = {"医生","收费人员","管理员","药师","院长"};
 		JComboBox comboBox = new JComboBox(identify);
 		comboBox.setSelectedIndex(4);
 		

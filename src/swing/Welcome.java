@@ -58,18 +58,18 @@ public class Welcome {
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.NORTH);
 		
-		JLabel label = new JLabel("»¶Ó­Ê¹ÓÃÒ½ÔºÃÅÕï¹¤×÷Á÷¹ÜÀíÏµÍ³");
+		JLabel label = new JLabel("æ¬¢è¿ä½¿ç”¨åŒ»é™¢é—¨è¯Šå·¥ä½œæµç®¡ç†ç³»ç»Ÿ");
 		panel.add(label);
 		
 		JPanel panel_1 = new JPanel();
 		frame.getContentPane().add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(null);
 		
-		JLabel label_2 = new JLabel("ÕËºÅ");
+		JLabel label_2 = new JLabel("è´¦å·");
 		label_2.setBounds(145, 94, 54, 15);
 		panel_1.add(label_2);
 		
-		label_3 = new JLabel("ÃÜÂë");
+		label_3 = new JLabel("å¯†ç ");
 		label_3.setBounds(145, 143, 156, 15);
 		panel_1.add(label_3);
 		
@@ -78,7 +78,7 @@ public class Welcome {
 		panel_1.add(textField);
 		textField.setColumns(10);
 		
-		JButton button = new JButton("µÇÂ¼");
+		JButton button = new JButton("ç™»å½•");
 		button.setBounds(181, 186, 93, 23);
 		panel_1.add(button);
 		
@@ -86,14 +86,14 @@ public class Welcome {
 		passwordField.setBounds(181, 140, 120, 21);
 		panel_1.add(passwordField);
 		
-		String[] identify = {"Ò½Éú","ÊÕ·ÑÈËÔ±","¹ÜÀíÔ±","Ò©Ê¦","Ôº³¤"};
+		String[] identify = {"åŒ»ç”Ÿ","æ”¶è´¹äººå‘˜","ç®¡ç†å‘˜","è¯å¸ˆ","é™¢é•¿"};
 		JComboBox comboBox = new JComboBox(identify);
 		comboBox.setSelectedIndex(4);
 		
 		comboBox.setBounds(181, 41, 120, 21);
 		panel_1.add(comboBox);
 		
-		JLabel label_1 = new JLabel("Éí·İ");
+		JLabel label_1 = new JLabel("èº«ä»½");
 		label_1.setBounds(145, 44, 54, 15);
 		panel_1.add(label_1);
 	}
