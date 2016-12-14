@@ -57,24 +57,24 @@ public class Appointment {
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		
-		JLabel label = new JLabel("病人信息");
+		JLabel label = new JLabel("\u75C5\u4EBA\u4FE1\u606F");
 		label.setBounds(179, 0, 48, 15);
 		
-		JLabel label_1 = new JLabel("姓名");
+		JLabel label_1 = new JLabel("\u59D3\u540D");
 		label_1.setBounds(112, 31, 24, 15);
 		
 		textField = new JTextField();
 		textField.setBounds(234, 28, 66, 21);
 		textField.setColumns(10);
 		
-		JLabel label_2 = new JLabel("年龄");
+		JLabel label_2 = new JLabel("\u5E74\u9F84");
 		label_2.setBounds(112, 62, 24, 15);
 		
 		textField_1 = new JTextField();
 		textField_1.setBounds(234, 59, 66, 21);
 		textField_1.setColumns(10);
 		
-		JLabel label_3 = new JLabel("手机号");
+		JLabel label_3 = new JLabel("\u624B\u673A\u53F7");
 		label_3.setBounds(112, 93, 36, 15);
 		
 		textField_2 = new JTextField();
@@ -88,10 +88,10 @@ public class Appointment {
 		textField_3.setBounds(234, 121, 66, 21);
 		textField_3.setColumns(10);
 		
-		JLabel label_4 = new JLabel("科室");
+		JLabel label_4 = new JLabel("\u79D1\u5BA4");
 		label_4.setBounds(112, 151, 24, 15);
 		
-		JLabel label_5 = new JLabel("预约时间");
+		JLabel label_5 = new JLabel("\u9884\u7EA6\u65F6\u95F4");
 		label_5.setBounds(112, 182, 48, 15);
 		
 		 DateChooserJButton button=new DateChooserJButton ();
@@ -115,7 +115,7 @@ public class Appointment {
 		panel.add(textField_5);
 		textField_5.setColumns(10);
 		
-		JLabel label_6 = new JLabel("预约医生");
+		JLabel label_6 = new JLabel("\u9884\u7EA6\u533B\u751F");
 		label_6.setBounds(112, 217, 54, 15);
 		panel.add(label_6);
 		
