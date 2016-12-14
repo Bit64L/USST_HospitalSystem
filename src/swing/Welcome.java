@@ -58,18 +58,18 @@ public class Welcome {
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.NORTH);
 		
-		JLabel label = new JLabel("锟斤拷迎使锟斤拷锟斤拷锟斤拷系统");
+		JLabel label = new JLabel("欢迎使用医院门诊工作流管理系统");
 		panel.add(label);
 		
 		JPanel panel_1 = new JPanel();
 		frame.getContentPane().add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(null);
 		
-		JLabel label_2 = new JLabel("\u8D26\u53F7");
+		JLabel label_2 = new JLabel("账号");
 		label_2.setBounds(145, 94, 54, 15);
 		panel_1.add(label_2);
 		
-		label_3 = new JLabel("\u5BC6\u7801");
+		label_3 = new JLabel("密码");
 		label_3.setBounds(145, 143, 156, 15);
 		panel_1.add(label_3);
 		
@@ -78,7 +78,7 @@ public class Welcome {
 		panel_1.add(textField);
 		textField.setColumns(10);
 		
-		JButton button = new JButton("\u767B\u5F55");
+		JButton button = new JButton("登录");
 		button.setBounds(181, 186, 93, 23);
 		panel_1.add(button);
 		
@@ -86,14 +86,14 @@ public class Welcome {
 		passwordField.setBounds(181, 140, 120, 21);
 		panel_1.add(passwordField);
 		
-		String[] identify = {"医锟斤拷","锟秸凤拷锟斤拷员","锟斤拷锟斤拷员","药师","院锟斤拷"};
+		String[] identify = {"医生","收费人员","管理员","药师","院长"};
 		JComboBox comboBox = new JComboBox(identify);
 		comboBox.setSelectedIndex(4);
 		
 		comboBox.setBounds(181, 41, 120, 21);
 		panel_1.add(comboBox);
 		
-		JLabel label_1 = new JLabel("\u8EAB\u4EFD");
+		JLabel label_1 = new JLabel("身份");
 		label_1.setBounds(145, 44, 54, 15);
 		panel_1.add(label_1);
 	}
