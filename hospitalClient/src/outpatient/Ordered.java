@@ -6,15 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
-public class Register {
+public class Ordered {
 
 	private JFrame frame;
-	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -23,7 +18,7 @@ public class Register {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Register window = new Register();
+					Ordered window = new Ordered();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,7 +30,7 @@ public class Register {
 	/**
 	 * Create the application.
 	 */
-	public Register() {
+	public Ordered() {
 		initialize();
 	}
 
@@ -51,26 +46,13 @@ public class Register {
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel label = new JLabel("挂号");
-		label.setBounds(166, 10, 54, 15);
+		JLabel label = new JLabel("该病人已预约!");
+		label.setBounds(161, 24, 112, 15);
 		panel.add(label);
 		
-		JLabel lblid = new JLabel("病人ID");
-		lblid.setBounds(113, 59, 54, 15);
-		panel.add(lblid);
-		
-		textField = new JTextField();
-		textField.setBounds(187, 56, 66, 21);
-		panel.add(textField);
-		textField.setColumns(10);
-		
-		JButton btnNewButton = new JButton("确定");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton.setBounds(141, 99, 93, 23);
-		panel.add(btnNewButton);
+		JLabel label_1 = new JLabel("姓名:");
+		label_1.setBounds(118, 64, 54, 15);
+		panel.add(label_1);
 	}
 
 }
