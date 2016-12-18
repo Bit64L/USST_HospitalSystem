@@ -73,6 +73,10 @@ public class Login {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				Register register=new Register();
+				JFrame re=register.getJFrame();
+				re.setVisible(true);
+				frame.dispose();
 			}
 		});
 		button.setBounds(131, 137, 70, 23);

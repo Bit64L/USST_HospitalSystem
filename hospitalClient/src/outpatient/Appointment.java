@@ -103,4 +103,7 @@ public class Appointment {
 		label_12.setBounds(182, 99, 54, 15);
 		panel.add(label_12);
 	}
+	public JFrame getJFrame(){
+		return frame;
+	}
 }

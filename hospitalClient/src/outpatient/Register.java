@@ -7,6 +7,10 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import person.Charger;
+import person.Patient;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -14,7 +18,7 @@ import java.awt.event.ActionEvent;
 public class Register {
 
 	private JFrame frame;
-	private JTextField textField;
+	private JTextField PatientID;
 
 	/**
 	 * Launch the application.
@@ -59,18 +63,39 @@ public class Register {
 		lblid.setBounds(113, 59, 54, 15);
 		panel.add(lblid);
 		
-		textField = new JTextField();
-		textField.setBounds(187, 56, 66, 21);
-		panel.add(textField);
-		textField.setColumns(10);
+		PatientID = new JTextField();
+		PatientID.setBounds(187, 56, 66, 21);
+		panel.add(PatientID);
+		PatientID.setColumns(10);
 		
 		JButton btnNewButton = new JButton("确定");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				String Patient_ID=PatientID.getText().toString();
+				//Patient pa=new Patient();
+				//pa.setId(Patient_ID);
+				//Charger ch=new Charger();
+				boolean bool=true;//ch.findInOder(pa);
+				//判断是否为预约病人
+				if(bool){
+					Appointment ap=new Appointment();
+					JFrame AP=ap.getJFrame();
+					AP.setVisible(true);
+				}
+				else{
+					NoAppointment ap=new NoAppointment();
+					JFrame NA=ap.getJFrame();
+					NA.setVisible(true);
+				}
+				
 			}
 		});
 		btnNewButton.setBounds(141, 99, 93, 23);
 		panel.add(btnNewButton);
 	}
-
+	//获取JFrame窗口
+	public JFrame getJFrame(){
+		return frame;
+	}
 }

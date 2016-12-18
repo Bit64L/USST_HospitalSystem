@@ -107,4 +107,7 @@ public class NoAppointment {
 		button.setBounds(136, 193, 93, 23);
 		panel.add(button);
 	}
+	public JFrame getJFrame(){
+		return frame;
+	}
 }
