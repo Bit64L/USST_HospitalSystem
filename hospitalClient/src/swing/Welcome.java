@@ -9,10 +9,15 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.BoxLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.FlowLayout;
 import javax.swing.JSeparator;
 import javax.swing.Box;
 import javax.swing.JTextField;
+
+import function.Login;
+
 import javax.swing.JPasswordField;
 import javax.swing.JComboBox;
 import javax.swing.JList;
@@ -22,6 +27,7 @@ public class Welcome {
 	private JFrame frame;
 	private JTextField textField;
 	private JPasswordField passwordField;
+	JComboBox comboBox;
 	private JLabel label_3;
 
 	/**
@@ -79,6 +85,19 @@ public class Welcome {
 		textField.setColumns(10);
 		
 		JButton button = new JButton("登录");
+		button.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String userName=textField.getText();
+				String password=passwordField.getText();
+				String type=comboBox.getSelectedItem().toString();
+				Login login=new Login(userName,password,type);
+				boolean bool = login.login();
+				
+			}
+		});
 		button.setBounds(181, 186, 93, 23);
 		panel_1.add(button);
 		
@@ -87,7 +106,7 @@ public class Welcome {
 		panel_1.add(passwordField);
 		
 		String[] identify = {"医生","收费人员","管理员","药师","院长"};
-		JComboBox comboBox = new JComboBox(identify);
+		comboBox = new JComboBox(identify);
 		comboBox.setSelectedIndex(4);
 		
 		comboBox.setBounds(181, 41, 120, 21);

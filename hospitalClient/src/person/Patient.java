@@ -1,7 +1,7 @@
 package person;
 
 import java.util.ArrayList;
-
+import Staff.*;
 public class Patient {
 	private String name;
 	private String age;

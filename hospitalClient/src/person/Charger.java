@@ -1,22 +1,22 @@
 package person;
 
 import java.util.ArrayList;
-
+import Staff.*;
 public class Charger extends Person{
-	static ArrayList<Patient> registerPatients=new ArrayList<>();//¹ÒºÅ²¡ÈË
-	static ArrayList<Patient> orderPatients = new ArrayList<>();//Ô¤Ô¼²¡ÈË
+	static ArrayList<Patient> registerPatients=new ArrayList<>();//æŒ‚å·ç—…äºº
+	static ArrayList<Patient> orderPatients = new ArrayList<>();//é¢„çº¦ç—…äºº
 	public Charger(String userName,String password,String name,String id){
 		super(userName,password,name,id);
 	}
-	//Î´Ô¤Ô¼²¡ÈË¹ÒºÅ
+	//æœªé¢„çº¦ç—…äººæŒ‚å·
 	public void createRegister(Patient patient,Doctor doctor,HospitalDepartment hospitalDepartment){
 		patient.setDoctor(doctor);
 		patient.setHospitalDepartment(hospitalDepartment);
 		hospitalDepartment.setRegisterNum(hospitalDepartment.getRegisterNum()+1);
 		doctor.setCureNum(doctor.getCureNum()+1);
-		/**½«ĞÅÏ¢Ğ´»ØÎÄ¼ş**/
+		/**å°†ä¿¡æ¯å†™å›æ–‡ä»¶**/
 	}
-	//²éÑ¯ÊÇ·ñÎªÒÑÔ¤Ô¼²¡ÈË
+	//æŸ¥è¯¢æ˜¯å¦ä¸ºå·²é¢„çº¦ç—…äºº
 	public boolean findInOder(Patient patient){
 		for(Patient p : orderPatients){
 			if(patient.getId().equals(p.getId()))
@@ -24,7 +24,7 @@ public class Charger extends Person{
 		}
 		return false;
 	}
-	//ÊÕ·Ñ
+	//æ”¶è´¹
 	public String charge(Patient patient){
 		double sum=0;
 		for(int i=0;i<patient.getChargeItems().size();i++){
@@ -35,7 +35,7 @@ public class Charger extends Person{
 			sum+=patient.getMedicines().get(i).getPrice();
 			patient.getMedicines().get(i).setState(true);
 		}
-		return "¹²ÊÕ·Ñ"+sum+"Ôª";
+		return "å…±æ”¶è´¹"+sum+"å…ƒ";
 	}
 	
 	

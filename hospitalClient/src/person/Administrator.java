@@ -3,45 +3,45 @@ package person;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-
+import Staff.*;
 public class Administrator extends Person{
-	
+
 	private ArrayList<Doctor> doctors=new ArrayList<>();
 	private ArrayList<Charger> chargers=new ArrayList<>();
-	
+
 	static ArrayList<HospitalDepartment> hospitalDepartments = new ArrayList<>();
 	static ArrayList<Medicine> medicines = new ArrayList<>();
 	static ArrayList<ChargeItem> chargeItems = new ArrayList<>();
-	
+
 	public Administrator(String userName, String password,String name,String id) {
 		super(userName,password,name,id);
 	}
-	//Ìí¼ÓÒ½ÉúÕË»§
+	//æ·»åŠ åŒ»ç”Ÿè´¦æˆ·
 	public void addDoctor(String userName,String password,String name,String id,HospitalDepartment hospitalDepartment) throws IOException{
 		doctors.add(new Doctor(userName,password,name,id,hospitalDepartment));
 		//writeAccount("account.txt");
 	}
-	//Ìí¼Ó¹ÒºÅÊÕ·ÑÈËÔ±ÕË»§
+	//æ·»åŠ æŒ‚å·æ”¶è´¹äººå‘˜è´¦æˆ·
 	public void addCharger(String userName,String password,String name,String id) throws IOException{
 		chargers.add(new Charger(userName,password,name,id));
 		//writeAccount("account.txt");
 	}
-	//Ìí¼Ó¿ÆÊÒ
+	//æ·»åŠ ç§‘å®¤
 	public void addHospitalDepartment(String name,String no) throws IOException{
 		Administrator.hospitalDepartments.add(new HospitalDepartment(name,no));
 		//writeAccount("hospitalDepartment.txt");
 	}
-	//Ìí¼ÓÒ©Æ·
+	//æ·»åŠ è¯å“
 	public void addMedicine(String name,String shortName,String unit,double price,String no,int deposit) throws IOException{
 		Administrator.medicines.add(new Medicine(name,shortName,unit,price,no,deposit));
 		//writeAccount("medicine.txt");
 	}
-	//Ìí¼ÓÊÕ·ÑÏîÄ¿
+	//æ·»åŠ æ”¶è´¹é¡¹ç›®
 	public void addChargeItem(String name,String shortName,String unit,double price,String no) throws IOException{
 		Administrator.chargeItems.add(new ChargeItem(name,shortName,unit,price,no));
 		//writeAccount("chargeItem.txt");
 	}
-	//ĞŞ¸ÄÕË»§
+	//ä¿®æ”¹è´¦æˆ·
 	/*public String alterAccount(String userName,String newPassword,String newType) throws IOException{
 		int mark=0;
 		for(Account a : Administor.accounts){
@@ -53,10 +53,10 @@ public class Administrator extends Person{
 			}
 		}
 		//writeAccount("account.txt");
-		if(mark==0) return "ÎŞ¸ÃÕËºÅ£¡";
-		return "ĞŞ¸Ä³É¹¦£¡";
+		if(mark==0) return "æ— è¯¥è´¦å·ï¼";
+		return "ä¿®æ”¹æˆåŠŸï¼";
 	}*/
-	//ĞŞ¸Ä¿ÆÊÒ
+	//ä¿®æ”¹ç§‘å®¤
 	public String alterHospital(String no,String newName) throws IOException{
 		int mark=0;
 		for(HospitalDepartment a : Administrator.hospitalDepartments){
@@ -67,10 +67,10 @@ public class Administrator extends Person{
 			}
 		}
 		//writeAccount("hospitalDepartment.txt");
-		if(mark==0) return "ÎŞ¸Ã¿ÆÊÒ£¡";
-		return "ĞŞ¸Ä³É¹¦£¡";
+		if(mark==0) return "æ— è¯¥ç§‘å®¤ï¼";
+		return "ä¿®æ”¹æˆåŠŸï¼";
 	}
-	//ĞŞ¸ÄÒ©Æ·
+	//ä¿®æ”¹è¯å“
 	public String alterMedicine(String shortName,String newNo,String newUnit,String newPrice) throws IOException{
 		int mark=0;
 		for(Medicine a : Administrator.medicines){
@@ -84,10 +84,10 @@ public class Administrator extends Person{
 			}
 		}
 		//writeAccount("medicine.txt");
-		if(mark==0) return "ÎŞ¸ÃÒ©Æ·£¡";
-		return "ĞŞ¸Ä³É¹¦£¡";
+		if(mark==0) return "æ— è¯¥è¯å“ï¼";
+		return "ä¿®æ”¹æˆåŠŸï¼";
 	}
-	//ĞŞ¸ÄÊÕ·ÑÏîÄ¿
+	//ä¿®æ”¹æ”¶è´¹é¡¹ç›®
 	public String alterChargeItem(String shortName,String newNo,String newUnit,String newPrice) throws IOException{
 		int mark=0;
 		for(ChargeItem a : Administrator.chargeItems){
@@ -101,10 +101,10 @@ public class Administrator extends Person{
 			}
 		}
 		//writeAccount("chargeItem.txt");
-		if(mark==0) return "ÎŞ¸ÃÏîÄ¿£¡";
-		return "ĞŞ¸Ä³É¹¦£¡";
+		if(mark==0) return "æ— è¯¥é¡¹ç›®ï¼";
+		return "ä¿®æ”¹æˆåŠŸï¼";
 	}
-	//É¾³ıÕËºÅ
+	//åˆ é™¤è´¦å·
 	/*public String deleteAccount(String userName) throws IOException{
 		int mark=0;
 		for(Account a:Administor.accounts){
@@ -115,10 +115,10 @@ public class Administrator extends Person{
 			}
 		}
 		writeAccount("account.txt");
-		if(mark==0) return "É¾³ıÊ§°Ü£¡";
-		return "É¾³ı³É¹¦£¡";
+		if(mark==0) return "åˆ é™¤å¤±è´¥ï¼";
+		return "åˆ é™¤æˆåŠŸï¼";
 	}*/
-	//É¾³ı¿ÆÊÒ
+	//åˆ é™¤ç§‘å®¤
 	public String deleteHospitalDepartment(String name) throws IOException{
 		int mark=0;
 		for(HospitalDepartment a:Administrator.hospitalDepartments){
@@ -129,10 +129,10 @@ public class Administrator extends Person{
 			}
 		}
 		//writeAccount("hospitalDepartment.txt");
-		if(mark==0) return "É¾³ıÊ§°Ü£¡";
-		return "É¾³ı³É¹¦£¡";
+		if(mark==0) return "åˆ é™¤å¤±è´¥ï¼";
+		return "åˆ é™¤æˆåŠŸï¼";
 	}
-	//É¾³ıÒ©Æ·
+	//åˆ é™¤è¯å“
 	public String deleteMedicine(String name) throws IOException{
 		int mark=0;
 		for(Medicine a:Administrator.medicines){
@@ -143,10 +143,10 @@ public class Administrator extends Person{
 			}
 		}
 		//writeAccount("medicine.txt");
-		if(mark==0) return "É¾³ıÊ§°Ü£¡";
-		return "É¾³ı³É¹¦£¡";
+		if(mark==0) return "åˆ é™¤å¤±è´¥ï¼";
+		return "åˆ é™¤æˆåŠŸï¼";
 	}
-	//É¾³ıÏîÄ¿
+	//åˆ é™¤é¡¹ç›®
 	public String deleteChargeItem(String name) throws IOException{
 		int mark=0;
 		for(ChargeItem a:Administrator.chargeItems){
@@ -157,10 +157,10 @@ public class Administrator extends Person{
 			}
 		}
 		//writeAccount("chargeItem.txt");
-		if(mark==0) return "É¾³ıÊ§°Ü£¡";
-		return "É¾³ı³É¹¦£¡";
+		if(mark==0) return "åˆ é™¤å¤±è´¥ï¼";
+		return "åˆ é™¤æˆåŠŸï¼";
 	}
-	//½«¸Ä±äµÄ½á¹ûĞ´»ØÎÄ¼ş
+	//å°†æ”¹å˜çš„ç»“æœå†™å›æ–‡ä»¶
 	/*public void writeAccount(String fileName) throws IOException{
 		FileWriter file = new FileWriter(fileName);
 		for(Account a : Administor.accounts){
@@ -205,199 +205,4 @@ public class Administrator extends Person{
 		}
 	}*/
 }
-//ÏµÍ³ÕË»§Àà
-class Account{
-	private String userName;
-	private String password;
-	private String type;
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
-	public Account(String userName,String password,String type){
-		this.userName=userName;
-		this.password=password;
-		this.type=type;
-	}
-}
-//Ò½Ôº¿ÆÊÒÀà
-class HospitalDepartment{
-	private String name;
-	private String no;//±àºÅ
-	private int registerNum;//¹ÒºÅÁ¿
-	private double money;//¿ÆÊÒ×Ü½ğ¶î
-	
-	public String getName() {
-		return name;
-	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getNo() {
-		return no;
-	}
-
-	public void setNo(String no) {
-		this.no = no;
-	}
-
-	
-	public int getRegisterNum() {
-		return registerNum;
-	}
-
-	public void setRegisterNum(int registerNum) {
-		this.registerNum = registerNum;
-	}
-
-	public double getMoney() {
-		return money;
-	}
-
-	public void setMoney(double money) {
-		this.money = money;
-	}
-
-	public HospitalDepartment(String name,String no){
-		this.name = name;
-		this.no = no;
-		registerNum=0;
-		money=0;
-	}
-	
-}
-//Ò©Æ·Àà
-class Medicine{
-	private String name;
-	private String shortName;//Æ´Òô¼òÂë
-	private String unit;
-	private double price;
-	private String no;
-	private boolean state=false;//Ö¸Ê¾ÊÕ·Ñ×´Ì¬£¬false±íÊ¾Î´ÊÕ·Ñ
-	private int deposit;//Ò©Æ·¿â´æÁ¿
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getShortName() {
-		return shortName;
-	}
-	public void setShortName(String shortName) {
-		this.shortName = shortName;
-	}
-	public double getPrice() {
-		return price;
-	}
-	public void setPrice(double price) {
-		this.price = price;
-	}
-	
-	public String getUnit() {
-		return unit;
-	}
-	public void setUnit(String unit) {
-		this.unit = unit;
-	}
-	
-	public String getNo() {
-		return no;
-	}
-	public void setNo(String no) {
-		this.no = no;
-	}
-	
-	public boolean isState() {
-		return state;
-	}
-	public void setState(boolean state) {
-		this.state = state;
-	}
-	
-	public int getDeposit() {
-		return deposit;
-	}
-	public void setDeposit(int deposit) {
-		this.deposit = deposit;
-	}
-	public Medicine(String name,String shortName,String unit,double price,String no,int deposit){
-		this.name=name;
-		this.shortName=shortName;
-		this.unit=unit;
-		this.price=price;
-		this.no=no;
-		this.deposit=deposit;
-	}
-}
-//ÊÕ·ÑÏîÄ¿Àà
-class ChargeItem{
-	private String name;
-	private String shortName;
-	private String unit;
-	private double price;
-	private String no;
-	private boolean state=false;//Ö¸Ê¾ÊÕ·Ñ×´Ì¬£¬false±íÊ¾Î´ÊÕ·Ñ
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getShortName() {
-		return shortName;
-	}
-	public void setShortName(String shortName) {
-		this.shortName = shortName;
-	}
-	public String getUnit() {
-		return unit;
-	}
-	public void setUnit(String unit) {
-		this.unit = unit;
-	}
-	
-	public String getNo() {
-		return no;
-	}
-	public void setNo(String no) {
-		this.no = no;
-	}
-	public double getPrice() {
-		return price;
-	}
-	public void setPrice(double price) {
-		this.price = price;
-	}
-	
-	public boolean isState() {
-		return state;
-	}
-	public void setState(boolean state) {
-		this.state = state;
-	}
-	public ChargeItem(String name,String shortName,String unit,double price,String no){
-		this.name=name;
-		this.shortName=shortName;
-		this.price=price;
-		this.unit=unit;
-		this.no=no;
-	}
-}
