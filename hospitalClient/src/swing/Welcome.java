@@ -93,9 +93,9 @@ public class Welcome {
 				String userName=textField.getText();
 				String password=passwordField.getText();
 				String type=comboBox.getSelectedItem().toString();
-				Login login=new Login(userName,password,type);
-				boolean bool = login.login();
-				
+				boolean bool = new Login(userName,password,type).login();//µÇÂ¼
+				if(bool==true) System.out.println("µÇÂ¼³É¹¦");
+				else System.out.println("µÇÂ¼Ê§°Ü");
 			}
 		});
 		button.setBounds(181, 186, 93, 23);

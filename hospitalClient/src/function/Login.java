@@ -26,6 +26,8 @@ public class Login {
 			in=new Scanner(s.getInputStream(),"UTF-8");
 			out=new PrintWriter(s.getOutputStream());
 			/*送到服务器*/
+			//out.println("0001");//先发送通信协议号
+			//out.flush();
 			out.println(userName+" "+password+" "+type);
 			out.flush();
 			/*获取服务器结果*/
