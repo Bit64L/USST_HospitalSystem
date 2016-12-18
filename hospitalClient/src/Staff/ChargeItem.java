@@ -1,4 +1,4 @@
-package Staff;
+package staff;
 
 /**
  * Created by m1580 on 2016/12/18.
