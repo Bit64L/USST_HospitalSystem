@@ -1,11 +1,10 @@
 package function;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.Scanner;
 
 public class Login {
@@ -23,10 +22,10 @@ public class Login {
 		PrintWriter out=null;
 		try {
 			s=new Socket("127.0.0.1",8888);
-			in=new Scanner(s.getInputStream(),"UTF-8");
-			out=new PrintWriter(s.getOutputStream());
+			in=new Scanner(new InputStreamReader(s.getInputStream(),"UTF-8"));
+			out=new PrintWriter(new OutputStreamWriter(s.getOutputStream(),"UTF-8"));
 			/*送到服务器*/
-			//out.println("0001");//先发送通信协议号
+			//out.println("0001");
 			//out.flush();
 			out.println(userName+" "+password+" "+type);
 			out.flush();

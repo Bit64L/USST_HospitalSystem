@@ -1,29 +1,29 @@
 package person;
-import staff.*;
+import Staff.*;
 public class President extends Person{
 
 	public President(String userName, String password, String name, String id) {
 		super(userName, password, name, id);
 		// TODO Auto-generated constructor stub
 	}
-	//²éÑ¯¿ÆÊÒµÄ¹ÒºÅÁ¿ºÍ×Ü½ğ¶î
+	//æŸ¥è¯¢ç§‘å®¤çš„æŒ‚å·é‡å’Œæ€»é‡‘é¢
 	public String showDepartment(HospitalDepartment hospitalDepartment){
 		String str=hospitalDepartment.getName()+"\n";
-		str+="¹ÒºÅÁ¿£º"+hospitalDepartment.getRegisterNum()+"\n";
-		str+="×Ü½ğ¶î£º"+hospitalDepartment.getMoney()+"\n";
+		str+="æŒ‚å·é‡ï¼š"+hospitalDepartment.getRegisterNum()+"\n";
+		str+="æ€»é‡‘é¢ï¼š"+hospitalDepartment.getMoney()+"\n";
 		return str;
 	}
-	//²éÑ¯Ò½ÉúµÄ¾ÍÕïÊıÁ¿ºÍ½ğ¶î
+	//æŸ¥è¯¢åŒ»ç”Ÿçš„å°±è¯Šæ•°é‡å’Œé‡‘é¢
 	public String showDoctor(Doctor doctor){
 		String str=doctor.getName()+"\n";
-		str+="¹ÒºÅÁ¿£º"+doctor.getCureNum()+"\n";
-		str+="×Ü½ğ¶î£º"+doctor.getMoney();
+		str+="æŒ‚å·é‡ï¼š"+doctor.getCureNum()+"\n";
+		str+="æ€»é‡‘é¢ï¼š"+doctor.getMoney();
 		return str;
 	}
-	//²éÑ¯Ò©Æ·¿â´æÁ¿
+	//æŸ¥è¯¢è¯å“åº“å­˜é‡
 	public String showDoctor(Medicine medicine){
 		String str=medicine.getName()+'\n';
-		str+="¿â´æÁ¿£º"+medicine.getDeposit()+medicine.getUnit()+'\n';
+		str+="åº“å­˜é‡ï¼š"+medicine.getDeposit()+medicine.getUnit()+'\n';
 		return str;
 	}
 

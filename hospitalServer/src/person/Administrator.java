@@ -3,8 +3,7 @@ package person;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-
-import staff.*;
+import Staff.*;
 public class Administrator extends Person{
 
 	private ArrayList<Doctor> doctors=new ArrayList<>();
