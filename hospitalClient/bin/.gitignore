@@ -1,7 +1,8 @@
-/person/
-/swing/
-/utility/
-/outpatient/
-/server/
 /Staff/
+<<<<<<< HEAD
 /function/
+=======
+/outpatient/
+>>>>>>> origin/master
+/swing/
+/person/
