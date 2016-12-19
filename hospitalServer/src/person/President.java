@@ -1,5 +1,5 @@
 package person;
-import Staff.*;
+import staff.*;
 public class President extends Person{
 
 	public President(String userName, String password, String name, String id) {

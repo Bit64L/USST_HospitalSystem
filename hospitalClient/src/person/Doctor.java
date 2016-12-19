@@ -1,14 +1,13 @@
 package person;
 
 import java.util.*;
-
 import staff.*;
 public class Doctor extends Person{
 	private Queue<Patient> patients=new LinkedList<>();
 	private HospitalDepartment hospitalDepartment;
-	private int cureNum;//ҽ����������
-	private double money;//ҽ���ܽ��
-	
+	private int cureNum;//医生就诊数量
+	private double money;//医生总金额
+
 	public Queue<Patient> getPatients() {
 		return patients;
 	}
@@ -27,7 +26,7 @@ public class Doctor extends Person{
 	public void setHospitalDepartment(HospitalDepartment hospitalDepartment) {
 		this.hospitalDepartment = hospitalDepartment;
 	}
-	
+
 
 	public int getCureNum() {
 		return cureNum;
@@ -55,7 +54,7 @@ public class Doctor extends Person{
 		cureNum=0;
 		money=0;
 	}
-	//������
+	//开处方
 	public void prescribe(Patient patient,ArrayList<ChargeItem> chargeItems,ArrayList<Medicine> medicines){
 		for(int i=0;i<chargeItems.size();i++){
 			patient.getChargeItems().add(chargeItems.get(i));
@@ -70,7 +69,7 @@ public class Doctor extends Person{
 		}
 		medicines=null;
 	}
-	//��ʾ�շ���Ŀ
+	//显示收费项目
 	public String showChargeItem(Patient patient){
 		String ans="";
 		for(int i=0;i<patient.getChargeItems().size();i++){
@@ -80,7 +79,7 @@ public class Doctor extends Person{
 		}
 		return ans;
 	}
-	//��ʾҩƷ
+	//显示药品
 	public String showMedicine(Patient patient){
 		String ans="";
 		for(int i=0;i<patient.getMedicines().size();i++){

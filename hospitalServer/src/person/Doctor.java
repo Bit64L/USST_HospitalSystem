@@ -1,7 +1,8 @@
 package person;
 
 import java.util.*;
-import Staff.*;
+
+import staff.*;
 public class Doctor extends Person{
 	private Queue<Patient> patients=new LinkedList<>();
 	private HospitalDepartment hospitalDepartment;

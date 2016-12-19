@@ -2,7 +2,8 @@ package data; /**
  * Created by m1580 on 2016/12/18.
  */
 import person.*;
-import Staff.*;
+import staff.*;
+
 import java.util.ArrayList;
 
 public class Data {

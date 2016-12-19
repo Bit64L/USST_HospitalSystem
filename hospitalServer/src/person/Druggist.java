@@ -1,5 +1,5 @@
 package person;
-import Staff.*;
+import staff.*;
 public class Druggist extends Person{
 
 	public Druggist(String userName,String password,String name,String id){

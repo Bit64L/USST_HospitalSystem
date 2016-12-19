@@ -1,7 +1,8 @@
 package person;
 
 import java.util.ArrayList;
-import Staff.*;
+
+import staff.*;
 public class Charger extends Person{
 	static ArrayList<Patient> registerPatients=new ArrayList<>();//挂号病人
 	static ArrayList<Patient> orderPatients = new ArrayList<>();//预约病人
