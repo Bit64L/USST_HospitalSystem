@@ -17,8 +17,8 @@ import java.awt.event.ActionEvent;
 public class Login {
 
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField ChargerID;
+	private JTextField ChargerPW;
 
 	/**
 	 * Launch the application.
@@ -60,10 +60,10 @@ public class Login {
 		lblNewLabel.setBounds(160, 0, 82, 41);
 		panel.add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(195, 56, 66, 21);
-		panel.add(textField);
-		textField.setColumns(10);
+		ChargerID = new JTextField();
+		ChargerID.setBounds(195, 56, 66, 21);
+		panel.add(ChargerID);
+		ChargerID.setColumns(10);
 		
 		JLabel label = new JLabel("密码");
 		label.setBounds(143, 98, 54, 15);
@@ -72,11 +72,15 @@ public class Login {
 		JButton button = new JButton("登录");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				Register register=new Register();
-				JFrame re=register.getJFrame();
-				re.setVisible(true);
-				frame.dispose();
+				String chargerID=ChargerID.getText().trim().toString();
+				String chargerPW=ChargerPW.getText();
+				boolean bo=true;//收费人员登录函数;
+				if(bo){
+					Register register=new Register();
+					JFrame re=register.getJFrame();
+					re.setVisible(true);
+					frame.dispose();
+				}
 			}
 		});
 		button.setBounds(131, 137, 70, 23);
@@ -86,10 +90,10 @@ public class Login {
 		label_1.setBounds(143, 59, 54, 15);
 		panel.add(label_1);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(195, 95, 66, 21);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		ChargerPW = new JTextField();
+		ChargerPW.setBounds(195, 95, 66, 21);
+		panel.add(ChargerPW);
+		ChargerPW.setColumns(10);
 		
 		JButton button_1 = new JButton("取消");
 		button_1.setBounds(223, 137, 70, 23);
