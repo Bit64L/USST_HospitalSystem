@@ -94,8 +94,25 @@ public class Welcome {
 				String password=passwordField.getText();
 				String type=comboBox.getSelectedItem().toString();
 				boolean bool = new Login(userName,password,type).login();//登录
-				if(bool==true) System.out.println("登录成功");
+				if(bool==true) {
+					System.out.println("登录成功");
+					switch(type){
+						case "管理员":
+							Admin_1 admin_1=new Admin_1();
+							admin_1.s
+							break;
+						case "医生":
+							break;
+						case "收费人员":
+							break;
+						case "院长":
+							break;
+						case "药师":
+							break;
+					}
+				}
 				else System.out.println("登录失败");
+				
 			}
 		});
 		button.setBounds(181, 186, 93, 23);
