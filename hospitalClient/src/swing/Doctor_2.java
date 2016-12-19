@@ -16,7 +16,6 @@ public class Doctor_2 {
 
 	private JFrame frame;
 	private JTextArea textArea;
-	protected String[] args;
 
 	/**
 	 * Launch the application.
@@ -62,22 +61,28 @@ public class Doctor_2 {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setViewportView(textArea);
-		textArea.setText("显示病人信息");
+		textArea.setText("������Ϣ��");
 		scrollPane.setBounds(10, 10, 414, 151);	
 		panel.add(scrollPane);
 		
-		JButton button = new JButton("开处方");
+		JButton button = new JButton("������");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Doctor_3.main(args);
-				frame.setVisible(false);
 			}
 		});
-		button.setBounds(78, 196, 93, 23);
+		button.setBounds(32, 189, 93, 23);
 		panel.add(button);
 		
+		JButton button_1 = new JButton("���ɾ�����");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		button_1.setBounds(253, 189, 117, 23);
+		panel.add(button_1);
+		
 		JButton button_2 = new JButton("\u8FD4\u56DE");
-		button_2.setBounds(255, 196, 93, 23);
+		button_2.setBounds(331, 228, 93, 23);
 		panel.add(button_2);
 	}
 

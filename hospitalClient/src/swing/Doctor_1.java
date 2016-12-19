@@ -9,14 +9,11 @@ import javax.swing.JTextArea;
 
 import java.awt.BorderLayout;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class Doctor_1 {
 
 	private JFrame frame;
 	private JTextArea textArea;
-	protected String[] args;
 
 	/**
 	 * Launch the application.
@@ -60,25 +57,19 @@ public class Doctor_1 {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setViewportView(textArea);
-		textArea.setText("显示队列情况");
+		textArea.setText("���У�");
 		scrollPane.setBounds(10, 10, 414, 151);	
 		panel.add(scrollPane);
 		
-		JButton button = new JButton("叫号");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Doctor_2.main(args);
-				frame.setVisible(false);
-			}
-		});
+		JButton button = new JButton("\u53EB\u53F7");
 		button.setBounds(50, 201, 93, 23);
 		panel.add(button);
 		
-		JButton button_1 = new JButton("刷新");
+		JButton button_1 = new JButton("\u5237\u65B0\uFF1F");
 		button_1.setBounds(176, 201, 93, 23);
 		panel.add(button_1);
 		
-		JButton button_2 = new JButton("返回");
+		JButton button_2 = new JButton("\u9000\u51FA");
 		button_2.setBounds(294, 201, 93, 23);
 		panel.add(button_2);
 	}
