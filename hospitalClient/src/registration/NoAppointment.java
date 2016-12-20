@@ -1,4 +1,4 @@
-package outpatient;
+package registration;
 
 import java.awt.EventQueue;
 
