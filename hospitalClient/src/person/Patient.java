@@ -9,6 +9,7 @@ public class Patient {
 	private String sex;
 	private String phoneNumber;
 	private String id;
+	private String idnumber;
 	private HospitalDepartment hospitalDepartment;
 	private String orderedTime;
 	private Doctor doctor;
