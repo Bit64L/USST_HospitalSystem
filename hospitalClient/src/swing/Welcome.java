@@ -1,28 +1,20 @@
 package swing;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import javax.swing.BoxLayout;
-import java.awt.GridLayout;
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.FlowLayout;
-import javax.swing.JSeparator;
-import javax.swing.Box;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import function.Login;
-
-import javax.swing.JPasswordField;
-import javax.swing.JComboBox;
-import javax.swing.JList;
-
-public class Welcome extends JFrame{
+import adminGUI.Default;
+import function.Login;public class Welcome extends JFrame{
 	private JTextField textField;
 	private JPasswordField passwordField;
 	JComboBox comboBox;
@@ -54,18 +46,18 @@ public class Welcome extends JFrame{
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.NORTH);
 		
-		JLabel label = new JLabel("»¶Ó­Ê¹ÓÃÒ½ÔºÃÅÕï¹¤×÷Á÷¹ÜÀíÏµÍ³");
+		JLabel label = new JLabel("æ¬¢è¿ä½¿ç”¨åŒ»é™¢é—¨è¯Šå·¥ä½œæµç®¡ç†ç³»ç»Ÿ");
 		panel.add(label);
 		
 		JPanel panel_1 = new JPanel();
 		getContentPane().add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(null);
 		
-		JLabel label_2 = new JLabel("ÕËºÅ");
+		JLabel label_2 = new JLabel("è´¦å·");
 		label_2.setBounds(145, 94, 54, 15);
 		panel_1.add(label_2);
 		
-		label_3 = new JLabel("ÃÜÂë");
+		label_3 = new JLabel("å¯†ç ");
 		label_3.setBounds(145, 143, 156, 15);
 		panel_1.add(label_3);
 		
@@ -74,7 +66,7 @@ public class Welcome extends JFrame{
 		panel_1.add(textField);
 		textField.setColumns(10);
 		
-		JButton button = new JButton("µÇÂ¼");
+		JButton button = new JButton("ç™»å½•");
 		button.addActionListener(new ActionListener(){
 
 			@Override
@@ -83,25 +75,27 @@ public class Welcome extends JFrame{
 				String userName=textField.getText();
 				String password=passwordField.getText();
 				String type=comboBox.getSelectedItem().toString();
-				boolean bool = new Login(userName,password,type).login();//µÇÂ¼
+				boolean bool = new Login(userName,password,type).login();//ç™»å½•
 				if(bool==true) {
-					//System.out.println("µÇÂ¼³É¹¦");
+					//System.out.println("ç™»å½•æˆåŠŸ");
 					switch(type){
-						case "¹ÜÀíÔ±":
-							Admin_1 admin_1=new Admin_1();
-						
+						case "ç®¡ç†å‘˜":
+							dispose();
+							JFrame default_=new Default();
+							default_.setVisible(true);
+							//System.out.println("ç™»å½•æˆåŠŸ");
 							break;
-						case "Ò½Éú":
+						case "åŒ»ç”Ÿ":
 							break;
-						case "ÊÕ·ÑÈËÔ±":
+						case "æ”¶è´¹äººå‘˜":
 							break;
-						case "Ôº³¤":
+						case "é™¢é•¿":
 							break;
-						case "Ò©Ê¦":
+						case "è¯å¸ˆ":
 							break;
 					}
 				}
-				else System.out.println("µÇÂ¼Ê§°Ü");
+				else System.out.println("ç™»å½•å¤±è´¥");
 				
 			}
 		});
@@ -112,14 +106,14 @@ public class Welcome extends JFrame{
 		passwordField.setBounds(181, 140, 120, 21);
 		panel_1.add(passwordField);
 		
-		String[] identify = {"Ò½Éú","ÊÕ·ÑÈËÔ±","¹ÜÀíÔ±","Ò©Ê¦","Ôº³¤"};
+		String[] identify = {"åŒ»ç”Ÿ","æ”¶è´¹äººå‘˜","ç®¡ç†å‘˜","è¯å¸ˆ","é™¢é•¿"};
 		comboBox = new JComboBox(identify);
 		comboBox.setSelectedIndex(4);
 		
 		comboBox.setBounds(181, 41, 120, 21);
 		panel_1.add(comboBox);
 		
-		JLabel label_1 = new JLabel("Éí·İ");
+		JLabel label_1 = new JLabel("èº«ä»½");
 		label_1.setBounds(145, 44, 54, 15);
 		panel_1.add(label_1);
 	}
