@@ -99,7 +99,7 @@ public class Welcome {
 					switch(type){
 						case "管理员":
 							Admin_1 admin_1=new Admin_1();
-							admin_1.s
+						
 							break;
 						case "医生":
 							break;
