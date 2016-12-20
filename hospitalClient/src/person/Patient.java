@@ -6,6 +6,7 @@ import staff.*;
 public class Patient {
 	private String name;
 	private String age;
+	private String sex;
 	private String phoneNumber;
 	private String id;
 	private HospitalDepartment hospitalDepartment;
@@ -25,6 +26,12 @@ public class Patient {
 	}
 	public void setAge(String age) {
 		this.age = age;
+	}
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 	public String getPhoneNumber() {
 		return phoneNumber;

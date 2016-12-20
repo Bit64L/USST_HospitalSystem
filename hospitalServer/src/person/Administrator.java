@@ -17,32 +17,32 @@ public class Administrator extends Person{
 	public Administrator(String userName, String password,String name,String id) {
 		super(userName,password,name,id);
 	}
-	//添加医生账户
+	//娣诲姞鍖荤敓璐︽埛
 	public void addDoctor(String userName,String password,String name,String id,HospitalDepartment hospitalDepartment) throws IOException{
 		doctors.add(new Doctor(userName,password,name,id,hospitalDepartment));
 		//writeAccount("account.txt");
 	}
-	//添加挂号收费人员账户
+	//娣诲姞鎸傚彿鏀惰垂浜哄憳璐︽埛
 	public void addCharger(String userName,String password,String name,String id) throws IOException{
 		chargers.add(new Charger(userName,password,name,id));
 		//writeAccount("account.txt");
 	}
-	//添加科室
+	//娣诲姞绉戝
 	public void addHospitalDepartment(String name,String no) throws IOException{
 		Administrator.hospitalDepartments.add(new HospitalDepartment(name,no));
 		//writeAccount("hospitalDepartment.txt");
 	}
-	//添加药品
+	//娣诲姞鑽搧
 	public void addMedicine(String name,String shortName,String unit,double price,String no,int deposit) throws IOException{
 		Administrator.medicines.add(new Medicine(name,shortName,unit,price,no,deposit));
 		//writeAccount("medicine.txt");
 	}
-	//添加收费项目
+	//娣诲姞鏀惰垂椤圭洰
 	public void addChargeItem(String name,String shortName,String unit,double price,String no) throws IOException{
 		Administrator.chargeItems.add(new ChargeItem(name,shortName,unit,price,no));
 		//writeAccount("chargeItem.txt");
 	}
-	//修改账户
+	//淇敼璐︽埛
 	/*public String alterAccount(String userName,String newPassword,String newType) throws IOException{
 		int mark=0;
 		for(Account a : Administor.accounts){
@@ -54,10 +54,10 @@ public class Administrator extends Person{
 			}
 		}
 		//writeAccount("account.txt");
-		if(mark==0) return "无该账号！";
-		return "修改成功！";
+		if(mark==0) return "鏃犺璐﹀彿锛�";
+		return "淇敼鎴愬姛锛�";
 	}*/
-	//修改科室
+	//淇敼绉戝
 	public String alterHospital(String no,String newName) throws IOException{
 		int mark=0;
 		for(HospitalDepartment a : Administrator.hospitalDepartments){
@@ -68,10 +68,10 @@ public class Administrator extends Person{
 			}
 		}
 		//writeAccount("hospitalDepartment.txt");
-		if(mark==0) return "无该科室！";
-		return "修改成功！";
+		if(mark==0) return "鏃犺绉戝锛�";
+		return "淇敼鎴愬姛锛�";
 	}
-	//修改药品
+	//淇敼鑽搧
 	public String alterMedicine(String shortName,String newNo,String newUnit,String newPrice) throws IOException{
 		int mark=0;
 		for(Medicine a : Administrator.medicines){
@@ -85,10 +85,10 @@ public class Administrator extends Person{
 			}
 		}
 		//writeAccount("medicine.txt");
-		if(mark==0) return "无该药品！";
-		return "修改成功！";
+		if(mark==0) return "鏃犺鑽搧锛�";
+		return "淇敼鎴愬姛锛�";
 	}
-	//修改收费项目
+	//淇敼鏀惰垂椤圭洰
 	public String alterChargeItem(String shortName,String newNo,String newUnit,String newPrice) throws IOException{
 		int mark=0;
 		for(ChargeItem a : Administrator.chargeItems){
@@ -102,10 +102,10 @@ public class Administrator extends Person{
 			}
 		}
 		//writeAccount("chargeItem.txt");
-		if(mark==0) return "无该项目！";
-		return "修改成功！";
+		if(mark==0) return "鏃犺椤圭洰锛�";
+		return "淇敼鎴愬姛锛�";
 	}
-	//删除账号
+	//鍒犻櫎璐﹀彿
 	/*public String deleteAccount(String userName) throws IOException{
 		int mark=0;
 		for(Account a:Administor.accounts){
@@ -116,10 +116,10 @@ public class Administrator extends Person{
 			}
 		}
 		writeAccount("account.txt");
-		if(mark==0) return "删除失败！";
-		return "删除成功！";
+		if(mark==0) return "鍒犻櫎澶辫触锛�";
+		return "鍒犻櫎鎴愬姛锛�";
 	}*/
-	//删除科室
+	//鍒犻櫎绉戝
 	public String deleteHospitalDepartment(String name) throws IOException{
 		int mark=0;
 		for(HospitalDepartment a:Administrator.hospitalDepartments){
@@ -130,10 +130,10 @@ public class Administrator extends Person{
 			}
 		}
 		//writeAccount("hospitalDepartment.txt");
-		if(mark==0) return "删除失败！";
-		return "删除成功！";
+		if(mark==0) return "鍒犻櫎澶辫触锛�";
+		return "鍒犻櫎鎴愬姛锛�";
 	}
-	//删除药品
+	//鍒犻櫎鑽搧
 	public String deleteMedicine(String name) throws IOException{
 		int mark=0;
 		for(Medicine a:Administrator.medicines){
@@ -144,10 +144,10 @@ public class Administrator extends Person{
 			}
 		}
 		//writeAccount("medicine.txt");
-		if(mark==0) return "删除失败！";
-		return "删除成功！";
+		if(mark==0) return "鍒犻櫎澶辫触锛�";
+		return "鍒犻櫎鎴愬姛锛�";
 	}
-	//删除项目
+	//鍒犻櫎椤圭洰
 	public String deleteChargeItem(String name) throws IOException{
 		int mark=0;
 		for(ChargeItem a:Administrator.chargeItems){
@@ -158,10 +158,10 @@ public class Administrator extends Person{
 			}
 		}
 		//writeAccount("chargeItem.txt");
-		if(mark==0) return "删除失败！";
-		return "删除成功！";
+		if(mark==0) return "鍒犻櫎澶辫触锛�";
+		return "鍒犻櫎鎴愬姛锛�";
 	}
-	//将改变的结果写回文件
+	//灏嗘敼鍙樼殑缁撴灉鍐欏洖鏂囦欢
 	/*public void writeAccount(String fileName) throws IOException{
 		FileWriter file = new FileWriter(fileName);
 		for(Account a : Administor.accounts){
