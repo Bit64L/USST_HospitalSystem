@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Account extends JFrame {
 
@@ -33,7 +35,7 @@ public class Account extends JFrame {
 	 * Create the frame.
 	 */
 	public Account() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -45,6 +47,12 @@ public class Account extends JFrame {
 		panel.setLayout(null);
 		
 		JButton button = new JButton("添加账号");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Account_add account_add=new Account_add();
+				account_add.setVisible(true);
+			}
+		});
 		button.setBounds(59, 67, 93, 23);
 		panel.add(button);
 		

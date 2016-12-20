@@ -62,7 +62,8 @@ public class Default extends JFrame {
 		JButton button = new JButton("系统账号");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				Account account=new Account();
+				account.setVisible(true);
 			}
 		});
 		button.setBounds(45, 105, 138, 30);
@@ -93,15 +94,8 @@ public class Default extends JFrame {
 		panel.add(label);
 		
 		JLabel label_1 = new JLabel("增删改下列信息");
-		label_1.setBounds(291, 59, 100, 15);
+		label_1.setBounds(45, 62, 100, 15);
 		panel.add(label_1);
 		
-		JButton button_2 = new JButton("返回？注销？");
-		button_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		button_2.setBounds(269, 218, 145, 23);
-		panel.add(button_2);
 	}
 }

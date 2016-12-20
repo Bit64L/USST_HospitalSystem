@@ -2,16 +2,20 @@ package adminGUI;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.util.Scanner;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 public class Account_add extends JFrame {
 
@@ -41,7 +45,7 @@ public class Account_add extends JFrame {
 	 * Create the frame.
 	 */
 	public Account_add() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -90,6 +94,26 @@ public class Account_add extends JFrame {
 		JButton button = new JButton("确认添加");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String userName=textField.getText();
+				String password=passwordField.getText();
+				String name=textField_1.getText();
+				String id=textField_2.getText();
+				Socket s=null;
+				Scanner in=null;
+				PrintWriter out=null;
+				try{
+					s=new Socket("127.0.0.1",8888);
+					in=new Scanner(s.getInputStream());
+					out=new PrintWriter(s.getOutputStream());
+					String str="0010"+" "+userName+" "+password+" "+name+" "+id;
+					out.print(str);
+					out.flush();
+					s.close();
+					in.close();
+					out.close();
+				}catch(IOException e1){
+					
+				}
 			}
 		});
 		button.setBounds(92, 205, 93, 23);

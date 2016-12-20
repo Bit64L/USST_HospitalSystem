@@ -1,4 +1,4 @@
-package swing;
+package adminGUI;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -13,8 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import adminGUI.Default;
-import function.Login;public class Welcome extends JFrame{
+import function.Login;
+import person.Administrator;public class Welcome extends JFrame{
 	private JTextField textField;
 	private JPasswordField passwordField;
 	JComboBox comboBox;
@@ -81,6 +81,7 @@ import function.Login;public class Welcome extends JFrame{
 					switch(type){
 						case "管理员":
 							dispose();
+							//Administrator administrator =;//获得服务器传送来的管理员对象
 							JFrame default_=new Default();
 							default_.setVisible(true);
 							//System.out.println("登录成功");
