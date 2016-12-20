@@ -14,26 +14,6 @@ import javax.swing.JLabel;
 public class Default extends JFrame {
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Default frame = new Default();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public Default() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -47,6 +27,11 @@ public class Default extends JFrame {
 		panel.setLayout(null);
 		
 		JButton button = new JButton("系统账号");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		button.setBounds(45, 105, 138, 30);
 		panel.add(button);
 		

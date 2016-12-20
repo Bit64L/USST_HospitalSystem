@@ -1,5 +1,7 @@
 package function;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -18,12 +20,16 @@ public class Login {
 	}
 	public boolean login(){
 		Socket s=null;
+		//DataInputStream in=null;
+		//DataOutputStream out=null;
 		Scanner in=null;
 		PrintWriter out=null;
 		try {
 			s=new Socket("127.0.0.1",8888);
 			in=new Scanner(new InputStreamReader(s.getInputStream(),"UTF-8"));
 			out=new PrintWriter(new OutputStreamWriter(s.getOutputStream(),"UTF-8"));
+			//in=new DataInputStream(s.getInputStream());
+			//out=new DataOutputStream(s.getOutputStream());
 			/*送到服务器*/
 			out.println("0001"+" "+userName+" "+password+" "+type);
 			out.flush();
