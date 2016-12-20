@@ -14,13 +14,14 @@ import javax.swing.JMenuBar;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
 import javax.swing.ListSelectionModel;
+import javax.swing.border.EmptyBorder;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 
-public class NoAppointment {
+public class NoAppointment extends JFrame{
 
-	private JFrame frame;
+	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
@@ -30,7 +31,7 @@ public class NoAppointment {
 			public void run() {
 				try {
 					NoAppointment window = new NoAppointment();
-					window.frame.setVisible(true);
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -49,12 +50,15 @@ public class NoAppointment {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
-		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
 		JLabel label = new JLabel("录入挂号信息");
@@ -107,7 +111,5 @@ public class NoAppointment {
 		button.setBounds(136, 193, 93, 23);
 		panel.add(button);
 	}
-	public JFrame getJFrame(){
-		return frame;
-	}
+
 }

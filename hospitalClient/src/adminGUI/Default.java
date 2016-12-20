@@ -8,12 +8,45 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 
 public class Default extends JFrame {
 
 	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Default frame = new Default();
+					frame.setVisible(true);
+					frame.addWindowListener(new WindowAdapter(){
+						
+						 public void windowClosing(WindowEvent e)
+						   {
+						       System.exit(0);
+						   }
+							}
+							);
+					
+					
+					
+					
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+
 	public Default() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -62,5 +95,13 @@ public class Default extends JFrame {
 		JLabel label_1 = new JLabel("增删改下列信息");
 		label_1.setBounds(291, 59, 100, 15);
 		panel.add(label_1);
+		
+		JButton button_2 = new JButton("返回？注销？");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		button_2.setBounds(269, 218, 145, 23);
+		panel.add(button_2);
 	}
 }

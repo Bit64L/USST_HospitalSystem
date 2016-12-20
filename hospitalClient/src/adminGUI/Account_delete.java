@@ -1,16 +1,18 @@
-package registration;
+package adminGUI;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class Register extends JFrame {
+public class Account_delete extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -22,7 +24,7 @@ public class Register extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Register frame = new Register();
+					Account_delete frame = new Account_delete();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,7 +36,7 @@ public class Register extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Register() {
+	public Account_delete() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -46,26 +48,34 @@ public class Register extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel label = new JLabel("挂号");
-		label.setBounds(166, 21, 54, 15);
-		panel.add(label);
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(10, 0, 414, 157);
+		textArea.getScrollableTracksViewportHeight();
 		
-		JLabel lblid = new JLabel("病人ID");
-		lblid.setBounds(98, 75, 54, 15);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollPane.setViewportView(textArea);
+		textArea.setText("显示账户信息");
+		scrollPane.setBounds(10, 10, 414, 151);	
+		panel.add(scrollPane);
+		
+		JLabel lblid = new JLabel("请输入要删除的账户ID");
+		lblid.setBounds(44, 186, 151, 15);
 		panel.add(lblid);
 		
 		textField = new JTextField();
-		textField.setBounds(206, 72, 66, 21);
+		textField.setBounds(242, 183, 66, 21);
 		panel.add(textField);
 		textField.setColumns(10);
 		
 		JButton button = new JButton("确定");
-		button.setBounds(109, 165, 93, 23);
+		button.setBounds(78, 211, 93, 23);
 		panel.add(button);
 		
 		JButton button_1 = new JButton("返回");
-		button_1.setBounds(249, 165, 93, 23);
+		button_1.setBounds(252, 211, 93, 23);
 		panel.add(button_1);
+		
 	}
 
 }

@@ -4,13 +4,15 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
-public class Appointment {
+public class Appointment extends JFrame{
 
-	private JFrame frame;
+	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
@@ -20,7 +22,7 @@ public class Appointment {
 			public void run() {
 				try {
 					Appointment window = new Appointment();
-					window.frame.setVisible(true);
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -39,12 +41,15 @@ public class Appointment {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
-		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
 		JLabel label = new JLabel("该病人已预约!");
@@ -103,7 +108,5 @@ public class Appointment {
 		label_12.setBounds(182, 99, 54, 15);
 		panel.add(label_12);
 	}
-	public JFrame getJFrame(){
-		return frame;
-	}
+
 }
