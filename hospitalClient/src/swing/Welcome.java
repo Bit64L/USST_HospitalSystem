@@ -22,9 +22,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JComboBox;
 import javax.swing.JList;
 
-public class Welcome {
-
-	private JFrame frame;
+public class Welcome extends JFrame{
 	private JTextField textField;
 	private JPasswordField passwordField;
 	JComboBox comboBox;
@@ -38,7 +36,7 @@ public class Welcome {
 			public void run() {
 				try {
 					Welcome window = new Welcome();
-					window.frame.setVisible(true);
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -47,28 +45,20 @@ public class Welcome {
 	}
 
 	/**
-	 * Create the application.
-	 */
-	public Welcome() {
-		initialize();
-	}
-
-	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public  Welcome() {
+		setBounds(100, 100, 450, 300);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
-		frame.getContentPane().add(panel, BorderLayout.NORTH);
+		getContentPane().add(panel, BorderLayout.NORTH);
 		
 		JLabel label = new JLabel("欢迎使用医院门诊工作流管理系统");
 		panel.add(label);
 		
 		JPanel panel_1 = new JPanel();
-		frame.getContentPane().add(panel_1, BorderLayout.CENTER);
+		getContentPane().add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(null);
 		
 		JLabel label_2 = new JLabel("账号");
@@ -95,7 +85,7 @@ public class Welcome {
 				String type=comboBox.getSelectedItem().toString();
 				boolean bool = new Login(userName,password,type).login();//登录
 				if(bool==true) {
-					System.out.println("登录成功");
+					//System.out.println("登录成功");
 					switch(type){
 						case "管理员":
 							Admin_1 admin_1=new Admin_1();

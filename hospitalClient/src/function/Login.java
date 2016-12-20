@@ -25,9 +25,7 @@ public class Login {
 			in=new Scanner(new InputStreamReader(s.getInputStream(),"UTF-8"));
 			out=new PrintWriter(new OutputStreamWriter(s.getOutputStream(),"UTF-8"));
 			/*送到服务器*/
-			//out.println("0001");
-			//out.flush();
-			out.println(userName+" "+password+" "+type);
+			out.println("0001"+" "+userName+" "+password+" "+type);
 			out.flush();
 			/*获取服务器结果*/
 			String str=in.nextLine();
