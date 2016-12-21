@@ -1,13 +1,9 @@
 package person;
 
-import java.io.Serializable;
 import java.util.*;
+
 import staff.*;
-public class Doctor extends Person implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Doctor extends Person{
 	private Queue<Patient> patients=new LinkedList<>();
 	private HospitalDepartment hospitalDepartment;
 	private int cureNum;//医生就诊数量
@@ -51,11 +47,8 @@ public class Doctor extends Person implements Serializable{
 	public void setMoney(double money) {
 		this.money = money;
 	}
-	
-	public Doctor(){
-		super(null,null,null,null);
-	}
-	
+
+
 	public Doctor(String userName, String password, String name, String id,HospitalDepartment hospitalDepartment) {
 		super(userName, password, name, id);
 		this.hospitalDepartment=hospitalDepartment;

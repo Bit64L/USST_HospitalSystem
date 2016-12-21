@@ -1,14 +1,9 @@
 package person;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import staff.*;
-public class Patient  implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Patient {
 	private String name;
 	private String age;
 	private String sex;

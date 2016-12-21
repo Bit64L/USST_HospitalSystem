@@ -6,9 +6,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import person.Administrator;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
@@ -17,13 +14,27 @@ import java.awt.event.ActionEvent;
 public class Account extends JFrame {
 
 	private JPanel contentPane;
-	private Administrator admin;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Account frame = new Account();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
 	/**
 	 * Create the frame.
 	 */
-	public Account(Administrator admin) {
-		this.admin=admin;
-		
+	public Account() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -38,7 +49,7 @@ public class Account extends JFrame {
 		JButton button = new JButton("添加账号");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Account_add account_add=new Account_add(admin);
+				Account_add account_add=new Account_add();
 				account_add.setVisible(true);
 			}
 		});
@@ -46,21 +57,10 @@ public class Account extends JFrame {
 		panel.add(button);
 		
 		JButton button_1 = new JButton("修改账号");
-		button_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Account_change account_change=new Account_change(admin);
-				account_change.setVisible(true);
-			}
-		});
 		button_1.setBounds(237, 67, 93, 23);
 		panel.add(button_1);
 		
 		JButton button_2 = new JButton("删除账号");
-		button_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
 		button_2.setBounds(59, 149, 93, 23);
 		panel.add(button_2);
 		
@@ -69,11 +69,6 @@ public class Account extends JFrame {
 		panel.add(label);
 		
 		JButton button_3 = new JButton("返回");
-		button_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
 		button_3.setBounds(237, 149, 93, 23);
 		panel.add(button_3);
 	}

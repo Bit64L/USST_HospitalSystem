@@ -15,13 +15,9 @@ public class Data {
     public static ArrayList<HospitalDepartment> hospitalDepartments = new ArrayList<>();//科室
     public static ArrayList<Medicine> medicines = new ArrayList<>();//药品
     public static ArrayList<ChargeItem> chargeItems = new ArrayList<>();//收费项目
-    public static ArrayList<Patient> registerPatients=new ArrayList<>();//挂号病人
-    public static ArrayList<Patient> orderPatients = new ArrayList<>();//预约病人
-    public static ArrayList<OrderInformation> orderInfors=new ArrayList<>();//预约信息
-    public static ArrayList<OutPatientRecord> outPatientRecord=new ArrayList<>();//门诊记录
     public static void initial(){
         //管理员
-        administrators.add(new Administrator("000","000","李玲"));
+        administrators.add(new Administrator("000","000","李玲","0000"));
         //医生
         doctors.add(new Doctor("111","111","李达","0001",new HospitalDepartment("内科","000001")));
         //收费人员
@@ -37,5 +33,4 @@ public class Data {
         //收费项目
         chargeItems.add(new ChargeItem("红细胞计数","hxbjs","次",50,"000001"));
     }
-    
 }

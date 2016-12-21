@@ -1,12 +1,6 @@
 package person;
 
-import java.io.Serializable;
-
-public class Person  implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Person {
 	private String userName;
 	private String password;
 	private String name;

@@ -1,17 +1,11 @@
 package staff;
 
-import java.io.Serializable;
-
 /**
  * Created by m1580 on 2016/12/18.
  */
 //收费项目类
-public class ChargeItem  implements Serializable{
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private String name;
+public class ChargeItem {
+    private String name;
     private String shortName;
     private String unit;
     private double price;

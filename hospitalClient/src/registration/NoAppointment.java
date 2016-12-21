@@ -1,4 +1,4 @@
-package registrationGUI;
+package registration;
 
 import java.awt.EventQueue;
 
@@ -18,15 +18,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JTextField;
 
 public class NoAppointment extends JFrame{
 
 	private JPanel contentPane;
-	private JTextField txtPhonenumber;
-	private JTextField textField;
-	private JTextField txtName;
-	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -55,7 +50,7 @@ public class NoAppointment extends JFrame{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -82,6 +77,18 @@ public class NoAppointment extends JFrame{
 		label_3.setBounds(136, 112, 54, 15);
 		panel.add(label_3);
 		
+		JLabel lblNewLabel = new JLabel("name");
+		lblNewLabel.setBounds(210, 62, 54, 15);
+		panel.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("age");
+		lblNewLabel_1.setBounds(210, 87, 54, 15);
+		panel.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("phoneNumber");
+		lblNewLabel_2.setBounds(210, 112, 111, 15);
+		panel.add(lblNewLabel_2);
+		
 		JLabel label_4 = new JLabel("科室:");
 		label_4.setBounds(136, 137, 54, 15);
 		panel.add(label_4);
@@ -96,31 +103,13 @@ public class NoAppointment extends JFrame{
 		lblNewLabel_3.setBounds(136, 168, 54, 15);
 		panel.add(lblNewLabel_3);
 		
+		JLabel lblNewLabel_4 = new JLabel("医生姓名");
+		lblNewLabel_4.setBounds(198, 168, 54, 15);
+		panel.add(lblNewLabel_4);
+		
 		JButton button = new JButton("确认");
 		button.setBounds(136, 193, 93, 23);
 		panel.add(button);
-		
-		txtPhonenumber = new JTextField();
-		txtPhonenumber.setText("phonenumber");
-		txtPhonenumber.setBounds(198, 109, 91, 21);
-		panel.add(txtPhonenumber);
-		txtPhonenumber.setColumns(10);
-		
-		textField = new JTextField("age");
-		textField.setBounds(198, 84, 91, 21);
-		panel.add(textField);
-		textField.setColumns(10);
-		
-		txtName = new JTextField();
-		txtName.setText("name");
-		txtName.setBounds(198, 59, 91, 21);
-		panel.add(txtName);
-		txtName.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setText("医生姓名");
-		textField_1.setBounds(198, 165, 91, 21);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
 	}
+
 }

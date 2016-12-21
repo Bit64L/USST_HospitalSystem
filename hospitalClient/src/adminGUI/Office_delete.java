@@ -8,9 +8,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
-
-import person.Administrator;
-
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -19,7 +16,7 @@ public class Office_delete extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private Administrator admin;
+
 	/**
 	 * Launch the application.
 	 */
@@ -27,7 +24,7 @@ public class Office_delete extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Office_delete frame = new Office_delete(new Administrator("a","a"));
+					Office_delete frame = new Office_delete();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,8 +36,7 @@ public class Office_delete extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Office_delete(Administrator admin) {
-		this.admin=admin;
+	public Office_delete() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

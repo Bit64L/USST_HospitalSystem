@@ -6,18 +6,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import person.Administrator;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class Medicine extends JFrame {
 
 	private JPanel contentPane;
-	private Administrator admin;
+
 	/**
 	 * Launch the application.
 	 */
@@ -25,7 +20,7 @@ public class Medicine extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Medicine frame = new Medicine(new Administrator("a","a"));
+					Medicine frame = new Medicine();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,8 +32,7 @@ public class Medicine extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Medicine(Administrator admin) {
-		this.admin=admin;
+	public Medicine() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -51,21 +45,10 @@ public class Medicine extends JFrame {
 		panel.setLayout(null);
 		
 		JButton button = new JButton("添加药品");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				Medicine_add medicine_add=new Medicine_add(admin);
-				medicine_add.setVisible(true);
-			}
-		});
 		button.setBounds(56, 66, 93, 23);
 		panel.add(button);
 		
 		JButton button_1 = new JButton("修改药品信息");
-		button_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		button_1.setBounds(246, 66, 120, 23);
 		panel.add(button_1);
 		

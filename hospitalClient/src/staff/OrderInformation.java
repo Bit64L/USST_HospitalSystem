@@ -1,19 +1,13 @@
 package staff;
 
-import java.io.Serializable;
+import person.Patient;
 
-import person.*;
-
-public class OrderInformation  implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class OrderInformation {
 	private String patientID;
 	private String patientName;
 	private String patientAge;
 	private String patientSex;
-	private String patientPhoneNumber;
+	private String patientPN;
 	private HospitalDepartment hospitalDepartment;
 	private String ordertime;
 	
@@ -37,7 +31,7 @@ public class OrderInformation  implements Serializable{
 		this.setPatientName(patient.getName());
 		this.setPatientAge(patient.getAge());
 		this.setPatientSex(patient.getSex());
-		this.setPatientPhoneNumber(patient.getPhoneNumber());
+		this.setPatientPN(patient.getPhoneNumber());
 		this.setHospitalDepartment(hospitalDepartment);
 		this.setOrdertime(ordertime);
 	}
@@ -76,12 +70,12 @@ public class OrderInformation  implements Serializable{
 		this.patientSex = patientSex;
 	}
 
-	public String getPatientPhoneNumber() {
-		return patientPhoneNumber;
+	public String getPatientPN() {
+		return patientPN;
 	}
 
-	public void setPatientPhoneNumber(String patientPhoneNumber) {
-		this.patientPhoneNumber = patientPhoneNumber;
+	public void setPatientPN(String patientPN) {
+		this.patientPN = patientPN;
 	}
 
 

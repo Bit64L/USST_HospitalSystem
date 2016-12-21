@@ -1,17 +1,11 @@
 package staff;
 
-import java.io.Serializable;
-
 /**
  * Created by m1580 on 2016/12/18.
  */
 //药品类
-public class Medicine implements Serializable{
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private String name;
+public class Medicine{
+    private String name;
     private String shortName;//拼音简码
     private String unit;
     private double price;

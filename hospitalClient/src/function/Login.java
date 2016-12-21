@@ -1,15 +1,13 @@
 package function;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
-
-import person.Administrator;
 
 public class Login {
 	private String type;
@@ -20,43 +18,31 @@ public class Login {
 		this.password=password;
 		this.type=type;
 	}
-	public Object login(){
+	public boolean login(){
 		Socket s=null;
-		ObjectInputStream inObject=null;
-		ObjectOutputStream outObject=null;
-		Object person=null;
+		//DataInputStream in=null;
+		//DataOutputStream out=null;
+		Scanner in=null;
+		PrintWriter out=null;
 		try {
 			s=new Socket("127.0.0.1",8888);
-			outObject=new ObjectOutputStream(s.getOutputStream());
+			in=new Scanner(new InputStreamReader(s.getInputStream(),"UTF-8"));
+			out=new PrintWriter(new OutputStreamWriter(s.getOutputStream(),"UTF-8"));
+			//in=new DataInputStream(s.getInputStream());
+			//out=new DataOutputStream(s.getOutputStream());
 			/*送到服务器*/
-			outObject.writeObject("0001");
-			switch(type){
-				case "管理员":
-					person=new Administrator(userName,password);
-					outObject.writeObject(person);
-					break;
-				case "医生":
-					break;
-				case "药师":
-					break;
-				case "收费人员":
-					break;
-				case "院长":
-					break;
-			}
-			outObject.flush();
+			out.println("0001"+" "+userName+" "+password+" "+type);
+			out.flush();
 			/*获取服务器结果*/
-			inObject=new ObjectInputStream(s.getInputStream());
-			person=inObject.readObject();	
-			
+			String str=in.nextLine();
 			s.close();
-			inObject.close();
-			outObject.close();
-			return person;
-		} catch (Exception e) {
+			in.close();
+			out.close();
+			if(str.equals("true")) return true;
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return false;
 	}
 }

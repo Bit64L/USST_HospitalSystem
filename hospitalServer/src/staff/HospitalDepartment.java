@@ -1,17 +1,11 @@
 package staff;
 
-import java.io.Serializable;
-
 /**
  * Created by m1580 on 2016/12/18.
  */
 //医院科室类
-public class HospitalDepartment implements Serializable{
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private String name;
+public class HospitalDepartment{
+    private String name;
     private String no;//编号
     private int registerNum;//挂号量
     private double money;//科室总金额

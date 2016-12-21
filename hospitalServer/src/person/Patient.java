@@ -1,17 +1,11 @@
 package person;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import staff.*;
-public class Patient  implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Patient {
 	private String name;
 	private String age;
-	private String sex;
 	private String phoneNumber;
 	private String id;
 	private HospitalDepartment hospitalDepartment;
@@ -19,29 +13,7 @@ public class Patient  implements Serializable{
 	private Doctor doctor;
 	private ArrayList<Medicine> medicines=new ArrayList<>();
 	private ArrayList<ChargeItem> chargeItems=new ArrayList<>();
-/*------------------------------------------------------------------------------*/	
-	public Patient(String name,String age,String sex,String phoneNumber,String id){
-		this.setName(name);;
-		this.setAge(age);;
-		this.setSex(sex);
-		this.setPhoneNumber(phoneNumber);
-		this.setId(id);
-	}
-	//病人预约
-	public	OrderInformation order(HospitalDepartment hospitalDepartment,String ordertime){
-		
-		OrderInformation orderInfor=new OrderInformation(this,hospitalDepartment,ordertime);
-		/**向预约表中添加预约信息**/;
-		return orderInfor;
-	}
-	//test 测试用 显示信息
-	public void showInfor(){
-		System.out.print("姓名:"+this.getName()+" 性别:"+this.getSex()+" 年龄:"+this.getAge()+" 身份证号码:"+this.getId());
-	}
 	
-	
-	
-/*-------------------------------------------------------------*/
 	public String getName() {
 		return name;
 	}
@@ -53,12 +25,6 @@ public class Patient  implements Serializable{
 	}
 	public void setAge(String age) {
 		this.age = age;
-	}
-	public String getSex() {
-		return sex;
-	}
-	public void setSex(String sex) {
-		this.sex = sex;
 	}
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -99,5 +65,10 @@ public class Patient  implements Serializable{
 	public ArrayList<ChargeItem> getChargeItems() {
 		return chargeItems;
 	}
-
+	public Patient(String name,String age,String phoneNumber,String id){
+		this.name=name;
+		this.age=age;
+		this.phoneNumber=phoneNumber;
+		this.id = id;
+	}
 }
