@@ -1,8 +1,13 @@
 package person;
 
+import java.io.Serializable;
 import java.util.*;
 import staff.*;
-public class Doctor extends Person{
+public class Doctor extends Person implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Queue<Patient> patients=new LinkedList<>();
 	private HospitalDepartment hospitalDepartment;
 	private int cureNum;//医生就诊数量

@@ -1,6 +1,8 @@
 package person;
+import java.io.Serializable;
+
 import staff.*;
-public class Druggist extends Person{
+public class Druggist extends Person implements Serializable{
 
 	public Druggist(String userName,String password,String name,String id){
 		super(userName,password, name, id);

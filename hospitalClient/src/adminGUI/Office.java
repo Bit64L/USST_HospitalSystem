@@ -6,13 +6,18 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import person.Administrator;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Office extends JFrame {
 
 	private JPanel contentPane;
-
+	private Administrator admin;
 	/**
 	 * Launch the application.
 	 */
@@ -20,7 +25,7 @@ public class Office extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Office frame = new Office();
+					Office frame = new Office(new Administrator("a","a"));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,7 +37,8 @@ public class Office extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Office() {
+	public Office(Administrator admin) {
+		this.admin=admin;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -49,6 +55,11 @@ public class Office extends JFrame {
 		panel.add(label);
 		
 		JButton button = new JButton("添加科室");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Office_add office_add=new Office_add(admin);
+			}
+		});
 		button.setBounds(45, 57, 118, 23);
 		panel.add(button);
 		
