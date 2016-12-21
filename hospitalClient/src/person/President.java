@@ -1,7 +1,13 @@
 package person;
-import staff.*;
-public class President extends Person{
+import java.io.Serializable;
 
+import staff.*;
+public class President extends Person implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public President(String userName, String password, String name, String id) {
 		super(userName, password, name, id);
 		// TODO Auto-generated constructor stub

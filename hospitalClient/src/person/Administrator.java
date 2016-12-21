@@ -2,20 +2,56 @@ package person;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
+import data.Data;
 import staff.*;
-public class Administrator extends Person{
+public class Administrator implements Serializable{
 
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Doctor> doctors=new ArrayList<>();
 	private ArrayList<Charger> chargers=new ArrayList<>();
-
 	static ArrayList<HospitalDepartment> hospitalDepartments = new ArrayList<>();
 	static ArrayList<Medicine> medicines = new ArrayList<>();
 	static ArrayList<ChargeItem> chargeItems = new ArrayList<>();
 
-	public Administrator(String userName, String password,String name,String id) {
-		super(userName,password,name,id);
+	private String userName;
+	private String password;
+	private String name;
+	public Administrator(String userName, String password,String name) {
+		this.userName = userName;
+		this.password = password;
+		this.name = name;
+	}
+	public Administrator(String userName, String password){
+		this.userName = userName;
+		this.password = password;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	//添加管理员账号
+	public void addAdminStrator(String userName,String password,String name){
+		Data.administrators.add(new Administrator(userName,password,name));
 	}
 	//添加医生账户
 	public void addDoctor(String userName,String password,String name,String id,HospitalDepartment hospitalDepartment) throws IOException{
@@ -106,19 +142,39 @@ public class Administrator extends Person{
 		return "修改成功！";
 	}
 	//删除账号
-	/*public String deleteAccount(String userName) throws IOException{
-		int mark=0;
-		for(Account a:Administor.accounts){
+	public void deleteAccount(String userName) throws IOException{
+		for(Administrator a:Data.administrators){
 			if(a.getUserName().equals(userName)){
-				accounts.remove(a);
-				mark=1;
-				break;
+				Data.administrators.remove(a);
+				return;
 			}
 		}
-		writeAccount("account.txt");
-		if(mark==0) return "删除失败！";
-		return "删除成功！";
-	}*/
+		for(Charger a:Data.chargers){
+			if(a.getUserName().equals(userName)){
+				Data.chargers.remove(a);
+				return;
+			}
+		}
+		
+		for(Doctor a:Data.doctors){
+			if(a.getUserName().equals(userName)){
+				Data.doctors.remove(a);
+				return;
+			}
+		}
+		for(Druggist a:Data.druggists){
+			if(a.getUserName().equals(userName)){
+				Data.druggists.remove(a);
+				return;
+			}
+		}
+		for(President a:Data.presidents){
+			if(a.getUserName().equals(userName)){
+				Data.presidents.remove(a);
+				return;
+			}
+		}
+	}
 	//删除科室
 	public String deleteHospitalDepartment(String name) throws IOException{
 		int mark=0;

@@ -1,19 +1,19 @@
-package registration;
+package registrationGUI;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class Register extends JFrame {
+public class Charge_2 extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -22,7 +22,7 @@ public class Register extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Register frame = new Register();
+					Charge_2 frame = new Charge_2();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,8 +34,8 @@ public class Register extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Register() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public Charge_2() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -45,27 +45,28 @@ public class Register extends JFrame {
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(10, 0, 414, 157);
+		textArea.getScrollableTracksViewportHeight();
 		
-		JLabel label = new JLabel("挂号");
-		label.setBounds(166, 21, 54, 15);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollPane.setViewportView(textArea);
+		textArea.setText("显示收费信息");
+		scrollPane.setBounds(10, 10, 414, 151);	
+		panel.add(scrollPane);
+		
+		JLabel label = new JLabel("费用总额");
+		label.setBounds(117, 181, 77, 15);
 		panel.add(label);
 		
-		JLabel lblid = new JLabel("病人ID");
-		lblid.setBounds(98, 75, 54, 15);
-		panel.add(lblid);
-		
-		textField = new JTextField();
-		textField.setBounds(206, 72, 66, 21);
-		panel.add(textField);
-		textField.setColumns(10);
+		JLabel lbldata = new JLabel("费用总额DATA");
+		lbldata.setBounds(218, 181, 88, 15);
+		panel.add(lbldata);
 		
 		JButton button = new JButton("确定");
-		button.setBounds(109, 165, 93, 23);
+		button.setBounds(150, 218, 93, 23);
 		panel.add(button);
-		
-		JButton button_1 = new JButton("返回");
-		button_1.setBounds(249, 165, 93, 23);
-		panel.add(button_1);
 	}
 
 }

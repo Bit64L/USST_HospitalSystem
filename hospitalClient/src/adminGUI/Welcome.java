@@ -14,7 +14,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import function.Login;
-import person.Administrator;public class Welcome extends JFrame{
+import person.*
+;public class Welcome extends JFrame{
 	private JTextField textField;
 	private JPasswordField passwordField;
 	JComboBox comboBox;
@@ -75,26 +76,25 @@ import person.Administrator;public class Welcome extends JFrame{
 				String userName=textField.getText();
 				String password=passwordField.getText();
 				String type=comboBox.getSelectedItem().toString();
-				boolean bool = new Login(userName,password,type).login();//登录
-				if(bool==true) {
-					//System.out.println("登录成功");
-					switch(type){
-						case "管理员":
-							dispose();
-							//Administrator administrator =;//获得服务器传送来的管理员对象
-							JFrame default_=new Default();
-							default_.setVisible(true);
-							//System.out.println("登录成功");
-							break;
-						case "医生":
-							break;
-						case "收费人员":
-							break;
-						case "院长":
-							break;
-						case "药师":
-							break;
-					}
+				Object person = new Login(userName,password,type).login();//登录
+				if(person!=null) {
+					System.out.println("登录成功");
+					if(person instanceof Administrator){//管理员
+						dispose();
+						Administrator admin = (Administrator)person;//获得服务器传送来的管理员对象
+						JFrame default_=new Default(admin);
+						default_.setVisible(true);
+			        }else if(person instanceof Doctor){//医生
+			            
+			        }else if(person instanceof Charger){//收费人员
+			           
+			        }else if(person instanceof Druggist){//药师
+			            
+			        }else if(person instanceof President){//院长
+			            
+			        }else{
+			            
+			        }
 				}
 				else System.out.println("登录失败");
 				
@@ -109,7 +109,7 @@ import person.Administrator;public class Welcome extends JFrame{
 		
 		String[] identify = {"医生","收费人员","管理员","药师","院长"};
 		comboBox = new JComboBox(identify);
-		comboBox.setSelectedIndex(4);
+		comboBox.setSelectedIndex(2);
 		
 		comboBox.setBounds(181, 41, 120, 21);
 		panel_1.add(comboBox);

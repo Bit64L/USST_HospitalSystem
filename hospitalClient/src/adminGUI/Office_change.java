@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import person.Administrator;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -15,7 +18,7 @@ public class Office_change extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
-
+	private Administrator admin;
 	/**
 	 * Launch the application.
 	 */
@@ -23,7 +26,7 @@ public class Office_change extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Office_change frame = new Office_change();
+					Office_change frame = new Office_change(new Administrator("a","a"));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,7 +38,8 @@ public class Office_change extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Office_change() {
+	public Office_change(Administrator admin) {
+		this.admin=admin;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

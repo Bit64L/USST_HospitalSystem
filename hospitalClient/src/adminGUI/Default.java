@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import person.Administrator;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -16,38 +19,10 @@ import javax.swing.JLabel;
 public class Default extends JFrame {
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Default frame = new Default();
-					frame.setVisible(true);
-					frame.addWindowListener(new WindowAdapter(){
-						
-						 public void windowClosing(WindowEvent e)
-						   {
-						       System.exit(0);
-						   }
-							}
-							);
-					
-					
-					
-					
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-
-	public Default() {
+	private Administrator admin;
+	public Default(Administrator admin) {
+		this.admin=admin;
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -62,7 +37,7 @@ public class Default extends JFrame {
 		JButton button = new JButton("系统账号");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Account account=new Account();
+				Account account=new Account(admin);
 				account.setVisible(true);
 			}
 		});
@@ -72,6 +47,8 @@ public class Default extends JFrame {
 		JButton btnNewButton = new JButton("科室信息");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Office office=new Office(admin);
+				office.setVisible(true);
 			}
 		});
 		btnNewButton.setBounds(225, 105, 138, 30);
@@ -80,12 +57,20 @@ public class Default extends JFrame {
 		JButton btnNewButton_1 = new JButton("药品信息");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Medicine medicine=new Medicine(admin);
+				medicine.setVisible(true);
 			}
 		});
 		btnNewButton_1.setBounds(45, 172, 138, 30);
 		panel.add(btnNewButton_1);
 		
 		JButton button_1 = new JButton("项目收费信息");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Item item=new Item(admin);
+				item.setVisible(true);
+			}
+		});
 		button_1.setBounds(225, 172, 138, 30);
 		panel.add(button_1);
 		

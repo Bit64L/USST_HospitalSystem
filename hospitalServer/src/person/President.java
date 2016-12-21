@@ -1,29 +1,35 @@
 package person;
-import staff.*;
-public class President extends Person{
+import java.io.Serializable;
 
+import staff.*;
+public class President extends Person implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public President(String userName, String password, String name, String id) {
 		super(userName, password, name, id);
 		// TODO Auto-generated constructor stub
 	}
-	//æŸ¥è¯¢ç§‘å®¤çš„æŒ‚å·é‡å’Œæ€»é‡‘é¢
+	//²éÑ¯¿ÆÊÒµÄ¹ÒºÅÁ¿ºÍ×Ü½ğ¶î
 	public String showDepartment(HospitalDepartment hospitalDepartment){
 		String str=hospitalDepartment.getName()+"\n";
-		str+="æŒ‚å·é‡ï¼š"+hospitalDepartment.getRegisterNum()+"\n";
-		str+="æ€»é‡‘é¢ï¼š"+hospitalDepartment.getMoney()+"\n";
+		str+="¹ÒºÅÁ¿£º"+hospitalDepartment.getRegisterNum()+"\n";
+		str+="×Ü½ğ¶î£º"+hospitalDepartment.getMoney()+"\n";
 		return str;
 	}
-	//æŸ¥è¯¢åŒ»ç”Ÿçš„å°±è¯Šæ•°é‡å’Œé‡‘é¢
+	//²éÑ¯Ò½ÉúµÄ¾ÍÕïÊıÁ¿ºÍ½ğ¶î
 	public String showDoctor(Doctor doctor){
 		String str=doctor.getName()+"\n";
-		str+="æŒ‚å·é‡ï¼š"+doctor.getCureNum()+"\n";
-		str+="æ€»é‡‘é¢ï¼š"+doctor.getMoney();
+		str+="¹ÒºÅÁ¿£º"+doctor.getCureNum()+"\n";
+		str+="×Ü½ğ¶î£º"+doctor.getMoney();
 		return str;
 	}
-	//æŸ¥è¯¢è¯å“åº“å­˜é‡
+	//²éÑ¯Ò©Æ·¿â´æÁ¿
 	public String showDoctor(Medicine medicine){
 		String str=medicine.getName()+'\n';
-		str+="åº“å­˜é‡ï¼š"+medicine.getDeposit()+medicine.getUnit()+'\n';
+		str+="¿â´æÁ¿£º"+medicine.getDeposit()+medicine.getUnit()+'\n';
 		return str;
 	}
 

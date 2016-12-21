@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import person.Administrator;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -19,7 +22,7 @@ public class Medicine_add extends JFrame {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
-
+	private Administrator admin;
 	/**
 	 * Launch the application.
 	 */
@@ -27,7 +30,7 @@ public class Medicine_add extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Medicine_add frame = new Medicine_add();
+					Medicine_add frame = new Medicine_add(new Administrator("a","a"));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,7 +42,8 @@ public class Medicine_add extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Medicine_add() {
+	public Medicine_add(Administrator admin) {
+		this.admin=admin;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

@@ -1,17 +1,20 @@
 package registration;
 
 import java.util.ArrayList;
-
+import data.*;
 import person.*;
 import staff.HospitalDepartment;
 import staff.OrderInformation;
 import staff.OutPatientRecord;
 
 public class Registration {
-	static ArrayList<Patient> registerPatients=new ArrayList<>();//挂号病人
-	static ArrayList<Patient> orderPatients = new ArrayList<>();//预约病人
-	static ArrayList<OrderInformation> orderInfors=new ArrayList<>();//预约信息
+	//Data data=new Data();
+	private ArrayList<Patient> registerPatients=Data.registerPatients;//挂号病人
+	private ArrayList<Patient> orderPatients = Data.orderPatients;//预约病人
+	private ArrayList<OrderInformation> orderInfors=Data.orderInfors;//预约信息
+	private ArrayList<OutPatientRecord> outPatientRecord=Data.outPatientRecord;//门诊记录
 	private Patient patient;
+	private HospitalDepartment hospitalDepartment;
 	private OutPatientRecord opr;
 	
 	public Patient getPatient(){
@@ -23,11 +26,10 @@ public class Registration {
 	
 	
 	//创建病人门诊记录
-	public void createOutPatientRecord(Patient patient,String mounth,String date){
-		OutPatientRecord opr=new OutPatientRecord(patient.getId(),patient.getName(),patient.getAge(),patient.getSex(),patient.getPhoneNumber(),mounth,date);
-		this.patient=patient;
-		this.opr=opr;
-		//将opr存入数据库表中
+	public void createOutPatientRecord(Patient patient,String month,String date){
+		OutPatientRecord opr=new OutPatientRecord(patient.getId(),patient.getName(),patient.getAge(),patient.getSex(),patient.getPhoneNumber(),month,date);
+		outPatientRecord.add(opr);
+		
 	}
 	//判断是否预约
 	public boolean isOrderd(Patient patient){
