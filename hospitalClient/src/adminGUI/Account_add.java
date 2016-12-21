@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
@@ -17,14 +19,15 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import person.Administrator;
+
 public class Account_add extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
 	private JTextField textField_1;
-	private JTextField textField_2;
-
+	private Administrator admin;
 	/**
 	 * Launch the application.
 	 */
@@ -32,7 +35,7 @@ public class Account_add extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Account_add frame = new Account_add();
+					Account_add frame = new Account_add(new Administrator("",""));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +47,7 @@ public class Account_add extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Account_add() {
+	public Account_add(Administrator admin) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -82,36 +85,34 @@ public class Account_add extends JFrame {
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JLabel lblId = new JLabel("ID");
-		lblId.setBounds(74, 155, 54, 15);
-		panel.add(lblId);
-		
-		textField_2 = new JTextField();
-		textField_2.setBounds(198, 152, 66, 21);
-		panel.add(textField_2);
-		textField_2.setColumns(10);
-		
 		JButton button = new JButton("确认添加");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String userName=textField.getText();
 				String password=passwordField.getText();
 				String name=textField_1.getText();
-				String id=textField_2.getText();
 				Socket s=null;
-				Scanner in=null;
-				PrintWriter out=null;
+				ObjectOutputStream out=null;
+				ObjectInputStream in=null;
 				try{
 					s=new Socket("127.0.0.1",8888);
-					in=new Scanner(s.getInputStream());
-					out=new PrintWriter(s.getOutputStream());
-					String str="0010"+" "+userName+" "+password+" "+name+" "+id;
-					out.print(str);
+					out=new ObjectOutputStream(s.getOutputStream());
+					
+					String str="0010";
+					out.writeObject(str);//发送协议
+					str=userName+" "+password+" "+name;
+					out.writeObject(str);//发送数据
+					out.flush();
+					
+					in=new ObjectInputStream(s.getInputStream());
+					in.readObject();//保持
+					
+					out.writeObject(admin);//发送对象
 					out.flush();
 					s.close();
-					in.close();
+					//in.close();
 					out.close();
-				}catch(IOException e1){
+				}catch(Exception e1){
 					
 				}
 			}
@@ -120,6 +121,11 @@ public class Account_add extends JFrame {
 		panel.add(button);
 		
 		JButton button_1 = new JButton("返回");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		button_1.setBounds(256, 205, 93, 23);
 		panel.add(button_1);
 		
