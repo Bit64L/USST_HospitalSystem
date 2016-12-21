@@ -9,7 +9,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
-public class Office extends JFrame {
+public class Item extends JFrame {
 
 	private JPanel contentPane;
 
@@ -20,7 +20,7 @@ public class Office extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Office frame = new Office();
+					Item frame = new Item();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,7 +32,7 @@ public class Office extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Office() {
+	public Item() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -44,25 +44,21 @@ public class Office extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel label = new JLabel("科室信息");
-		label.setBounds(173, 10, 54, 15);
+		JLabel label = new JLabel("收费项目信息");
+		label.setBounds(165, 10, 96, 15);
 		panel.add(label);
 		
-		JButton button = new JButton("添加科室");
-		button.setBounds(45, 57, 118, 23);
+		JButton button = new JButton("添加收费项目");
+		button.setBounds(55, 63, 127, 23);
 		panel.add(button);
 		
-		JButton button_1 = new JButton("修改科室信息");
-		button_1.setBounds(256, 57, 118, 23);
+		JButton button_1 = new JButton("修改收费项目信息");
+		button_1.setBounds(241, 63, 138, 23);
 		panel.add(button_1);
 		
-		JButton button_2 = new JButton("删除科室");
-		button_2.setBounds(45, 157, 118, 23);
+		JButton button_2 = new JButton("删除收费项目");
+		button_2.setBounds(55, 147, 118, 23);
 		panel.add(button_2);
-		
-		JButton button_3 = new JButton("返回");
-		button_3.setBounds(256, 157, 118, 23);
-		panel.add(button_3);
 	}
 
 }

@@ -6,10 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
-public class Office extends JFrame {
+public class Medicine extends JFrame {
 
 	private JPanel contentPane;
 
@@ -20,7 +20,7 @@ public class Office extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Office frame = new Office();
+					Medicine frame = new Medicine();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,7 +32,7 @@ public class Office extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Office() {
+	public Medicine() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -44,25 +44,24 @@ public class Office extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel label = new JLabel("科室信息");
-		label.setBounds(173, 10, 54, 15);
-		panel.add(label);
-		
-		JButton button = new JButton("添加科室");
-		button.setBounds(45, 57, 118, 23);
+		JButton button = new JButton("添加药品");
+		button.setBounds(56, 66, 93, 23);
 		panel.add(button);
 		
-		JButton button_1 = new JButton("修改科室信息");
-		button_1.setBounds(256, 57, 118, 23);
+		JButton button_1 = new JButton("修改药品信息");
+		button_1.setBounds(246, 66, 120, 23);
 		panel.add(button_1);
 		
-		JButton button_2 = new JButton("删除科室");
-		button_2.setBounds(45, 157, 118, 23);
+		JButton button_2 = new JButton("删除药品");
+		button_2.setBounds(56, 165, 93, 23);
 		panel.add(button_2);
 		
+		JLabel label = new JLabel("药品信息");
+		label.setBounds(163, 10, 54, 15);
+		panel.add(label);
+		
 		JButton button_3 = new JButton("返回");
-		button_3.setBounds(256, 157, 118, 23);
+		button_3.setBounds(257, 165, 93, 23);
 		panel.add(button_3);
 	}
-
 }
