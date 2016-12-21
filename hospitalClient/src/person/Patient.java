@@ -78,4 +78,11 @@ public class Patient {
 		this.phoneNumber=phoneNumber;
 		this.id = id;
 	}
+	//病人预约
+	public	OrderInformation order(HospitalDepartment hospitalDepartment,String ordertime){
+		
+		OrderInformation orderInfor=new OrderInformation(this,hospitalDepartment,ordertime);
+		/**向预约表中添加预约信息**/;
+		return orderInfor;
+	}
 }

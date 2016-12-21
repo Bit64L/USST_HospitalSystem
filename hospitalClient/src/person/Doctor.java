@@ -46,8 +46,11 @@ public class Doctor extends Person{
 	public void setMoney(double money) {
 		this.money = money;
 	}
-
-
+	
+	public Doctor(){
+		super(null,null,null,null);
+	}
+	
 	public Doctor(String userName, String password, String name, String id,HospitalDepartment hospitalDepartment) {
 		super(userName, password, name, id);
 		this.hospitalDepartment=hospitalDepartment;
