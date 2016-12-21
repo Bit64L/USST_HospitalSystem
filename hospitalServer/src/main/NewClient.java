@@ -1,17 +1,10 @@
 package main;
 
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-
+import person.*;
 import data.Data;
-import person.Administrator;
-import person.Charger;
-import person.Doctor;
-import person.Druggist;
-import person.Person;
-import person.President;
 
 public class NewClient implements Runnable{
     private Socket i;
@@ -29,13 +22,13 @@ public class NewClient implements Runnable{
             inObject=new ObjectInputStream(i.getInputStream());
             outObject=new ObjectOutputStream(i.getOutputStream());
             String str=(String)inObject.readObject();
-            String mess=str.substring(4);//获得信息
+            String mess=str.substring(5);//获得信息
             String[] strs=str.split("\\s");
             String protocal=strs[0];//获得协议号
             strs=mess.split("\\s");
             switch(protocal){
             	case "0001":
-            		Person person=verify(strs[0],strs[1],strs[2]);
+            		Object person=verify(strs[0],strs[1],strs[2]);
             		if(person!=null){
                         //输出对象序列
             			outObject.writeObject(person);
@@ -60,7 +53,7 @@ public class NewClient implements Runnable{
         Main.count--;
         
     }
-    public Person verify(String userName,String password,String type){
+    public Object verify(String userName,String password,String type){
         if(type.equals("管理员")){
             for(Administrator a : Data.administrators){
                 if(a.getUserName().equals(userName) && a.getPassword().equals(password)){

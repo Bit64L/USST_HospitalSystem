@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import staff.*;
-public class Administrator extends Person implements Serializable{
+public class Administrator implements Serializable{
 
 	/**
 	 * 
@@ -14,13 +14,43 @@ public class Administrator extends Person implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Doctor> doctors=new ArrayList<>();
 	private ArrayList<Charger> chargers=new ArrayList<>();
-
 	static ArrayList<HospitalDepartment> hospitalDepartments = new ArrayList<>();
 	static ArrayList<Medicine> medicines = new ArrayList<>();
 	static ArrayList<ChargeItem> chargeItems = new ArrayList<>();
 
+	private String userName;
+	private String password;
+	private String name;
+	private String id;
 	public Administrator(String userName, String password,String name,String id) {
-		super(userName,password,name,id);
+		this.userName = userName;
+		this.password = password;
+		this.name = name;
+		this.id = id;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	//添加医生账户
 	public void addDoctor(String userName,String password,String name,String id,HospitalDepartment hospitalDepartment) throws IOException{
