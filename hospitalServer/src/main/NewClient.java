@@ -1,5 +1,14 @@
 package main;
 
+<<<<<<< HEAD
+import java.io.BufferedInputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import person.*;
+import registration.Registration;
+=======
+>>>>>>> origin/master
 import data.Data;
 import person.*;
 
@@ -37,7 +46,39 @@ public class NewClient implements Runnable{
                     }
             		out.flush();
             		break;
+<<<<<<< HEAD
+                case "0012":
+                    String account=(String)inObject.readObject();//读数据
+                    admin=(Administrator)inObject.readObject();//读对象
+                    admin.deleteAccount(account);
+                    System.out.print("删除成功");
+                    break;
+                case "0013":
+                    String officeInfo=(String)inObject.readObject();
+                    String[] officeInfos=officeInfo.split("\\s");
+                    admin=(Administrator)inObject.readObject();
+                    admin.addHospitalDepartment(officeInfos[0],officeInfos[1]);
+                    System.out.print("添加成功");
+                    break;
+                case "2000":
+                	Object patient=inObject.readObject();
+                	
+                	Registration reg=new Registration();
+                	//判断是否是预约病人
+                	boolean re=reg.isOrderd((Patient) patient);
+                	
+                	if(re){
+                		System.out.println("是预约病人");
+                		Object outPatientInfor=reg.searchOrderInfor((Patient) patient);
+                		outObject.writeObject(outPatientInfor);
+                	}
+                	else{
+                		System.out.println("不是预约病人");
+                	}
+            		break;
+=======
             	case "0010":
+>>>>>>> origin/master
 
                     break;
             		

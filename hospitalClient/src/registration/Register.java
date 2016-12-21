@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Register extends JFrame {
 
@@ -60,6 +62,21 @@ public class Register extends JFrame {
 		textField.setColumns(10);
 		
 		JButton button = new JButton("确定");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Registration registration=new Registration();
+				boolean re=registration.sendRegister(textField.getText().toString());
+				if(re){
+					Appointment ap=new Appointment();
+					ap.setVisible(true);
+				}
+				else{
+					NoAppointment na=new NoAppointment();
+					na.setVisible(true);
+				}
+					
+			}
+		});
 		button.setBounds(109, 165, 93, 23);
 		panel.add(button);
 		

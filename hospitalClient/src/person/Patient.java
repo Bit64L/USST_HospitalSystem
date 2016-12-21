@@ -14,7 +14,25 @@ public class Patient {
 	private Doctor doctor;
 	private ArrayList<Medicine> medicines=new ArrayList<>();
 	private ArrayList<ChargeItem> chargeItems=new ArrayList<>();
+/*---------------------------------------------------------------------------*/
+	public Patient(){
+		
+	}
+	public Patient(String name,String age,String phoneNumber,String id){
+		this.name=name;
+		this.age=age;
+		this.phoneNumber=phoneNumber;
+		this.id = id;
+	}
+	//病人预约
+	public	OrderInformation order(HospitalDepartment hospitalDepartment,String ordertime){
+		
+		OrderInformation orderInfor=new OrderInformation(this,hospitalDepartment,ordertime);
+		/**向预约表中添加预约信息**/;
+		return orderInfor;
+	}	
 	
+/*---------------------------------------------------------------------------*/
 	public String getName() {
 		return name;
 	}
@@ -72,17 +90,5 @@ public class Patient {
 	public ArrayList<ChargeItem> getChargeItems() {
 		return chargeItems;
 	}
-	public Patient(String name,String age,String phoneNumber,String id){
-		this.name=name;
-		this.age=age;
-		this.phoneNumber=phoneNumber;
-		this.id = id;
-	}
-	//病人预约
-	public	OrderInformation order(HospitalDepartment hospitalDepartment,String ordertime){
-		
-		OrderInformation orderInfor=new OrderInformation(this,hospitalDepartment,ordertime);
-		/**向预约表中添加预约信息**/;
-		return orderInfor;
-	}
+
 }
