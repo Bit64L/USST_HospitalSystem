@@ -6,13 +6,16 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import person.Administrator;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
 public class Item extends JFrame {
 
 	private JPanel contentPane;
-
+	private Administrator admin;
 	/**
 	 * Launch the application.
 	 */
@@ -20,7 +23,7 @@ public class Item extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Item frame = new Item();
+					Item frame = new Item(new Administrator("a","a"));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,7 +35,8 @@ public class Item extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Item() {
+	public Item(Administrator admin) {
+		this.admin=admin;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

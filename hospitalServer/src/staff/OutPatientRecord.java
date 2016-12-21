@@ -3,29 +3,25 @@ package staff;
 import java.io.Serializable;
 
 public class OutPatientRecord  implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private String id;
     private String name;
     private String age;
     private String sex;
     private String phonenumber;
-    private String month;
+    private String mounth;
     private String date;
     //无参构造函数
     public  OutPatientRecord(){
     	
     }
     //带参构造函数
-    public OutPatientRecord(String id,String name,String age,String sex,String phonenumber,String month,String date){
+    public OutPatientRecord(String id,String name,String age,String sex,String phonenumber,String mounth,String date){
     	this.id=id;
     	this.name=name;
     	this.age=age;
     	this.sex=sex;
     	this.phonenumber=phonenumber;
-    	this.month=month;
+    	this.mounth=mounth;
     	this.date=date;
     }
     public void setId(String id){
@@ -58,11 +54,11 @@ public class OutPatientRecord  implements Serializable{
     public String getPhonenumber(){
     	return this.phonenumber;
     }
-    public void setMonth(String month){
-    	this.month=month;
+    public void setMounth(String mounth){
+    	this.mounth=mounth;
     }
-    public String getMonth(){
-    	return this.month;
+    public String getMounth(){
+    	return this.mounth;
     }
     public void setDate(String date){
     	this.date=date;

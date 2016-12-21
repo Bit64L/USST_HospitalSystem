@@ -52,6 +52,15 @@ public class NewClient implements Runnable{
                     admin=(Administrator)inObject.readObject();//读对象
                     admin.deleteAccount(account);
                     System.out.print("删除成功");
+                    break;
+                case "0013":
+                    String officeInfo=(String)inObject.readObject();
+                    String[] officeInfos=officeInfo.split("\\s");
+                    admin=(Administrator)inObject.readObject();
+                    admin.addHospitalDepartment(officeInfos[0],officeInfos[1]);
+                    System.out.print("添加成功");
+                    break;
+
             }
             inObject.close();
             outObject.close();
