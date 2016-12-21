@@ -1,9 +1,14 @@
 package person;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import staff.*;
-public class Charger extends Person{
+public class Charger extends Person implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	static ArrayList<Patient> registerPatients=new ArrayList<>();//挂号病人
 	static ArrayList<Patient> orderPatients = new ArrayList<>();//预约病人
 	public Charger(String userName,String password,String name,String id){

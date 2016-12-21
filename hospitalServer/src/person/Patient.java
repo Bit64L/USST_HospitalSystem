@@ -1,11 +1,17 @@
 package person;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import staff.*;
-public class Patient {
+public class Patient  implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private String age;
+	private String sex;
 	private String phoneNumber;
 	private String id;
 	private HospitalDepartment hospitalDepartment;
@@ -25,6 +31,12 @@ public class Patient {
 	}
 	public void setAge(String age) {
 		this.age = age;
+	}
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -70,5 +82,12 @@ public class Patient {
 		this.age=age;
 		this.phoneNumber=phoneNumber;
 		this.id = id;
+	}
+	//病人预约
+	public	OrderInformation order(HospitalDepartment hospitalDepartment,String ordertime){
+		
+		OrderInformation orderInfor=new OrderInformation(this,hospitalDepartment,ordertime);
+		/**向预约表中添加预约信息**/;
+		return orderInfor;
 	}
 }

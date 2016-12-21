@@ -75,16 +75,15 @@ import person.Administrator;public class Welcome extends JFrame{
 				String userName=textField.getText();
 				String password=passwordField.getText();
 				String type=comboBox.getSelectedItem().toString();
-				boolean bool = new Login(userName,password,type).login();//登录
-				if(bool==true) {
-					//System.out.println("登录成功");
+				Object person = new Login(userName,password,type).login();//登录
+				if(person!=null) {
+					System.out.println("登录成功");
 					switch(type){
 						case "管理员":
 							dispose();
-							//Administrator administrator =;//获得服务器传送来的管理员对象
+							Administrator administrator = (Administrator)person;//获得服务器传送来的管理员对象
 							JFrame default_=new Default();
 							default_.setVisible(true);
-							//System.out.println("登录成功");
 							break;
 						case "医生":
 							break;
@@ -109,7 +108,7 @@ import person.Administrator;public class Welcome extends JFrame{
 		
 		String[] identify = {"医生","收费人员","管理员","药师","院长"};
 		comboBox = new JComboBox(identify);
-		comboBox.setSelectedIndex(4);
+		comboBox.setSelectedIndex(2);
 		
 		comboBox.setBounds(181, 41, 120, 21);
 		panel_1.add(comboBox);

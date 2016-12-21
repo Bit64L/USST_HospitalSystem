@@ -1,13 +1,15 @@
 package function;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
+
+import person.Administrator;
 
 public class Login {
 	private String type;
@@ -18,31 +20,27 @@ public class Login {
 		this.password=password;
 		this.type=type;
 	}
-	public boolean login(){
+	public Object login(){
 		Socket s=null;
-		//DataInputStream in=null;
-		//DataOutputStream out=null;
-		Scanner in=null;
-		PrintWriter out=null;
+		ObjectInputStream inObject=null;
+		ObjectOutputStream outObject=null;
+		Object person=null;//接收服务器发来的对象
 		try {
 			s=new Socket("127.0.0.1",8888);
-			in=new Scanner(new InputStreamReader(s.getInputStream(),"UTF-8"));
-			out=new PrintWriter(new OutputStreamWriter(s.getOutputStream(),"UTF-8"));
-			//in=new DataInputStream(s.getInputStream());
-			//out=new DataOutputStream(s.getOutputStream());
+			outObject=new ObjectOutputStream(s.getOutputStream());
 			/*送到服务器*/
-			out.println("0001"+" "+userName+" "+password+" "+type);
-			out.flush();
+			outObject.writeObject("0001"+" "+userName+" "+password+" "+type);
+			outObject.flush();
 			/*获取服务器结果*/
-			String str=in.nextLine();
+			inObject=new ObjectInputStream(s.getInputStream());
+			 person=(Administrator)inObject.readObject();
 			s.close();
-			in.close();
-			out.close();
-			if(str.equals("true")) return true;
-		} catch (IOException e) {
+			inObject.close();
+			outObject.close();
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return false;
+		return person;
 	}
 }
