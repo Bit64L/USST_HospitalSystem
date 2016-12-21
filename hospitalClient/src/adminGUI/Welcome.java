@@ -14,7 +14,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import function.Login;
-import person.Administrator;public class Welcome extends JFrame{
+import person.*
+;public class Welcome extends JFrame{
 	private JTextField textField;
 	private JPasswordField passwordField;
 	JComboBox comboBox;
@@ -78,22 +79,22 @@ import person.Administrator;public class Welcome extends JFrame{
 				Object person = new Login(userName,password,type).login();//登录
 				if(person!=null) {
 					System.out.println("登录成功");
-					switch(type){
-						case "管理员":
-							dispose();
-							Administrator administrator = (Administrator)person;//获得服务器传送来的管理员对象
-							JFrame default_=new Default();
-							default_.setVisible(true);
-							break;
-						case "医生":
-							break;
-						case "收费人员":
-							break;
-						case "院长":
-							break;
-						case "药师":
-							break;
-					}
+					if(person instanceof Administrator){//管理员
+						dispose();
+						Administrator admin = (Administrator)person;//获得服务器传送来的管理员对象
+						JFrame default_=new Default(admin);
+						default_.setVisible(true);
+			        }else if(person instanceof Doctor){//医生
+			            
+			        }else if(person instanceof Charger){//收费人员
+			           
+			        }else if(person instanceof Druggist){//药师
+			            
+			        }else if(person instanceof President){//院长
+			            
+			        }else{
+			            
+			        }
 				}
 				else System.out.println("登录失败");
 				

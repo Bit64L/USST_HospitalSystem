@@ -5,11 +5,12 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import data.Data;
 import staff.*;
 public class Administrator implements Serializable{
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Doctor> doctors=new ArrayList<>();
@@ -21,12 +22,14 @@ public class Administrator implements Serializable{
 	private String userName;
 	private String password;
 	private String name;
-	private String id;
-	public Administrator(String userName, String password,String name,String id) {
+	public Administrator(String userName, String password,String name) {
 		this.userName = userName;
 		this.password = password;
 		this.name = name;
-		this.id = id;
+	}
+	public Administrator(String userName, String password){
+		this.userName = userName;
+		this.password = password;
 	}
 	public String getUserName() {
 		return userName;
@@ -46,11 +49,9 @@ public class Administrator implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
+	//添加管理员账号
+	public void addAdminStrator(String userName,String password,String name){
+		Data.administrators.add(new Administrator(userName,password,name));
 	}
 	//添加医生账户
 	public void addDoctor(String userName,String password,String name,String id,HospitalDepartment hospitalDepartment) throws IOException{

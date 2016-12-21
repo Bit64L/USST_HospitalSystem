@@ -24,23 +24,39 @@ public class Login {
 		Socket s=null;
 		ObjectInputStream inObject=null;
 		ObjectOutputStream outObject=null;
-		Object person=null;//接收服务器发来的对象
+		Object person=null;
 		try {
 			s=new Socket("127.0.0.1",8888);
 			outObject=new ObjectOutputStream(s.getOutputStream());
 			/*送到服务器*/
-			outObject.writeObject("0001"+" "+userName+" "+password+" "+type);
+			outObject.writeObject("0001");
+			switch(type){
+				case "管理员":
+					person=new Administrator(userName,password);
+					outObject.writeObject(person);
+					break;
+				case "医生":
+					break;
+				case "药师":
+					break;
+				case "收费人员":
+					break;
+				case "院长":
+					break;
+			}
 			outObject.flush();
 			/*获取服务器结果*/
 			inObject=new ObjectInputStream(s.getInputStream());
-			 person=(Administrator)inObject.readObject();
+			person=inObject.readObject();	
+			
 			s.close();
 			inObject.close();
 			outObject.close();
+			return person;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return person;
+		return null;
 	}
 }

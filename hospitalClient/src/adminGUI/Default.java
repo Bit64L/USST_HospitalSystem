@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import person.Administrator;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -16,38 +19,10 @@ import javax.swing.JLabel;
 public class Default extends JFrame {
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Default frame = new Default();
-					frame.setVisible(true);
-					frame.addWindowListener(new WindowAdapter(){
-						
-						 public void windowClosing(WindowEvent e)
-						   {
-						       System.exit(0);
-						   }
-							}
-							);
-					
-					
-					
-					
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-
-	public Default() {
+	private Administrator admin;
+	public Default(Administrator admin) {
+		this.admin=admin;
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -62,7 +37,7 @@ public class Default extends JFrame {
 		JButton button = new JButton("系统账号");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Account account=new Account();
+				Account account=new Account(admin);
 				account.setVisible(true);
 			}
 		});
