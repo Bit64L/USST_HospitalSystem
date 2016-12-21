@@ -13,17 +13,13 @@ public class NewClient implements Runnable{
         this.i=i;
     }
     public void run() {
-        //Scanner in = null;
-        //PrintWriter out = null;
+        Administrator admin=null;
     	ObjectInputStream inObject=null;
     	ObjectOutputStream outObject=null;
         try {
-            //in=new Scanner(new InputStreamReader(i.getInputStream(),"UTF-8"));
-            //out=new PrintWriter(new OutputStreamWriter(i.getOutputStream(),"UTF-8"));
             inObject=new ObjectInputStream(new BufferedInputStream(i.getInputStream()));
             outObject=new ObjectOutputStream(i.getOutputStream());
             String protocal=(String)inObject.readObject();
-            //outObject.writeObject("");
             switch(protocal){
             	case "0001"://登录
                     Object person=inObject.readObject();
@@ -37,15 +33,25 @@ public class NewClient implements Runnable{
             		outObject.flush();
             		break;
             	case "0010"://添加系统账号
-                    String info=(String) inObject.readObject();
-                    //outObject.writeObject("");//保持
+                    String info=(String) inObject.readObject();//读数据
             	    String[] infos=info.split("\\s");
                     outObject.writeObject("");//保持
-            	    Administrator admin=(Administrator)inObject.readObject();
+                    outObject.flush();
+            	    admin=(Administrator)inObject.readObject();//读对象
                     admin.addAdminStrator(infos[0],infos[1],infos[2]);
-            	    System.out.print("添加成功");
+            	    System.out.println("添加成功");
                     break;
-            		
+                case "0011"://显示所有账号信息
+                    String accountsInfo=showAccounts();
+                    outObject.writeObject(accountsInfo);
+                    outObject.flush();
+            		System.out.println("发送成功");
+            		break;
+                case "0012":
+                    String account=(String)inObject.readObject();//读数据
+                    admin=(Administrator)inObject.readObject();//读对象
+                    admin.deleteAccount(account);
+                    System.out.print("删除成功");
             }
             inObject.close();
             outObject.close();
@@ -99,5 +105,28 @@ public class NewClient implements Runnable{
 
         return null;
     }
-
+    public String showAccounts(){//显示所有账号信息
+        String accountsInfo="";
+        for(Administrator a:Data.administrators){
+            accountsInfo+=a.getUserName()+" "+a.getPassword()+" "+a.getName()+" ";
+            accountsInfo+="管理员$";
+        }
+        for(Doctor a:Data.doctors){
+            accountsInfo+=a.getUserName()+" "+a.getPassword()+" "+a.getName()+" ";
+            accountsInfo+="医生$";
+        }
+        for(Charger a:Data.chargers){
+            accountsInfo+=a.getUserName()+" "+a.getPassword()+" "+a.getName()+" ";
+            accountsInfo+="收费人员$";
+        }
+        for(Druggist a:Data.druggists){
+            accountsInfo+=a.getUserName()+" "+a.getPassword()+" "+a.getName()+" ";
+            accountsInfo+="药师$";
+        }
+        for(President a:Data.presidents){
+            accountsInfo+=a.getUserName()+" "+a.getPassword()+" "+a.getName()+" ";
+            accountsInfo+="院长$";
+        }
+        return accountsInfo;
+    }
 }

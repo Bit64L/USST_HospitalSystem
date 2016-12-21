@@ -47,6 +47,7 @@ public class Default extends JFrame {
 		JButton btnNewButton = new JButton("科室信息");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		btnNewButton.setBounds(225, 105, 138, 30);

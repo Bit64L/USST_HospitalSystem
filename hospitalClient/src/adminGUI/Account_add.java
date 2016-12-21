@@ -110,7 +110,7 @@ public class Account_add extends JFrame {
 					out.writeObject(admin);//发送对象
 					out.flush();
 					s.close();
-					//in.close();
+					in.close();
 					out.close();
 				}catch(Exception e1){
 					

@@ -142,19 +142,39 @@ public class Administrator implements Serializable{
 		return "修改成功！";
 	}
 	//删除账号
-	/*public String deleteAccount(String userName) throws IOException{
-		int mark=0;
-		for(Account a:Administor.accounts){
+	public void deleteAccount(String userName) throws IOException{
+		for(Administrator a:Data.administrators){
 			if(a.getUserName().equals(userName)){
-				accounts.remove(a);
-				mark=1;
-				break;
+				Data.administrators.remove(a);
+				return;
 			}
 		}
-		writeAccount("account.txt");
-		if(mark==0) return "删除失败！";
-		return "删除成功！";
-	}*/
+		for(Charger a:Data.chargers){
+			if(a.getUserName().equals(userName)){
+				Data.chargers.remove(a);
+				return;
+			}
+		}
+		
+		for(Doctor a:Data.doctors){
+			if(a.getUserName().equals(userName)){
+				Data.doctors.remove(a);
+				return;
+			}
+		}
+		for(Druggist a:Data.druggists){
+			if(a.getUserName().equals(userName)){
+				Data.druggists.remove(a);
+				return;
+			}
+		}
+		for(President a:Data.presidents){
+			if(a.getUserName().equals(userName)){
+				Data.presidents.remove(a);
+				return;
+			}
+		}
+	}
 	//删除科室
 	public String deleteHospitalDepartment(String name) throws IOException{
 		int mark=0;
