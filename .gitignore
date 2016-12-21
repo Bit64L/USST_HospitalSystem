@@ -1,1 +1,17 @@
 /bin/
+
+*.class
+
+hospitalClient/bin/adminGUI/Default.class
+
+*.class
+
+*.class
+
+*.class
+
+*.class
+
+*.class
+
+hospitalClient/bin/person/Patient.class
