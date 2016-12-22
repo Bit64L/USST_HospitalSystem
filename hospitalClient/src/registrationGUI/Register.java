@@ -71,7 +71,7 @@ public class Register extends JFrame {
 				OrderInformation orderInfor=new OrderInformation();
 				orderInfor=reg.sendregister(textField.getText().toString());
 				if(orderInfor!=null){
-					Appointment ap=new Appointment();
+					Appointment ap=new Appointment(orderInfor);
 					ap.setVisible(true);
 				}
 				else{
