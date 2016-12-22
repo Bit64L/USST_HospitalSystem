@@ -141,6 +141,11 @@ public class Item_add extends JFrame {
 		panel.add(button);
 		
 		JButton button_1 = new JButton("返回");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		button_1.setBounds(248, 220, 93, 23);
 		panel.add(button_1);
 	}

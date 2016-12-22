@@ -62,7 +62,6 @@ public class Item_showchange extends JFrame {
 		panel.add(scrollPane);
 		
 		JTextArea textArea = new JTextArea();
-		textArea.setText("显示收费项目信息");
 		scrollPane.setViewportView(textArea);
 		/*********显示账户信息*************/
 		String accountsInfo=showChargeItem();

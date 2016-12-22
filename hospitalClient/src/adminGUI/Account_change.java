@@ -26,6 +26,19 @@ public class Account_change extends JFrame {
 	private JTextField textField_1;
 	private Administrator admin;
 	private String id;
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Account_change frame = new Account_change(new Administrator("",""), "000");
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
 	/**
 	 * Create the frame.
 	 */
@@ -66,6 +79,7 @@ public class Account_change extends JFrame {
 				String password = passwordField.getText();
 				String name=textField_1.getText();
 				changeInfo(id,password,name);
+				dispose();
 			}
 		});
 		button.setBounds(109, 218, 93, 23);

@@ -88,7 +88,7 @@ public class NewClient implements Runnable{
                 case "0017"://删除收费项目
                     String chargerItemInfo1=(String)inObject.readObject();//读数据
                     admin=(Administrator)inObject.readObject();//读对象
-                    admin.deleteAccount(chargerItemInfo1);
+                    admin.deleteChargeItem(chargerItemInfo1);
                     System.out.println("删除成功");
                     break;
                 case "0018"://修改科室信息
@@ -101,7 +101,7 @@ public class NewClient implements Runnable{
                 case "0019"://删除科室信息
                     String officeInfo1=(String)inObject.readObject();//读数据
                     admin=(Administrator)inObject.readObject();//读对象
-                    admin.deleteAccount(officeInfo1);
+                    admin.deleteHospitalDepartment(officeInfo1);
                     System.out.println("删除成功");
                     break;
                 case "0020"://修改药品信息
@@ -114,7 +114,7 @@ public class NewClient implements Runnable{
                 case "0021"://删除药品信息
                     String medicineId=(String)inObject.readObject();//读数据
                     admin=(Administrator)inObject.readObject();//读对象
-                    admin.deleteAccount(medicineId);
+                    admin.deleteMedicine(medicineId);
                     System.out.println("删除成功");
                     break;
                 case "0022"://增加药品

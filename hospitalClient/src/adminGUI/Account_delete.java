@@ -78,6 +78,7 @@ public class Account_delete extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				deleteAccount(textField.getText());
+				dispose();
 			}
 		});
 		button.setBounds(78, 211, 93, 23);

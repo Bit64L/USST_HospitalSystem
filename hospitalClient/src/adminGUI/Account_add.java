@@ -117,6 +117,7 @@ public class Account_add extends JFrame {
 				}catch(Exception e1){
 					
 				}
+				dispose();
 			}
 		});
 		button.setBounds(92, 205, 93, 23);
@@ -148,6 +149,7 @@ public class Account_add extends JFrame {
 		panel.add(label_3);
 		
 		textField_2 = new JTextField();
+		textField_2.setText("无");
 		textField_2.setColumns(10);
 		textField_2.setBounds(198, 171, 66, 21);
 		panel.add(textField_2);

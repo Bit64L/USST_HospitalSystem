@@ -25,6 +25,19 @@ public class Account_showchange extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private Administrator admin;
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Account_showchange frame = new Account_showchange(new Administrator("",""));
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
 	/**
 	 * Create the frame.
 	 */
@@ -46,7 +59,6 @@ public class Account_showchange extends JFrame {
 		panel.add(scrollPane);
 		
 		JTextArea textArea = new JTextArea();
-		textArea.setText("显示账号信息");
 		scrollPane.setViewportView(textArea);
 		/*********显示账户信息*************/
 		String accountsInfo=showAccounts();
@@ -69,6 +81,7 @@ public class Account_showchange extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Account_change account_change=new Account_change(admin,textField.getText());
 				account_change.setVisible(true);
+				dispose();
 			}
 		});
 		button.setBounds(206, 218, 93, 23);

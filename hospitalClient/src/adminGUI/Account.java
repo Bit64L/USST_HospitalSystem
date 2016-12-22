@@ -18,6 +18,7 @@ public class Account extends JFrame {
 
 	private JPanel contentPane;
 	private Administrator admin;
+	
 	/**
 	 * Create the frame.
 	 */
@@ -40,6 +41,7 @@ public class Account extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Account_add account_add=new Account_add(admin);
 				account_add.setVisible(true);
+				dispose();
 			}
 		});
 		button.setBounds(59, 67, 93, 23);
@@ -50,6 +52,7 @@ public class Account extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Account_showchange account_change=new Account_showchange(admin);
 				account_change.setVisible(true);
+				dispose();
 			}
 		});
 		button_1.setBounds(237, 67, 93, 23);
@@ -58,7 +61,9 @@ public class Account extends JFrame {
 		JButton button_2 = new JButton("删除账号");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				Account_delete account=new Account_delete(admin);
+				account.setVisible(true);
+				dispose();
 			}
 		});
 		button_2.setBounds(59, 149, 93, 23);

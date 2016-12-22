@@ -65,7 +65,6 @@ public class Item_delete extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setViewportView(textArea);
-		textArea.setText("显示收费项目");
 		scrollPane.setBounds(10, 10, 414, 151);	
 		panel.add(scrollPane);
 		/*********显示账户信息*************/

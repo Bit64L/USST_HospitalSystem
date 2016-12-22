@@ -223,11 +223,11 @@ public class Administrator implements Serializable{
 		return "删除成功！";
 	}
 	//删除项目
-	public String deleteChargeItem(String name) throws IOException{
+	public String deleteChargeItem(String no) throws IOException{
 		int mark=0;
 		for(ChargeItem a:Data.chargeItems){
-			if(a.getName().equals(name)){
-				Data.medicines.remove(a);
+			if(a.getNo().equals(no)){
+				Data.chargeItems.remove(a);
 				mark=1;
 				break;
 			}
