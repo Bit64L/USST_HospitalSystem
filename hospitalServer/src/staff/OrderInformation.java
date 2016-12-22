@@ -9,6 +9,7 @@ public class OrderInformation  implements Serializable{
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
+	private Patient patient;
 	private String patientID;
 	private String patientName;
 	private String patientAge;
@@ -47,6 +48,7 @@ public class OrderInformation  implements Serializable{
 
 	}
 	public void setOrderInfor(Patient patient,HospitalDepartment hospitalDepartment,Doctor doctor,String ordertime){
+		this.setPatient(patient);
 		this.setPatientID(patient.getId());
 		this.setPatientName(patient.getName());
 		this.setPatientAge(patient.getAge());
@@ -58,6 +60,7 @@ public class OrderInformation  implements Serializable{
 	}
 
 	public void setOrderInfor(Patient patient,HospitalDepartment hospitalDepartment,Doctor doctor,String month,String date,String hour){
+		this.setPatient(patient);
 		this.setPatientID(patient.getId());
 		this.setPatientName(patient.getName());
 		this.setPatientAge(patient.getAge());
@@ -149,6 +152,12 @@ public class OrderInformation  implements Serializable{
 	}
 	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
+	}
+	public Patient getPatient() {
+		return patient;
+	}
+	public void setPatient(Patient patient) {
+		this.patient = patient;
 	}
 
 
