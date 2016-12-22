@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Time {
 	
-	public String getCurrentTime(){ //获取当前时间
+	public static String getCurrentTime(){ //获取当前时间
 		Date date=new Date();
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		String currentTime=sdf.format(date);
@@ -13,7 +13,7 @@ public class Time {
 	}
 	
 	
-	public long timeMinus(String currentTime,String orderTime){  
+	public static long timeMinus(String currentTime,String orderTime){  
 		//时间差  用于预约的人是否在一个小时内，若是，则可优先看病
 		int curD,orderD;
 		int curH,orderH;
