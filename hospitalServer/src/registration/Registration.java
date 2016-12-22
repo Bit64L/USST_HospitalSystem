@@ -32,7 +32,7 @@ public class Registration {
 		
 	}
 	//判断是否预约
-	public boolean isOrderd(Patient patient){
+	public boolean isOrdered(Patient patient){
 		for(Patient p : orderPatients){
 			if(patient.getId().equals(p.getId()))
 				return true;
@@ -49,6 +49,14 @@ public class Registration {
 		return null;
 		
 		
+	}
+	//查找预约病人的预约信息
+	public OrderInformation searchOrderInfor(Patient patinet){		
+		for(OrderInformation p : orderInfors){
+			if(patient.getId().equals(p.getPatientID()))
+				return p;
+		}
+		return null;		
 	}
 	//修改预约记录信息;
 	public void alterOrderInfor(OrderInformation orderInfor,Patient patient,HospitalDepartment hospitalDepartment,String ordertime){

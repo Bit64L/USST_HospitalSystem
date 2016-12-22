@@ -16,7 +16,10 @@ public class OrderInformation  implements Serializable{
 	private String patientPhoneNumber;
 	private HospitalDepartment hospitalDepartment;
 	private String ordertime;
-	
+	private String month;
+	private String date;
+	private String hour;
+/*----------------------------------------------------------------------*/	
 	public OrderInformation(){
 		
 	}
@@ -31,7 +34,17 @@ public class OrderInformation  implements Serializable{
 			setOrderInfor(patient,hospitalDepartment,ordertime);
 			
 	}
-	
+	public OrderInformation(Patient patient,HospitalDepartment hospitalDepartment,String month,String date,String hour){
+//		this.setPatientID(patient.getId());
+//		this.setPatientName(patient.getName());
+//		this.setPatientAge(patient.getAge());
+//		this.setPatientSex(patient.getSex());
+//		this.setPatientPN(patient.getPhoneNumber());
+//		this.setHospitalDepartment(hospitalDepartment);
+//		this.setOrdertime(ordertime);
+		setOrderInfor(patient,hospitalDepartment,month,date,hour);
+		
+}
 	public void setOrderInfor(Patient patient,HospitalDepartment hospitalDepartment,String ordertime){
 		this.setPatientID(patient.getId());
 		this.setPatientName(patient.getName());
@@ -42,7 +55,20 @@ public class OrderInformation  implements Serializable{
 		this.setOrdertime(ordertime);
 	}
 	
-	
+	public void setOrderInfor(Patient patient,HospitalDepartment hospitalDepartment,String month,String date,String hour){
+		this.setPatientID(patient.getId());
+		this.setPatientName(patient.getName());
+		this.setPatientAge(patient.getAge());
+		this.setPatientSex(patient.getSex());
+		this.setPatientPhoneNumber(patient.getPhoneNumber());
+		this.setHospitalDepartment(hospitalDepartment);
+		this.setMonth(month);
+		this.setDate(date);
+		this.setHour(hour);
+		
+	}
+		
+/*----------------------------------------------------------------------*/		
 	
 	public String getPatientID() {
 		return patientID;
@@ -96,6 +122,24 @@ public class OrderInformation  implements Serializable{
 	}
 	public void setOrdertime(String ordertime) {
 		this.ordertime = ordertime;
+	}
+	public String getMonth() {
+		return month;
+	}
+	public void setMonth(String month) {
+		this.month = month;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
+	public String getHour() {
+		return hour;
+	}
+	public void setHour(String hour) {
+		this.hour = hour;
 	}
 	
 	

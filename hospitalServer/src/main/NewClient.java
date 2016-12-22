@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import person.*;
+import registration.Registration;
 import data.Data;
 
 public class NewClient implements Runnable{
@@ -60,6 +61,19 @@ public class NewClient implements Runnable{
                     admin.addHospitalDepartment(officeInfos[0],officeInfos[1]);
                     System.out.print("添加成功");
                     break;
+                case "2000":
+                    Object patient=inObject.readObject();
+                    Registration reg=new Registration();
+                    //判断是否是预约病人
+                    boolean re=((Registration) reg).isOrdered((Patient) patient);
+            		if(re){//如果是预约病人
+            			outObject.writeObject(reg.searchOrderInfor((Patient) patient));
+                    }
+                    else{
+                        outObject.writeObject(null);
+                    }
+            		outObject.flush();
+            		break;
 
             }
             inObject.close();
