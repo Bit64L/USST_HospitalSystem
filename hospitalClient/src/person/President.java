@@ -2,34 +2,68 @@ package person;
 import java.io.Serializable;
 
 import staff.*;
-public class President extends Person implements Serializable{
+public class President implements Serializable{
 
 	/**
 	 * 
 	 */
+	private String userName;
+	private String password;
+	private String name;
 	private static final long serialVersionUID = 1L;
-	public President(String userName, String password, String name, String id) {
-		super(userName, password, name, id);
+	public President(String userName, String password, String name) {
+		this.userName=userName;
+		this.password=password;
+		this.name=name;
 		// TODO Auto-generated constructor stub
 	}
-	//²éÑ¯¿ÆÊÒµÄ¹ÒºÅÁ¿ºÍ×Ü½ð¶î
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	//ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ÒµÄ¹Òºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü½ï¿½ï¿½
 	public String showDepartment(HospitalDepartment hospitalDepartment){
 		String str=hospitalDepartment.getName()+"\n";
-		str+="¹ÒºÅÁ¿£º"+hospitalDepartment.getRegisterNum()+"\n";
-		str+="×Ü½ð¶î£º"+hospitalDepartment.getMoney()+"\n";
+		str+="ï¿½Òºï¿½ï¿½ï¿½ï¿½ï¿½"+hospitalDepartment.getRegisterNum()+"\n";
+		str+="ï¿½Ü½ï¿½î£º"+hospitalDepartment.getMoney()+"\n";
 		return str;
 	}
-	//²éÑ¯Ò½ÉúµÄ¾ÍÕïÊýÁ¿ºÍ½ð¶î
+	//ï¿½ï¿½Ñ¯Ò½ï¿½ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í½ï¿½ï¿½
 	public String showDoctor(Doctor doctor){
 		String str=doctor.getName()+"\n";
-		str+="¹ÒºÅÁ¿£º"+doctor.getCureNum()+"\n";
-		str+="×Ü½ð¶î£º"+doctor.getMoney();
+		str+="ï¿½Òºï¿½ï¿½ï¿½ï¿½ï¿½"+doctor.getCureNum()+"\n";
+		str+="ï¿½Ü½ï¿½î£º"+doctor.getMoney();
 		return str;
 	}
-	//²éÑ¯Ò©Æ·¿â´æÁ¿
+	//ï¿½ï¿½Ñ¯Ò©Æ·ï¿½ï¿½ï¿½ï¿½ï¿½
 	public String showDoctor(Medicine medicine){
 		String str=medicine.getName()+'\n';
-		str+="¿â´æÁ¿£º"+medicine.getDeposit()+medicine.getUnit()+'\n';
+		str+="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"+medicine.getDeposit()+medicine.getUnit()+'\n';
 		return str;
 	}
 

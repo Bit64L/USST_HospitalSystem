@@ -6,7 +6,7 @@ import person.*;
 
 public class OrderInformation  implements Serializable{
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private String patientID;
@@ -20,9 +20,9 @@ public class OrderInformation  implements Serializable{
 	private String date;
 	private String hour;
 	private Doctor doctor;
-/*----------------------------------------------------------------------*/	
+	/*----------------------------------------------------------------------*/
 	public OrderInformation(){
-		
+
 	}
 	public OrderInformation(Patient patient,HospitalDepartment hospitalDepartment,Doctor doctor,String ordertime){
 //			this.setPatientID(patient.getId());
@@ -32,8 +32,8 @@ public class OrderInformation  implements Serializable{
 //			this.setPatientPN(patient.getPhoneNumber());
 //			this.setHospitalDepartment(hospitalDepartment);
 //			this.setOrdertime(ordertime);
-			setOrderInfor(patient,hospitalDepartment,doctor,ordertime);
-			
+		setOrderInfor(patient,hospitalDepartment,doctor,ordertime);
+
 	}
 	public OrderInformation(Patient patient,HospitalDepartment hospitalDepartment,Doctor doctor,String month,String date,String hour){
 //		this.setPatientID(patient.getId());
@@ -44,8 +44,8 @@ public class OrderInformation  implements Serializable{
 //		this.setHospitalDepartment(hospitalDepartment);
 //		this.setOrdertime(ordertime);
 		setOrderInfor(patient,hospitalDepartment,doctor,month,date,hour);
-		
-}
+
+	}
 	public void setOrderInfor(Patient patient,HospitalDepartment hospitalDepartment,Doctor doctor,String ordertime){
 		this.setPatientID(patient.getId());
 		this.setPatientName(patient.getName());
@@ -56,7 +56,7 @@ public class OrderInformation  implements Serializable{
 		this.setDoctor(doctor);
 		this.setOrdertime(ordertime);
 	}
-	
+
 	public void setOrderInfor(Patient patient,HospitalDepartment hospitalDepartment,Doctor doctor,String month,String date,String hour){
 		this.setPatientID(patient.getId());
 		this.setPatientName(patient.getName());
@@ -68,11 +68,11 @@ public class OrderInformation  implements Serializable{
 		this.setMonth(month);
 		this.setDate(date);
 		this.setHour(hour);
-		
+
 	}
-		
-/*----------------------------------------------------------------------*/		
-	
+
+/*----------------------------------------------------------------------*/
+
 	public String getPatientID() {
 		return patientID;
 	}
@@ -150,6 +150,6 @@ public class OrderInformation  implements Serializable{
 	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
 	}
-	
-	
+
+
 }

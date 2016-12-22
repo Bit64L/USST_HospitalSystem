@@ -4,14 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.Scanner;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,7 +18,6 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import person.Administrator;
-import javax.swing.JComboBox;
 
 public class Account_add extends JFrame {
 
@@ -29,8 +26,8 @@ public class Account_add extends JFrame {
 	private JPasswordField passwordField;
 	private JTextField textField_1;
 	private Administrator admin;
+	JComboBox comboBox;
 	private JTextField textField_2;
-	private JTextField textField_3;
 	/**
 	 * Launch the application.
 	 */
@@ -94,6 +91,8 @@ public class Account_add extends JFrame {
 				String userName=textField.getText();
 				String password=passwordField.getText();
 				String name=textField_1.getText();
+				String type=comboBox.getSelectedItem().toString();
+				String hospitalDepartment=textField_2.getText();
 				Socket s=null;
 				ObjectOutputStream out=null;
 				ObjectInputStream in=null;
@@ -103,7 +102,7 @@ public class Account_add extends JFrame {
 					
 					String str="0010";
 					out.writeObject(str);//发送协议
-					str=userName+" "+password+" "+name;
+					str=userName+" "+password+" "+name+" "+type+" "+hospitalDepartment;
 					out.writeObject(str);//发送数据
 					out.flush();
 					
@@ -140,26 +139,17 @@ public class Account_add extends JFrame {
 		label_4.setBounds(92, 10, 93, 15);
 		panel.add(label_4);
 		
-		JLabel lblId = new JLabel("ID");
-		lblId.setBounds(74, 49, 54, 15);
-		panel.add(lblId);
-		
-		textField_2 = new JTextField();
-		textField_2.setBounds(198, 46, 66, 21);
-		panel.add(textField_2);
-		textField_2.setColumns(10);
-		
-		JLabel label_3 = new JLabel("部门");
-		label_3.setBounds(74, 168, 54, 15);
-		panel.add(label_3);
-		
-		textField_3 = new JTextField();
-		textField_3.setBounds(198, 167, 66, 21);
-		panel.add(textField_3);
-		textField_3.setColumns(10);
-		
-		JComboBox comboBox = new JComboBox(str);
+		comboBox = new JComboBox(str);
 		comboBox.setBounds(198, 7, 93, 21);
 		panel.add(comboBox);
+		
+		JLabel label_3 = new JLabel("科室");
+		label_3.setBounds(74, 174, 72, 18);
+		panel.add(label_3);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(198, 171, 66, 21);
+		panel.add(textField_2);
 	}
 }

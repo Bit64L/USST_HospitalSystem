@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import person.*;
 import registration.Registration;
+import staff.HospitalDepartment;
 import staff.OrderInformation;
 import data.Data;
 
@@ -15,6 +16,7 @@ public class NewClient implements Runnable{
         this.i=i;
     }
     public void run() {
+        Object person=null;
         Administrator admin=null;
     	ObjectInputStream inObject=null;
     	ObjectOutputStream outObject=null;
@@ -24,7 +26,7 @@ public class NewClient implements Runnable{
             String protocal=(String)inObject.readObject();
             switch(protocal){
             	case "0001"://登录
-                    Object person=inObject.readObject();
+                    person=inObject.readObject();
                     person=verify(person);
             		if(person!=null){//返回完整对象
             			outObject.writeObject(person);
@@ -39,8 +41,8 @@ public class NewClient implements Runnable{
             	    String[] infos=info.split("\\s");
                     outObject.writeObject("");//保持
                     outObject.flush();
-            	    admin=(Administrator)inObject.readObject();//读对象
-                    admin.addAdminStrator(infos[0],infos[1],infos[2]);
+            	    admin=(Administrator) inObject.readObject();//读对象
+                    add(admin,infos[0],infos[1],infos[2],infos[3],infos[4]);//添加账号
             	    System.out.println("添加成功");
                     break;
                 case "0011"://显示所有账号信息
@@ -154,5 +156,30 @@ public class NewClient implements Runnable{
             accountsInfo+="院长$";
         }
         return accountsInfo;
+    }
+    //添加账号
+    public void add(Administrator admin,String userName,String password,String name,String type,String hospitalDepartment){
+        switch (type){
+            case "管理员":
+                admin.addAdminStrator(userName,password,name);
+                break;
+            case "收费人员":
+                admin.addCharger(userName,password,name);
+                break;
+            case "医生":
+                for(HospitalDepartment a:Data.hospitalDepartments){
+                    if(a.getName().equals(hospitalDepartment)){
+                        admin.addDoctor(userName,password,name,a);
+                    }
+                }
+                break;
+            case "药师":
+                admin.addDruggist(userName,password,name);
+                break;
+            case "院长":
+                admin.addPresident(userName,password,name);
+                break;
+
+        }
     }
 }

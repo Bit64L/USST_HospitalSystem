@@ -6,44 +6,47 @@ import person.*;
 
 public class OrderInformation  implements Serializable{
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
-	private Patient patient;
 	private String patientID;
 	private String patientName;
 	private String patientAge;
 	private String patientSex;
 	private String patientPhoneNumber;
 	private HospitalDepartment hospitalDepartment;
-	private Doctor doctor;
 	private String ordertime;
 	private String month;
 	private String date;
 	private String hour;
-/*---------------------------------------------------------------------------*/
+	private Doctor doctor;
+	/*----------------------------------------------------------------------*/
 	public OrderInformation(){
-		
+
 	}
 	public OrderInformation(Patient patient,HospitalDepartment hospitalDepartment,Doctor doctor,String ordertime){
 //			this.setPatientID(patient.getId());
 //			this.setPatientName(patient.getName());
 //			this.setPatientAge(patient.getAge());
 //			this.setPatientSex(patient.getSex());
-//			this.setPatientPhoneNumber(patient.getPhoneNumber());
+//			this.setPatientPN(patient.getPhoneNumber());
 //			this.setHospitalDepartment(hospitalDepartment);
 //			this.setOrdertime(ordertime);
-			setOrderInfor(patient,hospitalDepartment,doctor,ordertime);
-			
+		setOrderInfor(patient,hospitalDepartment,doctor,ordertime);
+
 	}
 	public OrderInformation(Patient patient,HospitalDepartment hospitalDepartment,Doctor doctor,String month,String date,String hour){
-
+//		this.setPatientID(patient.getId());
+//		this.setPatientName(patient.getName());
+//		this.setPatientAge(patient.getAge());
+//		this.setPatientSex(patient.getSex());
+//		this.setPatientPN(patient.getPhoneNumber());
+//		this.setHospitalDepartment(hospitalDepartment);
+//		this.setOrdertime(ordertime);
 		setOrderInfor(patient,hospitalDepartment,doctor,month,date,hour);
-		
-}
-	
+
+	}
 	public void setOrderInfor(Patient patient,HospitalDepartment hospitalDepartment,Doctor doctor,String ordertime){
-		this.setPatient(patient);
 		this.setPatientID(patient.getId());
 		this.setPatientName(patient.getName());
 		this.setPatientAge(patient.getAge());
@@ -53,8 +56,8 @@ public class OrderInformation  implements Serializable{
 		this.setDoctor(doctor);
 		this.setOrdertime(ordertime);
 	}
+
 	public void setOrderInfor(Patient patient,HospitalDepartment hospitalDepartment,Doctor doctor,String month,String date,String hour){
-		this.setPatient(patient);
 		this.setPatientID(patient.getId());
 		this.setPatientName(patient.getName());
 		this.setPatientAge(patient.getAge());
@@ -62,17 +65,13 @@ public class OrderInformation  implements Serializable{
 		this.setPatientPhoneNumber(patient.getPhoneNumber());
 		this.setHospitalDepartment(hospitalDepartment);
 		this.setDoctor(doctor);
-		//this.setOrdertime(ordertime);
 		this.setMonth(month);
 		this.setDate(date);
 		this.setHour(hour);
+
 	}
-	public void showInfor(){
-		System.out.println("预约信息:");
-		patient.showInfor();
-		System.out.println("预约科室:"+this.getHospitalDepartment().getName()+" 时间:"+this.getMonth()+this.getDate()+this.getHour());;
-	}
-/*---------------------------------------------------------------------------*/
+
+/*----------------------------------------------------------------------*/
 
 	public String getPatientID() {
 		return patientID;
@@ -106,6 +105,13 @@ public class OrderInformation  implements Serializable{
 		this.patientSex = patientSex;
 	}
 
+	public String getPatientPhoneNumber() {
+		return patientPhoneNumber;
+	}
+
+	public void setPatientPhoneNumber(String patientPhoneNumber) {
+		this.patientPhoneNumber = patientPhoneNumber;
+	}
 
 
 	public HospitalDepartment getHospitalDepartment() {
@@ -138,24 +144,12 @@ public class OrderInformation  implements Serializable{
 	public void setHour(String hour) {
 		this.hour = hour;
 	}
-	public Patient getPatient() {
-		return patient;
-	}
-	public void setPatient(Patient patient) {
-		this.patient = patient;
-	}
-	public String getPatientPhoneNumber() {
-		return patientPhoneNumber;
-	}
-	public void setPatientPhoneNumber(String patientPhoneNumber) {
-		this.patientPhoneNumber = patientPhoneNumber;
-	}
 	public Doctor getDoctor() {
 		return doctor;
 	}
 	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
 	}
-	
-	
+
+
 }

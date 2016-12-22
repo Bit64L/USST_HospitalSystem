@@ -13,12 +13,6 @@ public class Administrator implements Serializable{
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
-	private ArrayList<Doctor> doctors=new ArrayList<>();
-	private ArrayList<Charger> chargers=new ArrayList<>();
-	static ArrayList<HospitalDepartment> hospitalDepartments = new ArrayList<>();
-	static ArrayList<Medicine> medicines = new ArrayList<>();
-	static ArrayList<ChargeItem> chargeItems = new ArrayList<>();
-
 	private String userName;
 	private String password;
 	private String name;
@@ -54,49 +48,38 @@ public class Administrator implements Serializable{
 		Data.administrators.add(new Administrator(userName,password,name));
 	}
 	//添加医生账户
-	public void addDoctor(String userName,String password,String name,String id,HospitalDepartment hospitalDepartment) throws IOException{
-		doctors.add(new Doctor(userName,password,name,id,hospitalDepartment));
-		//writeAccount("account.txt");
+	public void addDoctor(String userName,String password,String name,HospitalDepartment hospitalDepartment){
+		Data.doctors.add(new Doctor(userName,password,name,hospitalDepartment));
 	}
 	//添加挂号收费人员账户
-	public void addCharger(String userName,String password,String name,String id) throws IOException{
-		chargers.add(new Charger(userName,password,name,id));
-		//writeAccount("account.txt");
+	public void addCharger(String userName,String password,String name){
+		Data.chargers.add(new Charger(userName,password,name));
 	}
+	//添加药师
+	public void addDruggist(String userName,String password,String name){
+		Data.chargers.add(new Charger(userName,password,name));
+	}
+	//添加院长
+	public void addPresident(String userName,String password,String name){
+		Data.chargers.add(new Charger(userName,password,name));
+	}
+
 	//添加科室
 	public void addHospitalDepartment(String name,String no) throws IOException{
-		Administrator.hospitalDepartments.add(new HospitalDepartment(name,no));
-		//writeAccount("hospitalDepartment.txt");
+		Data.hospitalDepartments.add(new HospitalDepartment(name,no));
 	}
 	//添加药品
 	public void addMedicine(String name,String shortName,String unit,double price,String no,int deposit) throws IOException{
-		Administrator.medicines.add(new Medicine(name,shortName,unit,price,no,deposit));
-		//writeAccount("medicine.txt");
+		Data.medicines.add(new Medicine(name,shortName,unit,price,no,deposit));
 	}
 	//添加收费项目
 	public void addChargeItem(String name,String shortName,String unit,double price,String no) throws IOException{
-		Administrator.chargeItems.add(new ChargeItem(name,shortName,unit,price,no));
-		//writeAccount("chargeItem.txt");
+		Data.chargeItems.add(new ChargeItem(name,shortName,unit,price,no));
 	}
-	//修改账户
-	/*public String alterAccount(String userName,String newPassword,String newType) throws IOException{
-		int mark=0;
-		for(Account a : Administor.accounts){
-			if(a.getUserName().equals(userName)){
-				a.setPassword(newPassword);
-				a.setType(newType);
-				mark=1;
-				break;
-			}
-		}
-		//writeAccount("account.txt");
-		if(mark==0) return "无该账号！";
-		return "修改成功！";
-	}*/
 	//修改科室
 	public String alterHospital(String no,String newName) throws IOException{
 		int mark=0;
-		for(HospitalDepartment a : Administrator.hospitalDepartments){
+		for(HospitalDepartment a : Data.hospitalDepartments){
 			if(a.getNo().equals(no)){
 				a.setName(newName);
 				mark=1;
@@ -110,7 +93,7 @@ public class Administrator implements Serializable{
 	//修改药品
 	public String alterMedicine(String shortName,String newNo,String newUnit,String newPrice) throws IOException{
 		int mark=0;
-		for(Medicine a : Administrator.medicines){
+		for(Medicine a : Data.medicines){
 			if(a.getShortName().equals(shortName)){
 				a.setNo(newNo);
 				a.setUnit(newUnit);
@@ -127,7 +110,7 @@ public class Administrator implements Serializable{
 	//修改收费项目
 	public String alterChargeItem(String shortName,String newNo,String newUnit,String newPrice) throws IOException{
 		int mark=0;
-		for(ChargeItem a : Administrator.chargeItems){
+		for(ChargeItem a : Data.chargeItems){
 			if(a.getShortName().equals(shortName)){
 				a.setNo(newNo);
 				a.setUnit(newUnit);
@@ -155,7 +138,7 @@ public class Administrator implements Serializable{
 				return;
 			}
 		}
-		
+
 		for(Doctor a:Data.doctors){
 			if(a.getUserName().equals(userName)){
 				Data.doctors.remove(a);
@@ -178,9 +161,9 @@ public class Administrator implements Serializable{
 	//删除科室
 	public String deleteHospitalDepartment(String name) throws IOException{
 		int mark=0;
-		for(HospitalDepartment a:Administrator.hospitalDepartments){
+		for(HospitalDepartment a:Data.hospitalDepartments){
 			if(a.getName().equals(name)){
-				hospitalDepartments.remove(a);
+				Data.hospitalDepartments.remove(a);
 				mark=1;
 				break;
 			}
@@ -192,9 +175,9 @@ public class Administrator implements Serializable{
 	//删除药品
 	public String deleteMedicine(String name) throws IOException{
 		int mark=0;
-		for(Medicine a:Administrator.medicines){
+		for(Medicine a:Data.medicines){
 			if(a.getName().equals(name)){
-				medicines.remove(a);
+				Data.medicines.remove(a);
 				mark=1;
 				break;
 			}
@@ -206,9 +189,9 @@ public class Administrator implements Serializable{
 	//删除项目
 	public String deleteChargeItem(String name) throws IOException{
 		int mark=0;
-		for(ChargeItem a:Administrator.chargeItems){
+		for(ChargeItem a:Data.chargeItems){
 			if(a.getName().equals(name)){
-				medicines.remove(a);
+				Data.medicines.remove(a);
 				mark=1;
 				break;
 			}
@@ -227,21 +210,21 @@ public class Administrator implements Serializable{
 	}*/
 	public void writeHospitalDepartment(String fileName) throws IOException{
 		FileWriter file = new FileWriter(fileName);
-		for(HospitalDepartment a : Administrator.hospitalDepartments){
+		for(HospitalDepartment a : Data.hospitalDepartments){
 			file.write(a.getName()+" "+a.getNo());
 		}
 		file.close();
 	}
 	public void writeMedicine(String fileName) throws IOException{
 		FileWriter file = new FileWriter(fileName);
-		for(Medicine a : Administrator.medicines){
+		for(Medicine a : Data.medicines){
 			file.write(a.getName()+" "+a.getShortName()+" "+a.getUnit()+" "+a.getPrice()+" "+a.getNo());
 		}
 		file.close();
 	}
 	public void writeChargeItem(String fileName) throws IOException{
 		FileWriter file = new FileWriter(fileName);
-		for(ChargeItem a : Administrator.chargeItems){
+		for(ChargeItem a : Data.chargeItems){
 			file.write(a.getName()+" "+a.getShortName()+" "+a.getUnit()+" "+a.getPrice()+" "+a.getNo());
 		}
 		file.close();

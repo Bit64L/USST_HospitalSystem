@@ -3,15 +3,54 @@ package person;
 import java.io.Serializable;
 import java.util.*;
 import staff.*;
-public class Doctor extends Person implements Serializable{
+public class Doctor implements Serializable{
 	/**
 	 * 
 	 */
+
 	private static final long serialVersionUID = 1L;
 	private Queue<Patient> patients=new LinkedList<>();
 	private HospitalDepartment hospitalDepartment;
 	private int cureNum;//医生就诊数量
 	private double money;//医生总金额
+	private String userName;
+	private String password;
+	private String name;
+	public Doctor(String userName, String password, String name,HospitalDepartment hospitalDepartment) {
+		this.userName=userName;
+		this.password=password;
+		this.name=name;
+		this.hospitalDepartment=hospitalDepartment;
+		// TODO Auto-generated constructor stub
+	}
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public Queue<Patient> getPatients() {
 		return patients;
@@ -53,14 +92,7 @@ public class Doctor extends Person implements Serializable{
 	}
 	
 	public Doctor(){
-		super(null,null,null,null);
-	}
-	
-	public Doctor(String userName, String password, String name, String id,HospitalDepartment hospitalDepartment) {
-		super(userName, password, name, id);
-		this.hospitalDepartment=hospitalDepartment;
-		cureNum=0;
-		money=0;
+
 	}
 	//开处方
 	public void prescribe(Patient patient,ArrayList<ChargeItem> chargeItems,ArrayList<Medicine> medicines){
