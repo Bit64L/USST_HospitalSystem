@@ -1,4 +1,4 @@
-package adminGUI;
+﻿package adminGUI;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -132,7 +132,7 @@ public class Account_add extends JFrame {
 		button_1.setBounds(256, 205, 93, 23);
 		panel.add(button_1);
 		
-		String[] str  = {"管理员","医生","收费人员"};
+		String[] str  = {"管理员","医生","收费人员","药师","院长"};
 		
 		
 		
