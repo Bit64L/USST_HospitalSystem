@@ -6,8 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import person.Patient;
-import staff.OrderInformation;
+
 
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
@@ -46,14 +45,14 @@ public class Appointment extends JFrame{
 	 */
 	private void initialize() {
 		String str="123123";
-		
+		String abc="111";
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		OrderInformation or=new OrderInformation();
+
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
@@ -65,7 +64,7 @@ public class Appointment extends JFrame{
 		label_1.setBounds(118, 49, 54, 15);
 		panel.add(label_1);
 		
-		JLabel label_2 = new JLabel(orderInfor.getPatientName());
+		JLabel label_2 = new JLabel("123");
 		label_2.setBounds(182, 49, 54, 15);
 		panel.add(label_2);
 		
@@ -73,7 +72,7 @@ public class Appointment extends JFrame{
 		label_3.setBounds(118, 74, 54, 15);
 		panel.add(label_3);
 		
-		JLabel label_4 = new JLabel(orderInfor.getPatientAge());
+		JLabel label_4 = new JLabel("123");
 		label_4.setBounds(182, 74, 54, 15);
 		panel.add(label_4);
 		
@@ -81,7 +80,7 @@ public class Appointment extends JFrame{
 		label_5.setBounds(118, 124, 54, 15);
 		panel.add(label_5);
 		
-		JLabel label_6 = new JLabel(orderInfor.getHospitalDepartment().getName());
+		JLabel label_6 = new JLabel("123");
 		label_6.setBounds(182, 124, 54, 15);
 		panel.add(label_6);
 		
@@ -89,7 +88,7 @@ public class Appointment extends JFrame{
 		label_7.setBounds(118, 149, 54, 15);
 		panel.add(label_7);
 		
-		JLabel label_8 = new JLabel(orderInfor.getMonth()+"/"+orderInfor.getDate()+"/"+orderInfor.getHour());
+		JLabel label_8 = new JLabel("123");
 		label_8.setBounds(182, 149, 54, 15);
 		panel.add(label_8);
 		
@@ -97,7 +96,7 @@ public class Appointment extends JFrame{
 		label_9.setBounds(118, 174, 54, 15);
 		panel.add(label_9);
 		
-		JLabel label_10 = new JLabel(orderInfor.getDoctor().getName());
+		JLabel label_10 = new JLabel("123");
 		label_10.setBounds(182, 174, 54, 15);
 		panel.add(label_10);
 		
@@ -109,7 +108,7 @@ public class Appointment extends JFrame{
 		label_11.setBounds(118, 99, 54, 15);
 		panel.add(label_11);
 		
-		JLabel label_12 = new JLabel(orderInfor.getPatientPhoneNumber());
+		JLabel label_12 = new JLabel("123");
 		label_12.setBounds(182, 99, 54, 15);
 		panel.add(label_12);
 	}
