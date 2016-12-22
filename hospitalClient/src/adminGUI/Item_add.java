@@ -6,9 +6,17 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import person.Administrator;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.awt.event.ActionEvent;
 
 public class Item_add extends JFrame {
 
@@ -18,7 +26,7 @@ public class Item_add extends JFrame {
 	private JTextField txtc_2;
 	private JTextField txtc_3;
 	private JTextField textField;
-
+	private Administrator admin;
 	/**
 	 * Launch the application.
 	 */
@@ -26,7 +34,7 @@ public class Item_add extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Item_add frame = new Item_add();
+					Item_add frame = new Item_add(new Administrator("",""));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,7 +46,8 @@ public class Item_add extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Item_add() {
+	public Item_add(Administrator admin) {
+		this.admin=admin;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -59,7 +68,6 @@ public class Item_add extends JFrame {
 		panel.add(label_1);
 		
 		txtc = new JTextField();
-		txtc.setText("收费项目名称");
 		txtc.setBounds(224, 40, 66, 21);
 		panel.add(txtc);
 		txtc.setColumns(10);
@@ -69,7 +77,6 @@ public class Item_add extends JFrame {
 		panel.add(label_2);
 		
 		txtc_1 = new JTextField();
-		txtc_1.setText("收费项目简称");
 		txtc_1.setBounds(224, 79, 66, 21);
 		panel.add(txtc_1);
 		txtc_1.setColumns(10);
@@ -79,7 +86,6 @@ public class Item_add extends JFrame {
 		panel.add(label_3);
 		
 		txtc_2 = new JTextField();
-		txtc_2.setText("收费项目单位");
 		txtc_2.setBounds(224, 115, 66, 21);
 		panel.add(txtc_2);
 		txtc_2.setColumns(10);
@@ -89,7 +95,6 @@ public class Item_add extends JFrame {
 		panel.add(label_4);
 		
 		txtc_3 = new JTextField();
-		txtc_3.setText("收费项目单价");
 		txtc_3.setBounds(224, 151, 66, 21);
 		panel.add(txtc_3);
 		txtc_3.setColumns(10);
@@ -99,12 +104,39 @@ public class Item_add extends JFrame {
 		panel.add(label_5);
 		
 		textField = new JTextField();
-		textField.setText("收费项目编号");
 		textField.setBounds(224, 189, 66, 21);
 		panel.add(textField);
 		textField.setColumns(10);
 		
 		JButton button = new JButton("确认添加");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String name=txtc.getText();
+				String shortName=txtc_1.getText();
+				String unit=txtc_2.getText();
+				String price=txtc_3.getText();
+				String no=textField.getText();
+				Socket s=null;
+				ObjectOutputStream out=null;
+				ObjectInputStream in=null;
+				try{
+					s=new Socket("127.0.0.1",8888);
+					out=new ObjectOutputStream(s.getOutputStream());
+					
+					String str="0015";
+					out.writeObject(str);//发送协议
+					str=name+" "+shortName+" "+unit+" "+price+" "+no;
+					out.writeObject(str);//发送数据
+					out.writeObject(admin);//发送对象
+					out.flush();
+					s.close();
+					in.close();
+					out.close();
+				}catch(Exception e1){
+					
+				}
+			}
+		});
 		button.setBounds(121, 218, 93, 23);
 		panel.add(button);
 		

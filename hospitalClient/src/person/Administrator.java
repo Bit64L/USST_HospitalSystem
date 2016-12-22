@@ -73,8 +73,41 @@ public class Administrator implements Serializable{
 		Data.medicines.add(new Medicine(name,shortName,unit,price,no,deposit));
 	}
 	//添加收费项目
-	public void addChargeItem(String name,String shortName,String unit,double price,String no) throws IOException{
+	public void addChargeItem(String name,String shortName,String unit,double price,String no){
 		Data.chargeItems.add(new ChargeItem(name,shortName,unit,price,no));
+	}
+	//修改账户
+	public void alterAccount(String userName,String password,String name){
+		for(Administrator a:Data.administrators){
+			if(a.getUserName().equals(userName)){
+				a.setPassword(password);
+				a.setName(name);
+			}
+		}
+		for(Doctor a:Data.doctors){
+			if(a.getUserName().equals(userName)){
+				a.setPassword(password);
+				a.setName(name);
+			}
+		}
+		for(Charger a:Data.chargers){
+			if(a.getUserName().equals(userName)){
+				a.setPassword(password);
+				a.setName(name);
+			}
+		}
+		for(Druggist a:Data.druggists){
+			if(a.getUserName().equals(userName)){
+				a.setPassword(password);
+				a.setName(name);
+			}
+		}
+		for(President a:Data.presidents){
+			if(a.getUserName().equals(userName)){
+				a.setPassword(password);
+				a.setName(name);
+			}
+		}
 	}
 	//修改科室
 	public String alterHospital(String no,String newName) throws IOException{
@@ -91,14 +124,16 @@ public class Administrator implements Serializable{
 		return "修改成功！";
 	}
 	//修改药品
-	public String alterMedicine(String shortName,String newNo,String newUnit,String newPrice) throws IOException{
+	public String alterMedicine(String No,String name,String shortName,String newUnit,String newPrice,String deposit){
 		int mark=0;
 		for(Medicine a : Data.medicines){
-			if(a.getShortName().equals(shortName)){
-				a.setNo(newNo);
+			if(a.getNo().equals(No)){
+				a.setName(name);
+				a.setShortName(shortName);
 				a.setUnit(newUnit);
 				double price = Double.parseDouble(newPrice);
 				a.setPrice(price);
+				a.setDeposit(Integer.parseInt(deposit));
 				mark=1;
 				break;
 			}
@@ -108,11 +143,12 @@ public class Administrator implements Serializable{
 		return "修改成功！";
 	}
 	//修改收费项目
-	public String alterChargeItem(String shortName,String newNo,String newUnit,String newPrice) throws IOException{
+	public String alterChargeItem(String No,String newName,String newShortName,String newUnit,String newPrice) throws IOException{
 		int mark=0;
 		for(ChargeItem a : Data.chargeItems){
-			if(a.getShortName().equals(shortName)){
-				a.setNo(newNo);
+			if(a.getNo().equals(No)){
+				a.setName(newName);
+				a.setShortName(newShortName);
 				a.setUnit(newUnit);
 				double price = Double.parseDouble(newPrice);
 				a.setPrice(price);
@@ -159,7 +195,7 @@ public class Administrator implements Serializable{
 		}
 	}
 	//删除科室
-	public String deleteHospitalDepartment(String name) throws IOException{
+	public String deleteHospitalDepartment(String name){
 		int mark=0;
 		for(HospitalDepartment a:Data.hospitalDepartments){
 			if(a.getName().equals(name)){
