@@ -48,7 +48,7 @@ public class Account extends JFrame {
 		JButton button_1 = new JButton("修改账号");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Account_change account_change=new Account_change(admin);
+				Account_showchange account_change=new Account_showchange(admin);
 				account_change.setVisible(true);
 			}
 		});

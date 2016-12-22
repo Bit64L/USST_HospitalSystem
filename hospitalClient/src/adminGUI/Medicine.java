@@ -64,12 +64,20 @@ public class Medicine extends JFrame {
 		JButton button_1 = new JButton("修改药品信息");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Medicine_showchange medicine_change=new Medicine_showchange(admin);
+				medicine_change.setVisible(true);
 			}
 		});
 		button_1.setBounds(246, 66, 120, 23);
 		panel.add(button_1);
 		
 		JButton button_2 = new JButton("删除药品");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Medicine_delete medicine_delete=new Medicine_delete(admin);
+				medicine_delete.setVisible(true);
+			}
+		});
 		button_2.setBounds(56, 165, 93, 23);
 		panel.add(button_2);
 		
@@ -78,6 +86,11 @@ public class Medicine extends JFrame {
 		panel.add(label);
 		
 		JButton button_3 = new JButton("返回");
+		button_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		button_3.setBounds(257, 165, 93, 23);
 		panel.add(button_3);
 	}

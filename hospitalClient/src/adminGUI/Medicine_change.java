@@ -6,9 +6,17 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import person.Administrator;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.awt.event.ActionEvent;
 
 public class Medicine_change extends JFrame {
 
@@ -18,7 +26,8 @@ public class Medicine_change extends JFrame {
 	private JTextField txtc_2;
 	private JTextField txtc_3;
 	private JTextField txtc_4;
-
+	private Administrator admin;
+	private String str;
 	/**
 	 * Launch the application.
 	 */
@@ -26,7 +35,7 @@ public class Medicine_change extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Medicine_change frame = new Medicine_change();
+					Medicine_change frame = new Medicine_change(new Administrator("a","a")," ");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,7 +47,9 @@ public class Medicine_change extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Medicine_change() {
+	public Medicine_change(Administrator admin,String str) {
+		this.str=str;
+		this.admin=admin;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -59,7 +70,6 @@ public class Medicine_change extends JFrame {
 		panel.add(label_1);
 		
 		txtc = new JTextField();
-		txtc.setText("药品名称C");
 		txtc.setBounds(231, 36, 66, 21);
 		panel.add(txtc);
 		txtc.setColumns(10);
@@ -69,7 +79,6 @@ public class Medicine_change extends JFrame {
 		panel.add(label_2);
 		
 		txtc_1 = new JTextField();
-		txtc_1.setText("药品简称C");
 		txtc_1.setBounds(231, 69, 66, 21);
 		panel.add(txtc_1);
 		txtc_1.setColumns(10);
@@ -79,7 +88,6 @@ public class Medicine_change extends JFrame {
 		panel.add(label_3);
 		
 		txtc_2 = new JTextField();
-		txtc_2.setText("药品单位C");
 		txtc_2.setBounds(231, 107, 66, 21);
 		panel.add(txtc_2);
 		txtc_2.setColumns(10);
@@ -89,7 +97,6 @@ public class Medicine_change extends JFrame {
 		panel.add(label_4);
 		
 		txtc_3 = new JTextField();
-		txtc_3.setText("药品单价C");
 		txtc_3.setBounds(231, 141, 66, 21);
 		panel.add(txtc_3);
 		txtc_3.setColumns(10);
@@ -99,18 +106,46 @@ public class Medicine_change extends JFrame {
 		panel.add(label_5);
 		
 		txtc_4 = new JTextField();
-		txtc_4.setText("药品库存量C");
 		txtc_4.setBounds(231, 176, 66, 21);
 		panel.add(txtc_4);
 		txtc_4.setColumns(10);
 		
 		JButton button = new JButton("确认修改");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String name=txtc.getText();
+				String shortName=txtc_1.getText();
+				String newUnit=txtc_2.getText();
+				String newPrice=txtc_3.getText();
+				String deposit=txtc_4.getText();
+				changeInfo(str,name,shortName,newUnit,newPrice,deposit);
+			}
+		});
 		button.setBounds(98, 218, 93, 23);
 		panel.add(button);
 		
 		JButton button_1 = new JButton("返回");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		button_1.setBounds(246, 218, 93, 23);
 		panel.add(button_1);
 	}
-
+	public void changeInfo(String No,String name,String shortName,String newUnit,String newPrice,String deposit){
+		Socket s=null;
+		ObjectInputStream in=null;
+		ObjectOutputStream out=null;
+		try{
+			s=new Socket("127.0.0.1",8888);
+			out=new ObjectOutputStream(s.getOutputStream());
+			out.writeObject("0020");
+			out.writeObject(No+" "+name+" "+shortName+" "+newUnit+" "+newPrice+" "+deposit);
+			out.writeObject(admin);
+			out.flush();
+		}catch(Exception e){
+			
+		}
+	}	
 }

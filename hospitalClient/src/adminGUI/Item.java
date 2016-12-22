@@ -11,6 +11,8 @@ import person.Administrator;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Item extends JFrame {
 
@@ -53,14 +55,32 @@ public class Item extends JFrame {
 		panel.add(label);
 		
 		JButton button = new JButton("添加收费项目");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Item_add item_add=new Item_add(admin);
+				item_add.setVisible(true);
+			}
+		});
 		button.setBounds(55, 63, 127, 23);
 		panel.add(button);
 		
 		JButton button_1 = new JButton("修改收费项目信息");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Item_showchange item_change=new Item_showchange(admin);
+				item_change.setVisible(true);
+			}
+		});
 		button_1.setBounds(241, 63, 138, 23);
 		panel.add(button_1);
 		
 		JButton button_2 = new JButton("删除收费项目");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Item_delete item_delete=new Item_delete(admin);
+				item_delete.setVisible(true);
+			}
+		});
 		button_2.setBounds(55, 147, 118, 23);
 		panel.add(button_2);
 	}

@@ -64,14 +64,31 @@ public class Office extends JFrame {
 		panel.add(button);
 		
 		JButton button_1 = new JButton("修改科室信息");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Office_showchange office=new Office_showchange(admin);
+				office.setVisible(true);
+			}
+		});
 		button_1.setBounds(256, 57, 118, 23);
 		panel.add(button_1);
 		
 		JButton button_2 = new JButton("删除科室");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Office_delete office=new Office_delete(admin);
+				office.setVisible(true);
+			}
+		});
 		button_2.setBounds(45, 157, 118, 23);
 		panel.add(button_2);
 		
 		JButton button_3 = new JButton("返回");
+		button_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		button_3.setBounds(256, 157, 118, 23);
 		panel.add(button_3);
 	}

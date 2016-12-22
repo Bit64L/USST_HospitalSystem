@@ -23,11 +23,12 @@ public class Patient  implements Serializable{
 	public Patient(){
 
 	}
-	public Patient(String name,String age,String phoneNumber,String id){
-		this.name=name;
-		this.age=age;
-		this.phoneNumber=phoneNumber;
-		this.id = id;
+	public Patient(String name,String age,String sex,String phoneNumber,String id){
+		this.setName(name);;
+		this.setAge(age);;
+		this.setSex(sex);
+		this.setPhoneNumber(phoneNumber);
+		this.setId(id);
 	}
 	//病人预约
 	public	OrderInformation order(HospitalDepartment hospitalDepartment,Doctor doctor,String ordertime){

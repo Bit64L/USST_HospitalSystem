@@ -24,7 +24,7 @@ public class test {
 		//OrderInformation orderInfor=new OrderInformation();
 		order.order(patient, hospitalDepartment, doctor,month, date, hour);
 		for(OrderInformation orderInfor : orderInfors){
-			orderInfor.showInfor();
+			//orderInfor.showInfor();
 		}
 		
 	}

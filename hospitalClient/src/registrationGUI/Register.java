@@ -6,14 +6,19 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import staff.OrderInformation;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Register extends JFrame {
 
-	private JPanel contentPane;
 	private JTextField textField;
+	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
@@ -60,6 +65,21 @@ public class Register extends JFrame {
 		textField.setColumns(10);
 		
 		JButton button = new JButton("确定");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Registration reg=new Registration();
+				OrderInformation orderInfor=new OrderInformation();
+				orderInfor=reg.sendregister(textField.getText().toString());
+				if(orderInfor!=null){
+					Appointment ap=new Appointment();
+					ap.setVisible(true);
+				}
+				else{
+					NoAppointment na=new NoAppointment();
+					na.setVisible(true);
+				}
+			}
+		});
 		button.setBounds(109, 165, 93, 23);
 		panel.add(button);
 		
