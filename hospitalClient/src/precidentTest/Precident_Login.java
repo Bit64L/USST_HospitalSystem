@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import utility.DB;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -63,5 +66,12 @@ public class Precident_Login extends JFrame {
 		passwordField = new JPasswordField();
 		passwordField.setBounds(225, 138, 66, 21);
 		panel.add(passwordField);
+		
+		DB db = new DB();
+		
+		
+		
+		
+		
 	}
 }

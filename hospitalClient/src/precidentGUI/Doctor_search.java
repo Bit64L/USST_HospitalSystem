@@ -6,9 +6,15 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import utility.DB;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.awt.event.ActionEvent;
 
 public class Doctor_search extends JFrame {
 
@@ -54,8 +60,29 @@ public class Doctor_search extends JFrame {
 		scrollPane.setViewportView(textArea);
 		
 		JButton button = new JButton("确定");
-		button.setBounds(149, 218, 93, 23);
+		button.setBounds(306, 186, 93, 23);
 		panel.add(button);
+		
+		JButton button_1 = new JButton("就诊数量生成报表");
+		
+		DB db = new DB();
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ResultSet rs = db.select("select * from Doctor");
+				DoctornumPie.main(rs);
+			}
+		});
+		button_1.setBounds(10, 186, 136, 23);
+		panel.add(button_1);
+		
+		JButton button_2 = new JButton("就诊金额生成报表");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ResultSet rs = db.select("select * from Doctor");
+				Doctormoney.main(rs);
+			}
+		});
+		button_2.setBounds(156, 186, 140, 23);
+		panel.add(button_2);
 	}
-
 }

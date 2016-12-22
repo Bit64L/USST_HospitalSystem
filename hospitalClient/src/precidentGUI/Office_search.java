@@ -6,9 +6,15 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import utility.DB;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.awt.event.ActionEvent;
 
 public class Office_search extends JFrame {
 
@@ -54,8 +60,28 @@ public class Office_search extends JFrame {
 		scrollPane.setViewportView(textArea);
 		
 		JButton button = new JButton("确定");
-		button.setBounds(153, 207, 93, 23);
+		button.setBounds(331, 203, 93, 23);
 		panel.add(button);
+		
+		DB db = new DB();
+		ResultSet rs = db.select("select * from HospitalDepartment");
+		JButton button_1 = new JButton("挂号量生成报表");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				OfficeNum.main(rs);
+			}
+		});
+		button_1.setBounds(0, 203, 123, 23);
+		panel.add(button_1);
+		
+		JButton button_2 = new JButton("总金额生成报表");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				OfficeMoney.main(rs);
+			}
+		});
+		button_2.setBounds(135, 203, 158, 23);
+		panel.add(button_2);
 	}
 
 }
