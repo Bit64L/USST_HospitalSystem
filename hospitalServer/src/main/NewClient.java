@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import person.*;
 import registration.Registration;
+import staff.OrderInformation;
 import data.Data;
 
 public class NewClient implements Runnable{
@@ -64,10 +65,12 @@ public class NewClient implements Runnable{
                 case "2000":
                     Object patient=inObject.readObject();
                     Registration reg=new Registration();
+                    OrderInformation orderInfor=new OrderInformation();
                     //判断是否是预约病人
                     boolean re=((Registration) reg).isOrdered((Patient) patient);
             		if(re){//如果是预约病人
-            			outObject.writeObject(reg.searchOrderInfor((Patient) patient));
+            			orderInfor=reg.searchOrderInfor((Patient) patient);
+            			outObject.writeObject(orderInfor);
                     }
                     else{
                         outObject.writeObject(null);

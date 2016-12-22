@@ -28,9 +28,9 @@ public class Patient  implements Serializable{
 		this.setId(id);
 	}
 	//病人预约
-	public	OrderInformation order(HospitalDepartment hospitalDepartment,String ordertime){
+	public	OrderInformation order(HospitalDepartment hospitalDepartment,Doctor doctor,String ordertime){
 		
-		OrderInformation orderInfor=new OrderInformation(this,hospitalDepartment,ordertime);
+		OrderInformation orderInfor=new OrderInformation(this,hospitalDepartment,doctor,ordertime);
 		/**向预约表中添加预约信息**/;
 		return orderInfor;
 	}

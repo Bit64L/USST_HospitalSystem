@@ -16,6 +16,7 @@ public class OrderInformation  implements Serializable{
 	private String patientSex;
 	private String patientPhoneNumber;
 	private HospitalDepartment hospitalDepartment;
+	private Doctor doctor;
 	private String ordertime;
 	private String month;
 	private String date;
@@ -24,7 +25,7 @@ public class OrderInformation  implements Serializable{
 	public OrderInformation(){
 		
 	}
-	public OrderInformation(Patient patient,HospitalDepartment hospitalDepartment,String ordertime){
+	public OrderInformation(Patient patient,HospitalDepartment hospitalDepartment,Doctor doctor,String ordertime){
 //			this.setPatientID(patient.getId());
 //			this.setPatientName(patient.getName());
 //			this.setPatientAge(patient.getAge());
@@ -32,16 +33,16 @@ public class OrderInformation  implements Serializable{
 //			this.setPatientPhoneNumber(patient.getPhoneNumber());
 //			this.setHospitalDepartment(hospitalDepartment);
 //			this.setOrdertime(ordertime);
-			setOrderInfor(patient,hospitalDepartment,ordertime);
+			setOrderInfor(patient,hospitalDepartment,doctor,ordertime);
 			
 	}
-	public OrderInformation(Patient patient,HospitalDepartment hospitalDepartment,String month,String date,String hour){
+	public OrderInformation(Patient patient,HospitalDepartment hospitalDepartment,Doctor doctor,String month,String date,String hour){
 
-		setOrderInfor(patient,hospitalDepartment,month,date,hour);
+		setOrderInfor(patient,hospitalDepartment,doctor,month,date,hour);
 		
 }
 	
-	public void setOrderInfor(Patient patient,HospitalDepartment hospitalDepartment,String ordertime){
+	public void setOrderInfor(Patient patient,HospitalDepartment hospitalDepartment,Doctor doctor,String ordertime){
 		this.setPatient(patient);
 		this.setPatientID(patient.getId());
 		this.setPatientName(patient.getName());
@@ -49,9 +50,10 @@ public class OrderInformation  implements Serializable{
 		this.setPatientSex(patient.getSex());
 		this.setPatientPhoneNumber(patient.getPhoneNumber());
 		this.setHospitalDepartment(hospitalDepartment);
+		this.setDoctor(doctor);
 		this.setOrdertime(ordertime);
 	}
-	public void setOrderInfor(Patient patient,HospitalDepartment hospitalDepartment,String month,String date,String hour){
+	public void setOrderInfor(Patient patient,HospitalDepartment hospitalDepartment,Doctor doctor,String month,String date,String hour){
 		this.setPatient(patient);
 		this.setPatientID(patient.getId());
 		this.setPatientName(patient.getName());
@@ -59,6 +61,7 @@ public class OrderInformation  implements Serializable{
 		this.setPatientSex(patient.getSex());
 		this.setPatientPhoneNumber(patient.getPhoneNumber());
 		this.setHospitalDepartment(hospitalDepartment);
+		this.setDoctor(doctor);
 		//this.setOrdertime(ordertime);
 		this.setMonth(month);
 		this.setDate(date);
@@ -146,6 +149,12 @@ public class OrderInformation  implements Serializable{
 	}
 	public void setPatientPhoneNumber(String patientPhoneNumber) {
 		this.patientPhoneNumber = patientPhoneNumber;
+	}
+	public Doctor getDoctor() {
+		return doctor;
+	}
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
 	}
 	
 	

@@ -51,7 +51,7 @@ public class Registration {
 		
 	}
 	//查找预约病人的预约信息
-	public OrderInformation searchOrderInfor(Patient patinet){		
+	public OrderInformation searchOrderInfor(Patient patient){		
 		for(OrderInformation p : orderInfors){
 			if(patient.getId().equals(p.getPatientID()))
 				return p;
@@ -59,8 +59,8 @@ public class Registration {
 		return null;		
 	}
 	//修改预约记录信息;
-	public void alterOrderInfor(OrderInformation orderInfor,Patient patient,HospitalDepartment hospitalDepartment,String ordertime){
-		orderInfor.setOrderInfor(patient, hospitalDepartment, ordertime);
+	public void alterOrderInfor(OrderInformation orderInfor,Patient patient,HospitalDepartment hospitalDepartment,Doctor doctor,String ordertime){
+		orderInfor.setOrderInfor(patient, hospitalDepartment,doctor, ordertime);
 	}
 	//未预约病人挂号
 	public void createRegister(Patient patient,HospitalDepartment hospitalDepartment){

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import data.Data;
 import order.Order;
+import person.Doctor;
 import person.Patient;
 import staff.HospitalDepartment;
 import staff.OrderInformation;
@@ -17,10 +18,11 @@ public class test {
 		String month="12";
 		String date="13";
 		String hour="14";
+		Doctor doctor=new Doctor();
 		Order order=new Order();
 		ArrayList<OrderInformation> orderInfors=Data.orderInfors;
 		//OrderInformation orderInfor=new OrderInformation();
-		order.order(patient, hospitalDepartment, month, date, hour);
+		order.order(patient, hospitalDepartment, doctor,month, date, hour);
 		for(OrderInformation orderInfor : orderInfors){
 			orderInfor.showInfor();
 		}

@@ -1,5 +1,6 @@
 package order;
 
+import person.Doctor;
 import person.Patient;
 import staff.HospitalDepartment;
 import staff.OrderInformation;
@@ -17,8 +18,8 @@ public class Order {
 	private String hour;
 	
 	//预约,并把预约信息写入Data中;
-	public void order(Patient patient,HospitalDepartment hospitalDepartment,String month,String date,String hour){
-		OrderInformation orderInformation=new OrderInformation(patient,hospitalDepartment,month,date,hour);
+	public void order(Patient patient,HospitalDepartment hospitalDepartment,Doctor doctor,String month,String date,String hour){
+		OrderInformation orderInformation=new OrderInformation(patient,hospitalDepartment,doctor,month,date,hour);
 		orderInfors.add(orderInformation);
 	}
 	

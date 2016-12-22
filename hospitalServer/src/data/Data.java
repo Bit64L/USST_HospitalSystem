@@ -36,6 +36,10 @@ public class Data {
         medicines.add(new Medicine("阿莫西林片","amxlp","盒",20,"000001",100));
         //收费项目
         chargeItems.add(new ChargeItem("红细胞计数","hxbjs","次",50,"000001"));
+        //预约信息
+        orderInfors.add(new OrderInformation(new Patient("张三三","20","男","12345678900","123456789000000000"),new HospitalDepartment("内科","000001 "),new Doctor("111","111","李达","0001",new HospitalDepartment("内科","000001")),"12","12","14"));
+        //预约病人
+        orderPatients.add(new Patient("张三三","20","男","12345678900","123456789000000000"));
     }
     
 }
