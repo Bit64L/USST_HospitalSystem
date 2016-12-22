@@ -12,10 +12,20 @@ import staff.OrderInformation;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Appointment extends JFrame{
 	//private OrderInformation orderInfor;
 	private JPanel contentPane;
+	private JTextField patientName;
+	private JTextField patientAge;
+	private JTextField patientPhoneNumber;
+	private JTextField hospitalDepartmentName;
+	private JTextField ordertime;
+	private JTextField doctorName;
+	private JTextField patientSex;
 
 	/**
 	 * Launch the application.
@@ -37,6 +47,7 @@ public class Appointment extends JFrame{
 	 * Create the application.
 	 */
 	public Appointment(OrderInformation orderInfor) {
+		setAlwaysOnTop(true);
 		initialize(orderInfor);
 	}
 
@@ -62,64 +73,98 @@ public class Appointment extends JFrame{
 		panel.add(label);
 		
 		JLabel label_1 = new JLabel("姓名:");
-		label_1.setBounds(118, 49, 54, 15);
+		label_1.setBounds(118, 45, 54, 15);
 		panel.add(label_1);
 		
-		JLabel label_2 = new JLabel(orderInfor.getPatientName());
-		label_2.setBounds(182, 49, 54, 15);
-		panel.add(label_2);
-		
 		JLabel label_3 = new JLabel("年龄:");
-		label_3.setBounds(118, 74, 54, 15);
+		label_3.setBounds(118, 95, 54, 15);
 		panel.add(label_3);
 		
-		JLabel label_4 = new JLabel(orderInfor.getPatientAge());
-		label_4.setBounds(182, 74, 54, 15);
-		panel.add(label_4);
-		
 		JLabel label_5 = new JLabel("科室:");
-		label_5.setBounds(118, 124, 54, 15);
+		label_5.setBounds(118, 145, 54, 15);
 		panel.add(label_5);
 		
-		JLabel label_6 = new JLabel(orderInfor.getHospitalDepartment().getName());
-		label_6.setBounds(182, 124, 54, 15);
-		panel.add(label_6);
-		
 		JLabel label_7 = new JLabel("预约时间:");
-		label_7.setBounds(118, 149, 54, 15);
+		label_7.setBounds(118, 170, 54, 15);
 		panel.add(label_7);
 		
-		JLabel label_8 = new JLabel(orderInfor.getMonth()+"/"+orderInfor.getDate()+"/"+orderInfor.getHour());
-		label_8.setBounds(182, 149, 54, 15);
-		panel.add(label_8);
-		
 		JLabel label_9 = new JLabel("预约医生:");
-		label_9.setBounds(118, 174, 54, 15);
+		label_9.setBounds(118, 195, 54, 15);
 		panel.add(label_9);
 		
-		JLabel label_10 = new JLabel(orderInfor.getDoctor().getName());
-		label_10.setBounds(182, 174, 54, 15);
-		panel.add(label_10);
-		
 		JButton button = new JButton("确认");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Patient patient=new Patient();
+			}
+		});
 		button.setBounds(143, 228, 93, 23);
 		panel.add(button);
 		
 		JLabel label_11 = new JLabel("联系方式:");
-		label_11.setBounds(118, 99, 54, 15);
+		label_11.setBounds(118, 120, 54, 15);
 		panel.add(label_11);
 		
-		JLabel label_12 = new JLabel(orderInfor.getPatientPhoneNumber());
-		label_12.setBounds(182, 99, 54, 15);
-		panel.add(label_12);
+		JButton button_1 = new JButton("编辑");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			patientName.setEditable(true);
+			patientSex.setEditable(true);
+			patientAge.setEditable(true);
+			patientPhoneNumber.setEditable(true);
+			hospitalDepartmentName.setEditable(true);
+			ordertime.setEditable(true);
+			doctorName.setEditable(true);
+			
+			}
+		});
+		button_1.setBounds(244, 228, 93, 23);
+		panel.add(button_1);
+		
+		patientName = new JTextField(orderInfor.getPatientName());
+		patientName.setEditable(false);
+		patientName.setBounds(175, 45, 100, 21);
+		panel.add(patientName);
+		patientName.setColumns(10);
+		
+		patientAge = new JTextField(orderInfor.getPatientAge());
+		patientAge.setEditable(false);
+		patientAge.setBounds(175, 95, 100, 21);
+		panel.add(patientAge);
+		patientAge.setColumns(10);
+		
+		patientPhoneNumber = new JTextField(orderInfor.getPatientPhoneNumber());
+		patientPhoneNumber.setEditable(false);
+		patientPhoneNumber.setBounds(175, 120, 100, 21);
+		panel.add(patientPhoneNumber);
+		patientPhoneNumber.setColumns(10);
+		
+		hospitalDepartmentName = new JTextField(orderInfor.getHospitalDepartment().getName());
+		hospitalDepartmentName.setEditable(false);
+		hospitalDepartmentName.setBounds(175, 145, 100, 21);
+		panel.add(hospitalDepartmentName);
+		hospitalDepartmentName.setColumns(10);
+		
+		ordertime = new JTextField(orderInfor.getMonth()+"/"+orderInfor.getDate()+"/"+orderInfor.getHour());
+		ordertime.setEditable(false);
+		ordertime.setBounds(175, 170, 100, 21);
+		panel.add(ordertime);
+		ordertime.setColumns(10);
+		
+		doctorName = new JTextField(orderInfor.getDoctor().getName());
+		doctorName.setEditable(false);
+		doctorName.setBounds(175, 195, 100, 21);
+		panel.add(doctorName);
+		doctorName.setColumns(10);
+		
+		JLabel label_2 = new JLabel("性别:");
+		label_2.setBounds(118, 70, 54, 15);
+		panel.add(label_2);
+		
+		patientSex = new JTextField(orderInfor.getPatientSex());
+		patientSex.setEditable(false);
+		patientSex.setBounds(175, 70, 100, 21);
+		panel.add(patientSex);
+		patientSex.setColumns(10);
 	}
-
-//	public OrderInformation getOrderInfor() {
-//		return orderInfor;
-//	}
-//
-//	public void setOrderInfor(OrderInformation orderInfor) {
-//		Appointment.orderInfor = orderInfor;
-//	}
-
 }

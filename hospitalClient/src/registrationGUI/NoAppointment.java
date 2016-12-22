@@ -26,7 +26,6 @@ public class NoAppointment extends JFrame{
 	private JTextField txtPhonenumber;
 	private JTextField textField;
 	private JTextField txtName;
-	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -92,12 +91,8 @@ public class NoAppointment extends JFrame{
 		comboBox.setBounds(198, 137, 91, 21);
 		panel.add(comboBox);
 		
-		JLabel lblNewLabel_3 = new JLabel("医生:");
-		lblNewLabel_3.setBounds(136, 168, 54, 15);
-		panel.add(lblNewLabel_3);
-		
 		JButton button = new JButton("确认");
-		button.setBounds(136, 193, 93, 23);
+		button.setBounds(149, 194, 93, 23);
 		panel.add(button);
 		
 		txtPhonenumber = new JTextField();
@@ -116,11 +111,5 @@ public class NoAppointment extends JFrame{
 		txtName.setBounds(198, 59, 91, 21);
 		panel.add(txtName);
 		txtName.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setText("医生姓名");
-		textField_1.setBounds(198, 165, 91, 21);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
 	}
 }

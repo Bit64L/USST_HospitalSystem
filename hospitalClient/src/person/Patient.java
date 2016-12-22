@@ -37,9 +37,20 @@ public class Patient  implements Serializable{
 		/**向预约表中添加预约信息**/;
 		return orderInfor;
 	}
-
+	//加入病人挂号信息
+	public Patient insertPatientInformation(String name,String age,String sex,String phoneNumber,String id,HospitalDepartment hospitalDepartment){
+		this.setName(name);
+		this.setAge(age);
+		this.setSex(sex);
+		this.setPhoneNumber(phoneNumber);
+		this.setHospitalDepartment(hospitalDepartment);
+		this.setId(id);
+		
+		return this;
+		
+	}
 	/*--------------------------------------------------------------------*/
-	public String getName() {
+ 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {

@@ -142,7 +142,7 @@ public class NewClient implements Runnable{
                     outObject.flush();
                     System.out.println("发送成功");
                     break;
-                case "2000":
+                case "2000"://挂号功能
                     Object patient=inObject.readObject();
                     Registration reg=new Registration();
                     OrderInformation orderInfor=new OrderInformation();
@@ -157,6 +157,7 @@ public class NewClient implements Runnable{
                     }
             		outObject.flush();
             		break;
+            		
 
             }
             inObject.close();
