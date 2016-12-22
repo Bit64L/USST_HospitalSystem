@@ -1,4 +1,4 @@
-package registrationGUI;
+package precidentGUI;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -6,14 +6,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class Register extends JFrame {
+public class Precident_default extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -22,7 +21,7 @@ public class Register extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Register frame = new Register();
+					Precident_default frame = new Precident_default();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,7 +33,7 @@ public class Register extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Register() {
+	public Precident_default() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -46,26 +45,21 @@ public class Register extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel label = new JLabel("挂号");
-		label.setBounds(166, 21, 54, 15);
-		panel.add(label);
-		
-		JLabel lblid = new JLabel("病人ID");
-		lblid.setBounds(98, 75, 54, 15);
-		panel.add(lblid);
-		
-		textField = new JTextField();
-		textField.setBounds(206, 72, 66, 21);
-		panel.add(textField);
-		textField.setColumns(10);
-		
-		JButton button = new JButton("确定");
-		button.setBounds(109, 165, 93, 23);
+		JButton button = new JButton("药品信息查询");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		button.setBounds(236, 41, 138, 23);
 		panel.add(button);
 		
-		JButton button_1 = new JButton("返回");
-		button_1.setBounds(249, 165, 93, 23);
+		JButton button_1 = new JButton("科室信息查询");
+		button_1.setBounds(48, 41, 138, 23);
 		panel.add(button_1);
+		
+		JButton button_2 = new JButton("医生信息查询");
+		button_2.setBounds(48, 150, 138, 23);
+		panel.add(button_2);
 	}
 
 }

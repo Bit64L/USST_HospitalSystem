@@ -1,17 +1,16 @@
-package doctor_charge;
+package doctor_chargeGUI;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JLabel;
+import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 
-public class Doctor_Result extends JFrame {
+public class Doctor_patientinfo extends JFrame {
 
 	private JPanel contentPane;
 
@@ -22,7 +21,7 @@ public class Doctor_Result extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Doctor_Result frame = new Doctor_Result();
+					Doctor_patientinfo frame = new Doctor_patientinfo();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,7 +33,7 @@ public class Doctor_Result extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Doctor_Result() {
+	public Doctor_patientinfo() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -45,25 +44,24 @@ public class Doctor_Result extends JFrame {
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(10, 0, 414, 157);
+		textArea.getScrollableTracksViewportHeight();
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 10, 404, 142);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollPane.setViewportView(textArea);
+		textArea.setText("显示病人信息");
+		scrollPane.setBounds(10, 10, 414, 151);	
 		panel.add(scrollPane);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setText("显示收费项目 和 药品");
-		scrollPane.setViewportView(textArea);
-		
-		JLabel label = new JLabel("总金额");
-		label.setBounds(63, 182, 54, 15);
-		panel.add(label);
-		
-		JLabel lbldata = new JLabel("总金额DATA");
-		lbldata.setBounds(230, 182, 104, 15);
-		panel.add(lbldata);
-		
-		JButton button = new JButton("确定");
-		button.setBounds(280, 218, 93, 23);
+		JButton button = new JButton("开处方");
+		button.setBounds(95, 200, 93, 23);
 		panel.add(button);
+		
+		JButton button_1 = new JButton("返回");
+		button_1.setBounds(263, 200, 93, 23);
+		panel.add(button_1);
 	}
+
 }

@@ -1,17 +1,16 @@
-package doctor_charge;
+package precidentGUI;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.border.EmptyBorder;
-import javax.swing.text.JTextComponent;
 import javax.swing.JButton;
 
-public class Doctor_default extends JFrame {
+public class Medinice_search extends JFrame {
 
 	private JPanel contentPane;
 
@@ -22,7 +21,7 @@ public class Doctor_default extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Doctor_default frame = new Doctor_default();
+					Medinice_search frame = new Medinice_search();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,7 +33,7 @@ public class Doctor_default extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Doctor_default() {
+	public Medinice_search() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -46,24 +45,17 @@ public class Doctor_default extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JTextComponent textArea = new JTextArea();
-		textArea.setBounds(10, 0, 414, 157);
-		textArea.getScrollableTracksViewportHeight();
-		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-		scrollPane.setViewportView(textArea);
-		textArea.setText("显示队列情况");
-		scrollPane.setBounds(10, 10, 414, 151);	
+		scrollPane.setBounds(10, 10, 404, 189);
 		panel.add(scrollPane);
 		
-		JButton button = new JButton("叫号");
-		button.setBounds(81, 200, 93, 23);
-		panel.add(button);
+		JTextArea textArea = new JTextArea();
+		textArea.setText("药品名称和库存量");
+		scrollPane.setViewportView(textArea);
 		
-		JButton button_1 = new JButton("返回");
-		button_1.setBounds(253, 200, 93, 23);
-		panel.add(button_1);
+		JButton button = new JButton("返回");
+		button.setBounds(156, 218, 93, 23);
+		panel.add(button);
 	}
 
 }

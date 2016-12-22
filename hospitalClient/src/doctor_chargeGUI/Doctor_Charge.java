@@ -1,4 +1,4 @@
-package doctor_charge;
+package doctor_chargeGUI;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;

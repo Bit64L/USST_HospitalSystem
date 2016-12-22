@@ -1,16 +1,16 @@
-package doctor_charge;
+package precidentGUI;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 
-public class Doctor_patientinfo extends JFrame {
+public class Doctor_search extends JFrame {
 
 	private JPanel contentPane;
 
@@ -21,7 +21,7 @@ public class Doctor_patientinfo extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Doctor_patientinfo frame = new Doctor_patientinfo();
+					Doctor_search frame = new Doctor_search();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -33,7 +33,7 @@ public class Doctor_patientinfo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Doctor_patientinfo() {
+	public Doctor_search() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -44,24 +44,18 @@ public class Doctor_patientinfo extends JFrame {
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(10, 0, 414, 157);
-		textArea.getScrollableTracksViewportHeight();
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-		scrollPane.setViewportView(textArea);
-		textArea.setText("显示病人信息");
-		scrollPane.setBounds(10, 10, 414, 151);	
+		scrollPane.setBounds(10, 22, 404, 121);
 		panel.add(scrollPane);
 		
-		JButton button = new JButton("开处方");
-		button.setBounds(95, 200, 93, 23);
-		panel.add(button);
+		JTextArea textArea = new JTextArea();
+		textArea.setText("医生就诊量和金额");
+		scrollPane.setViewportView(textArea);
 		
-		JButton button_1 = new JButton("返回");
-		button_1.setBounds(263, 200, 93, 23);
-		panel.add(button_1);
+		JButton button = new JButton("确定");
+		button.setBounds(149, 218, 93, 23);
+		panel.add(button);
 	}
 
 }

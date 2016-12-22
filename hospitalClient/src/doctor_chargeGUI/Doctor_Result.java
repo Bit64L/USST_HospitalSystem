@@ -1,4 +1,4 @@
-package registrationGUI;
+package doctor_chargeGUI;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -6,14 +6,14 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class Register extends JFrame {
+public class Doctor_Result extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -22,7 +22,7 @@ public class Register extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Register frame = new Register();
+					Doctor_Result frame = new Doctor_Result();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,7 +34,7 @@ public class Register extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Register() {
+	public Doctor_Result() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -46,26 +46,24 @@ public class Register extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel label = new JLabel("挂号");
-		label.setBounds(166, 21, 54, 15);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 10, 404, 142);
+		panel.add(scrollPane);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setText("显示收费项目 和 药品");
+		scrollPane.setViewportView(textArea);
+		
+		JLabel label = new JLabel("总金额");
+		label.setBounds(63, 182, 54, 15);
 		panel.add(label);
 		
-		JLabel lblid = new JLabel("病人ID");
-		lblid.setBounds(98, 75, 54, 15);
-		panel.add(lblid);
-		
-		textField = new JTextField();
-		textField.setBounds(206, 72, 66, 21);
-		panel.add(textField);
-		textField.setColumns(10);
+		JLabel lbldata = new JLabel("总金额DATA");
+		lbldata.setBounds(230, 182, 104, 15);
+		panel.add(lbldata);
 		
 		JButton button = new JButton("确定");
-		button.setBounds(109, 165, 93, 23);
+		button.setBounds(280, 218, 93, 23);
 		panel.add(button);
-		
-		JButton button_1 = new JButton("返回");
-		button_1.setBounds(249, 165, 93, 23);
-		panel.add(button_1);
 	}
-
 }

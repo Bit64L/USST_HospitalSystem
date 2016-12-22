@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import person.Administrator;
+import javax.swing.JComboBox;
 
 public class Account_add extends JFrame {
 
@@ -28,6 +29,8 @@ public class Account_add extends JFrame {
 	private JPasswordField passwordField;
 	private JTextField textField_1;
 	private Administrator admin;
+	private JTextField textField_2;
+	private JTextField textField_3;
 	/**
 	 * Launch the application.
 	 */
@@ -60,28 +63,28 @@ public class Account_add extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel label = new JLabel("用户名");
-		label.setBounds(74, 41, 54, 15);
+		label.setBounds(74, 80, 54, 15);
 		panel.add(label);
 		
 		textField = new JTextField();
-		textField.setBounds(198, 38, 66, 21);
+		textField.setBounds(198, 80, 66, 21);
 		panel.add(textField);
 		textField.setColumns(10);
 		
 		JLabel label_1 = new JLabel("密码");
-		label_1.setBounds(74, 77, 54, 15);
+		label_1.setBounds(74, 111, 54, 15);
 		panel.add(label_1);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(198, 74, 66, 21);
+		passwordField.setBounds(198, 108, 66, 21);
 		panel.add(passwordField);
 		
 		JLabel label_2 = new JLabel("真实姓名");
-		label_2.setBounds(74, 114, 54, 15);
+		label_2.setBounds(74, 139, 54, 15);
 		panel.add(label_2);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(198, 111, 66, 21);
+		textField_1.setBounds(198, 136, 66, 21);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
@@ -129,8 +132,34 @@ public class Account_add extends JFrame {
 		button_1.setBounds(256, 205, 93, 23);
 		panel.add(button_1);
 		
+		String[] str  = {"管理员","医生","收费人员"};
+		
+		
+		
 		JLabel label_4 = new JLabel("添加系统账号");
-		label_4.setBounds(162, 10, 93, 15);
+		label_4.setBounds(92, 10, 93, 15);
 		panel.add(label_4);
+		
+		JLabel lblId = new JLabel("ID");
+		lblId.setBounds(74, 49, 54, 15);
+		panel.add(lblId);
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(198, 46, 66, 21);
+		panel.add(textField_2);
+		textField_2.setColumns(10);
+		
+		JLabel label_3 = new JLabel("部门");
+		label_3.setBounds(74, 168, 54, 15);
+		panel.add(label_3);
+		
+		textField_3 = new JTextField();
+		textField_3.setBounds(198, 167, 66, 21);
+		panel.add(textField_3);
+		textField_3.setColumns(10);
+		
+		JComboBox comboBox = new JComboBox(str);
+		comboBox.setBounds(198, 7, 93, 21);
+		panel.add(comboBox);
 	}
 }
