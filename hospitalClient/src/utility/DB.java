@@ -6,16 +6,16 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class jdbc {
+public class DB {
 	private Connection conn;
 	private Statement st; 
 	
-	public jdbc() { //³õÊ¼»¯,Á¬½ÓÊı¾İ¿â  Êı¾İ¿âÃûhospitalSystem ÓÃ»§Ãû"sa" ÃÜÂë"sa"
+	public DB() { //è¿æ¥sql server  ç”¨æˆ·å"sa" å¯†ç "sa"
 		conn=null;
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			this.conn=DriverManager.getConnection("jdbc:sqlserver://localhost:1433;DatabaseName=hospitalSystem","sa","sa");;
-			if(conn!=null)System.out.println("Á¬½Ó³É¹¦");
+			if(conn!=null)System.out.println("è¿æ¥æˆåŠŸ!");
 			this.st=conn.createStatement();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -25,7 +25,7 @@ public class jdbc {
 			e.printStackTrace();
 		}
 	}
-	public boolean insert(String sqlStr){ //²åÈë
+	public boolean insert(String sqlStr){ //æ’å…¥
 		int rowCount=0;
 		try {
 			rowCount=st.executeUpdate(sqlStr);
@@ -37,7 +37,7 @@ public class jdbc {
 		else return false;
 	}
 	
-	public boolean delete(String sqlStr){ //É¾³ı
+	public boolean delete(String sqlStr){ //åˆ é™¤
 		int rowCount=0;
 		try {
 			rowCount=st.executeUpdate(sqlStr);
@@ -49,7 +49,7 @@ public class jdbc {
 		else return false;
 	}
 	
-	public boolean update(String sqlStr){ //¸Ä
+	public boolean update(String sqlStr){ //æ›´æ–°
 		int rowCount=0;
 		try {
 			rowCount=st.executeUpdate(sqlStr);
@@ -61,7 +61,7 @@ public class jdbc {
 		else return false;
 	}
 	
-	public ResultSet select(String sqlStr){ //²éÑ¯,·µ»ØÒ»¸ö½á¹û¼¯ResultSet,²»¿ÉÄÜÎªnull
+	public ResultSet select(String sqlStr){ //è·å¾—ResultSet,å°±ç®—ä»€ä¹ˆéƒ½æŸ¥ä¸åˆ°ä¹Ÿä¸å¯èƒ½ä¸ºnull
 		ResultSet rs=null;
 		try {
 			rs=st.executeQuery(sqlStr);

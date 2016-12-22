@@ -41,7 +41,7 @@ public class server {
 					System.out.println(password+name);
 					String selectsqlStr="select account,password from users where account="+"'"+name+"'and password="+"'"+password+"'";
 
-					jdbc sqlServer=new jdbc();
+					DB sqlServer=new DB();
 					ResultSet rs=sqlServer.select(selectsqlStr);
 					if(rs.next()){
 						System.out.println("µÇÂ¼³É¹¦");
