@@ -14,6 +14,7 @@ import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class Doctor_search extends JFrame {
@@ -47,6 +48,11 @@ public class Doctor_search extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
+		
+		DB db = new DB();
+		ResultSet rs = db.select("select * from Doctor");
+		
+		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
@@ -56,16 +62,42 @@ public class Doctor_search extends JFrame {
 		panel.add(scrollPane);
 		
 		JTextArea textArea = new JTextArea();
-		textArea.setText("医生就诊量和金额");
+		
+		while(true){
+
+				try {
+					if(rs.next()){
+						try {
+							textArea.setText(textArea.getText()+"\n"+"医生名称："+rs.getString("name")+"医生就诊量："+rs.getInt("cureNum")
+							+"医生就诊总金额："+rs.getDouble("cureMoney"));
+						} catch (SQLException e1) {
+							// TODO 自动生成的 catch 块
+							e1.printStackTrace();
+						}
+					}else
+					{
+						break;
+					}
+				} catch (SQLException e1) {
+					// TODO 自动生成的 catch 块
+					e1.printStackTrace();
+				}
+				}
+		
 		scrollPane.setViewportView(textArea);
 		
-		JButton button = new JButton("确定");
+		JButton button = new JButton("返回");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String[] args = null;
+				Precident_default.main(args);
+				///////需要关掉界面
+			}
+		});
 		button.setBounds(306, 186, 93, 23);
 		panel.add(button);
 		
 		JButton button_1 = new JButton("就诊数量生成报表");
-		
-		DB db = new DB();
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ResultSet rs = db.select("select * from Doctor");

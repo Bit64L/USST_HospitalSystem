@@ -14,9 +14,10 @@ import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
-public class Medinice_search extends JFrame {
+public class Medicine_search extends JFrame {
 
 	private JPanel contentPane;
 
@@ -27,7 +28,7 @@ public class Medinice_search extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Medinice_search frame = new Medinice_search();
+					Medicine_search frame = new Medicine_search();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,13 +40,18 @@ public class Medinice_search extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Medinice_search() {
+	public Medicine_search() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		
+		
+		DB db = new DB();
+		ResultSet rs = db.select("select *from Medicine");
+		
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
@@ -56,18 +62,30 @@ public class Medinice_search extends JFrame {
 		panel.add(scrollPane);
 		
 		JTextArea textArea = new JTextArea();
-		textArea.setText("药品名称和库存量");
+		try {
+			while(rs.next())
+			textArea.setText(textArea.getText()+"\n"+"药品名称："+rs.getString("medicineID"
+						+"药品库存量："+rs.getInt("deposit")));
+		} catch (SQLException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		}
 		scrollPane.setViewportView(textArea);
 		
 		JButton button = new JButton("返回");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String[] args = null;
+				Precident_default.main(args);
+			}
+		});
 		button.setBounds(261, 218, 93, 23);
 		panel.add(button);
 		
 		JButton button_1 = new JButton("生成报表");
-		DB db = new DB();
+
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ResultSet rs = db.select("select *from Medicine");
 				MedicinePie.main(rs);
 			}
 		});

@@ -44,20 +44,32 @@ public class Precident_default extends JFrame {
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-		
+		String[] args = null;
 		JButton button = new JButton("药品信息查询");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				Medicine_search.main(args);
 			}
 		});
-		button.setBounds(236, 41, 138, 23);
+		button.setBounds(245, 41, 138, 23);
 		panel.add(button);
 		
 		JButton button_1 = new JButton("科室信息查询");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Office_search.main(args);
+			}
+		});
 		button_1.setBounds(48, 41, 138, 23);
 		panel.add(button_1);
 		
 		JButton button_2 = new JButton("医生信息查询");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Doctor_search.main(args);
+			}
+		});
 		button_2.setBounds(48, 150, 138, 23);
 		panel.add(button_2);
 	}
