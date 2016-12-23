@@ -10,7 +10,7 @@ public class Doctor implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private Patient addpatient;
-	private Queue<Patient> patients=new LinkedList<>();
+	private ArrayList<Patient> patients=new ArrayList<>();
 	private HospitalDepartment hospitalDepartment;
 	private int cureNum;//医生就诊数量
 	private double money;//医生总金额

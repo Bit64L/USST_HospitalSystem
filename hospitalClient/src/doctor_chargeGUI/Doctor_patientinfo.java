@@ -8,12 +8,18 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
+
+import person.Doctor;
+
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Doctor_patientinfo extends JFrame {
 
 	private JPanel contentPane;
-
+	private Doctor doctor;
+	private JTextArea textArea;
 	/**
 	 * Launch the application.
 	 */
@@ -44,7 +50,7 @@ public class Doctor_patientinfo extends JFrame {
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		textArea.setBounds(10, 0, 414, 157);
 		textArea.getScrollableTracksViewportHeight();
 		
@@ -60,8 +66,15 @@ public class Doctor_patientinfo extends JFrame {
 		panel.add(button);
 		
 		JButton button_1 = new JButton("返回");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		button_1.setBounds(263, 200, 93, 23);
 		panel.add(button_1);
 	}
-
+	public void showInfo(){
+		textArea.append(doctor.getPatients().get(0));
+	}
 }
