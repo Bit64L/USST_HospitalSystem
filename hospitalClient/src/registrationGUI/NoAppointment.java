@@ -33,6 +33,7 @@ public class NoAppointment extends JFrame{
 	private JTextField patientAge;
 	private JTextField patientName;
 	private JTextField patientSex;
+	private JTextField hospitalDepartmentName;
 
 	/**
 	 * Launch the application.
@@ -95,7 +96,7 @@ public class NoAppointment extends JFrame{
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"内科", "牙科", "小儿科", "外科"}));
 		comboBox.setToolTipText("");
-		comboBox.setBounds(200, 145, 91, 21);
+		comboBox.setBounds(323, 152, 91, 21);
 		panel.add(comboBox);
 		
 		JButton button = new JButton("确认");
@@ -119,18 +120,18 @@ public class NoAppointment extends JFrame{
 		
 		patientPhoneNumber = new JTextField();
 		patientPhoneNumber.setText("phonenumber");
-		patientPhoneNumber.setBounds(200, 120, 91, 21);
+		patientPhoneNumber.setBounds(200, 120, 100, 21);
 		panel.add(patientPhoneNumber);
 		patientPhoneNumber.setColumns(10);
 		
 		patientAge = new JTextField("age");
-		patientAge.setBounds(200, 95, 91, 21);
+		patientAge.setBounds(200, 95, 100, 21);
 		panel.add(patientAge);
 		patientAge.setColumns(10);
 		
 		patientName = new JTextField();
 		patientName.setText("name");
-		patientName.setBounds(200, 45, 91, 21);
+		patientName.setBounds(200, 45, 100, 21);
 		panel.add(patientName);
 		patientName.setColumns(10);
 		
@@ -140,8 +141,14 @@ public class NoAppointment extends JFrame{
 		
 		patientSex = new JTextField();
 		patientSex.setText("sex");
-		patientSex.setBounds(200, 70, 66, 21);
+		patientSex.setBounds(200, 70, 100, 21);
 		panel.add(patientSex);
 		patientSex.setColumns(10);
+		
+		hospitalDepartmentName = new JTextField();
+		hospitalDepartmentName.setText("hospitalDepartmentName");
+		hospitalDepartmentName.setBounds(200, 145, 100, 21);
+		panel.add(hospitalDepartmentName);
+		hospitalDepartmentName.setColumns(10);
 	}
 }

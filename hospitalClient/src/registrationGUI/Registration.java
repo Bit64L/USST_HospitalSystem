@@ -9,6 +9,7 @@ import staff.OrderInformation;
 import staff.OutPatientRecord;
 
 public class Registration {
+	static String ip="127.0.0.1";//设置服务器端ip地址
 	private Patient patient;
 	private OutPatientRecord opr;
 	
@@ -26,7 +27,7 @@ public class Registration {
 		Object patient=null;
 		Object orderInformation=null;
 		try {
-			s=new Socket("127.0.0.1",8888);
+			s=new Socket(ip,8888);
 			outObject=new ObjectOutputStream(s.getOutputStream());
 			/*送到服务器*/
 			/*发送协议号*/
@@ -61,7 +62,7 @@ public class Registration {
 		ObjectOutputStream outObject=null;
 		Object doc=null;
 		try {
-			s=new Socket("127.0.0.1",8888);
+			s=new Socket(ip,8888);
 			outObject=new ObjectOutputStream(s.getOutputStream());
 			/*送到服务器*/
 			/*发送协议号*/
@@ -96,16 +97,13 @@ public class Registration {
 		Socket s=null;
 		ObjectInputStream inObject=null;
 		ObjectOutputStream outObject=null;
-		Object pat=null;
+		
 		try {
-			s=new Socket("127.0.0.1",8888);
+			s=new Socket(ip,8888);
 			outObject=new ObjectOutputStream(s.getOutputStream());
 			/*送到服务器*/
 			/*发送协议号*/
 			outObject.writeObject("2002");
-
-			//pat=patient;
-			
 
 			/*发送 病人*/
 			outObject.writeObject(patient);
@@ -136,7 +134,7 @@ public class Registration {
 		Object patient=null;
 		Object inPatient=null;
 		try {
-			s=new Socket("127.0.0.1",8888);
+			s=new Socket(ip,8888);
 			outObject=new ObjectOutputStream(s.getOutputStream());
 			/*送到服务器*/
 			/*发送协议号*/

@@ -1,11 +1,14 @@
 package registration;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import data.*;
 import person.*;
 import staff.HospitalDepartment;
 import staff.OrderInformation;
 import staff.OutPatientRecord;
+import utility.DB;
 
 public class Registration {
 	//Data data=new Data();
@@ -35,13 +38,41 @@ public class Registration {
 	
 	//录入未预约病人的挂号信息,在就诊的医生的就诊病人队列加入该病人
 	public Patient addDoctorNoAppointmentdPatient(Patient patient){
-		//根据病人中的科室名字,获取科室id
+		String sqlstr="SELECT hospitalDepartmentID FROM HospitalDepartment WHERE hospitalDepartmentName='"+patient.getHospitalDepartment().getNo()+"';";           
+		DB db=new DB();
+		ResultSet rs=db.select(sqlstr);
+		String hospitalDepartmentNo=null;
+		try {
+			hospitalDepartmentNo=rs.getString("hospitalDepartmentID");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//String hospitalDepartmentNo="0";//根据病人中的科室名字,获取科室id
 		//根据科室id,获取当前科室就诊病人最少的医生
-		Doctor doctor=Data.doctors.get(0);
+		Doctor doctor=Data.doctors.get(0);//Doctor 
+		doctor=this.getLeastPatientDoctor(hospitalDepartmentNo);
+		
 		patient.setDoctor(doctor);
 		doctor.getPatients().add(patient);
 		Data.registerPatients.add(patient);
 		return patient;
+	}
+	//根据科室ID,获取就诊病人数最少的医生
+	public Doctor getLeastPatientDoctor(String hospitalDepartmentNo){
+		Doctor minDoctor=null;
+		int Min=500;
+		for(Doctor d:Data.doctors){
+			if(d.getHospitalDepartment().getNo().equals(hospitalDepartmentNo)){
+				if(d.getPatients().size()<Min){
+					minDoctor=d;
+					Min=d.getPatients().size();
+				}
+				
+			}
+			
+		}
+		return minDoctor;
 	}
 	
 	//根据病人ID获取病人的收费信息
