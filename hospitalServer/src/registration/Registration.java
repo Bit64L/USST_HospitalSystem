@@ -25,6 +25,35 @@ public class Registration {
 	}
 	
 	
+	//录入挂号信息,在就诊的医生的就诊病人队列加入该病人
+	public Doctor addDoctorPatient(Doctor doctor, Patient patient){
+		doctor.getPatients().add(patient);
+		Data.registerPatients.add(patient);
+		return doctor;
+		
+	}
+	
+	//录入未预约病人的挂号信息,在就诊的医生的就诊病人队列加入该病人
+	public Patient addDoctorNoAppointmentdPatient(Patient patient){
+		//根据病人中的科室名字,获取科室id
+		//根据科室id,获取当前科室就诊病人最少的医生
+		Doctor doctor=Data.doctors.get(0);
+		patient.setDoctor(doctor);
+		doctor.getPatients().add(patient);
+		Data.registerPatients.add(patient);
+		return patient;
+	}
+	
+	//根据病人ID获取病人的收费信息
+	public Patient getPatientChargeItem(String patientId){
+		for(Patient p : Data.registerPatients){
+			if(p.getId().equals(patientId))
+				return p;
+		}
+		return null;
+	}
+	
+	
 	//创建病人门诊记录
 	public void createOutPatientRecord(Patient patient,String month,String date){
 		OutPatientRecord opr=new OutPatientRecord(patient.getId(),patient.getName(),patient.getAge(),patient.getSex(),patient.getPhoneNumber(),month,date);

@@ -75,7 +75,7 @@ public class Register extends JFrame {
 					ap.setVisible(true);
 				}
 				else{
-					NoAppointment na=new NoAppointment();
+					NoAppointment na=new NoAppointment(textField.getText().toString());
 					na.setVisible(true);
 				}
 			}

@@ -54,7 +54,114 @@ public class Registration {
 
 		
 	}
+	//发送请求:录入预约病人的挂号信息,在就诊的医生的就诊病人队列加入该病人
+	public boolean sendAddDoctorPatient(Doctor doctor, Patient patient){
+		Socket s=null;
+		ObjectInputStream inObject=null;
+		ObjectOutputStream outObject=null;
+		Object doc=null;
+		try {
+			s=new Socket("127.0.0.1",8888);
+			outObject=new ObjectOutputStream(s.getOutputStream());
+			/*送到服务器*/
+			/*发送协议号*/
+			outObject.writeObject("2001");
+
+			doc=doctor;
+			((Doctor) doc).setAddpatient(patient);
+
+			/*发送医生 病人*/
+			outObject.writeObject(doctor);
+			outObject.flush();
+			/*获取服务器结果*/
+			inObject=new ObjectInputStream(s.getInputStream());
+			Doctor inDoctor=(Doctor) inObject.readObject();
+			
+			s.close();
+			inObject.close();
+			outObject.close();
+			if(inDoctor!=null)
+				return true;
+			else 
+				return false;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
 	
+	//发送请求:录入未预约病人的挂号信息,在就诊的医生的就诊病人队列加入该病人
+	public Patient sendAddDoctorNoAppointmentdPatient(Patient patient){
+		Socket s=null;
+		ObjectInputStream inObject=null;
+		ObjectOutputStream outObject=null;
+		Object pat=null;
+		try {
+			s=new Socket("127.0.0.1",8888);
+			outObject=new ObjectOutputStream(s.getOutputStream());
+			/*送到服务器*/
+			/*发送协议号*/
+			outObject.writeObject("2002");
+
+			//pat=patient;
+			
+
+			/*发送 病人*/
+			outObject.writeObject(patient);
+			outObject.flush();
+			/*获取服务器结果*/
+			inObject=new ObjectInputStream(s.getInputStream());
+			Patient inPatient=(Patient) inObject.readObject();
+			
+			s.close();
+			inObject.close();
+			outObject.close();
+			if(inPatient!=null)
+				return inPatient;
+			else 
+				return null;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	//发送请求:获取病人的收费信息
+	public Patient sendPatientChargeItem(String patientId){
+		Socket s=null;
+		ObjectInputStream inObject=null;
+		ObjectOutputStream outObject=null;
+		Object patient=null;
+		Object inPatient=null;
+		try {
+			s=new Socket("127.0.0.1",8888);
+			outObject=new ObjectOutputStream(s.getOutputStream());
+			/*送到服务器*/
+			/*发送协议号*/
+			outObject.writeObject("2003");
+
+			patient=new Patient();
+			((Patient) patient).setId(patientId);
+			/*发送病人ID*/
+			outObject.writeObject(patient);
+
+			outObject.flush();
+			/*获取服务器结果*/
+			inObject=new ObjectInputStream(s.getInputStream());
+			inPatient=inObject.readObject();	
+			
+			s.close();
+			inObject.close();
+			outObject.close();
+			return (Patient) inPatient;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 	//发送请求:修改预约记录信息;
 	public void sendAlterOrderInformation(){
 		

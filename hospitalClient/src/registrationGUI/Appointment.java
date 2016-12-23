@@ -6,15 +6,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import person.Doctor;
 import person.Patient;
+import staff.HospitalDepartment;
 import staff.OrderInformation;
 
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class Appointment extends JFrame{
 	//private OrderInformation orderInfor;
@@ -26,7 +31,7 @@ public class Appointment extends JFrame{
 	private JTextField ordertime;
 	private JTextField doctorName;
 	private JTextField patientSex;
-
+	private JComboBox comboBox;
 	/**
 	 * Launch the application.
 	 */
@@ -56,7 +61,7 @@ public class Appointment extends JFrame{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(OrderInformation orderInfor) {
-		String str="123123";
+		
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -95,7 +100,22 @@ public class Appointment extends JFrame{
 		JButton button = new JButton("确认");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String patientId=orderInfor.getPatientID();
+				String departmentName=comboBox.getSelectedItem().toString();
+				Doctor doctor=new Doctor("111","111","李达",new HospitalDepartment("内科","000001"));//方法,根据医生姓名,获取完整医生信息
+				Registration reg=new Registration();			
+				
 				Patient patient=new Patient();
+				
+				patient.insertPatientInformation(patientName.getText().toString(),patientSex.getText().toString(),patientAge.getText().toString(),patientPhoneNumber.getText().toString(),patientId,ordertime.getText().toString());
+				
+				boolean re=reg.sendAddDoctorPatient(doctor, patient);
+				if(re){
+					JOptionPane.showMessageDialog(null, "挂号成功"); 
+				}
+				else 
+					JOptionPane.showMessageDialog(null, "失败"); 
+				
 			}
 		});
 		button.setBounds(143, 228, 93, 23);
@@ -112,7 +132,8 @@ public class Appointment extends JFrame{
 			patientSex.setEditable(true);
 			patientAge.setEditable(true);
 			patientPhoneNumber.setEditable(true);
-			hospitalDepartmentName.setEditable(true);
+			hospitalDepartmentName.setVisible(false);//hospitalDepartmentName.setEditable(true);
+			comboBox.setVisible(true);//comboBox;
 			ordertime.setEditable(true);
 			doctorName.setEditable(true);
 			
@@ -166,5 +187,28 @@ public class Appointment extends JFrame{
 		patientSex.setBounds(175, 70, 100, 21);
 		panel.add(patientSex);
 		patientSex.setColumns(10);
+		
+		comboBox = new JComboBox();
+		comboBox.setVisible(false);
+		comboBox.setName("");
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"内科", "牙科", "眼科"}));
+		comboBox.setBounds(175, 145, 100, 21);
+		panel.add(comboBox);
+		
+		JButton button_2 = new JButton("完成");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				patientName.setEditable(false);
+				patientSex.setEditable(false);
+				patientAge.setEditable(false);
+				patientPhoneNumber.setEditable(false);
+				hospitalDepartmentName.setVisible(true);//hospitalDepartmentName.setEditable(true);
+				comboBox.setVisible(false);//comboBox;
+				ordertime.setEditable(false);
+				doctorName.setEditable(false);
+			}
+		});
+		button_2.setBounds(300, 228, 93, 23);
+		panel.add(button_2);
 	}
 }

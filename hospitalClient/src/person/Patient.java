@@ -15,7 +15,7 @@ public class Patient  implements Serializable{
 	private String phoneNumber;
 	private String id;
 	private HospitalDepartment hospitalDepartment;
-	private String orderedTime;
+	private String orderTime;
 	private Doctor doctor;
 	private ArrayList<Medicine> medicines=new ArrayList<>();
 	private ArrayList<ChargeItem> chargeItems=new ArrayList<>();
@@ -38,15 +38,15 @@ public class Patient  implements Serializable{
 		return orderInfor;
 	}
 	//加入病人挂号信息
-	public Patient insertPatientInformation(String name,String age,String sex,String phoneNumber,String id,HospitalDepartment hospitalDepartment){
+	public void insertPatientInformation(String name,String sex,String age,String phoneNumber,String id,String ordertime){
 		this.setName(name);
 		this.setAge(age);
 		this.setSex(sex);
 		this.setPhoneNumber(phoneNumber);
-		this.setHospitalDepartment(hospitalDepartment);
+		this.setOrderTime(ordertime);
 		this.setId(id);
 		
-		return this;
+		
 		
 	}
 	/*--------------------------------------------------------------------*/
@@ -80,12 +80,7 @@ public class Patient  implements Serializable{
 	public void setHospitalDepartment(HospitalDepartment hospitalDepartment) {
 		this.hospitalDepartment = hospitalDepartment;
 	}
-	public String getOrderedTime() {
-		return orderedTime;
-	}
-	public void setOrderedTime(String orderedTime) {
-		this.orderedTime = orderedTime;
-	}
+
 
 	public String getId() {
 		return id;
@@ -106,6 +101,12 @@ public class Patient  implements Serializable{
 	}
 	public ArrayList<ChargeItem> getChargeItems() {
 		return chargeItems;
+	}
+	public String getOrderTime() {
+		return orderTime;
+	}
+	public void setOrderTime(String orderTime) {
+		this.orderTime = orderTime;
 	}
 
 }

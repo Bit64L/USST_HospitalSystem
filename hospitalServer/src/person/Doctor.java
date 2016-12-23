@@ -9,6 +9,7 @@ public class Doctor implements Serializable{
 	 */
 
 	private static final long serialVersionUID = 1L;
+	private Patient addpatient;
 	private Queue<Patient> patients=new LinkedList<>();
 	private HospitalDepartment hospitalDepartment;
 	private int cureNum;//医生就诊数量
@@ -128,5 +129,13 @@ public class Doctor implements Serializable{
 					+"\t"+patient.getMedicines().get(i).getPrice();
 		}
 		return ans;
+	}
+
+	public Patient getAddpatient() {
+		return addpatient;
+	}
+
+	public void setAddpatient(Patient addpatient) {
+		this.addpatient = addpatient;
 	}
 }
