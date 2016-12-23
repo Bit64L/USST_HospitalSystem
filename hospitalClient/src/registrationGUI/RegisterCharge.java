@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -44,20 +46,26 @@ public class RegisterCharge extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel label = new JLabel("收费信息");
-		label.setBounds(163, 21, 78, 15);
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(10, 0, 414, 157);
+		textArea.getScrollableTracksViewportHeight();
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollPane.setViewportView(textArea);
+		textArea.setText("显示挂号信息");
+		scrollPane.setBounds(10, 10, 414, 151);	
+		panel.add(scrollPane);
+		JButton button = new JButton("确定");
+		button.setBounds(273, 218, 93, 23);
+		panel.add(button);
+		
+		JLabel label = new JLabel("挂号费用：");
+		label.setBounds(100, 181, 93, 15);
 		panel.add(label);
 		
-		JLabel label_1 = new JLabel("挂号费为：");
-		label_1.setBounds(79, 119, 102, 15);
+		JLabel label_1 = new JLabel("10元");
+		label_1.setBounds(253, 181, 54, 15);
 		panel.add(label_1);
-		
-		JLabel label_2 = new JLabel("挂号费用");
-		label_2.setBounds(212, 119, 54, 15);
-		panel.add(label_2);
-		
-		JButton button = new JButton("确定");
-		button.setBounds(148, 201, 93, 23);
-		panel.add(button);
 	}
 }
