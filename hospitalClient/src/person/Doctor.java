@@ -53,12 +53,12 @@ public class Doctor implements Serializable{
 		this.name = name;
 	}
 
-	public Queue<Patient> getPatients() {
+	public ArrayList<Patient> getPatients() {
 		return patients;
 	}
 
 
-	public void setPatients(Queue<Patient> patients) {
+	public void setPatients(ArrayList<Patient> patients) {
 		this.patients = patients;
 	}
 

@@ -146,6 +146,8 @@ public class NewClient implements Runnable{
                     outObject.flush();
                     System.out.println("发送成功");
                     break;
+                case "0026"://根据简称查询收费项目和药品
+                		break;
                 case "2000"://挂号功能
                     Object patient=inObject.readObject();
                     Registration reg=new Registration();

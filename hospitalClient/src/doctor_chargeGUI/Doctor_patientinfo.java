@@ -57,11 +57,17 @@ public class Doctor_patientinfo extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setViewportView(textArea);
-		textArea.setText("显示病人信息");
 		scrollPane.setBounds(10, 10, 414, 151);	
 		panel.add(scrollPane);
-		
+		showInfo();
 		JButton button = new JButton("开处方");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				Doctor_Charge frame=new Doctor_Charge(doctor);
+				frame.setVisible(true);
+			}
+		});
 		button.setBounds(95, 200, 93, 23);
 		panel.add(button);
 		
@@ -75,6 +81,9 @@ public class Doctor_patientinfo extends JFrame {
 		panel.add(button_1);
 	}
 	public void showInfo(){
-		textArea.append(doctor.getPatients().get(0));
+		textArea.append(doctor.getPatients().get(0).getName()+" "
+				+doctor.getPatients().get(0).getId()+" "
+				+doctor.getPatients().get(0).getSex()+" "
+			);
 	}
 }
