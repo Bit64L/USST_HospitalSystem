@@ -9,32 +9,26 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.JTextComponent;
+
+import person.Doctor;
+import person.Patient;
+
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Doctor_default extends JFrame {
 
 	private JPanel contentPane;
+	Doctor doctor;
+	private JTextArea textArea;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Doctor_default frame = new Doctor_default();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public Doctor_default() {
+	public Doctor_default(Doctor doctor) {
+		this.doctor=doctor;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -46,24 +40,37 @@ public class Doctor_default extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JTextComponent textArea = new JTextArea();
+		textArea = new JTextArea();
 		textArea.setBounds(10, 0, 414, 157);
 		textArea.getScrollableTracksViewportHeight();
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setViewportView(textArea);
-		textArea.setText("显示队列情况");
 		scrollPane.setBounds(10, 10, 414, 151);	
 		panel.add(scrollPane);
-		
+		showPatients();//显示病人队列
 		JButton button = new JButton("叫号");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Doctor_patientinfo frame=Doctor_patientinfo(doctor);
+			}
+		});
 		button.setBounds(81, 200, 93, 23);
 		panel.add(button);
 		
 		JButton button_1 = new JButton("返回");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		button_1.setBounds(253, 200, 93, 23);
 		panel.add(button_1);
 	}
-
+	public void showPatients(){
+		for(Patient a:doctor.getPatients()){
+			textArea.append(a.getName()+" "+a.getId()+'\n');
+		}
+	}
 }

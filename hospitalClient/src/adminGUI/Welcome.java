@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import doctor_chargeGUI.Doctor_default;
 import function.Login;
 import person.*
 ;public class Welcome extends JFrame{
@@ -85,7 +86,10 @@ import person.*
 						JFrame default_=new Default(admin);
 						default_.setVisible(true);
 			        }else if(person instanceof Doctor){//医生
-			            
+			            dispose();
+			            Doctor doctor = (Doctor)person;
+			            JFrame doctor_default=new Doctor_default(doctor);
+			            doctor_default.setVisible(true);
 			        }else if(person instanceof Charger){//收费人员
 			           
 			        }else if(person instanceof Druggist){//药师
