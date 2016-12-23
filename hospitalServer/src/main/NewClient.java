@@ -269,26 +269,6 @@ public class NewClient implements Runnable{
     	
     	
         String accountsInfo="";
-        for(Administrator a:Data.administrators){
-            accountsInfo+=a.getUserName()+" "+a.getPassword()+" "+a.getName()+" ";
-            accountsInfo+="管理员$";
-        }
-        for(Doctor a:Data.doctors){
-            accountsInfo+=a.getUserName()+" "+a.getPassword()+" "+a.getName()+" ";
-            accountsInfo+="医生$";
-        }
-        for(Charger a:Data.chargers){
-            accountsInfo+=a.getUserName()+" "+a.getPassword()+" "+a.getName()+" ";
-            accountsInfo+="收费人员$";
-        }
-        for(Druggist a:Data.druggists){
-            accountsInfo+=a.getUserName()+" "+a.getPassword()+" "+a.getName()+" ";
-            accountsInfo+="药师$";
-        }
-        for(President a:Data.presidents){
-            accountsInfo+=a.getUserName()+" "+a.getPassword()+" "+a.getName()+" ";
-            accountsInfo+="院长$";
-        }
         
         accountsInfo+=showAccountsForEach("select * from [Manager]", "manager", "管理员");
         accountsInfo+=showAccountsForEach("select * from [Doctor]", "doctor", "医生");
@@ -297,7 +277,7 @@ public class NewClient implements Runnable{
         accountsInfo+=showAccountsForEach("select * from [President]", "president", "院长");
         return accountsInfo;
     }
-    public String showAccountsForEach(String sqlStr,String type,String chineseTypeName){
+    public String showAccountsForEach(String sqlStr,String type,String chineseTypeName){ //返回一个表的所有账号信息
     	String accountsInfoForEach="";
     	DB db=new DB();
     	ResultSet rs=null;
