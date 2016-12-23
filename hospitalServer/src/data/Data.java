@@ -8,10 +8,10 @@ import java.util.ArrayList;
 
 public class Data {
     public static ArrayList<Administrator> administrators=new ArrayList<>();
-    public static ArrayList<Doctor> doctors=new ArrayList<>();//医生
-    public static ArrayList<Charger> chargers=new ArrayList<>();//收费人员
-    public static ArrayList<Druggist> druggists=new ArrayList<>();//药师
-    public static ArrayList<President> presidents=new ArrayList<>();//院长
+    public static ArrayList<Doctor> doctors=new ArrayList<>();//登录的医生
+    public static ArrayList<Charger> chargers=new ArrayList<>();//登陆的收费人员
+    public static ArrayList<Druggist> druggists=new ArrayList<>();//登陆的药师
+    public static ArrayList<President> presidents=new ArrayList<>();//登陆的院长
     public static ArrayList<HospitalDepartment> hospitalDepartments = new ArrayList<>();//科室
     public static ArrayList<Medicine> medicines = new ArrayList<>();//药品
     public static ArrayList<ChargeItem> chargeItems = new ArrayList<>();//收费项目

@@ -78,26 +78,20 @@ public class NoAppointment extends JFrame{
 		panel.add(label);
 		
 		JLabel label_1 = new JLabel("姓名:");
-		label_1.setBounds(135, 45, 54, 15);
+		label_1.setBounds(135, 48, 54, 15);
 		panel.add(label_1);
 		
 		JLabel label_2 = new JLabel("年龄:");
-		label_2.setBounds(135, 95, 54, 15);
+		label_2.setBounds(135, 98, 54, 15);
 		panel.add(label_2);
 		
 		JLabel label_3 = new JLabel("联系方式:");
-		label_3.setBounds(135, 120, 54, 15);
+		label_3.setBounds(135, 123, 54, 15);
 		panel.add(label_3);
 		
 		JLabel label_4 = new JLabel("科室:");
-		label_4.setBounds(135, 145, 54, 15);
+		label_4.setBounds(135, 148, 54, 15);
 		panel.add(label_4);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"内科", "牙科", "小儿科", "外科"}));
-		comboBox.setToolTipText("");
-		comboBox.setBounds(323, 152, 91, 21);
-		panel.add(comboBox);
 		
 		JButton button = new JButton("确认");
 		button.addActionListener(new ActionListener() {
@@ -107,7 +101,7 @@ public class NoAppointment extends JFrame{
 				patient.setName(patientName.getText());
 				patient.setAge(patientAge.getText());
 				patient.setSex(patientSex.getText());
-				patient.setHospitalDepartment(new HospitalDepartment(comboBox.getSelectedItem().toString()));
+				patient.setHospitalDepartment(new HospitalDepartment(hospitalDepartmentName.getText().toString()));
 				Registration reg=new Registration();
 				Patient inPatient=reg.sendAddDoctorNoAppointmentdPatient(patient);
 				//跳转到显示挂号信息界面
@@ -120,34 +114,34 @@ public class NoAppointment extends JFrame{
 		
 		patientPhoneNumber = new JTextField();
 		patientPhoneNumber.setText("phonenumber");
-		patientPhoneNumber.setBounds(200, 120, 100, 21);
+		patientPhoneNumber.setBounds(200, 120, 140, 21);
 		panel.add(patientPhoneNumber);
 		patientPhoneNumber.setColumns(10);
 		
 		patientAge = new JTextField("age");
-		patientAge.setBounds(200, 95, 100, 21);
+		patientAge.setBounds(200, 95, 140, 21);
 		panel.add(patientAge);
 		patientAge.setColumns(10);
 		
 		patientName = new JTextField();
 		patientName.setText("name");
-		patientName.setBounds(200, 45, 100, 21);
+		patientName.setBounds(200, 45, 140, 21);
 		panel.add(patientName);
 		patientName.setColumns(10);
 		
 		JLabel label_5 = new JLabel("性别:");
-		label_5.setBounds(135, 70, 54, 15);
+		label_5.setBounds(135, 73, 54, 15);
 		panel.add(label_5);
 		
 		patientSex = new JTextField();
 		patientSex.setText("sex");
-		patientSex.setBounds(200, 70, 100, 21);
+		patientSex.setBounds(200, 70, 140, 21);
 		panel.add(patientSex);
 		patientSex.setColumns(10);
 		
 		hospitalDepartmentName = new JTextField();
 		hospitalDepartmentName.setText("hospitalDepartmentName");
-		hospitalDepartmentName.setBounds(200, 145, 100, 21);
+		hospitalDepartmentName.setBounds(200, 145, 140, 21);
 		panel.add(hospitalDepartmentName);
 		hospitalDepartmentName.setColumns(10);
 	}

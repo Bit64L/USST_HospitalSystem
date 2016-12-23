@@ -208,7 +208,7 @@ public class Appointment extends JFrame{
 				doctorName.setEditable(false);
 			}
 		});
-		button_2.setBounds(300, 228, 93, 23);
+		button_2.setBounds(244, 228, 93, 23);
 		panel.add(button_2);
 	}
 }

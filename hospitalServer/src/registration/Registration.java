@@ -50,7 +50,7 @@ public class Registration {
 		}
 		//String hospitalDepartmentNo="0";//根据病人中的科室名字,获取科室id
 		//根据科室id,获取当前科室就诊病人最少的医生
-		Doctor doctor=Data.doctors.get(0);//Doctor 
+		Doctor doctor=null;//Data.doctors.get(0);//Doctor 
 		doctor=this.getLeastPatientDoctor(hospitalDepartmentNo);
 		
 		patient.setDoctor(doctor);
