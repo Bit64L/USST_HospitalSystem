@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import data.Data;
 import staff.*;
+import utility.DB;
 public class Administrator implements Serializable{
 
 	/**
@@ -16,6 +17,10 @@ public class Administrator implements Serializable{
 	private String userName;
 	private String password;
 	private String name;
+	
+	public Administrator() {
+		
+	}
 	public Administrator(String userName, String password,String name) {
 		this.userName = userName;
 		this.password = password;
@@ -45,196 +50,202 @@ public class Administrator implements Serializable{
 	}
 	//添加管理员账号
 	public void addAdminStrator(String userName,String password,String name){
-		Data.administrators.add(new Administrator(userName,password,name));
+		String sqlStr="insert into [Manager](password,name) values('"+password+"','"+name+"')";
+		DB db=new DB();
+		boolean result=db.insert(sqlStr);
+		if(result){
+			System.out.println("添加管理员成功");
+		}
 	}
 	//添加医生账户
 	public void addDoctor(String userName,String password,String name,HospitalDepartment hospitalDepartment){
-		Data.doctors.add(new Doctor(userName,password,name,hospitalDepartment));
+		String hdid=hospitalDepartment.getNo();
+		String hdname=hospitalDepartment.getName();
+		String sqlStr="insert into [Doctor](password,name,hospitalDepartmentID,hospitalDepartmentName)"
+				+ " values('"+password+"','"+name+"',"+hdid+",'"+hdname+"')";
+		DB db=new DB();
+		boolean result=db.insert(sqlStr);
+		if(result){
+			System.out.println("添加医生成功");
+		}
 	}
 	//添加挂号收费人员账户
 	public void addCharger(String userName,String password,String name){
-		Data.chargers.add(new Charger(userName,password,name));
+		String sqlStr="insert into [Charger](password,name) values('"+password+"','"+name+"')";
+		DB db=new DB();
+		boolean result=db.insert(sqlStr);
+		if(result){
+			System.out.println("添加收费人员成功");
+		}
 	}
 	//添加药师
 	public void addDruggist(String userName,String password,String name){
-		Data.chargers.add(new Charger(userName,password,name));
+		String sqlStr="insert into [Druggist](password,name) values('"+password+"','"+name+"')";
+		DB db=new DB();
+		boolean result=db.insert(sqlStr);
+		if(result){
+			System.out.println("添加药师成功");
+		}
 	}
 	//添加院长
 	public void addPresident(String userName,String password,String name){
-		Data.chargers.add(new Charger(userName,password,name));
+		String sqlStr="insert into [President](password,name) values('"+password+"','"+name+"')";
+		DB db=new DB();
+		boolean result=db.insert(sqlStr);
+		if(result){
+			System.out.println("添加院长成功");
+		}
 	}
 
 	//添加科室
 	public void addHospitalDepartment(String name,String no) throws IOException{
-		Data.hospitalDepartments.add(new HospitalDepartment(name,no));
+		String sqlStr="insert into [HospitalDepartment](hospitalDepartmentName) values('"+name+"')";
+		DB db=new DB();
+		boolean result=db.insert(sqlStr);
+		if(result){
+			System.out.println("添加科室成功");
+		}
 	}
 	//添加药品
 	public void addMedicine(String name,String shortName,String unit,double price,String no,int deposit) throws IOException{
-		Data.medicines.add(new Medicine(name,shortName,unit,price,no,deposit));
+		String sqlStr="insert into [Medicine](name,shortName,unit,price,deposit) values('"+name+"','"
+				+shortName+"','"+unit+"',"+price+","+deposit+")";
+		DB db=new DB();
+		boolean result=db.insert(sqlStr);
+		if(result){
+			System.out.println("添加药品成功");
+		}
 	}
 	//添加收费项目
 	public void addChargeItem(String name,String shortName,String unit,double price,String no){
-		Data.chargeItems.add(new ChargeItem(name,shortName,unit,price,no));
+		String sqlStr="insert into [ChargeItem](name,shortName,unit,price) values('"+name+"','"
+				+shortName+"','"+unit+"',"+price+")";
+		DB db=new DB();
+		boolean result=db.insert(sqlStr);
+		if(result){
+			System.out.println("添加收费项目成功");
+		}
 	}
+	
+	
 	//修改账户
 	public void alterAccount(String userName,String password,String name){
-		for(Administrator a:Data.administrators){
-			if(a.getUserName().equals(userName)){
-				a.setPassword(password);
-				a.setName(name);
-			}
+		String tableName="";
+		String idName="";
+		int id=Integer.parseInt(userName);
+		if(id<2000){
+			tableName="Manager";
+			idName="managerID";
+		}else if(id<3000){
+			tableName="Doctor";
+			idName="doctorID";
+		}else if(id<4000){
+			tableName="Charger";
+			idName="chargerID";
+		}else if(id<5000){
+			tableName="Druggist";
+			idName="druggistID";
+		}else if(id<6000){
+			tableName="President";
+			idName="presidentID";
 		}
-		for(Doctor a:Data.doctors){
-			if(a.getUserName().equals(userName)){
-				a.setPassword(password);
-				a.setName(name);
-			}
-		}
-		for(Charger a:Data.chargers){
-			if(a.getUserName().equals(userName)){
-				a.setPassword(password);
-				a.setName(name);
-			}
-		}
-		for(Druggist a:Data.druggists){
-			if(a.getUserName().equals(userName)){
-				a.setPassword(password);
-				a.setName(name);
-			}
-		}
-		for(President a:Data.presidents){
-			if(a.getUserName().equals(userName)){
-				a.setPassword(password);
-				a.setName(name);
-			}
+		String sqlStr="update ["+tableName+"] set name='"+name+"',password='"+password+"' where "+idName+"='"+userName+"'";
+		DB db=new DB();
+		boolean result=db.update(sqlStr);
+		if(result){
+			System.out.println("修改"+tableName+"表成功");
 		}
 	}
 	//修改科室
 	public String alterHospital(String no,String newName) throws IOException{
-		int mark=0;
-		for(HospitalDepartment a : Data.hospitalDepartments){
-			if(a.getNo().equals(no)){
-				a.setName(newName);
-				mark=1;
-				break;
-			}
-		}
-		//writeAccount("hospitalDepartment.txt");
-		if(mark==0) return "无该科室！";
-		return "修改成功！";
+		String sqlStr="update [HospitalDepartment] set hospitalDepartmentName='"+newName+"'";
+		DB db=new DB();
+		boolean result=db.update(sqlStr);
+		if(result){
+			return "修改科室表成功";
+		}else
+			return "无该科室！";
 	}
 	//修改药品
 	public String alterMedicine(String No,String name,String shortName,String newUnit,String newPrice,String deposit){
-		int mark=0;
-		for(Medicine a : Data.medicines){
-			if(a.getNo().equals(No)){
-				a.setName(name);
-				a.setShortName(shortName);
-				a.setUnit(newUnit);
-				double price = Double.parseDouble(newPrice);
-				a.setPrice(price);
-				a.setDeposit(Integer.parseInt(deposit));
-				mark=1;
-				break;
-			}
-		}
-		//writeAccount("medicine.txt");
-		if(mark==0) return "无该药品！";
-		return "修改成功！";
+		String sqlStr="update [Medicine] set name='"+name+"',shortName='"+shortName+"',unit='"+newUnit+"',price="+newPrice+",deposit="+deposit
+				+" where medicineID="+No;
+		DB db=new DB();
+		boolean result=db.update(sqlStr);
+		if(result){
+			return "修改药品表成功";
+		}else
+			return "无该药品！";
 	}
 	//修改收费项目
 	public String alterChargeItem(String No,String newName,String newShortName,String newUnit,String newPrice) throws IOException{
-		int mark=0;
-		for(ChargeItem a : Data.chargeItems){
-			if(a.getNo().equals(No)){
-				a.setName(newName);
-				a.setShortName(newShortName);
-				a.setUnit(newUnit);
-				double price = Double.parseDouble(newPrice);
-				a.setPrice(price);
-				mark=1;
-				break;
-			}
-		}
-		//writeAccount("chargeItem.txt");
-		if(mark==0) return "无该项目！";
-		return "修改成功！";
+		String sqlStr="update [ChargeItem] set name='"+name+"',shortName='"+newShortName+"',unit='"+newUnit+"',price="+newPrice
+				+" where chargeitemID="+No;
+		DB db=new DB();
+		boolean result=db.update(sqlStr);
+		if(result){
+			return "修改收费项目表成功";
+		}else
+			return "无该收费项目！";
 	}
 	//删除账号
 	public void deleteAccount(String userName) throws IOException{
-		for(Administrator a:Data.administrators){
-			if(a.getUserName().equals(userName)){
-				Data.administrators.remove(a);
-				return;
-			}
+		String tableName="";
+		String idName="";
+		int id=Integer.parseInt(userName);
+		if(id<2000){
+			tableName="Manager";
+			idName="managerID";
+		}else if(id<3000){
+			tableName="Doctor";
+			idName="doctorID";
+		}else if(id<4000){
+			tableName="Charger";
+			idName="chargerID";
+		}else if(id<5000){
+			tableName="Druggist";
+			idName="druggistID";
+		}else if(id<6000){
+			tableName="President";
+			idName="presidentID";
 		}
-		for(Charger a:Data.chargers){
-			if(a.getUserName().equals(userName)){
-				Data.chargers.remove(a);
-				return;
-			}
-		}
-
-		for(Doctor a:Data.doctors){
-			if(a.getUserName().equals(userName)){
-				Data.doctors.remove(a);
-				return;
-			}
-		}
-		for(Druggist a:Data.druggists){
-			if(a.getUserName().equals(userName)){
-				Data.druggists.remove(a);
-				return;
-			}
-		}
-		for(President a:Data.presidents){
-			if(a.getUserName().equals(userName)){
-				Data.presidents.remove(a);
-				return;
-			}
-		}
+		String sqlStr="delete from["+tableName+"] where "+idName+"="+userName;
+		DB db=new DB();
+		boolean result=db.delete(sqlStr);
+		if(result){
+			System.out.println("删除账号成功");
+		}else
+			System.out.println("删除账号失败");
 	}
 	//删除科室
 	public String deleteHospitalDepartment(String name){
-		int mark=0;
-		for(HospitalDepartment a:Data.hospitalDepartments){
-			if(a.getName().equals(name)){
-				Data.hospitalDepartments.remove(a);
-				mark=1;
-				break;
-			}
-		}
-		//writeAccount("hospitalDepartment.txt");
-		if(mark==0) return "删除失败！";
-		return "删除成功！";
+		String sqlStr="delete from [HospitalDepartment] where hospitalDepartmentID="+name;
+		DB db=new DB();
+		boolean result=db.delete(sqlStr);
+		if(result){
+			return "删除科室成功";
+		}else
+			return "删除科室失败";
 	}
 	//删除药品
 	public String deleteMedicine(String name) throws IOException{
-		int mark=0;
-		for(Medicine a:Data.medicines){
-			if(a.getName().equals(name)){
-				Data.medicines.remove(a);
-				mark=1;
-				break;
-			}
-		}
-		//writeAccount("medicine.txt");
-		if(mark==0) return "删除失败！";
-		return "删除成功！";
+		String sqlStr="delete from [Medicine] where medicineID="+name;
+		DB db=new DB();
+		boolean result=db.delete(sqlStr);
+		if(result){
+			return "删除药品成功";
+		}else
+			return "删除药品失败";
 	}
 	//删除项目
 	public String deleteChargeItem(String no) throws IOException{
-		int mark=0;
-		for(ChargeItem a:Data.chargeItems){
-			if(a.getNo().equals(no)){
-				Data.chargeItems.remove(a);
-				mark=1;
-				break;
-			}
-		}
-		//writeAccount("chargeItem.txt");
-		if(mark==0) return "删除失败！";
-		return "删除成功！";
+		String sqlStr="delete from [ChargeItem] where chargeitemID="+no;
+		DB db=new DB();
+		boolean result=db.delete(sqlStr);
+		if(result){
+			return "删除项目成功";
+		}else
+			return "删除项目失败";
 	}
 	//将改变的结果写回文件
 	/*public void writeAccount(String fileName) throws IOException{

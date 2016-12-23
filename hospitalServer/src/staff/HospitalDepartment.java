@@ -55,5 +55,8 @@ public class HospitalDepartment implements Serializable{
         registerNum=0;
         money=0;
     }
+    public HospitalDepartment() {
+		// TODO Auto-generated constructor stub
+	}
 
 }
