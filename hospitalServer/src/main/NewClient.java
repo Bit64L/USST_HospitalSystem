@@ -221,36 +221,53 @@ public class NewClient implements Runnable{
          	   
          	   
          	   
-         	   //----------修改到这
+         	   
         }else if(person instanceof Charger){
-            Charger charger=(Charger)person;
-            for(Charger a : Data.chargers){
-                if(a.getUserName().equals(charger.getUserName()) && a.getPassword().equals(charger.getPassword())){
-                    return a;
-                }
-            }
+        	Charger charger= (Charger) person;
+            sqlStr="select * from [Charger] where chargerID="+charger.getUserName()+" and password='"+charger.getPassword();
+            rs=db.select(sqlStr);
+         	   if(rs.next()){
+         		   charger.setUserName(""+rs.getInt("chargerID"));
+         		   charger.setPassword(rs.getString("password"));
+         		   charger.setName(rs.getString("name"));
+         		   return charger;
+         	   }else{
+         		   return null;
+         	   }
         }else if(person instanceof Druggist){
-            Druggist druggist=(Druggist)person;
-            for(Druggist a : Data.druggists) {
-                if (a.getUserName().equals(druggist.getUserName()) && a.getPassword().equals(druggist.getPassword())) {
-                    return a;
-                }
-            }
+        	Druggist druggist= (Druggist) person;
+            sqlStr="select * from [Druggist] where druggistID="+druggist.getUserName()+" and password='"+druggist.getPassword();
+            rs=db.select(sqlStr);
+         	   if(rs.next()){
+         		  druggist.setUserName(""+rs.getInt("chargerID"));
+         		  druggist.setPassword(rs.getString("password"));
+         		  druggist.setName(rs.getString("name"));
+         		   return druggist;
+         	   }else{
+         		   return null;
+         	   }
         }else if(person instanceof President){
-            President president=(President)person;
-            for(President a : Data.presidents){
-                    if(a.getUserName().equals(president.getUserName()) && a.getPassword().equals(president.getPassword())){
-                        return a;
-                    }
-            }
+        	President president= (President) person;
+        	sqlStr="select * from [President] where presidentID="+president.getUserName()+" and password='"+president.getPassword();
+            rs=db.select(sqlStr);
+         	   if(rs.next()){
+         		  president.setUserName(""+rs.getInt("chargerID"));
+         		  president.setPassword(rs.getString("password"));
+         		  president.setName(rs.getString("name"));
+         		   return president;
+         	   }else{
+         		   return null;
+         	   }
         }else{
             return null;
         }
 
-        return null;
+        
     }
     //显示所有账号信息
     public String showAccounts(){
+    	
+    	
         String accountsInfo="";
         for(Administrator a:Data.administrators){
             accountsInfo+=a.getUserName()+" "+a.getPassword()+" "+a.getName()+" ";
@@ -272,8 +289,37 @@ public class NewClient implements Runnable{
             accountsInfo+=a.getUserName()+" "+a.getPassword()+" "+a.getName()+" ";
             accountsInfo+="院长$";
         }
+        
+        accountsInfo+=showAccountsForEach("select * from [Manager]", "manager", "管理员");
+        accountsInfo+=showAccountsForEach("select * from [Doctor]", "doctor", "医生");
+        accountsInfo+=showAccountsForEach("select * from [Charger]", "charger", "收费人员");
+        accountsInfo+=showAccountsForEach("select * from [Druggist]", "druggist", "药师");
+        accountsInfo+=showAccountsForEach("select * from [President]", "president", "院长");
         return accountsInfo;
     }
+    public String showAccountsForEach(String sqlStr,String type,String chineseTypeName){
+    	String accountsInfoForEach="";
+    	DB db=new DB();
+    	ResultSet rs=null;
+    	rs=db.select(sqlStr);
+    	while(true){
+    		try {
+				if(rs.next()){
+					accountsInfoForEach+=rs.getString(type+"ID")+rs.getString("password")
+					+rs.getString("name");
+					accountsInfoForEach+=chineseTypeName+"$";
+				}else{
+					break;
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    	return accountsInfoForEach;
+    	
+    }
+    
     //添加账号
     public void add(Administrator admin,String userName,String password,String name,String type,String hospitalDepartment){
         switch (type){
