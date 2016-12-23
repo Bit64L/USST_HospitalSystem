@@ -1,6 +1,11 @@
 package utility;
 
 import java.sql.Statement;
+
+import javax.sql.rowset.CachedRowSet;
+import javax.sql.rowset.RowSetFactory;
+import javax.sql.rowset.RowSetProvider;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -70,6 +75,34 @@ public class DB {
 			e.printStackTrace();
 		}
 		return rs;
+	}
+	
+	public CachedRowSet selectGetCashedRowSet(String sqlStr){ //resultset不能用于socket通信，必须是cachedrowSet!	
+		RowSetFactory rsf=null;
+		ResultSet rs=null;
+		try {
+			rsf = RowSetProvider.newFactory();
+			
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		CachedRowSet crs=null;
+		try {
+			crs = rsf.createCachedRowSet();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			rs=st.executeQuery(sqlStr);
+			crs.populate(rs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return crs;
 	}
 	
 	public void closeAll(){
