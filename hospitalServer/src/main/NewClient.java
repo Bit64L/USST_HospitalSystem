@@ -208,7 +208,7 @@ public class NewClient implements Runnable{
     	DB db=new DB();
         if(person instanceof Administrator){
         	Administrator manager=(Administrator) person;
-           sqlStr="select * from [Manager] where managerID="+manager.getUserName()+" and password='"+manager.getPassword();
+           sqlStr="select * from [Manager] where managerID="+manager.getUserName()+" and password='"+manager.getPassword()+"'";
            rs=db.select(sqlStr);
         	   if(rs.next()){
         		   manager.setUserName(""+rs.getInt("managerID"));
