@@ -4,10 +4,14 @@ import java.io.BufferedInputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import person.*;
 import registration.Registration;
 import staff.HospitalDepartment;
 import staff.OrderInformation;
+import utility.DB;
 import data.Data;
 import staff.*;
 public class NewClient implements Runnable{
@@ -170,21 +174,54 @@ public class NewClient implements Runnable{
         Main.count--;
         
     }
-    public Object verify(Object person){
+    public Object verify(Object person) throws SQLException{
+    	String sqlStr="";
+    	ResultSet rs=null;
+    	DB db=new DB();
         if(person instanceof Administrator){
-            Administrator admin=(Administrator)person;
-            for(Administrator a : Data.administrators){
-                if(a.getUserName().equals(admin.getUserName()) && a.getPassword().equals(admin.getUserName())){
-                    return a;
-                }
-            }
+        	Administrator manager=(Administrator) person;
+           sqlStr="select * from [Manager] where managerID="+manager.getUserName()+" and password='"+manager.getPassword();
+           rs=db.select(sqlStr);
+        	   if(rs.next()){
+        		   manager.setUserName(""+rs.getInt("managerID"));
+        		   manager.setPassword(rs.getString("password"));
+        		   manager.setName(rs.getString("name"));
+        		   return manager;
+        	   }else{
+        		   return null;
+        	   }
+           
         }else if(person instanceof Doctor){
-            Doctor doctor=(Doctor)person;
-            for(Doctor a : Data.doctors){
-                if(a.getUserName().equals(doctor.getUserName()) && a.getPassword().equals(doctor.getPassword())){
-                    return a;
-                }
-            }
+        	Doctor doctor=(Doctor) person;
+        	sqlStr="select * from [Doctor] where doctorID="+doctor.getUserName()+" and password='"+doctor.getPassword();
+            rs=db.select(sqlStr);
+            
+            String hospitalDepartmentid="";
+         	   if(rs.next()){
+         		  hospitalDepartmentid=""+rs.getInt("hospitalDepartmentID");
+         		  doctor.setUserName(""+rs.getInt("doctorID"));
+         		  doctor.setPassword(rs.getString("password"));
+         		  doctor.setName(rs.getString("name"));
+         		  doctor.setCureNum(rs.getInt("cureNum"));
+         		  doctor.setMoney(rs.getDouble("money"));
+         		  doctor.setPatients(null);//病人队列为空
+         		  //要把hospitalDepartment整个读出来
+         		  HospitalDepartment hd=new HospitalDepartment();
+         		 sqlStr="select * from [HospitalDepartment] where hospitalDepartmentid="+hospitalDepartmentid;
+         		 rs=db.select(sqlStr);
+         		 hd.setNo(""+rs.getInt("hospitalDepartmentID"));
+         		 hd.setName(rs.getString("hospitalDepartmentName"));
+         		 hd.setMoney(rs.getDouble("money"));
+         		 hd.setRegisterNum(rs.getInt("registerNum"));
+         		 doctor.setHospitalDepartment(hd);
+         		   return doctor;
+         	   }else{
+         		   return null;
+         	   }
+         	   
+         	   
+         	   
+         	   //----------修改到这
         }else if(person instanceof Charger){
             Charger charger=(Charger)person;
             for(Charger a : Data.chargers){

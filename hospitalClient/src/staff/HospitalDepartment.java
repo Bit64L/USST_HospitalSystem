@@ -49,6 +49,9 @@ public class HospitalDepartment implements Serializable{
         this.money = money;
     }
 
+    public HospitalDepartment() {
+		// TODO Auto-generated constructor stub
+	}
     public HospitalDepartment(String name,String no){
         this.name = name;
         this.no = no;
