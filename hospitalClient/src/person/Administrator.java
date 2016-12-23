@@ -116,7 +116,7 @@ public class Administrator implements Serializable{
 	public void addChargeItem(String name,String shortName,String unit,double price,String no){
 		String sqlStr="insert into [ChargeItem](name,shortName,unit,price) values('"+name+"','"
 				+shortName+"','"+unit+"',"+price+")";
-		
+		DB db=new DB();
 		boolean result=db.insert(sqlStr);
 		if(result){
 			System.out.println("添加收费项目成功");
