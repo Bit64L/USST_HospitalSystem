@@ -9,7 +9,7 @@ import staff.OrderInformation;
 import staff.OutPatientRecord;
 
 public class Registration {
-	static String ip="124.76.5.175";//设置服务器端ip地址
+	static String ip="127.0.0.1";//设置服务器端ip地址
 	private Patient patient;
 	private OutPatientRecord opr;
 	

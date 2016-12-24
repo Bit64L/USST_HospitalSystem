@@ -29,9 +29,7 @@ public class Appointment extends JFrame{
 	private JTextField patientPhoneNumber;
 	private JTextField hospitalDepartmentName;
 	private JTextField ordertime;
-	private JTextField doctorName;
 	private JTextField patientSex;
-	private JComboBox comboBox;
 	/**
 	 * Launch the application.
 	 */
@@ -93,16 +91,12 @@ public class Appointment extends JFrame{
 		label_7.setBounds(118, 170, 54, 15);
 		panel.add(label_7);
 		
-		JLabel label_9 = new JLabel("预约医生:");
-		label_9.setBounds(118, 195, 54, 15);
-		panel.add(label_9);
-		
 		JButton button = new JButton("确认");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String patientId=orderInfor.getPatientID();
-				String departmentName=comboBox.getSelectedItem().toString();
-				Doctor doctor=new Doctor("111","111","李达",new HospitalDepartment("内科","000001"));//方法,根据医生姓名,获取完整医生信息
+				//String departmentName=comboBox.getSelectedItem().toString();
+				//Doctor doctor=new Doctor("111","111","李达",new HospitalDepartment("内科","000001"));//方法,根据医生姓名,获取完整医生信息
 				Registration reg=new Registration();			
 				
 				Patient patient=new Patient();
@@ -118,7 +112,7 @@ public class Appointment extends JFrame{
 				
 			}
 		});
-		button.setBounds(143, 228, 93, 23);
+		button.setBounds(118, 207, 93, 23);
 		panel.add(button);
 		
 		JLabel label_11 = new JLabel("联系方式:");
@@ -139,7 +133,7 @@ public class Appointment extends JFrame{
 			
 			}
 		});
-		button_1.setBounds(244, 228, 93, 23);
+		button_1.setBounds(221, 207, 93, 23);
 		panel.add(button_1);
 		
 		patientName = new JTextField(orderInfor.getPatientName());
@@ -172,12 +166,6 @@ public class Appointment extends JFrame{
 		panel.add(ordertime);
 		ordertime.setColumns(10);
 		
-		doctorName = new JTextField(orderInfor.getDoctor().getName());
-		doctorName.setEditable(false);
-		doctorName.setBounds(175, 195, 100, 21);
-		panel.add(doctorName);
-		doctorName.setColumns(10);
-		
 		JLabel label_2 = new JLabel("性别:");
 		label_2.setBounds(118, 70, 54, 15);
 		panel.add(label_2);
@@ -187,13 +175,6 @@ public class Appointment extends JFrame{
 		patientSex.setBounds(175, 70, 100, 21);
 		panel.add(patientSex);
 		patientSex.setColumns(10);
-		
-		comboBox = new JComboBox();
-		comboBox.setVisible(false);
-		comboBox.setName("");
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"内科", "牙科", "眼科"}));
-		comboBox.setBounds(175, 145, 100, 21);
-		panel.add(comboBox);
 		
 		JButton button_2 = new JButton("完成");
 		button_2.addActionListener(new ActionListener() {
@@ -208,7 +189,7 @@ public class Appointment extends JFrame{
 				doctorName.setEditable(false);
 			}
 		});
-		button_2.setBounds(244, 228, 93, 23);
+		button_2.setBounds(221, 207, 93, 23);
 		panel.add(button_2);
 	}
 }
