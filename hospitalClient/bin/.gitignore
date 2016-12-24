@@ -1,7 +1,13 @@
+/adminGUI/
+/data/
+/doctor_chargeGUI/
+/function/
+/medicine_GUI/
+/order/
+/person/
 /precidentGUI/
+/precidentTest/
 /registrationGUI/
 /staff/
+/swing/
 /utility/
-/doctor_chargeGUI/
-/person/
-/data/

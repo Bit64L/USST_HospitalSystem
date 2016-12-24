@@ -112,6 +112,8 @@ public class Appointment extends JFrame{
 				boolean re=reg.sendAddDoctorPatient(doctor, patient);
 				if(re){
 					JOptionPane.showMessageDialog(null, "挂号成功"); 
+					RegistrationInformation ri=new RegistrationInformation(patient);
+					ri.setVisible(true);
 				}
 				else 
 					JOptionPane.showMessageDialog(null, "失败"); 
