@@ -7,6 +7,8 @@ import java.net.Socket;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.sql.rowset.CachedRowSet;
+
 import person.*;
 import registration.Registration;
 import staff.HospitalDepartment;
@@ -25,6 +27,9 @@ public class NewClient implements Runnable{
         Administrator admin=null;
     	ObjectInputStream inObject=null;
     	ObjectOutputStream outObject=null;
+    	DB db=new DB();
+    	String sqlStr="";
+    	CachedRowSet crs=null;
         try {
             inObject=new ObjectInputStream(new BufferedInputStream(i.getInputStream()));
             outObject=new ObjectOutputStream(i.getOutputStream());
@@ -193,6 +198,25 @@ public class NewClient implements Runnable{
                     
                     outObject.flush();
                     break;
+
+                case "院长要医生信息":
+                	System.out.println("收到院长要医生信息请求");
+                	sqlStr="select name,cureNum,cureMoney from [Doctor]";
+                	crs=db.selectGetCashedRowSet(sqlStr);
+           			outObject.writeObject(crs);;
+           			outObject.flush();
+                case "院长要科室信息":
+                	System.out.println("收到院长要科室信息请求");
+                	sqlStr="select hospitalDepartmentName,registerNum,money from [HospitalDepartment]";
+                	crs=db.selectGetCashedRowSet(sqlStr);
+           			outObject.writeObject(crs);;
+           			outObject.flush();
+                case "院长要药品信息":
+                	System.out.println("收到院长要药品信息请求");
+                	sqlStr="select name,deposit from [Medicine]";
+                	crs=db.selectGetCashedRowSet(sqlStr);
+           			outObject.writeObject(crs);;
+           			outObject.flush();
 
             }
             inObject.close();

@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import president_duan.*;
 import utility.DB;
 
 import javax.swing.JScrollPane;
@@ -16,7 +17,6 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
-
 public class Doctor_search extends JFrame {
 
 	private JPanel contentPane;
@@ -50,8 +50,8 @@ public class Doctor_search extends JFrame {
 		
 		
 		DB db = new DB();
-		ResultSet rs = db.select("select * from Doctor");
-		
+		//ResultSet rs = db.select("select * from Doctor");
+		President president=new President();// new 
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
@@ -62,7 +62,14 @@ public class Doctor_search extends JFrame {
 		panel.add(scrollPane);
 		
 		JTextArea textArea = new JTextArea();
+		ResultSet rs=null;   //new 
 		
+		try {
+			rs = president.getDoctorInformation(president);  //new 
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		while(true){
 
 				try {
@@ -100,7 +107,14 @@ public class Doctor_search extends JFrame {
 		JButton button_1 = new JButton("就诊数量生成报表");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ResultSet rs = db.select("select * from Doctor");
+				ResultSet rs=null;   //new 
+				
+				try {
+					rs = president.getDoctorInformation(president);  //new 
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				DoctornumPie.main(rs);
 			}
 		});
@@ -110,7 +124,14 @@ public class Doctor_search extends JFrame {
 		JButton button_2 = new JButton("就诊金额生成报表");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ResultSet rs = db.select("select * from Doctor");
+				ResultSet rs=null;   //new 
+				
+				try {
+					rs = president.getDoctorInformation(president);  //new 
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				Doctormoney.main(rs);
 			}
 		});

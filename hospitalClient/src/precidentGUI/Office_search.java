@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import president_duan.President;
 import utility.DB;
 
 import javax.swing.JScrollPane;
@@ -15,8 +16,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.awt.event.ActionEvent;
-
+import java.awt.event.ActionEvent;;
 public class Office_search extends JFrame {
 
 	private JPanel contentPane;
@@ -49,7 +49,8 @@ public class Office_search extends JFrame {
 		setContentPane(contentPane);
 		
 		DB db = new DB();
-		ResultSet rs = db.select("select * from HospitalDepartment");
+		//ResultSet rs = db.select("select * from HospitalDepartment");
+		President president=new President();// new 
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
@@ -59,7 +60,13 @@ public class Office_search extends JFrame {
 		panel.add(scrollPane);
 		
 		JTextArea textArea = new JTextArea();
-		
+		ResultSet rs=null;   //new 
+		try {
+			rs = president.getHospitalDepartmentInformation(president);  //new 
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try {
 			while(rs.next())
 			{
@@ -88,6 +95,13 @@ public class Office_search extends JFrame {
 		JButton button_1 = new JButton("挂号量生成报表");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ResultSet rs=null;   //new 
+				try {
+					rs = president.getHospitalDepartmentInformation(president);  //new 
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				OfficeNum.main(rs);
 			}
 		});
@@ -97,6 +111,13 @@ public class Office_search extends JFrame {
 		JButton button_2 = new JButton("总金额生成报表");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ResultSet rs=null;   //new 
+				try {
+					rs = president.getHospitalDepartmentInformation(president);  //new 
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				OfficeMoney.main(rs);
 			}
 		});
