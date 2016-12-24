@@ -102,7 +102,7 @@ public class Registration {
 		return minDoctor;
 	}
 	
-	//根据病人ID获取病人的收费信息
+	//根据病人ID获取挂号病人的完整信息(其中包含收费信息)
 	public Patient getPatientChargeItem(String patientId){
 		for(Patient p : Data.registerPatients){
 			if(p.getId().equals(patientId))
@@ -111,7 +111,17 @@ public class Registration {
 		return null;
 	}
 	
-	
+	//确认收费,将病人收费状态置为true
+	public Patient confirmPatientPayment(Patient patient){
+		for(Patient p:Data.registerPatients){
+			if(p.getId().equals(patient.getId())){
+				p.setChargestate(true);
+				return p;
+			
+			}
+		}
+		return patient;
+	}
 	//创建病人门诊记录
 	public void createOutPatientRecord(Patient patient,String month,String date){
 		OutPatientRecord opr=new OutPatientRecord(patient.getId(),patient.getName(),patient.getAge(),patient.getSex(),patient.getPhoneNumber(),month,date);

@@ -16,7 +16,7 @@ public class ChargeItem  implements Serializable{
     private String unit;
     private double price;
     private String no;
-    private boolean state = false;//指示收费状态，false表示未收费
+    //private boolean state = false;//指示收费状态，false表示未收费
 
     public String getName() {
         return name;
@@ -58,13 +58,13 @@ public class ChargeItem  implements Serializable{
         this.price = price;
     }
 
-    public boolean isState() {
-        return state;
-    }
-
-    public void setState(boolean state) {
-        this.state = state;
-    }
+//    public boolean isState() {
+//        return state;
+//    }
+//
+//    public void setState(boolean state) {
+//        this.state = state;
+//    }
 
     public ChargeItem(String name, String shortName, String unit, double price, String no) {
         this.name = name;

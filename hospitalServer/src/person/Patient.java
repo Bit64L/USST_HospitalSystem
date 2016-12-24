@@ -15,29 +15,21 @@ public class Patient  implements Serializable{
 	private String phoneNumber;
 	private String id;
 	private HospitalDepartment hospitalDepartment;
-	private String orderedTime;
+	private String orderTime;
 	private Doctor doctor;
+	private boolean chargestate=false;//收费状态 是否完成缴费
+	private double amount;//缴费总额 不包括挂号费
 	private ArrayList<Medicine> medicines=new ArrayList<>();
 	private ArrayList<ChargeItem> chargeItems=new ArrayList<>();
 /*------------------------------------------------------------------------------*/	
 	public Patient(String name,String age,String sex,String phoneNumber,String id){
-		this.setName(name);;
+		this.setName(name);
 		this.setAge(age);;
 		this.setSex(sex);
 		this.setPhoneNumber(phoneNumber);
 		this.setId(id);
 	}
-	//病人预约
-	public	OrderInformation order(HospitalDepartment hospitalDepartment,Doctor doctor,String ordertime){
-		
-		OrderInformation orderInfor=new OrderInformation(this,hospitalDepartment,doctor,ordertime);
-		/**向预约表中添加预约信息**/;
-		return orderInfor;
-	}
-	//test 测试用 显示信息
-	public void showInfor(){
-		System.out.print("姓名:"+this.getName()+" 性别:"+this.getSex()+" 年龄:"+this.getAge()+" 身份证号码:"+this.getId());
-	}
+
 	
 	
 	
@@ -73,10 +65,10 @@ public class Patient  implements Serializable{
 		this.hospitalDepartment = hospitalDepartment;
 	}
 	public String getOrderedTime() {
-		return orderedTime;
+		return orderTime;
 	}
-	public void setOrderedTime(String orderedTime) {
-		this.orderedTime = orderedTime;
+	public void setOrderedTime(String orderTime) {
+		this.orderTime = orderTime;
 	}
 	
 	public String getId() {
@@ -99,5 +91,19 @@ public class Patient  implements Serializable{
 	public ArrayList<ChargeItem> getChargeItems() {
 		return chargeItems;
 	}
+
+	public boolean getChargestate() {
+		return chargestate;
+	}
+	public void setChargestate(boolean chargestate) {
+		this.chargestate = chargestate;
+	}
+	public double getAmount() {
+		return amount;
+	}
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
 
 }

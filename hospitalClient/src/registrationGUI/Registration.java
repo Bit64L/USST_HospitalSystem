@@ -1,8 +1,10 @@
 package registrationGUI;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 import person.*;
 import staff.OrderInformation;
@@ -159,13 +161,42 @@ public class Registration {
 		}
 		return null;
 	}
-	//发送请求:修改预约记录信息;
-	public void sendAlterOrderInformation(){
+	
+	//发送请求:病人支付完成
+	public Patient sendPatientPayment(Patient patient){
+		Socket s=null;
+		ObjectInputStream inObject=null;
+		ObjectOutputStream outObject=null;
 		
-	}
-	//发送请求:录入未预约病人挂号信息;
-	public void sendInsertRegister(){
-		;
+		Object inPatient=null;
+		//boolean re=false;
+		try {
+			/*送到服务器*/
+			s=new Socket(ip,8888);
+			outObject=new ObjectOutputStream(s.getOutputStream());
+			
+			/*发送协议号*/
+			outObject.writeObject("2004");
+			/*发送病人信息*/
+			outObject.writeObject(patient);
+			
+			outObject.flush();
+			
+			/*获取服务器结果*/
+			inObject=new ObjectInputStream(s.getInputStream());
+			inPatient=inObject.readObject();	
+			
+			
+			s.close();
+			inObject.close();
+			outObject.close();
+			
+			return (Patient) inPatient;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	//发送请求:创建病人门诊记录
 //	public void createOutPatientRecord(Patient patient,String mounth,String date){

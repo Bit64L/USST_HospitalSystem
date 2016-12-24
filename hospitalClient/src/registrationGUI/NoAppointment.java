@@ -106,8 +106,10 @@ public class NoAppointment extends JFrame{
 				Registration reg=new Registration();
 				Patient inPatient=reg.sendAddDoctorNoAppointmentdPatient(patient);
 				//跳转到显示挂号信息界面
+				
 				RegistrationInformation ri=new RegistrationInformation(inPatient);
 				ri.setVisible(true);
+				dispose();
 				
 				
 			}

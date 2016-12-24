@@ -198,7 +198,15 @@ public class NewClient implements Runnable{
                     
                     outObject.flush();
                     break;
-
+                case "2004"://提交病人已缴费的信息
+                	Object patient_4=inObject.readObject();
+                    Registration reg_4=new Registration();
+                    Patient inPatient_4=reg_4.confirmPatientPayment((Patient) patient_4);
+                    outObject.writeObject(inPatient_4);
+                    
+                    outObject.flush();
+                    break;
+                    
                 case "院长要医生信息":
                 	System.out.println("收到院长要医生信息请求");
                 	sqlStr="select name,cureNum,cureMoney from [Doctor]";

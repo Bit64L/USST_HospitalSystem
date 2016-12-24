@@ -80,19 +80,19 @@ public class Charger implements Serializable{
 		}
 		return false;
 	}
-	//收费
-	public String charge(Patient patient){
-		double sum=0;
-		for(int i=0;i<patient.getChargeItems().size();i++){
-			sum+=patient.getChargeItems().get(i).getPrice();
-			patient.getChargeItems().get(i).setState(true);
-		}
-		for(int i=0;i<patient.getMedicines().size();i++){
-			sum+=patient.getMedicines().get(i).getPrice();
-			patient.getMedicines().get(i).setState(true);
-		}
-		return "共收费"+sum+"元";
-	}
+//	//收费
+//	public String charge(Patient patient){
+//		double sum=0;
+//		for(int i=0;i<patient.getChargeItems().size();i++){
+//			sum+=patient.getChargeItems().get(i).getPrice();
+//			patient.getChargeItems().get(i).setState(true);
+//		}
+//		for(int i=0;i<patient.getMedicines().size();i++){
+//			sum+=patient.getMedicines().get(i).getPrice();
+//			patient.getMedicines().get(i).setState(true);
+//		}
+//		return "共收费"+sum+"元";
+//	}
 	
 	
 }

@@ -17,6 +17,8 @@ public class Patient  implements Serializable{
 	private HospitalDepartment hospitalDepartment;
 	private String orderTime;
 	private Doctor doctor;
+	private boolean chargestate=false;//收费状态 是否完成缴费
+	private double amount;//缴费总额 不包括挂号费
 	private ArrayList<Medicine> medicines=new ArrayList<>();
 	private ArrayList<ChargeItem> chargeItems=new ArrayList<>();
 	/*--------------------------------------------------------------------*/
@@ -107,6 +109,18 @@ public class Patient  implements Serializable{
 	}
 	public void setOrderTime(String orderTime) {
 		this.orderTime = orderTime;
+	}
+	public boolean getChargestate() {
+		return chargestate;
+	}
+	public void setChargestate(boolean chargestate) {
+		this.chargestate = chargestate;
+	}
+	public double getAmount() {
+		return amount;
+	}
+	public void setAmount(double amount) {
+		this.amount = amount;
 	}
 
 }

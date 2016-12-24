@@ -108,6 +108,7 @@ public class Appointment extends JFrame{
 				//跳转到显示挂号信息界面
 				RegistrationInformation ri=new RegistrationInformation(inPatient);
 				ri.setVisible(true);
+				dispose();
 				
 			}
 		});
