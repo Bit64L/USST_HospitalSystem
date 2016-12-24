@@ -373,7 +373,7 @@ public class NewClient implements Runnable {
 		while (true) {
 			try {
 				if (rs.next()) {
-					accountsInfoForEach += rs.getString(type + "ID") + rs.getString("password") + rs.getString("name");
+					accountsInfoForEach += rs.getString(type + "ID") +"\t"+ rs.getString("password") + "\t"+rs.getString("name") +"\t";
 					accountsInfoForEach += chineseTypeName + "$";
 				} else {
 					break;
@@ -414,12 +414,21 @@ public class NewClient implements Runnable {
 		}
 	}
 
-	// 显示所有收费信息
+	// 显示所有收费项目
 	public String showChargeItem() {
 		String str = "";
-		for (ChargeItem a : Data.chargeItems) {
-			str += a.getName() + " " + a.getNo();
-			str += "$";
+		DB db=new DB();
+		String sql="select * from ChargeItem";
+		ResultSet rs=null;
+		try{
+			rs=db.select(sql);
+			String singal="";
+			while(rs.next()){
+				singal=rs.getString("chargeitemID")+" "+rs.getString("name")+" "+rs.getString("shortName")+" "+rs.getString("unit")+" "+rs.getString("price");
+				str+=singal+"$";
+			}
+		}catch(Exception e){
+			
 		}
 		return str;
 	}
@@ -427,9 +436,18 @@ public class NewClient implements Runnable {
 	// 显示所有药品信息
 	public String showMedicine() {
 		String str = "";
-		for (Medicine a : Data.medicines) {
-			str += a.getName() + " " + a.getNo();
-			str += "$";
+		DB db=new DB();
+		String sql="select * from Medicine";
+		ResultSet rs=null;
+		try{
+			rs=db.select(sql);
+			String singal="";
+			while(rs.next()){
+				singal=rs.getString("medicineID")+" "+rs.getString("name")+" "+rs.getString("shortName")+" "+rs.getString("unit")+" "+rs.getString("price");
+				str+=singal+"$";
+			}
+		}catch(Exception e){
+			
 		}
 		return str;
 	}
@@ -437,9 +455,18 @@ public class NewClient implements Runnable {
 	// 显示所有科室信息
 	public String showOffice() {
 		String str = "";
-		for (HospitalDepartment a : Data.hospitalDepartments) {
-			str += a.getName() + " " + a.getNo();
-			str += "$";
+		DB db=new DB();
+		String sql="select * from Medicine";
+		ResultSet rs=null;
+		try{
+			rs=db.select(sql);
+			String singal="";
+			while(rs.next()){
+				singal=rs.getString("hospitalDepartmentID")+" "+rs.getString("hospitalDepartmentName");
+				str+=singal+"$";
+			}
+		}catch(Exception e){
+			
 		}
 		return str;
 	}

@@ -39,7 +39,7 @@ public class Default extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Account account=new Account(admin);
 				account.setVisible(true);
-				dispose();
+				
 			}
 		});
 		button.setBounds(45, 105, 138, 30);
@@ -50,7 +50,7 @@ public class Default extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Office office=new Office(admin);
 				office.setVisible(true);
-				dispose();
+				
 			}
 		});
 		btnNewButton.setBounds(225, 105, 138, 30);
@@ -61,7 +61,7 @@ public class Default extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Medicine medicine=new Medicine(admin);
 				medicine.setVisible(true);
-				dispose();
+				
 			}
 		});
 		btnNewButton_1.setBounds(45, 172, 138, 30);
@@ -72,7 +72,7 @@ public class Default extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Item item=new Item(admin);
 				item.setVisible(true);
-				dispose();
+				
 			}
 		});
 		button_1.setBounds(225, 172, 138, 30);

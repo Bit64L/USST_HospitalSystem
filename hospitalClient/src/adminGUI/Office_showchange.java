@@ -98,7 +98,7 @@ public class Office_showchange extends JFrame {
 		try {
 			s=new Socket("127.0.0.1",8888);
 			out=new ObjectOutputStream(s.getOutputStream());
-			out.writeObject("0024");
+			out.writeObject("0025");
 			out.flush();
 			in=new ObjectInputStream(s.getInputStream());
 			info=(String)in.readObject();//账户信息之间用$隔开

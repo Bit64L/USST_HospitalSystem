@@ -61,11 +61,11 @@ public class Account_add extends JFrame {
 		
 		JLabel label = new JLabel("用户名");
 		label.setBounds(74, 80, 54, 15);
-		panel.add(label);
+		//panel.add(label);
 		
 		textField = new JTextField();
 		textField.setBounds(198, 80, 66, 21);
-		panel.add(textField);
+		//panel.add(textField);
 		textField.setColumns(10);
 		
 		JLabel label_1 = new JLabel("密码");

@@ -58,6 +58,7 @@ public class Office extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Office_add office_add=new Office_add(admin);
+				office_add.setVisible(true);
 			}
 		});
 		button.setBounds(45, 57, 118, 23);

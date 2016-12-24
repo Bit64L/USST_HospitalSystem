@@ -91,6 +91,7 @@ public class Office_add extends JFrame {
 				} catch (Exception e2) {
 					// TODO: handle exception
 				}
+				dispose();
 			}
 		});
 		button.setBounds(97, 188, 93, 23);
