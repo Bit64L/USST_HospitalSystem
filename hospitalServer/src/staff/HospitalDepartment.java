@@ -49,14 +49,19 @@ public class HospitalDepartment implements Serializable{
         this.money = money;
     }
 
+    public HospitalDepartment() {
+		// TODO Auto-generated constructor stub
+	}
     public HospitalDepartment(String name,String no){
         this.name = name;
         this.no = no;
         registerNum=0;
         money=0;
     }
-    public HospitalDepartment() {
+
+	public HospitalDepartment(String name) {
 		// TODO Auto-generated constructor stub
+		this.setName(name);
 	}
 
 }

@@ -80,7 +80,7 @@ public class Charger implements Serializable{
 		}
 		return false;
 	}
-//	//收费
+	//收费
 //	public String charge(Patient patient){
 //		double sum=0;
 //		for(int i=0;i<patient.getChargeItems().size();i++){

@@ -15,10 +15,18 @@ public class Medicine implements Serializable{
     private String shortName;//拼音简码
     private String unit;
     private double price;
-    private String no;
-    private boolean state=false;//指示收费状态，false表示未收费
+    private String no;//主键
+    
+    private int number;//医生开药的数量
+    private double amount=0;//总金额，自定义了get方法
+    
     private int deposit;//药品库存量
-    public String getName() {
+    
+    public double getAmount() {
+    	amount=price*number;
+		return amount;
+	}
+	public String getName() {
         return name;
     }
     public void setName(String name) {
@@ -51,19 +59,20 @@ public class Medicine implements Serializable{
         this.no = no;
     }
 
-    public boolean isState() {
-        return state;
-    }
-    public void setState(boolean state) {
-        this.state = state;
-    }
-
     public int getDeposit() {
         return deposit;
     }
     public void setDeposit(int deposit) {
         this.deposit = deposit;
     }
+    
+    public int getNumber() {
+		return number;
+	}
+	public void setNumber(int number) {
+		this.number = number;
+	}
+	//添加药品时的构造方法
     public Medicine(String name,String shortName,String unit,double price,String no,int deposit){
         this.name=name;
         this.shortName=shortName;
@@ -71,5 +80,13 @@ public class Medicine implements Serializable{
         this.price=price;
         this.no=no;
         this.deposit=deposit;
+    }
+    //病人处方单中的药品
+    public Medicine(String name,String shortName,String unit,double price,String no){
+        this.name=name;
+        this.shortName=shortName;
+        this.unit=unit;
+        this.price=price;
+        this.no=no;
     }
 }

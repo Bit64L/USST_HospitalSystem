@@ -10,7 +10,8 @@ public class Doctor implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private Patient addpatient;
-	private ArrayList<Patient> patients=new ArrayList<>();
+	private ArrayList<Patient> patients=new ArrayList<>();//未开处方的病人
+	private ArrayList<Patient> patientsFinish=new ArrayList<>();//已经开处方的病人
 	private HospitalDepartment hospitalDepartment;
 	private int cureNum;//医生就诊数量
 	private double money;//医生总金额
@@ -138,4 +139,13 @@ public class Doctor implements Serializable{
 	public void setAddpatient(Patient addpatient) {
 		this.addpatient = addpatient;
 	}
+
+	public ArrayList<Patient> getPatientsFinish() {
+		return patientsFinish;
+	}
+
+	public void setPatientsFinish(ArrayList<Patient> patientsFinish) {
+		this.patientsFinish = patientsFinish;
+	}
+	
 }

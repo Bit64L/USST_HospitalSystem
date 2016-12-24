@@ -2,11 +2,11 @@ package person;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
+import data.Data;
 import staff.*;
 public class Patient  implements Serializable{
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private String name;
@@ -18,24 +18,53 @@ public class Patient  implements Serializable{
 	private String orderTime;
 	private Doctor doctor;
 	private boolean chargestate=false;//收费状态 是否完成缴费
+	
 	private double amount=0;//缴费总额 不包括挂号费
 	private ArrayList<Medicine> medicines=new ArrayList<>();
 	private ArrayList<ChargeItem> chargeItems=new ArrayList<>();
-/*------------------------------------------------------------------------------*/	
+	/*--------------------------------------------------------------------*/
+	public Patient(){
+
+	}
 	public Patient(String name,String age,String sex,String phoneNumber,String id){
-		this.setName(name);
+		this.setName(name);;
 		this.setAge(age);;
 		this.setSex(sex);
 		this.setPhoneNumber(phoneNumber);
 		this.setId(id);
 	}
+	//病人预约
+	public	OrderInformation order(HospitalDepartment hospitalDepartment,Doctor doctor,String ordertime){
 
+		OrderInformation orderInfor=new OrderInformation(this,hospitalDepartment,doctor,ordertime);
+		/**向预约表中添加预约信息**/;
+		return orderInfor;
+	}
+	//加入病人挂号信息
+	public void insertPatientInformation(String name,String sex,String age,String phoneNumber,String id,String ordertime){
+		this.setName(name);
+		this.setAge(age);
+		this.setSex(sex);
+		this.setPhoneNumber(phoneNumber);
+		this.setOrderTime(ordertime);
+		this.setId(id);
+		
+		
+		
+	}
+	/*--------------------------------------------------------------------*/
 	
-	
-	
-/*-------------------------------------------------------------*/
-	public String getName() {
+ 	public String getName() {
 		return name;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	public void setMedicines(ArrayList<Medicine> medicines) {
+		this.medicines = medicines;
+	}
+	public void setChargeItems(ArrayList<ChargeItem> chargeItems) {
+		this.chargeItems = chargeItems;
 	}
 	public void setName(String name) {
 		this.name = name;
@@ -64,34 +93,34 @@ public class Patient  implements Serializable{
 	public void setHospitalDepartment(HospitalDepartment hospitalDepartment) {
 		this.hospitalDepartment = hospitalDepartment;
 	}
-	public String getOrderedTime() {
-		return orderTime;
-	}
-	public void setOrderedTime(String orderTime) {
-		this.orderTime = orderTime;
-	}
-	
+
+
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	
+
 	public Doctor getDoctor() {
 		return doctor;
 	}
 	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
 	}
-	
+
 	public ArrayList<Medicine> getMedicines() {
 		return medicines;
 	}
 	public ArrayList<ChargeItem> getChargeItems() {
 		return chargeItems;
 	}
-
+	public String getOrderTime() {
+		return orderTime;
+	}
+	public void setOrderTime(String orderTime) {
+		this.orderTime = orderTime;
+	}
 	public boolean getChargestate() {
 		return chargestate;
 	}
@@ -104,6 +133,5 @@ public class Patient  implements Serializable{
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-
 
 }

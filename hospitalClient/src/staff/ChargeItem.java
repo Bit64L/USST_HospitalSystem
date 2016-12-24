@@ -15,10 +15,10 @@ public class ChargeItem  implements Serializable{
     private String shortName;
     private String unit;//计量单位
     private double price;
-    private String no;
-    private int number;//数量
-    private double amount=0;//总额
-    //private boolean state = false;//指示收费状态，false表示未收费
+    private String no;//id主键
+    
+    private int number;//医生开的数量
+    private double amount=0;//总金额,自定义实现了get方法
     
     
     public String getName() {
@@ -97,9 +97,5 @@ public class ChargeItem  implements Serializable{
 	public double getAmount() {
 		this.amount=price*number;
 		return amount;
-	}
-
-	public void setAmount(double amount) {
-		this.amount = amount;
 	}
 }

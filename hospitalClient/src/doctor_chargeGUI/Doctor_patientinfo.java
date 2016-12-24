@@ -13,6 +13,9 @@ import person.Doctor;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.awt.event.ActionEvent;
 
 public class Doctor_patientinfo extends JFrame {
@@ -20,26 +23,9 @@ public class Doctor_patientinfo extends JFrame {
 	private JPanel contentPane;
 	private Doctor doctor;
 	private JTextArea textArea;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Doctor_patientinfo frame = new Doctor_patientinfo();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
-	public Doctor_patientinfo() {
+	public Doctor_patientinfo(Doctor doctor) {
+		this.doctor = doctor;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -59,7 +45,7 @@ public class Doctor_patientinfo extends JFrame {
 		scrollPane.setViewportView(textArea);
 		scrollPane.setBounds(10, 10, 414, 151);	
 		panel.add(scrollPane);
-		showInfo();
+		showInfo();//显示病人信息
 		JButton button = new JButton("开处方");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -85,5 +71,5 @@ public class Doctor_patientinfo extends JFrame {
 				+doctor.getPatients().get(0).getId()+" "
 				+doctor.getPatients().get(0).getSex()+" "
 			);
-	}
+	}	
 }

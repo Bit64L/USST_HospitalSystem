@@ -251,7 +251,7 @@ public class Administrator implements Serializable{
 		}
 		file.close();
 	}*/
-	public void writeHospitalDepartment(String fileName) throws IOException{
+	/*public void writeHospitalDepartment(String fileName) throws IOException{
 		FileWriter file = new FileWriter(fileName);
 		for(HospitalDepartment a : Data.hospitalDepartments){
 			file.write(a.getName()+" "+a.getNo());
@@ -271,7 +271,7 @@ public class Administrator implements Serializable{
 			file.write(a.getName()+" "+a.getShortName()+" "+a.getUnit()+" "+a.getPrice()+" "+a.getNo());
 		}
 		file.close();
-	}
+	}*/
 /*	public static void main(String[] args) throws IOException {
 		Administor admin = new Administor("123456","000000");
 		for(Administor.Account a:Administor.accounts){

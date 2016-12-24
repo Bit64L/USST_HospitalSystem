@@ -16,15 +16,21 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import staff.*;
 import person.Doctor;
+import javax.swing.SwingConstants;
 
 public class Doctor_Charge extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField mnum;
 	private Doctor doctor;
-
+	private JTextField textField_2;
+	private JTextField cnum;
+	private JPanel panel;
+	private JTextArea textArea;
+	String results="";//处方单
 
 	/**
 	 * Create the frame.
@@ -38,60 +44,62 @@ public class Doctor_Charge extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel label = new JLabel("输入简称");
-		label.setBounds(10, 40, 77, 15);
+		JLabel label = new JLabel("药品简称");
+		label.setHorizontalAlignment(SwingConstants.RIGHT);
+		label.setBounds(10, 40, 88, 15);
 		panel.add(label);
 		
 		textField = new JTextField("简称");
-		textField.setBounds(76, 36, 66, 21);
+		textField.setBounds(112, 36, 66, 21);
 		panel.add(textField);
 		textField.setColumns(10);
 		
-		JLabel label_2 = new JLabel("数量");
-		label_2.setBounds(154, 40, 54, 15);
-		panel.add(label_2);
+		JLabel lable2 = new JLabel("数量");
+		lable2.setBounds(192, 40, 54, 15);
+		panel.add(lable2);
 		
-		textField_1 = new JTextField("数量");
-		textField_1.setBounds(205, 36, 66, 21);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		mnum = new JTextField("数量");
+		mnum.setBounds(243, 36, 66, 21);
+		panel.add(mnum);
+		mnum.setColumns(10);
 		
 		JButton button_1 = new JButton("添加");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String jc=textField.getText();
-				String number=textField_1.getText();
+				String number=mnum.getText();
 				Socket s=null;
 				ObjectInputStream in = null;
 				ObjectOutputStream out =null;
 				try{
 					s=new Socket("127.0.0.1",8888);
 					out=new ObjectOutputStream(s.getOutputStream());
-					out.writeObject("0025");
-					out.writeObject(jc);
+					out.writeObject("0026");
+					out.writeObject(jc+" "+cnum.getText()+" "+"药品");//简称+数量+类型
+					out.writeObject(doctor);
 					out.flush();
-					/********///发送来药品或检查项目
-					
-					
-					
+					in=new ObjectInputStream(s.getInputStream());
+					String name=(String)in.readObject();//接收收费项目名称
+					String result=name+" "+"x"+cnum.getText()+"\n";
+					textArea.append(result);//显示
 					
 				}catch(Exception ee){
 					
 				}
 			}
 		});
-		button_1.setBounds(295, 35, 93, 23);
+		button_1.setBounds(321, 36, 93, 23);
 		panel.add(button_1);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 75, 404, 91);
 		panel.add(scrollPane);
 		
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		textArea.setText("药品信息");
 		scrollPane.setViewportView(textArea);
 		
@@ -105,5 +113,52 @@ public class Doctor_Charge extends JFrame {
 		});
 		button_2.setBounds(277, 203, 93, 23);
 		panel.add(button_2);
+		
+		JLabel label_1 = new JLabel("收费项目简称");
+		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_1.setBounds(0, 12, 98, 15);
+		panel.add(label_1);
+		
+		textField_2 = new JTextField("简称");
+		textField_2.setColumns(10);
+		textField_2.setBounds(112, 7, 66, 21);
+		panel.add(textField_2);
+		
+		JLabel label_3 = new JLabel("数量");
+		label_3.setBounds(192, 12, 54, 15);
+		panel.add(label_3);
+		
+		cnum = new JTextField("数量");
+		cnum.setColumns(10);
+		cnum.setBounds(243, 6, 66, 21);
+		panel.add(cnum);
+		
+		JButton button = new JButton("添加");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String jc=textField.getText();
+				String number=mnum.getText();
+				Socket s=null;
+				ObjectInputStream in = null;
+				ObjectOutputStream out =null;
+				try{
+					s=new Socket("127.0.0.1",8888);
+					out=new ObjectOutputStream(s.getOutputStream());
+					out.writeObject("0026");
+					out.writeObject(jc+" "+cnum.getText()+" "+"收费项目");//简称+数量+类型
+					out.writeObject(doctor);
+					out.flush();
+					in=new ObjectInputStream(s.getInputStream());
+					String name=(String)in.readObject();//接收药品名称
+					String result=name+" "+"x"+cnum.getText()+"\n";
+					textArea.append(result);//显示
+					
+				}catch(Exception ee){
+					
+				}
+			}
+		});
+		button.setBounds(321, 6, 93, 23);
+		panel.add(button);
 	}
 }
