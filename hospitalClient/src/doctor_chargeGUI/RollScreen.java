@@ -1,10 +1,16 @@
 package doctor_chargeGUI;
 
 import javax.swing.*;
+
+import utility.DB;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.ResultSet;
 
 public class RollScreen extends JFrame{
+	DB db = new DB();
+	ResultSet rs = db.select("select * from Doctor");
 	
 	RollScreen(){
 		add(new MPanel("这是移动的语句"));

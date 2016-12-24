@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import president.President;
 import utility.DB;
 
 import javax.swing.JScrollPane;
@@ -50,8 +51,8 @@ public class Medicine_search extends JFrame {
 		
 		
 		DB db = new DB();
-		ResultSet rs = db.select("select *from Medicine");
-		
+		//ResultSet rs = db.select("select *from Medicine");
+		President president=new President();// new 
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
@@ -62,6 +63,13 @@ public class Medicine_search extends JFrame {
 		panel.add(scrollPane);
 		
 		JTextArea textArea = new JTextArea();
+		ResultSet rs=null;   //new 
+		try {
+			rs = president.getMedicineInformation(president);  //new 
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try {
 			while(rs.next())
 			textArea.setText(textArea.getText()+"\n"+"药品名称："+rs.getString("medicineID"
@@ -86,6 +94,13 @@ public class Medicine_search extends JFrame {
 
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ResultSet rs=null;   //new 
+				try {
+					rs = president.getMedicineInformation(president);  //new 
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				MedicinePie.main(rs);
 			}
 		});

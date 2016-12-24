@@ -67,8 +67,8 @@ public class Charge_2 extends JFrame {
 		lbldata.setBounds(218, 181, 88, 15);
 		panel.add(lbldata);
 		
-		JButton button = new JButton("确定");
-		button.setBounds(150, 218, 93, 23);
+		JButton button = new JButton("确认收费信息");
+		button.setBounds(150, 218, 105, 23);
 		panel.add(button);
 	}
 
