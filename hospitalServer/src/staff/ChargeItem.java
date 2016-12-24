@@ -11,13 +11,18 @@ public class ChargeItem  implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String name;
+	private String name;//药品名
     private String shortName;
-    private String unit;
+    private String unit;//计量单位
     private double price;
     private String no;
+    private int number;//数量
+    private double amount=0;//总额
     //private boolean state = false;//指示收费状态，false表示未收费
-
+    
+    
+    
+    
     public String getName() {
         return name;
     }
@@ -73,4 +78,30 @@ public class ChargeItem  implements Serializable{
         this.unit = unit;
         this.no = no;
     }
+
+	public ChargeItem(String name, double price, String unit, int number) {
+		// TODO Auto-generated constructor stub
+		this.setName(name);
+		this.setPrice(price);
+		this.setUnit(unit);
+		this.setNumber(number);
+		
+	}
+
+	public double getAmount() {
+		this.amount=number*price;
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
 }

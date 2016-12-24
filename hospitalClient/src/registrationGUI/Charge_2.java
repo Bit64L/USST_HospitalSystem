@@ -3,6 +3,7 @@ package registrationGUI;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -18,10 +19,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import data.Data;
 
 public class Charge_2 extends JFrame {
 
 	private JPanel contentPane;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -43,6 +49,8 @@ public class Charge_2 extends JFrame {
 	 * Create the frame.
 	 */
 	public Charge_2(Patient patient) {
+		//Data.initial();
+		//Patient patient =Data.patientSample;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -53,28 +61,51 @@ public class Charge_2 extends JFrame {
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-		JTextArea textArea = new JTextArea();
-		ArrayList<ChargeItem> chargeItems=patient.getChargeItems();
-		String head="Name ShortName Unit Price No";
-		for(ChargeItem ch:chargeItems){
-			String body=ch.getName()+ch.getShortName()+ch.getUnit()+ch.getPrice()+ch.getNo()+"\n";
-			textArea.append(body);
-		}
-		textArea.setBounds(10, 0, 414, 157);
-		textArea.getScrollableTracksViewportHeight();
+//		ArrayList<ChargeItem> chargeItems=patient.getChargeItems();
+//		String head="Name ShortName Unit Price No";
+//		for(ChargeItem ch:chargeItems){
+//			String body=ch.getName()+ch.getShortName()+ch.getUnit()+ch.getPrice()+ch.getNo()+"\n";
+//			textArea.append(body);
+//		}
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-		scrollPane.setViewportView(textArea);
-		textArea.setText("显示收费信息");
 		scrollPane.setBounds(10, 10, 414, 151);	
 		panel.add(scrollPane);
+		
+		
+		
+		Vector<String> rowName=new Vector<>();
+		rowName.add("药品");
+		rowName.add("单价");
+		rowName.add("数量");
+		rowName.add("单位");
+		rowName.add("总价");
+		Vector<Vector<String>> vData=new Vector<>();
+		for(ChargeItem c : patient.getChargeItems()){
+			Vector<String> rowData=new Vector<>();
+			rowData.add(c.getName());
+			rowData.add(""+c.getPrice());
+			rowData.add(""+c.getNumber());
+			rowData.add(c.getUnit());
+			rowData.add(""+c.getAmount());
+			vData.add((Vector<String>) rowData.clone());
+			patient.setAmount(patient.getAmount()+c.getAmount());
+		}
+		DefaultTableModel DFM=new DefaultTableModel(vData,rowName);
+		
+		table = new JTable(DFM);
+		//table.setModel(DFM);
+
+		scrollPane.setViewportView(table);
 		
 		JLabel label = new JLabel("费用总额:");
 		label.setBounds(117, 181, 77, 15);
 		panel.add(label);
 		
-		JLabel lbldata = new JLabel("费用总额DATA");
+		
+		
+		JLabel lbldata = new JLabel(""+patient.getAmount());
 		lbldata.setBounds(218, 181, 88, 15);
 		panel.add(lbldata);
 		
@@ -95,5 +126,4 @@ public class Charge_2 extends JFrame {
 		button.setBounds(150, 218, 105, 23);
 		panel.add(button);
 	}
-
 }

@@ -18,7 +18,7 @@ public class Patient  implements Serializable{
 	private String orderTime;
 	private Doctor doctor;
 	private boolean chargestate=false;//收费状态 是否完成缴费
-	private double amount;//缴费总额 不包括挂号费
+	private double amount=0;//缴费总额 不包括挂号费
 	private ArrayList<Medicine> medicines=new ArrayList<>();
 	private ArrayList<ChargeItem> chargeItems=new ArrayList<>();
 	/*--------------------------------------------------------------------*/
