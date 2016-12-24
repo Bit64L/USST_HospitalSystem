@@ -163,36 +163,37 @@ public class NewClient implements Runnable{
                     }
             		outObject.flush();
             		break;
-                case "2001"://添加病人到医生就诊序列
-                	Object doctor=inObject.readObject();
-                    Registration reg_1=new Registration();
-                    Doctor doc=reg_1.addDoctorPatient((Doctor) doctor, ((Doctor) doctor).getAddpatient());
-                    if(doc!=null)
-                    	outObject.writeObject(doc);
-                    else 
-                    	outObject.writeObject(null);
-                     
-             		outObject.flush();
-             		break;
-                case "2002"://添加未预约病人添加到医生队列中
+                case "2001"://添加预约病人到医生就诊序列
                 	Object patient_1=inObject.readObject();
+                    Registration reg_1=new Registration();
+                    Patient inPatient_1=reg_1.addDoctorAppointmentPatient((Patient) patient_1);
+                    if(inPatient_1!=null)
+                    	outObject.writeObject(inPatient_1);
+                    else
+                    	outObject.writeObject(null);
+                    
+             		outObject.flush();
+            		break;
+                case "2002"://添加未预约病人到医生队列中
+                	Object patient_2=inObject.readObject();
                     Registration reg_2=new Registration();
-                    Patient inPatient=reg_2.addDoctorNoAppointmentdPatient((Patient) patient_1);
-                    if(inPatient!=null)
-                    	outObject.writeObject(inPatient);
+                    Patient inPatient_2=reg_2.addDoctorNoAppointmentPatient((Patient) patient_2);
+                    if(inPatient_2!=null)
+                    	outObject.writeObject(inPatient_2);
                     else
                     	outObject.writeObject(null);
                     
              		outObject.flush();
             		break;
                 case "2003"://发送查看病人收费信息的请求:
-                	Object patient_2=inObject.readObject();
+                	Object patient_3=inObject.readObject();
                     Registration reg_3=new Registration();
-                    Patient inPatient_1=reg_3.getPatientChargeItem(((Patient)patient_2).getId());
-                    outObject.writeObject(inPatient_1);
+                    Patient inPatient_3=reg_3.getPatientChargeItem(((Patient)patient_3).getId());
+                    outObject.writeObject(inPatient_3);
                     
                     outObject.flush();
                     break;
+
             }
             inObject.close();
             outObject.close();

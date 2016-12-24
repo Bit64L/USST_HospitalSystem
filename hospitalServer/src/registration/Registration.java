@@ -37,7 +37,7 @@ public class Registration {
 	}
 	
 	//录入未预约病人的挂号信息,在就诊的医生的就诊病人队列加入该病人
-	public Patient addDoctorNoAppointmentdPatient(Patient patient){
+	public Patient addDoctorNoAppointmentPatient(Patient patient){
 		String sqlstr="SELECT hospitalDepartmentID FROM HospitalDepartment WHERE hospitalDepartmentName='"+patient.getHospitalDepartment().getNo()+"';";           
 		DB db=new DB();
 		ResultSet rs=db.select(sqlstr);
@@ -58,6 +58,30 @@ public class Registration {
 		Data.registerPatients.add(patient);
 		return patient;
 	}
+	
+	//录入预约病人的挂号信息,在就诊的医生的就诊病人队列加入该病人
+	public Patient addDoctorAppointmentPatient(Patient patient) {
+		String sqlstr="SELECT hospitalDepartmentID FROM HospitalDepartment WHERE hospitalDepartmentName='"+patient.getHospitalDepartment().getNo()+"';";           
+		DB db=new DB();
+		ResultSet rs=db.select(sqlstr);
+		String hospitalDepartmentNo=null;
+		try {
+			hospitalDepartmentNo=rs.getString("hospitalDepartmentID");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//String hospitalDepartmentNo="0";//根据病人中的科室名字,获取科室id
+		//根据科室id,获取当前科室就诊病人最少的医生
+		Doctor doctor=null;//Data.doctors.get(0);//Doctor 
+		doctor=this.getLeastPatientDoctor(hospitalDepartmentNo);
+		
+		patient.setDoctor(doctor);
+		doctor.getPatients().add(patient);
+		Data.registerPatients.add(patient);
+		return patient;
+	}
+	
 	//根据科室ID,获取就诊病人数最少的医生
 	public Doctor getLeastPatientDoctor(String hospitalDepartmentNo){
 		Doctor minDoctor=null;
@@ -101,10 +125,12 @@ public class Registration {
 	}
 	//显示预约病人的预约记录
 	public OrderInformation showOrderInfor(Patient patinet){
-		
+		OrderInformation oi=null;
 		for(OrderInformation p : orderInfors){
 			if(patient.getId().equals(p.getPatientID()))
-				return p;
+				oi=p;
+				orderInfors.remove(p);
+				return oi;
 		}
 		return null;
 		
@@ -112,11 +138,14 @@ public class Registration {
 	}
 	//查找预约病人的预约信息
 	public OrderInformation searchOrderInfor(Patient patient){		
+		OrderInformation oi=null;
 		for(OrderInformation p : orderInfors){
 			if(patient.getId().equals(p.getPatientID()))
-				return p;
+				oi=p;
+				orderInfors.remove(p);
+				return oi;
 		}
-		return null;		
+		return null;	
 	}
 	//修改预约记录信息;
 	public void alterOrderInfor(OrderInformation orderInfor,Patient patient,HospitalDepartment hospitalDepartment,Doctor doctor,String ordertime){
@@ -135,4 +164,5 @@ public class Registration {
 	public void patientOrder(Patient patinet,HospitalDepartment hospitalDepartment,String ordertime){
 		
 	}
+
 }

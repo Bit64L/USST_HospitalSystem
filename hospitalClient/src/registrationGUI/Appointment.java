@@ -97,20 +97,17 @@ public class Appointment extends JFrame{
 				String patientId=orderInfor.getPatientID();
 				//String departmentName=comboBox.getSelectedItem().toString();
 				//Doctor doctor=new Doctor("111","111","李达",new HospitalDepartment("内科","000001"));//方法,根据医生姓名,获取完整医生信息
-				Registration reg=new Registration();			
+				//Registration reg=new Registration();			
 				
 				Patient patient=new Patient();
-				
+				//将病人的 姓名 性别 年龄 联系电话 身份证号 预约时间录入到病人信息中
 				patient.insertPatientInformation(patientName.getText().toString(),patientSex.getText().toString(),patientAge.getText().toString(),patientPhoneNumber.getText().toString(),patientId,ordertime.getText().toString());
 				
-				boolean re=reg.sendAddDoctorPatient(doctor, patient);
-				if(re){
-					JOptionPane.showMessageDialog(null, "挂号成功"); 
-					RegistrationInformation ri=new RegistrationInformation(patient);
-					ri.setVisible(true);
-				}
-				else 
-					JOptionPane.showMessageDialog(null, "失败"); 
+				Registration reg=new Registration();
+				Patient inPatient=reg.sendAddDoctorAppointmentdPatient(patient);
+				//跳转到显示挂号信息界面
+				RegistrationInformation ri=new RegistrationInformation(inPatient);
+				ri.setVisible(true);
 				
 			}
 		});
