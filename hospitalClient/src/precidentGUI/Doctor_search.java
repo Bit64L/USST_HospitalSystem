@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import president.President;
+import president_duan.*;
 import utility.DB;
 
 import javax.swing.JScrollPane;
@@ -17,7 +17,6 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
-
 public class Doctor_search extends JFrame {
 
 	private JPanel contentPane;

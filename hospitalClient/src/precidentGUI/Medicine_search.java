@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import president.President;
+import president_duan.President;
 import utility.DB;
 
 import javax.swing.JScrollPane;
@@ -16,8 +16,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.awt.event.ActionEvent;
-
+import java.awt.event.ActionEvent;;
 public class Medicine_search extends JFrame {
 
 	private JPanel contentPane;

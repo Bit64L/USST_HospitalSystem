@@ -1,4 +1,4 @@
-package precident_duan;
+package president_duan;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
