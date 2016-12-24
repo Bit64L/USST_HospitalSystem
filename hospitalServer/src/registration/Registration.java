@@ -43,7 +43,8 @@ public class Registration {
 		ResultSet rs=db.select(sqlstr);
 		String hospitalDepartmentNo=null;
 		try {
-			hospitalDepartmentNo=rs.getString("hospitalDepartmentID");
+			if(rs.next())	
+				hospitalDepartmentNo=""+rs.getInt("hospitalDepartmentID");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -61,12 +62,14 @@ public class Registration {
 	
 	//录入预约病人的挂号信息,在就诊的医生的就诊病人队列加入该病人
 	public Patient addDoctorAppointmentPatient(Patient patient) {
-		String sqlstr="SELECT hospitalDepartmentID FROM HospitalDepartment WHERE hospitalDepartmentName='"+patient.getHospitalDepartment().getNo()+"';";           
+		String sqlstr="SELECT hospitalDepartmentID FROM HospitalDepartment WHERE hospitalDepartmentName='"+patient.getHospitalDepartment().getName()+"';";           
 		DB db=new DB();
 		ResultSet rs=db.select(sqlstr);
 		String hospitalDepartmentNo=null;
 		try {
-			hospitalDepartmentNo=rs.getString("hospitalDepartmentID");
+			if(rs.next())
+				hospitalDepartmentNo=""+rs.getInt("hospitalDepartmentID");
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
