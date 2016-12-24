@@ -106,6 +106,8 @@ public class Appointment extends JFrame{
 				boolean re=reg.sendAddDoctorPatient(doctor, patient);
 				if(re){
 					JOptionPane.showMessageDialog(null, "挂号成功"); 
+					RegistrationInformation ri=new RegistrationInformation(patient);
+					ri.setVisible(true);
 				}
 				else 
 					JOptionPane.showMessageDialog(null, "失败"); 
@@ -127,9 +129,7 @@ public class Appointment extends JFrame{
 			patientAge.setEditable(true);
 			patientPhoneNumber.setEditable(true);
 			hospitalDepartmentName.setVisible(false);//hospitalDepartmentName.setEditable(true);
-			comboBox.setVisible(true);//comboBox;
 			ordertime.setEditable(true);
-			doctorName.setEditable(true);
 			
 			}
 		});
@@ -184,9 +184,9 @@ public class Appointment extends JFrame{
 				patientAge.setEditable(false);
 				patientPhoneNumber.setEditable(false);
 				hospitalDepartmentName.setVisible(true);//hospitalDepartmentName.setEditable(true);
-				comboBox.setVisible(false);//comboBox;
+
 				ordertime.setEditable(false);
-				doctorName.setEditable(false);
+
 			}
 		});
 		button_2.setBounds(221, 207, 93, 23);
