@@ -23,7 +23,7 @@ public class Data {
         //管理员
         administrators.add(new Administrator("000","000","李玲"));
         //医生
-        doctors.add(new Doctor("111","111","李达",new HospitalDepartment("内科","000001")));
+        doctors.add(new Doctor("2004","111","李达",new HospitalDepartment("内科","7")));
         //收费人员
         chargers.add(new Charger("222","222","李二"));
         //药师
@@ -37,7 +37,7 @@ public class Data {
         //收费项目
         chargeItems.add(new ChargeItem("红细胞计数","hxbjs","次",50,"000001"));
         //预约信息
-        orderInfors.add(new OrderInformation(new Patient("张三三","20","男","12345678900","123456789000000000"),new HospitalDepartment("内科","000001 "),new Doctor("111","111","李达",new HospitalDepartment("内科","000001")),"12","12","14"));
+        orderInfors.add(new OrderInformation(new Patient("张三三","20","男","12345678900","123456789000000000"),new HospitalDepartment("内科","7"),new Doctor("2004","111","李达",new HospitalDepartment("内科","7")),"12","12","14"));
         //预约病人
         orderPatients.add(new Patient("张三三","20","男","12345678900","123456789000000000"));
     }
