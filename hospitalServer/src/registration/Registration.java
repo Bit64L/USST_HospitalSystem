@@ -38,7 +38,7 @@ public class Registration {
 	
 	//录入未预约病人的挂号信息,在就诊的医生的就诊病人队列加入该病人
 	public Patient addDoctorNoAppointmentPatient(Patient patient){
-		String sqlstr="SELECT hospitalDepartmentID FROM HospitalDepartment WHERE hospitalDepartmentName='"+patient.getHospitalDepartment().getNo()+"';";           
+		String sqlstr="SELECT hospitalDepartmentID FROM HospitalDepartment WHERE hospitalDepartmentName='"+patient.getHospitalDepartment().getName()+"';";           
 		DB db=new DB();
 		ResultSet rs=db.select(sqlstr);
 		String hospitalDepartmentNo=null;

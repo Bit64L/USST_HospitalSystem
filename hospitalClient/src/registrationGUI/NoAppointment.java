@@ -101,6 +101,7 @@ public class NoAppointment extends JFrame{
 				patient.setName(patientName.getText());
 				patient.setAge(patientAge.getText());
 				patient.setSex(patientSex.getText());
+				patient.setPhoneNumber(patientPhoneNumber.getText().toString());
 				patient.setHospitalDepartment(new HospitalDepartment(hospitalDepartmentName.getText().toString()));
 				Registration reg=new Registration();
 				Patient inPatient=reg.sendAddDoctorNoAppointmentdPatient(patient);

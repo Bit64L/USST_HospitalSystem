@@ -102,7 +102,7 @@ public class Appointment extends JFrame{
 				Patient patient=new Patient();
 				//将病人的 姓名 性别 年龄 联系电话 身份证号 预约时间录入到病人信息中
 				patient.insertPatientInformation(patientName.getText().toString(),patientSex.getText().toString(),patientAge.getText().toString(),patientPhoneNumber.getText().toString(),patientId,ordertime.getText().toString());
-				
+				patient.setHospitalDepartment(new HospitalDepartment(hospitalDepartmentName.getText().toString()));
 				Registration reg=new Registration();
 				Patient inPatient=reg.sendAddDoctorAppointmentdPatient(patient);
 				//跳转到显示挂号信息界面
