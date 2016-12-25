@@ -106,9 +106,15 @@ public class Appointment extends JFrame{
 				Registration reg=new Registration();
 				Patient inPatient=reg.sendAddDoctorAppointmentdPatient(patient);
 				//跳转到显示挂号信息界面
-				RegistrationInformation ri=new RegistrationInformation(inPatient);
-				ri.setVisible(true);
+				if(inPatient!=null){
+					//跳转到显示挂号信息界面				
+					RegistrationInformation ri=new RegistrationInformation(inPatient);
+					ri.setVisible(true);
+				}
+				else
+					JOptionPane.showMessageDialog(null, "当前科室暂无医生就诊");  
 				dispose();
+
 				
 			}
 		});
@@ -158,7 +164,7 @@ public class Appointment extends JFrame{
 		panel.add(hospitalDepartmentName);
 		hospitalDepartmentName.setColumns(10);
 		
-		ordertime = new JTextField(orderInfor.getMonth()+"/"+orderInfor.getDate()+"/"+orderInfor.getHour());
+		ordertime = new JTextField(orderInfor.getOrdertime());
 		ordertime.setEditable(false);
 		ordertime.setBounds(175, 170, 100, 21);
 		panel.add(ordertime);

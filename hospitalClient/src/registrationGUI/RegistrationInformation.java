@@ -58,55 +58,55 @@ public class RegistrationInformation extends JFrame {
 		panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("性别");
-		lblNewLabel_2.setBounds(125, 45, 54, 15);
+		lblNewLabel_2.setBounds(125, 40, 54, 15);
 		panel.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("年龄");
-		lblNewLabel_3.setBounds(125, 70, 54, 15);
+		lblNewLabel_3.setBounds(125, 60, 54, 15);
 		panel.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("ID:");
-		lblNewLabel_4.setBounds(125, 95, 54, 15);
+		lblNewLabel_4.setBounds(125, 80, 54, 15);
 		panel.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("联系电话:");
-		lblNewLabel_5.setBounds(125, 120, 54, 15);
+		lblNewLabel_5.setBounds(125, 100, 54, 15);
 		panel.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_6 = new JLabel("科室:");
-		lblNewLabel_6.setBounds(125, 145, 54, 15);
+		lblNewLabel_6.setBounds(125, 120, 54, 15);
 		panel.add(lblNewLabel_6);
 		
 		JLabel lblNewLabel_7 = new JLabel("医生");
-		lblNewLabel_7.setBounds(125, 170, 54, 15);
+		lblNewLabel_7.setBounds(125, 140, 54, 15);
 		panel.add(lblNewLabel_7);
 		
 		JLabel lblNewLabel_8 = new JLabel(patient.getName());
-		lblNewLabel_8.setBounds(200, 20, 54, 15);
+		lblNewLabel_8.setBounds(200, 20, 100, 15);
 		panel.add(lblNewLabel_8);
 		
 		JLabel lblNewLabel_9 = new JLabel(patient.getSex());
-		lblNewLabel_9.setBounds(200, 45, 54, 15);
+		lblNewLabel_9.setBounds(200, 40, 100, 15);
 		panel.add(lblNewLabel_9);
 		
 		JLabel lblNewLabel_10 = new JLabel(patient.getAge());
-		lblNewLabel_10.setBounds(200, 70, 54, 15);
+		lblNewLabel_10.setBounds(200, 60, 100, 15);
 		panel.add(lblNewLabel_10);
 		
 		JLabel lblNewLabel_11 = new JLabel(patient.getId());
-		lblNewLabel_11.setBounds(200, 95, 54, 15);
+		lblNewLabel_11.setBounds(200, 80, 100, 15);
 		panel.add(lblNewLabel_11);
 		
 		JLabel lblNewLabel_12 = new JLabel(patient.getPhoneNumber());
-		lblNewLabel_12.setBounds(200, 120, 54, 15);
+		lblNewLabel_12.setBounds(200, 100, 100, 15);
 		panel.add(lblNewLabel_12);
 		
 		JLabel lblNewLabel_13 = new JLabel(patient.getHospitalDepartment().getName());
-		lblNewLabel_13.setBounds(200, 145, 54, 15);
+		lblNewLabel_13.setBounds(200, 120, 100, 15);
 		panel.add(lblNewLabel_13);
 		
 		JLabel lblNewLabel_14 = new JLabel(patient.getDoctor().getName());
-		lblNewLabel_14.setBounds(200, 170, 54, 15);
+		lblNewLabel_14.setBounds(200, 140, 100, 15);
 		panel.add(lblNewLabel_14);
 		
 		JButton button = new JButton("确定");
@@ -119,11 +119,19 @@ public class RegistrationInformation extends JFrame {
 		panel.add(button);
 		
 		JLabel lblNewLabel_15 = new JLabel("挂号费:");
-		lblNewLabel_15.setBounds(125, 195, 54, 15);
+		lblNewLabel_15.setBounds(125, 180, 54, 15);
 		panel.add(lblNewLabel_15);
 		
 		JLabel lblNewLabel_16 = new JLabel("10元");
-		lblNewLabel_16.setBounds(200, 195, 54, 15);
+		lblNewLabel_16.setBounds(200, 180, 54, 15);
 		panel.add(lblNewLabel_16);
+		
+		JLabel lblNewLabel_17 = new JLabel("预约时间");
+		lblNewLabel_17.setBounds(125, 160, 54, 15);
+		panel.add(lblNewLabel_17);
+		
+		JLabel lblNewLabel_18 = new JLabel(patient.getOrderTime());
+		lblNewLabel_18.setBounds(200, 160, 100, 15);
+		panel.add(lblNewLabel_18);
 	}
 }

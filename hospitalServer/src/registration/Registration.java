@@ -83,10 +83,28 @@ public class Registration {
 		Doctor doctor=null;//Data.doctors.get(0);//Doctor 
 		doctor=this.getLeastPatientDoctor(hospitalDepartmentNo);
 		
-		patient.setDoctor(doctor);
-		doctor.getPatients().add(patient);
-		Data.registerPatients.add(patient);
-		return patient;
+		if(doctor!=null){
+			patient.getHospitalDepartment().setNo(hospitalDepartmentNo);
+			patient.setDoctor(doctor);
+			doctor.getPatients().add(patient);
+			Data.registerPatients.add(patient);
+			return patient;
+		}
+		else {
+			String sqlInsert="insert into Appointment(patientID,name,sex,age,phoneNumber,hospitalDepartmentID,hospitalDepartmentName,orderTime) values ("
+												+patient.getId()+",'"
+												+patient.getName()+"','"
+												+patient.getSex()+"',"
+												+patient.getAge()+",'"
+												+patient.getPhoneNumber()+"',"
+												+hospitalDepartmentNo+",'"
+												+patient.getHospitalDepartment().getName()+"','"
+												+patient.getOrderTime()+"');";
+			
+			//DB db=new DB();
+			db.insert(sqlInsert);
+			return null;
+		}
 	}
 	
 	//根据科室ID,获取就诊病人数最少的医生

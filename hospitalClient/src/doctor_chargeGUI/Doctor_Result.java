@@ -6,12 +6,14 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import person.Doctor;
 import staff.ChargeItem;
 import staff.Medicine;
 
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -20,6 +22,7 @@ import java.awt.event.ActionListener;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
 
 public class Doctor_Result extends JFrame {
@@ -28,7 +31,8 @@ public class Doctor_Result extends JFrame {
 	private Doctor doctor;
 	private JTextField textField;
 	private JTextArea textArea;
-
+	//private JTable table;
+	private JTable table;
 	/**
 	 * Create the frame.
 	 */
@@ -48,11 +52,49 @@ public class Doctor_Result extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 10, 404, 142);
 		panel.add(scrollPane);
-
-		textArea = new JTextArea();
-		//textArea.setText("显示收费项目 和 药品");
-		scrollPane.setViewportView(textArea);
-
+		
+		//table_1 = new JTable();
+	
+		
+		Vector<String> rowName=new Vector<>();
+		rowName.add("收费项目");
+		rowName.add("单价");
+		rowName.add("数量");
+		rowName.add("单位");
+		rowName.add("总价");
+		Vector<Vector<String>> vData=new Vector<>();
+		for(ChargeItem c : doctor.getPatients().get(0).getChargeItems()){
+			Vector<String> rowData=new Vector<>();
+			rowData.add(c.getName());
+			rowData.add(""+c.getPrice());
+			rowData.add(""+c.getNumber());
+			rowData.add(c.getUnit());
+			rowData.add(""+c.getAmount());
+			vData.add((Vector<String>) rowData.clone());
+			doctor.getPatients().get(0).setAmount(doctor.getPatients().get(0).getAmount()+c.getAmount());
+		}
+		for(Medicine m : doctor.getPatients().get(0).getMedicines()){
+			Vector<String> rowData=new Vector<>();
+			rowData.add(m.getName());
+			rowData.add(""+m.getPrice());
+			rowData.add(""+m.getNumber());
+			rowData.add(m.getUnit());
+			rowData.add(""+m.getAmount());
+			vData.add((Vector<String>) rowData.clone());
+			doctor.getPatients().get(0).setAmount(doctor.getPatients().get(0).getAmount()+m.getAmount());
+		}
+		DefaultTableModel DFM=new DefaultTableModel(vData,rowName);
+		
+		table = new JTable(DFM);
+		scrollPane.setViewportView(table);
+				textArea = new JTextArea();
+				textArea.setBounds(0, 0, 402, 140);
+				panel.add(textArea);
+				textArea.setVisible(false);
+		
+		
+		
+		
 		JLabel label = new JLabel("总金额");
 		label.setBounds(10, 180, 54, 15);
 		panel.add(label);
