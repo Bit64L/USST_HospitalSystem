@@ -1,18 +1,26 @@
 
 //预约举例
 insert into Appointment(patientID,name,sex,age,phoneNumber,hospitalDepartmentID,hospitalDepartmentName,orderTime)
-values(350111,'程一','男',45,'130111',1,'外科','2015/10/30 09:00:00');
+values(350111,'程一','男',45,'130111',1,'外科','2016/12/24 09:00:00');
 insert into Appointment(patientID,name,sex,age,phoneNumber,hospitalDepartmentID,hospitalDepartmentName,orderTime)
-values(630222,'王二','女',40,'150222',2,'妇科','2015/10/30 13:00:00');
+values(630222,'王二','女',40,'150222',2,'妇科','2016/12/24 13:00:00');
 insert into Appointment(patientID,name,sex,age,phoneNumber,hospitalDepartmentID,hospitalDepartmentName,orderTime)
-values(560333,'刘三','男',18,'130555',3,'儿科','2016/10/30 15:00:00');
-select * from Appointment
+values(560333,'刘三','男',18,'130555',3,'儿科','2016/12/24 15:00:00');
+update Appointment set hospitalDepartmentID=8 where patientID='350111'
+update Appointment set hospitalDepartmentID=10 where patientID='560333'
+update Appointment set hospitalDepartmentID=9 where patientID='630222'
+update Appointment set orderTime='2016/12/24 15:00:00' where patientID='560333'
+update Appointment set orderTime='2016/12/24 13:00:00' where patientID='630222'
+update Appointment set orderTime='2016/12/24 09:00:00' where patientID='350111'
+select * from Appointment 
 delete from Appointment
 //科室举例
 insert into HospitalDepartment(hospitalDepartmentName) values('外科');
 insert into HospitalDepartment(hospitalDepartmentName) values('妇科');
 insert into HospitalDepartment(hospitalDepartmentName) values('儿科');
 insert into HospitalDepartment(hospitalDepartmentName) values('中医科');
+
+update HospitalDepartment set registerNum=100,money=1000;
 select * from HospitalDepartment
 delete from HospitalDepartment
 
@@ -39,13 +47,14 @@ delete from Manager
 
 //医生举例
 insert into Doctor(name,password,cureNum,cureMoney,hospitalDepartmentID,hospitalDepartmentName) 
- values('马意识','123',0,0,1,'外科');
+ values('马意识','123',12,123.5,8,'外科');
 insert into Doctor(name,password,cureNum,cureMoney,hospitalDepartmentID,hospitalDepartmentName) 
- values('张柳柳','111',0,0,2,'妇科');
+ values('张柳柳','111',55,456.5,9,'妇科');
 insert into Doctor(name,password,cureNum,cureMoney,hospitalDepartmentID,hospitalDepartmentName) 
- values('李依依','222',0,0,3,'儿科');
+ values('李依依','222',6,489.8,10,'儿科');
 insert into Doctor(name,password,cureNum,cureMoney,hospitalDepartmentID,hospitalDepartmentName) 
- values('小明','333',0,0,4,'中医科');
+ values('小明','333',88,1888,11,'中医科');
+ 
 select * from Doctor
 delete from Doctor
 
@@ -68,17 +77,6 @@ insert into President(password,name) values('111','院长一');
 insert into President(password,name) values('222','院长二');
 select * from President
 delete from President
-
-
-
-select * from HospitalDepartment
-select * from Medicine
-select * from ChargeItem
-select * from Manager
-select * from Doctor
-select * from Charger
-select * from Druggist
-select * from President
 
 
 select * from Appointment
