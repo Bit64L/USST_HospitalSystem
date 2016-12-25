@@ -102,30 +102,31 @@ public class Medicine_add extends JFrame {
 		
 		JLabel label_5 = new JLabel("药品编号");
 		label_5.setBounds(65, 170, 54, 15);
-		panel.add(label_5);
+		//panel.add(label_5);
 		
 		textField_4 = new JTextField("");
 		textField_4.setBounds(245, 167, 66, 21);
-		panel.add(textField_4);
+		//panel.add(textField_4);
 		textField_4.setColumns(10);
 		
 		JLabel label_6 = new JLabel("药品库存量");
-		label_6.setBounds(65, 195, 66, 15);
+		label_6.setBounds(65, 173, 66, 15);
 		panel.add(label_6);
 		
 		textField_5 = new JTextField();
-		textField_5.setBounds(245, 192, 66, 21);
+		textField_5.setBounds(245, 169, 66, 21);
 		panel.add(textField_5);
 		textField_5.setColumns(10);
 		
 		JButton button = new JButton("添加药品");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				String name=textField.getText();
 				String shortName=textField_1.getText();
 				String unit=textField_2.getText();
 				String price=textField_3.getText();
-				String no=textField_4.getText();
+				//String no=textField_4.getText();
 				String deposit=textField_5.getText();
 				Socket s=null;
 				ObjectOutputStream out=null;
@@ -136,7 +137,7 @@ public class Medicine_add extends JFrame {
 					
 					String str="0022";
 					out.writeObject(str);//发送协议
-					str=name+" "+shortName+" "+unit+" "+price+" "+no;
+					str=name+" "+shortName+" "+unit+" "+price+" "+deposit;
 					out.writeObject(str);//发送数据
 					out.writeObject(admin);//发送对象
 					out.flush();
@@ -148,7 +149,7 @@ public class Medicine_add extends JFrame {
 				}
 			}
 		});
-		button.setBounds(114, 220, 93, 23);
+		button.setBounds(65, 203, 93, 23);
 		panel.add(button);
 		
 		JButton button_1 = new JButton("返回");
@@ -157,7 +158,7 @@ public class Medicine_add extends JFrame {
 				dispose();
 			}
 		});
-		button_1.setBounds(255, 220, 93, 23);
+		button_1.setBounds(218, 203, 93, 23);
 		panel.add(button_1);
 	}
 }

@@ -103,7 +103,7 @@ public class Administrator implements Serializable{
 		}
 	}
 	//添加药品
-	public void addMedicine(String name,String shortName,String unit,double price,String no,int deposit) throws IOException{
+	public void addMedicine(String name,String shortName,String unit,double price,int deposit){
 		String sqlStr="insert into [Medicine](name,shortName,unit,price,deposit) values('"+name+"','"
 				+shortName+"','"+unit+"',"+price+","+deposit+")";
 		DB db=new DB();

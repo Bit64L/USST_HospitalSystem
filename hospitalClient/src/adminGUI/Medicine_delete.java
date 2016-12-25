@@ -65,7 +65,7 @@ public class Medicine_delete extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setViewportView(textArea);
-		textArea.setText("显示药品信息");
+		//textArea.setText("显示药品信息");
 		scrollPane.setBounds(10, 10, 414, 151);	
 		panel.add(scrollPane);
 		/*********显示账户信息*************/
@@ -87,6 +87,7 @@ public class Medicine_delete extends JFrame {
 		JButton button = new JButton("确认删除");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				delete(textField.getText());
 			}
 		});

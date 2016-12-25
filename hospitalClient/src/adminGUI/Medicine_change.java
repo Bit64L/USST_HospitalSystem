@@ -113,6 +113,7 @@ public class Medicine_change extends JFrame {
 		JButton button = new JButton("确认修改");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				String name=txtc.getText();
 				String shortName=txtc_1.getText();
 				String newUnit=txtc_2.getText();

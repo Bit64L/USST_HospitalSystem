@@ -62,7 +62,7 @@ public class Medicine_showchange extends JFrame {
 		panel.add(scrollPane);
 		
 		JTextArea textArea = new JTextArea();
-		textArea.setText("显示药品信息");
+		//textArea.setText("显示药品信息");
 		scrollPane.setViewportView(textArea);
 		/*********显示账户信息*************/
 		String accountsInfo=showAll();
@@ -83,7 +83,9 @@ public class Medicine_showchange extends JFrame {
 		JButton button = new JButton("确定");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				Medicine_change medicine_change=new Medicine_change(admin,textField.getText());
+				medicine_change.setVisible(true);
 			}
 		});
 		button.setBounds(225, 218, 93, 23);

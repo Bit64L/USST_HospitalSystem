@@ -133,8 +133,8 @@ public class NewClient implements Runnable {
 				String medicineInfo1 = (String) inObject.readObject();
 				admin = (Administrator) inObject.readObject();
 				strs = medicineInfo1.split("\\s");
-				admin.addMedicine(strs[0], strs[1], strs[2], Double.parseDouble(strs[3]), strs[4],
-						Integer.parseInt(strs[5]));
+				admin.addMedicine(strs[0], strs[1], strs[2], Double.parseDouble(strs[3]), Integer.parseInt(strs[4])
+				);
 				System.out.println("添加成功");
 				break;
 			case "0023":// 显示所有收费信息
