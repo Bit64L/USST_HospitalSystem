@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import person.Patient;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
@@ -22,11 +23,13 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
 
 public class Medicine_default extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtid;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -85,6 +88,23 @@ public class Medicine_default extends JFrame {
 					
 					try {
 						ArrayList<Patient> repatient=(ArrayList<Patient>) inobj.readObject();
+						
+						boolean exist=false;
+//						boolean paymoney=false;
+						for(Patient p: repatient){
+							if(p.getId().equals(txtid.getText())){
+								exist=true;
+								boolean pay=p.getChargestate();
+								if(pay=false){
+									JOptionPane.showMessageDialog(null,"病人未缴费","提示消息", JOptionPane.WARNING_MESSAGE);
+								}
+								
+							}	
+						}
+						if(exist=false){
+							JOptionPane.showMessageDialog(null, "病人ID不存在", "提示消息",JOptionPane.ERROR_MESSAGE); 
+						}
+						
 					} catch (ClassNotFoundException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -98,22 +118,19 @@ public class Medicine_default extends JFrame {
 				}
 				
 				
+				
 
 			}
 		});
 		button.setBounds(321, 41, 93, 23);
 		panel.add(button);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 78, 404, 114);
-		panel.add(scrollPane);
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setText("药品信息");
-		scrollPane.setViewportView(textArea);
-		
 		JButton button_1 = new JButton("给药");
 		button_1.setBounds(272, 218, 93, 23);
 		panel.add(button_1);
+		
+		table = new JTable();
+		table.setBounds(19, 76, 401, 126);
+		panel.add(table);
 	}
 }
