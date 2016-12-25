@@ -69,7 +69,7 @@ public class Doctor_patientinfo extends JFrame {
 	public void showInfo(){
 		textArea.append(doctor.getPatients().get(0).getName()+" "
 				+doctor.getPatients().get(0).getId()+" "
-				+doctor.getPatients().get(0).getSex()+" "
+				+doctor.getPatients().get(0).getSex()+" "+doctor.getPatients().get(0).getPhoneNumber()
 			);
 	}	
 }

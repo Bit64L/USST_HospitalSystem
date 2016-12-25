@@ -53,7 +53,7 @@ public class Doctor_Charge extends JFrame {
 		label.setBounds(10, 40, 88, 15);
 		panel.add(label);
 		
-		textField = new JTextField("简称");
+		textField = new JTextField("");
 		textField.setBounds(112, 36, 66, 21);
 		panel.add(textField);
 		textField.setColumns(10);
@@ -62,7 +62,7 @@ public class Doctor_Charge extends JFrame {
 		lable2.setBounds(192, 40, 54, 15);
 		panel.add(lable2);
 		
-		mnum = new JTextField("数量");
+		mnum = new JTextField("");
 		mnum.setBounds(243, 36, 66, 21);
 		panel.add(mnum);
 		mnum.setColumns(10);
@@ -79,12 +79,12 @@ public class Doctor_Charge extends JFrame {
 					s=new Socket("127.0.0.1",8888);
 					out=new ObjectOutputStream(s.getOutputStream());
 					out.writeObject("0026");
-					out.writeObject(jc+" "+cnum.getText()+" "+"药品");//简称+数量+类型
+					out.writeObject(jc+" "+mnum.getText()+" "+"药品");//简称+数量+类型
 					out.writeObject(doctor);
 					out.flush();
 					in=new ObjectInputStream(s.getInputStream());
-					String name=(String)in.readObject();//接收收费项目名称
-					String result=name+" "+"x"+cnum.getText()+"\n";
+					String name=(String)in.readObject();//接收药品名称
+					String result=name+" "+"x"+mnum.getText()+"\n";
 					textArea.append(result);//显示
 					
 				}catch(Exception ee){
@@ -100,14 +100,13 @@ public class Doctor_Charge extends JFrame {
 		panel.add(scrollPane);
 		
 		textArea = new JTextArea();
-		textArea.setText("药品信息");
 		scrollPane.setViewportView(textArea);
 		
 		JButton button_2 = new JButton("生成报告");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				JFrame frame = new Doctor_Result(doctor);
+				Doctor_Result frame = new Doctor_Result(doctor);
 				frame.setVisible(true);
 			}
 		});
@@ -119,7 +118,7 @@ public class Doctor_Charge extends JFrame {
 		label_1.setBounds(0, 12, 98, 15);
 		panel.add(label_1);
 		
-		textField_2 = new JTextField("简称");
+		textField_2 = new JTextField("");
 		textField_2.setColumns(10);
 		textField_2.setBounds(112, 7, 66, 21);
 		panel.add(textField_2);
@@ -128,7 +127,7 @@ public class Doctor_Charge extends JFrame {
 		label_3.setBounds(192, 12, 54, 15);
 		panel.add(label_3);
 		
-		cnum = new JTextField("数量");
+		cnum = new JTextField("");
 		cnum.setColumns(10);
 		cnum.setBounds(243, 6, 66, 21);
 		panel.add(cnum);
@@ -136,7 +135,7 @@ public class Doctor_Charge extends JFrame {
 		JButton button = new JButton("添加");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String jc=textField.getText();
+				String jc=textField_2.getText();
 				String number=mnum.getText();
 				Socket s=null;
 				ObjectInputStream in = null;
@@ -149,7 +148,7 @@ public class Doctor_Charge extends JFrame {
 					out.writeObject(doctor);
 					out.flush();
 					in=new ObjectInputStream(s.getInputStream());
-					String name=(String)in.readObject();//接收药品名称
+					String name=(String)in.readObject();//接收收费项目名称
 					String result=name+" "+"x"+cnum.getText()+"\n";
 					textArea.append(result);//显示
 					

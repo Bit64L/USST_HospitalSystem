@@ -58,6 +58,7 @@ public class Doctor_default extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Doctor_patientinfo frame=new Doctor_patientinfo(doctor);
+				frame.setVisible(true);
 			}
 		});
 		button.setBounds(81, 200, 93, 23);
@@ -67,6 +68,7 @@ public class Doctor_default extends JFrame {
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				updateDoctor(doctor);
+				textArea.setText("");
 				showPatients();
 			}
 		});
@@ -99,8 +101,7 @@ public class Doctor_default extends JFrame {
 			in=new ObjectInputStream(s.getInputStream());
 			Doctor newDoctor=(Doctor)in.readObject();
 			setDoctor(newDoctor);
-			textArea.setText("fgdgdfgdfg");
-			//showPatients();//重新显示病人队列
+			
 		}catch(Exception ee){
 			
 		}

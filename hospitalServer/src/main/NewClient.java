@@ -160,7 +160,7 @@ public class NewClient implements Runnable {
 				String jc = (String) inObject.readObject();
 				doctor = (Doctor)inObject.readObject();
 				String[] jcs = jc.split("\\s");// 简称+数量+类型(药品或者是收费项目)
-				String name = prescribe(doctor,jcs[0], jcs[1],jcs[2]);//开处方
+				String name = prescribe(doctor,jcs[0],jcs[1],jcs[2]);//开处方
 				outObject.writeObject(name);
 				outObject.flush();
 				outObject.close();
@@ -492,8 +492,10 @@ public class NewClient implements Runnable {
 		}
 		try {
 			if (type.equals("药品")) {
-				rs = db.select("select name from medicine where shortName='jc'");
-				Medicine medicine=new Medicine(rs.getString("name"),rs.getString("shortName"),rs.getString("unit"),rs.getDouble("price"),rs.getString("chargeItemID"));
+				String sql="select * from medicine where shortName="+"'"+jc+"'";
+				rs = db.select(sql);
+				rs.next();//注意
+				Medicine medicine=new Medicine(rs.getString("name"),rs.getString("shortName"),rs.getString("unit"),rs.getDouble("price"),rs.getString("medicineID"));
 				medicine.setNumber(Integer.parseInt(num));//设置药品数量
 				doctor.getPatients().get(0).setAmount(doctor.getPatients().get(0).getAmount()+medicine.getAmount());//修改病人应支付金额
 				doctor.getPatients().get(0).getMedicines().add(medicine);//添加病人的收费项目
@@ -506,7 +508,9 @@ public class NewClient implements Runnable {
 				s=medicine.getName();//返回名称
 				
 			} else {
-				rs = db.select("select name from chargeItem where shortName='jc'");
+				String sql="select * from chargeItem where shortName="+"'"+jc+"'";
+				rs = db.select(sql);
+				rs.next();//注意
 				ChargeItem chargeItem=new ChargeItem(rs.getString("name"),rs.getString("shortName"),rs.getString("unit"),rs.getDouble("price"),rs.getString("chargeItemID"));
 				chargeItem.setNumber(Integer.parseInt(num));//设置检查次数
 				doctor.getPatients().get(0).setAmount(doctor.getPatients().get(0).getAmount()+chargeItem.getAmount());//修改病人应支付金额

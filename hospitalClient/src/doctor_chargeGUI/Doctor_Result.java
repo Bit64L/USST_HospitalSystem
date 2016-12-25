@@ -50,16 +50,17 @@ public class Doctor_Result extends JFrame {
 		panel.add(scrollPane);
 
 		textArea = new JTextArea();
-		textArea.setText("显示收费项目 和 药品");
+		//textArea.setText("显示收费项目 和 药品");
 		scrollPane.setViewportView(textArea);
 
 		JLabel label = new JLabel("总金额");
 		label.setBounds(10, 180, 54, 15);
 		panel.add(label);
-
+		
 		JButton button = new JButton("确定");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				Socket s=null;
 				ObjectInputStream in = null;
 				ObjectOutputStream out =null;
@@ -82,6 +83,8 @@ public class Doctor_Result extends JFrame {
 		textField.setBounds(80, 175, 54, 24);
 		panel.add(textField);
 		textField.setColumns(10);
+		//显示信息
+		showInfo();
 	}
 
 	public void setDoctor(Doctor doctor) {
@@ -97,6 +100,7 @@ public class Doctor_Result extends JFrame {
 			s = new Socket("127.0.0.1", 8888);
 			out = new ObjectOutputStream(s.getOutputStream());
 			out.writeObject("0027");
+			out.writeObject(doctor);
 			out.flush();
 			in = new ObjectInputStream(s.getInputStream());
 			Doctor newDoctor = (Doctor) in.readObject();
