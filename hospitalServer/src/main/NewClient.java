@@ -14,9 +14,9 @@ import person.*;
 import registration.Registration;
 import staff.HospitalDepartment;
 import staff.OrderInformation;
-import order.Order;
 import utility.DB;
 import data.Data;
+import order_duan.Order;
 import staff.*;
 
 public class NewClient implements Runnable {
