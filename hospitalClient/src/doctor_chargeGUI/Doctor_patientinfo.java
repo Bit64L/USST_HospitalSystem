@@ -23,9 +23,12 @@ public class Doctor_patientinfo extends JFrame {
 	private JPanel contentPane;
 	private Doctor doctor;
 	private JTextArea textArea;
-
-	public Doctor_patientinfo(Doctor doctor) {
+	
+	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
+	}
+	public Doctor_patientinfo(Doctor doctor) {
+		updateDoctor(doctor);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -72,4 +75,23 @@ public class Doctor_patientinfo extends JFrame {
 				+doctor.getPatients().get(0).getSex()+" "+doctor.getPatients().get(0).getPhoneNumber()
 			);
 	}	
+	// 更新医生对象
+		public void updateDoctor(Doctor doctor) {
+			Socket s = null;
+			ObjectInputStream in = null;
+			ObjectOutputStream out = null;
+			try {
+				s = new Socket("127.0.0.1", 8888);
+				out = new ObjectOutputStream(s.getOutputStream());
+				out.writeObject("0027");
+				out.writeObject(doctor);
+				out.flush();
+				in = new ObjectInputStream(s.getInputStream());
+				Doctor newDoctor = (Doctor) in.readObject();
+				setDoctor(newDoctor);
+			} catch (Exception ee) {
+
+			}
+		}
+		
 }
