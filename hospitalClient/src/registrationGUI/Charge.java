@@ -22,6 +22,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import staff.Medicine;
 import data.Data;
 
 public class Charge extends JFrame {
@@ -76,7 +77,7 @@ public class Charge extends JFrame {
 		
 		
 		Vector<String> rowName=new Vector<>();
-		rowName.add("药品");
+		rowName.add("收费项目");
 		rowName.add("单价");
 		rowName.add("数量");
 		rowName.add("单位");
@@ -91,6 +92,16 @@ public class Charge extends JFrame {
 			rowData.add(""+c.getAmount());
 			vData.add((Vector<String>) rowData.clone());
 			patient.setAmount(patient.getAmount()+c.getAmount());
+		}
+		for(Medicine m : patient.getMedicines()){
+			Vector<String> rowData=new Vector<>();
+			rowData.add(m.getName());
+			rowData.add(""+m.getPrice());
+			rowData.add(""+m.getNumber());
+			rowData.add(m.getUnit());
+			rowData.add(""+m.getAmount());
+			vData.add((Vector<String>) rowData.clone());
+			patient.setAmount(patient.getAmount()+m.getAmount());
 		}
 		DefaultTableModel DFM=new DefaultTableModel(vData,rowName);
 		

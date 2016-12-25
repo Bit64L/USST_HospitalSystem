@@ -492,13 +492,26 @@ public class NewClient implements Runnable {
 				medicine.setNumber(Integer.parseInt(num));//设置药品数量
 				doctor.getPatients().get(0).setAmount(doctor.getPatients().get(0).getAmount()+medicine.getAmount());//修改病人应支付金额
 				doctor.getPatients().get(0).getMedicines().add(medicine);//添加病人的收费项目
+				String patientId=doctor.getPatients().get(0).getId();
+				for(Patient p:Data.registerPatients){
+					if(p.getId().equals(patientId)){
+						p.getMedicines().add(medicine);
+					}
+				}				
 				s=medicine.getName();//返回名称
+				
 			} else {
 				rs = db.select("select name from chargeItem where shortName='jc'");
 				ChargeItem chargeItem=new ChargeItem(rs.getString("name"),rs.getString("shortName"),rs.getString("unit"),rs.getDouble("price"),rs.getString("chargeItemID"));
 				chargeItem.setNumber(Integer.parseInt(num));//设置检查次数
 				doctor.getPatients().get(0).setAmount(doctor.getPatients().get(0).getAmount()+chargeItem.getAmount());//修改病人应支付金额
 				doctor.getPatients().get(0).getChargeItems().add(chargeItem);//添加病人的收费项目
+				String patientId=doctor.getPatients().get(0).getId();
+				for(Patient p:Data.registerPatients){
+					if(p.getId().equals(patientId)){
+						p.getChargeItems().add(chargeItem);
+					}
+				}		
 				s=chargeItem.getName();
 			}
 			
