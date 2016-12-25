@@ -17,3 +17,4 @@ hospitalClient/bin/adminGUI/Default.class
 hospitalClient/bin/person/Patient.class
 *.xml
 ~$数据库表.docx
+hospitalClient/src/function/Login.java
