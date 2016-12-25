@@ -312,8 +312,7 @@ public class NewClient implements Runnable {
 
 		} else if (person instanceof Charger) {
 			Charger charger = (Charger) person;
-			sqlStr = "select * from [Charger] where chargerID=" + charger.getUserName() + " and password='"
-					+ charger.getPassword();
+			sqlStr = "select * from [Charger] where chargerID=" + charger.getUserName() + " and password='" + charger.getPassword()+"';";
 			rs = db.select(sqlStr);
 			if (rs.next()) {
 				charger.setUserName("" + rs.getInt("chargerID"));

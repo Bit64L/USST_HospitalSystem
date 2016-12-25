@@ -24,7 +24,7 @@ public class Data {
         //管理员
         administrators.add(new Administrator("000","000","李玲"));
         //医生
-        doctors.add(new Doctor("2004","111","李达",new HospitalDepartment("内科","7")));
+        doctors.add(new Doctor("2004","111","李达",new HospitalDepartment("内科","12")));
         //收费人员
         chargers.add(new Charger("222","222","李二"));
         //药师
@@ -43,7 +43,7 @@ public class Data {
         patientSample.getChargeItems().add(new ChargeItem("12345",12,"盒",5));
         patientSample.getChargeItems().add(new ChargeItem("22222",15,"盒",5));
         //预约信息
-        orderInfors.add(new OrderInformation(patientSample,new HospitalDepartment("内科","7"),new Doctor("2004","111","李达",new HospitalDepartment("内科","7")),"12","12","14"));
+        orderInfors.add(new OrderInformation(patientSample,new HospitalDepartment("内科","12"),new Doctor("2004","111","李达",new HospitalDepartment("内科","12")),"12","12","14"));
         //预约病人
         
         //orderPatients.add(patientSample);

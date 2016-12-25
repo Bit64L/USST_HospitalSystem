@@ -14,10 +14,10 @@ public class Charger implements Serializable{
 	private String name;
 	static ArrayList<Patient> registerPatients=new ArrayList<>();//挂号病人
 	static ArrayList<Patient> orderPatients = new ArrayList<>();//预约病人
-	public Charger(String userName,String password,String name){
+	public Charger(String userName,String password){
 		this.userName=userName;
 		this.password=password;
-		this.name=name;
+		
 	}
 
 	public static long getSerialVersionUID() {

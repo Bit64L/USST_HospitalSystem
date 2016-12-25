@@ -24,7 +24,7 @@ public class Administrator implements Serializable{
 	}
 	public Administrator(String userName, String password){
 		this.userName = userName;
-		this.password = password;
+		this.password = password.trim();
 	}
 	public String getUserName() {
 		return userName;

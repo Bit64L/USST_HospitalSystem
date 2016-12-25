@@ -53,11 +53,15 @@ public class Registration {
 		//根据科室id,获取当前科室就诊病人最少的医生
 		Doctor doctor=null;//Data.doctors.get(0);//Doctor 
 		doctor=this.getLeastPatientDoctor(hospitalDepartmentNo);
+		if(doctor!=null){
 		
-		patient.setDoctor(doctor);
-		doctor.getPatients().add(patient);
-		Data.registerPatients.add(patient);
-		return patient;
+			patient.setDoctor(doctor);
+			doctor.getPatients().add(patient);
+			Data.registerPatients.add(patient);
+			return patient;
+		}
+		else 
+			return null;
 	}
 	
 	//录入预约病人的挂号信息,在就诊的医生的就诊病人队列加入该病人

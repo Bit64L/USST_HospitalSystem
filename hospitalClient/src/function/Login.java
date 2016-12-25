@@ -10,6 +10,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 import person.Administrator;
+import person.Charger;
 
 public class Login {
 	private String type;
@@ -40,6 +41,8 @@ public class Login {
 				case "药师":
 					break;
 				case "收费人员":
+					person=new Charger(userName,password);
+					outObject.writeObject(person);
 					break;
 				case "院长":
 					break;

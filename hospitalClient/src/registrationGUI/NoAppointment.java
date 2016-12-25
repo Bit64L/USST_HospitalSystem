@@ -11,6 +11,7 @@ import javax.swing.JToggleButton;
 import javax.swing.JMenu;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
 import javax.swing.ListSelectionModel;
@@ -105,10 +106,13 @@ public class NoAppointment extends JFrame{
 				patient.setHospitalDepartment(new HospitalDepartment(hospitalDepartmentName.getText().toString()));
 				Registration reg=new Registration();
 				Patient inPatient=reg.sendAddDoctorNoAppointmentdPatient(patient);
-				//跳转到显示挂号信息界面
-				
-				RegistrationInformation ri=new RegistrationInformation(inPatient);
-				ri.setVisible(true);
+				if(inPatient!=null){
+					//跳转到显示挂号信息界面				
+					RegistrationInformation ri=new RegistrationInformation(inPatient);
+					ri.setVisible(true);
+				}
+				else
+					JOptionPane.showMessageDialog(null, "当前科室暂无医生就诊");  
 				dispose();
 				
 				
