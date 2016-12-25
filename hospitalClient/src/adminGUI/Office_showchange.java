@@ -62,7 +62,6 @@ public class Office_showchange extends JFrame {
 		panel.add(scrollPane);
 		
 		JTextArea textArea = new JTextArea();
-		textArea.setText("显示科室信息");
 		scrollPane.setViewportView(textArea);
 		/*********显示账户信息*************/
 		String accountsInfo=showAll();
@@ -83,6 +82,7 @@ public class Office_showchange extends JFrame {
 		JButton button = new JButton("确定");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				Office_change office=new Office_change(admin,textField.getText());
 				office.setVisible(true);
 			}

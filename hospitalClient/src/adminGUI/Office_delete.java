@@ -65,7 +65,6 @@ public class Office_delete extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setViewportView(textArea);
-		textArea.setText("显示科室情况");
 		scrollPane.setBounds(10, 10, 414, 151);	
 		panel.add(scrollPane);
 		/*********显示账户信息*************/
@@ -87,6 +86,7 @@ public class Office_delete extends JFrame {
 		JButton button = new JButton("确认删除");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				delete(textField.getText());
 			}
 		});
@@ -110,7 +110,7 @@ public class Office_delete extends JFrame {
 		try {
 			s=new Socket("127.0.0.1",8888);
 			out=new ObjectOutputStream(s.getOutputStream());
-			out.writeObject("0024");
+			out.writeObject("0025");
 			out.flush();
 			in=new ObjectInputStream(s.getInputStream());
 			info=(String)in.readObject();//账户信息之间用$隔开

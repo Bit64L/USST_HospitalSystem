@@ -69,6 +69,7 @@ public class Office_change extends JFrame {
 		JButton button = new JButton("确认修改");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				String name=textField.getText();
 				changeInfo(str,name);
 			}

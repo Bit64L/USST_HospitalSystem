@@ -154,7 +154,7 @@ public class Administrator implements Serializable{
 	}
 	//修改科室
 	public String alterHospital(String no,String newName) throws IOException{
-		String sqlStr="update [HospitalDepartment] set hospitalDepartmentName='"+newName+"'";
+		String sqlStr="update [HospitalDepartment] set hospitalDepartmentName='"+newName+"'"+" where hospitalDepartmentID="+"'"+no+"'";
 		DB db=new DB();
 		boolean result=db.update(sqlStr);
 		if(result){

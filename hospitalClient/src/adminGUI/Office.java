@@ -57,6 +57,7 @@ public class Office extends JFrame {
 		JButton button = new JButton("添加科室");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				Office_add office_add=new Office_add(admin);
 				office_add.setVisible(true);
 			}
@@ -67,6 +68,7 @@ public class Office extends JFrame {
 		JButton button_1 = new JButton("修改科室信息");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				Office_showchange office=new Office_showchange(admin);
 				office.setVisible(true);
 			}
@@ -77,6 +79,7 @@ public class Office extends JFrame {
 		JButton button_2 = new JButton("删除科室");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				Office_delete office=new Office_delete(admin);
 				office.setVisible(true);
 			}

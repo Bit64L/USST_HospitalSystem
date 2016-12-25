@@ -61,11 +61,11 @@ public class Office_add extends JFrame {
 		
 		JLabel label_1 = new JLabel("科室编号");
 		label_1.setBounds(80, 126, 54, 15);
-		panel.add(label_1);
+		//panel.add(label_1);
 		
 		textField = new JTextField();
 		textField.setBounds(198, 42, 66, 21);
-		panel.add(textField);
+		//panel.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();

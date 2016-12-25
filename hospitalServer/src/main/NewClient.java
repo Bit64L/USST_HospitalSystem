@@ -456,7 +456,7 @@ public class NewClient implements Runnable {
 	public String showOffice() {
 		String str = "";
 		DB db=new DB();
-		String sql="select * from Medicine";
+		String sql="select * from HospitalDepartment";
 		ResultSet rs=null;
 		try{
 			rs=db.select(sql);
