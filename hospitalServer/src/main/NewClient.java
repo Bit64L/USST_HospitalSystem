@@ -276,7 +276,6 @@ public class NewClient implements Runnable {
 				outObject.writeObject(hospitalDepartmentNames);
 				outObject.flush();
 			case "预约端要预约":
-				
 				Order order=(Order) inObject.readObject();
 				System.out.println("收到预约端要预约的请求");
                 String patientID=order.patientID;
