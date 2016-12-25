@@ -262,12 +262,12 @@ public class NewClient implements Runnable {
 				outObject.flush();
 			case "预约要科室信息":
 				System.out.println("收到预约端要科室信息请求");
-				sqlStr="select hopitalDepartmentName from [HospitalDepartment]";
+				sqlStr="select hospitalDepartmentName from [HospitalDepartment]";
 				rs=db.select(sqlStr);
 				String hospitalDepartmentNames="";
 				while(true){
 					if(rs.next()){
-						hospitalDepartmentNames=hospitalDepartmentNames+rs.getString("hopitalDepartmentName")+":";
+						hospitalDepartmentNames=hospitalDepartmentNames+rs.getString("hospitalDepartmentName")+":";
 					}else{
 						break;
 					}

@@ -33,7 +33,8 @@ public class orderGUI {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
-	private String[] hospitalDepartmentInformation;//获取科室信息
+	private String hospitalDepartmentNames;//获取科室信息,字符串
+	private String[] hdNames;
 	/**
 	 * Launch the application.
 	 */
@@ -55,23 +56,24 @@ public class orderGUI {
 	 */
 	public orderGUI() {
 		initialize();
+		
 	}
-	public String[] getHospitalDepartmentInformation(){
+	public String getHospitalDepartmentInformation(){
 		// TODO Auto-generated method stub
 		Socket socket=null;
 		ObjectInputStream inobj=null;
 		ObjectOutputStream outobj=null;
 		
 		try {
-			socket=new Socket("124.76.5.175",8888);
+			socket=new Socket("101.94.249.251",8888);
 			outobj=new ObjectOutputStream(socket.getOutputStream());
 			inobj=new ObjectInputStream(socket.getInputStream());
 
 			outobj.writeObject("预约要科室信息");
 			outobj.flush();
 			try {
-				hospitalDepartmentInformation=(String[]) inobj.readObject();
-				return hospitalDepartmentInformation;
+				hospitalDepartmentNames=(String) inobj.readObject();
+				return hospitalDepartmentNames;
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -93,6 +95,10 @@ public class orderGUI {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		hospitalDepartmentNames=getHospitalDepartmentInformation();
+		hdNames=hospitalDepartmentNames.split(":");
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -166,7 +172,7 @@ public class orderGUI {
 		panel.add(btnNewButton);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(hospitalDepartmentInformation));
+		comboBox.setModel(new DefaultComboBoxModel(hdNames));
 		comboBox.setBounds(180, 165, 32, 21);
 		panel.add(comboBox);
 	}
