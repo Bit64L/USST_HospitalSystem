@@ -66,7 +66,7 @@ public class Item_change extends JFrame {
 		panel.add(label);
 		
 		JLabel label_1 = new JLabel("收费项目名称");
-		label_1.setBounds(90, 43, 83, 15);
+		label_1.setBounds(55, 43, 118, 15);
 		panel.add(label_1);
 		
 		txtc = new JTextField();
@@ -75,7 +75,7 @@ public class Item_change extends JFrame {
 		txtc.setColumns(10);
 		
 		JLabel label_2 = new JLabel("收费项目简称");
-		label_2.setBounds(90, 82, 72, 15);
+		label_2.setBounds(55, 82, 107, 15);
 		panel.add(label_2);
 		
 		txtc_1 = new JTextField();
@@ -84,7 +84,7 @@ public class Item_change extends JFrame {
 		txtc_1.setColumns(10);
 		
 		JLabel label_3 = new JLabel("收费项目单位");
-		label_3.setBounds(95, 118, 77, 15);
+		label_3.setBounds(55, 118, 117, 15);
 		panel.add(label_3);
 		
 		txtc_2 = new JTextField();
@@ -93,7 +93,7 @@ public class Item_change extends JFrame {
 		txtc_2.setColumns(10);
 		
 		JLabel label_4 = new JLabel("收费项目单价");
-		label_4.setBounds(90, 154, 72, 15);
+		label_4.setBounds(55, 154, 107, 15);
 		panel.add(label_4);
 		
 		txtc_3 = new JTextField();
@@ -105,6 +105,7 @@ public class Item_change extends JFrame {
 		JButton button = new JButton("确认修改");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				String name=txtc.getText();
 				String shortName=txtc_1.getText();
 				String Unit=txtc_2.getText();
@@ -132,7 +133,7 @@ public class Item_change extends JFrame {
 			try{
 				s=new Socket("127.0.0.1",8888);
 				out=new ObjectOutputStream(s.getOutputStream());
-				out.writeObject("0014");
+				out.writeObject("0016");
 				out.writeObject(No+" "+name+" "+shortName+" "+newUnit+" "+newPrice);
 				out.writeObject(admin);
 				out.flush();

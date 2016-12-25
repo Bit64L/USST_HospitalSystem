@@ -82,6 +82,7 @@ public class Item_showchange extends JFrame {
 		JButton button = new JButton("确定");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				Item_change item_change=new Item_change(admin,textField.getText());
 				item_change.setVisible(true);
 			}

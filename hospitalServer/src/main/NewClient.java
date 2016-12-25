@@ -88,8 +88,9 @@ public class NewClient implements Runnable {
 				String chargeItem = (String) inObject.readObject();
 				admin = (Administrator) inObject.readObject();
 				strs = chargeItem.split("\\s");
-				admin.addChargeItem(strs[0], strs[1], strs[2], Double.parseDouble(strs[3]), strs[4]);
+				admin.addChargeItem(strs[0], strs[1], strs[2], Double.parseDouble(strs[3]));
 				System.out.println("添加成功");
+				break;
 			case "0016":// 修改收费项目
 				String chargerItemInfo = (String) inObject.readObject();
 				admin = (Administrator) inObject.readObject();
@@ -240,6 +241,7 @@ public class NewClient implements Runnable {
 				outObject.writeObject(crs);
 				;
 				outObject.flush();
+				break;
 			case "院长要药品信息":
 				System.out.println("收到院长要药品信息请求");
 				sqlStr = "select name,deposit from [Medicine]";
@@ -247,10 +249,11 @@ public class NewClient implements Runnable {
 				outObject.writeObject(crs);
 				;
 				outObject.flush();
-
+				break;
 			}
 			inObject.close();
 			outObject.close();
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

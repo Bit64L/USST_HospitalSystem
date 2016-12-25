@@ -57,6 +57,7 @@ public class Item extends JFrame {
 		JButton button = new JButton("添加收费项目");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				Item_add item_add=new Item_add(admin);
 				item_add.setVisible(true);
 			}
@@ -67,6 +68,7 @@ public class Item extends JFrame {
 		JButton button_1 = new JButton("修改收费项目信息");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				Item_showchange item_change=new Item_showchange(admin);
 				item_change.setVisible(true);
 			}
@@ -77,6 +79,7 @@ public class Item extends JFrame {
 		JButton button_2 = new JButton("删除收费项目");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				Item_delete item_delete=new Item_delete(admin);
 				item_delete.setVisible(true);
 			}

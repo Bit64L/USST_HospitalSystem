@@ -113,7 +113,7 @@ public class Administrator implements Serializable{
 		}
 	}
 	//添加收费项目
-	public void addChargeItem(String name,String shortName,String unit,double price,String no){
+	public void addChargeItem(String name,String shortName,String unit,double price){
 		String sqlStr="insert into [ChargeItem](name,shortName,unit,price) values('"+name+"','"
 				+shortName+"','"+unit+"',"+price+")";
 		DB db=new DB();
@@ -175,7 +175,7 @@ public class Administrator implements Serializable{
 	}
 	//修改收费项目
 	public String alterChargeItem(String No,String newName,String newShortName,String newUnit,String newPrice) throws IOException{
-		String sqlStr="update [ChargeItem] set name='"+name+"',shortName='"+newShortName+"',unit='"+newUnit+"',price="+newPrice
+		String sqlStr="update [ChargeItem] set name='"+newName+"',shortName='"+newShortName+"',unit='"+newUnit+"',price="+newPrice
 				+" where chargeitemID="+No;
 		DB db=new DB();
 		boolean result=db.update(sqlStr);

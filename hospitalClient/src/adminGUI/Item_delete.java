@@ -75,7 +75,7 @@ public class Item_delete extends JFrame {
 		}
 		/*******************************/
 		JLabel label = new JLabel("选择要删除的编号");
-		label.setBounds(56, 180, 96, 15);
+		label.setBounds(20, 180, 132, 15);
 		panel.add(label);
 		
 		textField = new JTextField();
@@ -86,6 +86,7 @@ public class Item_delete extends JFrame {
 		JButton button = new JButton("确认删除");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				delete(textField.getText());
 			}
 		});
