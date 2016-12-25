@@ -406,10 +406,17 @@ public class NewClient implements Runnable {
 			admin.addCharger(userName, password, name);
 			break;
 		case "医生":
-			for (HospitalDepartment a : Data.hospitalDepartments) {
-				if (a.getName().equals(hospitalDepartment)) {
-					admin.addDoctor(userName, password, name, a);
-				}
+			DB db=new DB();
+			String sql="select * from hospitalDepartment where hospitalDepartmentName="+"'"+hospitalDepartment+"'";
+			ResultSet rs=null;
+			rs=db.select(sql);	
+			try {
+				rs.next();
+				HospitalDepartment a =new HospitalDepartment(rs.getString("hospitalDepartmentName"),rs.getString("hospitalDepartmentID"));
+				admin.addDoctor(userName, password, name, a);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			break;
 		case "药师":
