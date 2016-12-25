@@ -10,6 +10,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 import person.Administrator;
+import person.Doctor;
 
 public class Login {
 	private String type;
@@ -34,8 +35,12 @@ public class Login {
 				case "管理员":
 					person=new Administrator(userName,password);
 					outObject.writeObject(person);
+					outObject.flush();
 					break;
 				case "医生":
+					person=new Doctor(userName,password);
+					outObject.writeObject(person);
+					outObject.flush();
 					break;
 				case "药师":
 					break;

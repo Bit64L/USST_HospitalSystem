@@ -25,7 +25,10 @@ public class Doctor implements Serializable{
 		this.hospitalDepartment=hospitalDepartment;
 		// TODO Auto-generated constructor stub
 	}
-
+	public Doctor(String userName, String password) {
+		this.userName=userName;
+		this.password=password;
+	}
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
 	}

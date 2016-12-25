@@ -94,10 +94,13 @@ public class Doctor_default extends JFrame {
 			s=new Socket("127.0.0.1",8888);
 			out=new ObjectOutputStream(s.getOutputStream());
 			out.writeObject("0027");
+			out.writeObject(doctor);
 			out.flush();
 			in=new ObjectInputStream(s.getInputStream());
 			Doctor newDoctor=(Doctor)in.readObject();
 			setDoctor(newDoctor);
+			textArea.setText("fgdgdfgdfg");
+			//showPatients();//重新显示病人队列
 		}catch(Exception ee){
 			
 		}
