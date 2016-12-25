@@ -6,11 +6,22 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import person.Patient;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.awt.event.ActionEvent;
 
 public class Medicine_default extends JFrame {
 
@@ -59,6 +70,37 @@ public class Medicine_default extends JFrame {
 		txtid.setColumns(10);
 		
 		JButton button = new JButton("确定");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Socket socket=null;
+				ObjectInputStream inobj=null;
+				ObjectOutputStream outobj=null;
+				
+				try {
+					socket=new Socket("124.76.5.175",8888);
+					outobj=new ObjectOutputStream(socket.getOutputStream());
+					inobj=new ObjectInputStream(socket.getInputStream());
+					outobj.writeObject("药师要registerPatients Arraylist");
+					outobj.flush();
+					
+					try {
+						ArrayList<Patient> repatient=(ArrayList<Patient>) inobj.readObject();
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				} catch (UnknownHostException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
+
+			}
+		});
 		button.setBounds(321, 41, 93, 23);
 		panel.add(button);
 		
