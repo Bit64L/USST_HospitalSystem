@@ -25,15 +25,17 @@ import java.awt.event.ActionEvent;
 import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.RowSetFactory;
 import javax.sql.rowset.RowSetProvider;
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
+import javax.swing.JCheckBox;
+import javax.swing.JRadioButton;
 
 public class orderGUI {
 
 	private JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private String hospitalDepartmentNames;//获取科室信息,字符串
@@ -41,6 +43,9 @@ public class orderGUI {
 	private String orderTimeHour;
 	JComboBox comboBox;
 	JComboBox comboBox_1;
+	JRadioButton rdbtnNewRadioButton;
+	JRadioButton rdbtnNewRadioButton_1;
+	ButtonGroup btnGroup;
 	/**
 	 * Launch the application.
 	 */
@@ -129,11 +134,6 @@ public class orderGUI {
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(206, 72, 93, 21);
-		panel.add(textField_2);
-		textField_2.setColumns(10);
-		
 		textField_3 = new JTextField();
 		textField_3.setBounds(206, 103, 93, 21);
 		panel.add(textField_3);
@@ -145,23 +145,23 @@ public class orderGUI {
 		textField_4.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("身份证号");
-		lblNewLabel.setBounds(142, 13, 54, 15);
+		lblNewLabel.setBounds(152, 13, 54, 15);
 		panel.add(lblNewLabel);
 		
 		JLabel label = new JLabel("姓名");
-		label.setBounds(152, 44, 54, 15);
+		label.setBounds(172, 44, 54, 15);
 		panel.add(label);
 		
 		JLabel label_1 = new JLabel("性别");
-		label_1.setBounds(152, 75, 54, 15);
+		label_1.setBounds(172, 78, 54, 15);
 		panel.add(label_1);
 		
 		JLabel label_2 = new JLabel("年龄");
-		label_2.setBounds(152, 106, 54, 15);
+		label_2.setBounds(172, 106, 54, 15);
 		panel.add(label_2);
 		
 		JLabel label_3 = new JLabel("电话号码");
-		label_3.setBounds(142, 137, 54, 15);
+		label_3.setBounds(152, 137, 54, 15);
 		panel.add(label_3);
 		
 		JButton btnNewButton = new JButton("预约");
@@ -169,7 +169,12 @@ public class orderGUI {
 			public void actionPerformed(ActionEvent arg0) {
 				String patientID=textField.getText();
 				String name=textField_1.getText();
-				String sex=textField_2.getText();
+				String sex="";
+				if(rdbtnNewRadioButton.isSelected()){
+					sex="男";
+				}else if(rdbtnNewRadioButton_1.isSelected()){
+					sex="女";
+				}
 				int age=Integer.parseInt(textField_3.getText());
 				String phoneNumber=textField_4.getText();	
 			    String hospitalDepartmentName = (String)comboBox.getSelectedItem();
@@ -189,7 +194,7 @@ public class orderGUI {
 		panel.add(comboBox);
 		
 		JLabel label_4 = new JLabel("选择科室");
-		label_4.setBounds(142, 162, 54, 15);
+		label_4.setBounds(152, 162, 54, 15);
 		panel.add(label_4);
 		
 		comboBox_1 = new JComboBox();
@@ -199,12 +204,24 @@ public class orderGUI {
 		panel.add(comboBox_1);
 		
 		JLabel label_5 = new JLabel("预约明天");
-		label_5.setBounds(142, 193, 54, 15);
+		label_5.setBounds(152, 193, 54, 15);
 		panel.add(label_5);
 		
 		JLabel label_6 = new JLabel("预约：");
 		label_6.setFont(new Font("幼圆", Font.PLAIN, 30));
 		label_6.setBounds(27, -9, 110, 111);
 		panel.add(label_6);
+		
+		rdbtnNewRadioButton = new JRadioButton("男");
+		rdbtnNewRadioButton.setBounds(201, 74, 47, 23);
+		panel.add(rdbtnNewRadioButton);
+		
+		rdbtnNewRadioButton_1 = new JRadioButton("女");
+		rdbtnNewRadioButton_1.setBounds(252, 74, 47, 23);
+		panel.add(rdbtnNewRadioButton_1);
+		
+		btnGroup=new ButtonGroup();
+		btnGroup.add(rdbtnNewRadioButton);
+		btnGroup.add(rdbtnNewRadioButton_1);
 	}
 }

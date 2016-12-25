@@ -44,8 +44,8 @@ public class Order implements Serializable{
 			try {
 				inobj=new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
 				result = (String) inobj.readObject();
-				if(result.equals("success")){
-					JOptionPane.showConfirmDialog(null, "success!");
+				if(result.equals("预约成功")){
+					JOptionPane.showMessageDialog(null, "预约成功！");
 				}
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
