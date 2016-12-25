@@ -47,7 +47,7 @@ public class Data {
         //预约信息
         orderInfors.add(new OrderInformation(patientSample,new HospitalDepartment("内科","12"),new Doctor("2004","111","李达",new HospitalDepartment("内科","12")),"12","12","14"));
         //预约病人
-        
+        registerPatients.add(patientSample);
         //orderPatients.add(patientSample);
     }
     

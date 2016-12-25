@@ -71,7 +71,7 @@ public class Medicine_default extends JFrame {
 		
 		txtid = new JTextField();
 		txtid.setText("病人ID");
-		txtid.setBounds(211, 42, 66, 21);
+		txtid.setBounds(134, 40, 163, 23);
 		panel.add(txtid);
 		txtid.setColumns(10);
 		
@@ -157,8 +157,21 @@ public class Medicine_default extends JFrame {
 					vData.add((Vector<String>) rowData.clone());
 				}
 				
+				//应该不要检查项目
+				for(ChargeItem c : wantPatient.getChargeItems()){
+					Vector<String> rowData=new Vector<>();
+					rowData.add(c.getName());
+					rowData.add(""+c.getPrice());
+					rowData.add(""+c.getNumber());
+					rowData.add(c.getUnit());
+					vData.add((Vector<String>) rowData.clone());
+					
+				}
+				
 			}
 		});
+		
+		
 		button_1.setBounds(272, 218, 93, 23);
 		panel.add(button_1);
 		
