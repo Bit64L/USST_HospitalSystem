@@ -14,6 +14,7 @@ import person.*;
 import registration.Registration;
 import staff.HospitalDepartment;
 import staff.OrderInformation;
+import order.Order;
 import utility.DB;
 import data.Data;
 import staff.*;
@@ -274,6 +275,43 @@ public class NewClient implements Runnable {
 				}
 				outObject.writeObject(hospitalDepartmentNames);
 				outObject.flush();
+			case "预约端要预约":
+				System.out.println("收到预约端要预约的请求");
+				Order order=(Order) inObject.readObject();
+                String patientID=order.patientID;
+       			String name2=order.name;
+       			String sex=order.sex;
+       			int age=order.age;
+       			String phoneNumber=order.phoneNumber;
+       			String hospitalDepartmentName=order.hospitalDepartmentName;
+       			sqlStr="select hospitalDepartmentID from [HospitalDepartment] where hospitalDepartmentName='"+hospitalDepartmentName+"'";
+       			rs=db.select(sqlStr);
+       			int hospitalDepartmentID=0;
+       			if(rs.next()){
+       				hospitalDepartmentID=rs.getInt("hospitalDepartmentID");}
+       			
+       			String orderTime=order.orderTime;
+                   
+       			sqlStr="insert into [Appointment](patientID,name,sex,age,phoneNumber,"
+       					+ "hospitalDepartmentID,hospitalDepartmentName,orderTime) values"+"('"+patientID+"','"+
+       					name2+"','"+sex+"',"+age+",'"+phoneNumber+"',"+hospitalDepartmentID+",'"+hospitalDepartmentName
+       					+"','"+orderTime+"')";
+       			
+                   		//写入数据库
+            
+                   		boolean result=db.insert(sqlStr);
+                   		if(result){
+                   			outObject.writeObject("预约成功");
+                   			outObject.flush();
+                   		}
+                  
+                   		
+                   		
+                   		
+                   		
+                   		
+                   inObject.close();
+                   outObject.close();
 			}
 			inObject.close();
 			outObject.close();

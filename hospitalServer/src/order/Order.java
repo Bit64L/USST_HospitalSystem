@@ -1,67 +1,72 @@
 package order;
 
-import person.Doctor;
-import person.Patient;
-import staff.HospitalDepartment;
-import staff.OrderInformation;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.net.Socket;
 
-import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
-import data.*;
-
-public class Order {
-	private ArrayList<OrderInformation> orderInfors=Data.orderInfors;
-	private Patient patient;
-	private HospitalDepartment hospitalDepartment;
-	private String month;
-	private String date;
-	private String hour;
-	
-	//预约,并把预约信息写入Data中;
-	public void order(Patient patient,HospitalDepartment hospitalDepartment,Doctor doctor,String month,String date,String hour){
-		OrderInformation orderInformation=new OrderInformation(patient,hospitalDepartment,doctor,month,date,hour);
-		orderInfors.add(orderInformation);
+public class Order implements Serializable{
+	public String patientID;
+	public String name;
+	public String sex;
+	public int age;
+	public String phoneNumber;
+	public String hospitalDepartmentName;
+	public String orderTime;
+	public Order(String patientID,String name,String sex,int age,String phoneNumber,String hospitalDepartmentName,String orderTime) {
+		// TODO Auto-generated constructor stub
+		this.patientID=patientID;
+		this.name=name;
+		this.sex=sex;
+		this.age=age;
+		this.phoneNumber=phoneNumber;
+		this.hospitalDepartmentName=hospitalDepartmentName;
+		this.orderTime=orderTime;
+	}
+	public void wanttoorder(Order order) {
+		// TODO Auto-generated method stub
+		Socket socket=null;
+		ObjectInputStream inobj=null;
+		ObjectOutputStream outobj=null;
+		try {
+			socket=new Socket("101.94.249.251",8888);
+			outobj=new ObjectOutputStream(socket.getOutputStream());
+			outobj.writeObject("预约端要预约");
+			outobj.flush();
+			outobj.writeObject(order);
+			outobj.flush();
+			String result;
+			
+			try {
+				inobj=new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
+				result = (String) inobj.readObject();
+				if(result.equals("success")){
+					JOptionPane.showConfirmDialog(null, "success!");
+				}
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			socket.close();
+			outobj.close();
+			inobj.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			
+		}
+		
 	}
 	
 	
- 	public Patient getPatient() {
-		return patient;
-	}
-
-	public void setPatient(Patient patient) {
-		this.patient = patient;
-	}
-
-	public HospitalDepartment getHospitalDepartment() {
-		return hospitalDepartment;
-	}
-
-	public void setHospitalDepartment(HospitalDepartment hospitalDepartment) {
-		this.hospitalDepartment = hospitalDepartment;
-	}
-
-	public String getMonth() {
-		return month;
-	}
-
-	public void setMonth(String month) {
-		this.month = month;
-	}
-
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-	}
-
-	public String getHour() {
-		return hour;
-	}
-
-	public void setHour(String hour) {
-		this.hour = hour;
-	}
+	
+	
+	
 	
 }
