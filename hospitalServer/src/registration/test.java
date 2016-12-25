@@ -20,12 +20,12 @@ public class test {
 		String hour="14";
 		Doctor doctor=new Doctor();
 		Order order=new Order();
-		ArrayList<OrderInformation> orderInfors=Data.orderInfors;
+		//ArrayList<OrderInformation> orderInfors=Data.orderInfors;
 		//OrderInformation orderInfor=new OrderInformation();
-		order.order(patient, hospitalDepartment, doctor,month, date, hour);
-		for(OrderInformation orderInfor : orderInfors){
-			//orderInfor.showInfor();
-		}
+//		order.order(patient, hospitalDepartment, doctor,month, date, hour);
+//		for(OrderInformation orderInfor : orderInfors){
+//			//orderInfor.showInfor();
+//		}
 		
 	}
 

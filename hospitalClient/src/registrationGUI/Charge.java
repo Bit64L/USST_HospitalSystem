@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
 
 import data.Data;
 
-public class Charge_2 extends JFrame {
+public class Charge extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
@@ -48,7 +48,7 @@ public class Charge_2 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Charge_2(Patient patient) {
+	public Charge(Patient patient) {
 		//Data.initial();
 		//Patient patient =Data.patientSample;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

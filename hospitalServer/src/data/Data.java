@@ -16,7 +16,7 @@ public class Data {
     public static ArrayList<Medicine> medicines = new ArrayList<>();//药品
     public static ArrayList<ChargeItem> chargeItems = new ArrayList<>();//收费项目
     public static ArrayList<Patient> registerPatients=new ArrayList<>();//挂号病人
-    public static ArrayList<Patient> orderPatients = new ArrayList<>();//预约病人
+    //public static ArrayList<Patient> orderPatients = new ArrayList<>();//预约病人
     public static ArrayList<OrderInformation> orderInfors=new ArrayList<>();//预约信息
     public static ArrayList<OutPatientRecord> outPatientRecord=new ArrayList<>();//门诊记录
     //public static Patient patientSample;
@@ -46,7 +46,7 @@ public class Data {
         orderInfors.add(new OrderInformation(patientSample,new HospitalDepartment("内科","7"),new Doctor("2004","111","李达",new HospitalDepartment("内科","7")),"12","12","14"));
         //预约病人
         
-        orderPatients.add(patientSample);
+        //orderPatients.add(patientSample);
     }
     
 }

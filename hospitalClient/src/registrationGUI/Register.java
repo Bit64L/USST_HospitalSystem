@@ -7,9 +7,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import person.Patient;
 import staff.OrderInformation;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -17,7 +19,7 @@ import java.awt.event.ActionEvent;
 
 public class Register extends JFrame {
 
-	private JTextField textField;
+	private JTextField patientId;
 	private JPanel contentPane;
 
 	/**
@@ -51,31 +53,27 @@ public class Register extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel label = new JLabel("挂号");
-		label.setBounds(166, 21, 54, 15);
-		panel.add(label);
-		
 		JLabel lblid = new JLabel("病人ID");
 		lblid.setBounds(98, 75, 54, 15);
 		panel.add(lblid);
 		
-		textField = new JTextField();
-		textField.setBounds(206, 72, 66, 21);
-		panel.add(textField);
-		textField.setColumns(10);
+		patientId = new JTextField();
+		patientId.setBounds(175, 72, 150, 21);
+		panel.add(patientId);
+		patientId.setColumns(10);
 		
-		JButton button = new JButton("确定");
+		JButton button = new JButton("挂号");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Registration reg=new Registration();
 				OrderInformation orderInfor=new OrderInformation();
-				orderInfor=reg.sendregister(textField.getText().toString());
+				orderInfor=reg.sendregister(patientId.getText().toString());
 				if(orderInfor!=null){
 					Appointment ap=new Appointment(orderInfor);
 					ap.setVisible(true);
 				}
 				else{
-					NoAppointment na=new NoAppointment(textField.getText().toString());
+					NoAppointment na=new NoAppointment(patientId.getText().toString());
 					na.setVisible(true);
 				}
 			}
@@ -83,9 +81,20 @@ public class Register extends JFrame {
 		button.setBounds(109, 165, 93, 23);
 		panel.add(button);
 		
-		JButton button_1 = new JButton("返回");
-		button_1.setBounds(249, 165, 93, 23);
-		panel.add(button_1);
+		JButton btnNewButton = new JButton("收费");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Registration reg=new Registration();
+				Patient patient=reg.sendPatientChargeItem(patientId.getText().toString());
+				if(patient!=null){
+					Charge ch=new Charge(patient);
+					ch.setVisible(true);
+				}
+				else
+					JOptionPane.showMessageDialog(null, "无该用户收费信息"); 
+			}
+		});
+		btnNewButton.setBounds(224, 165, 93, 23);
+		panel.add(btnNewButton);
 	}
-
 }

@@ -13,8 +13,8 @@ import utility.DB;
 public class Registration {
 	//Data data=new Data();
 	private ArrayList<Patient> registerPatients=Data.registerPatients;//挂号病人
-	private ArrayList<Patient> orderPatients = Data.orderPatients;//预约病人
-	private ArrayList<OrderInformation> orderInfors=Data.orderInfors;//预约信息
+	//private ArrayList<Patient> orderPatients = Data.orderPatients;//预约病人
+	//private ArrayList<OrderInformation> orderInfors=Data.orderInfors;//预约信息
 	private ArrayList<OutPatientRecord> outPatientRecord=Data.outPatientRecord;//门诊记录
 	private Patient patient;
 	private HospitalDepartment hospitalDepartment;
@@ -122,60 +122,130 @@ public class Registration {
 		}
 		return patient;
 	}
-	//创建病人门诊记录
-	public void createOutPatientRecord(Patient patient,String month,String date){
-		OutPatientRecord opr=new OutPatientRecord(patient.getId(),patient.getName(),patient.getAge(),patient.getSex(),patient.getPhoneNumber(),month,date);
-		outPatientRecord.add(opr);
-		
-	}
+//	//创建病人门诊记录
+//	public void createOutPatientRecord(Patient patient,String month,String date){
+//		OutPatientRecord opr=new OutPatientRecord(patient.getId(),patient.getName(),patient.getAge(),patient.getSex(),patient.getPhoneNumber(),month,date);
+//		outPatientRecord.add(opr);
+//		
+//	}
 	//判断是否预约
-	public boolean isOrdered(Patient patient){
-		for(Patient p : orderPatients){
-			if(patient.getId().equals(p.getId()))
+	public boolean isOrder(Patient patient){
+		String sqlstr="SELECT * FROM Appointment WHERE patientId='"+patient.getId()+"';";      
+		DB db=new DB();
+		ResultSet rs=db.select(sqlstr);
+		Patient sPatient=new Patient();
+		try {
+			if(rs.next()){
 				return true;
+//				sPatient.setId(rs.getString("patientID"));
+//				sPatient.setName(rs.getString("name"));
+//				sPatient.setSex(rs.getString("sex"));
+//				sPatient.setAge(rs.getString("phoneNumber"));
+//				sPatient.setHospitalDepartment(new HospitalDepartment(rs.getString("hospitalDepartmentName")));
+//				sPatient.setOrderTime(rs.getString("orderTime"));
+				
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 		return false;
+		
+		
+//		for(Patient p : orderPatients){
+//			if(patient.getId().equals(p.getId()))
+//				return true;
+//		}
+//		return false;
 	}
 	//显示预约病人的预约记录
 	public OrderInformation showOrderInfor(Patient patinet){
-		OrderInformation oi=null;
-		for(OrderInformation p : orderInfors){
-			if(patient.getId().equals(p.getPatientID()))
-				oi=p;
-				orderInfors.remove(p);
-				return oi;
+		String sqlstr="SELECT * FROM Appointment WHERE patientId='"+patient.getId()+"';";      
+		DB db=new DB();
+		ResultSet rs=db.select(sqlstr);
+		//Patient sPatient=new Patient();
+		OrderInformation oi=new OrderInformation();
+		try {
+			if(rs.next()){
+				oi.setPatientID(rs.getString("patientID"));
+				oi.setPatientName(rs.getString("name"));
+				oi.setPatientSex(rs.getString("sex"));
+				oi.setPatientAge(rs.getString("phoneNumber"));
+				oi.setHospitalDepartment(new HospitalDepartment(rs.getString("hospitalDepartmentName")));
+				oi.setOrdertime(rs.getString("orderTime"));
+				
+				String sqlDelet="DELETE FROM Appointment WHERE patientID='"+patient.getId()+"';";
+				boolean re=db.delete(sqlDelet);
+				if(re){
+					return oi;
+				}
+				return null;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return null;
+		
+		
+//		OrderInformation oi=null;
+//		for(OrderInformation p : orderInfors){
+//			if(patient.getId().equals(p.getPatientID()))
+//				oi=p;
+//				orderInfors.remove(p);
+//				return oi;
+//		}
+//		return null;
 		
 		
 	}
 	//查找预约病人的预约信息
 	public OrderInformation searchOrderInfor(Patient patient){		
-		OrderInformation oi=null;
-		for(OrderInformation p : orderInfors){
-			if(patient.getId().equals(p.getPatientID()))
-				oi=p;
-				orderInfors.remove(p);
-				return oi;
+		String sqlstr="SELECT * FROM Appointment WHERE patientId='"+patient.getId()+"';";      
+		DB db=new DB();
+		ResultSet rs=db.select(sqlstr);
+		//Patient sPatient=new Patient();
+		OrderInformation oi=new OrderInformation();
+		try {
+			if(rs.next()){
+				oi.setPatientID(rs.getString("patientID"));
+				oi.setPatientName(rs.getString("name"));
+				oi.setPatientSex(rs.getString("sex"));
+				oi.setPatientAge(rs.getString("phoneNumber"));
+				oi.setHospitalDepartment(new HospitalDepartment(rs.getString("hospitalDepartmentName")));
+				oi.setOrdertime(rs.getString("orderTime"));
+				
+				String sqlDelet="DELETE FROM Appointment WHERE patientID='"+patient.getId()+"';";
+				boolean re=db.delete(sqlDelet);
+				if(re){
+					return oi;
+				}
+				return null;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		return null;	
+		return null;
 	}
 	//修改预约记录信息;
-	public void alterOrderInfor(OrderInformation orderInfor,Patient patient,HospitalDepartment hospitalDepartment,Doctor doctor,String ordertime){
-		orderInfor.setOrderInfor(patient, hospitalDepartment,doctor, ordertime);
-	}
+//	public void alterOrderInfor(OrderInformation orderInfor,Patient patient,HospitalDepartment hospitalDepartment,Doctor doctor,String ordertime){
+//		orderInfor.setOrderInfor(patient, hospitalDepartment,doctor, ordertime);
+//	}
 	//未预约病人挂号
-	public void createRegister(Patient patient,HospitalDepartment hospitalDepartment){
-		Doctor doctor=new Doctor();//按照部门自动搜索当前排队人数最少的医生
-		patient.setDoctor(doctor);
-		patient.setHospitalDepartment(hospitalDepartment);
-		hospitalDepartment.setRegisterNum(hospitalDepartment.getRegisterNum()+1);
-		doctor.setCureNum(doctor.getCureNum()+1);
-		/**将信息写回文件**/
-	}
+//	public void createRegister(Patient patient,HospitalDepartment hospitalDepartment){
+//		Doctor doctor=new Doctor();//按照部门自动搜索当前排队人数最少的医生
+//		patient.setDoctor(doctor);
+//		patient.setHospitalDepartment(hospitalDepartment);
+//		hospitalDepartment.setRegisterNum(hospitalDepartment.getRegisterNum()+1);
+//		doctor.setCureNum(doctor.getCureNum()+1);
+//		/**将信息写回文件**/
+//	}
 	//病人预约
-	public void patientOrder(Patient patinet,HospitalDepartment hospitalDepartment,String ordertime){
-		
-	}
+//	public void patientOrder(Patient patinet,HospitalDepartment hospitalDepartment,String ordertime){
+//		
+//	}
 
 }

@@ -33,13 +33,13 @@ public class Patient  implements Serializable{
 		this.setPhoneNumber(phoneNumber);
 		this.setId(id);
 	}
-	//病人预约
-	public	OrderInformation order(HospitalDepartment hospitalDepartment,Doctor doctor,String ordertime){
-
-		OrderInformation orderInfor=new OrderInformation(this,hospitalDepartment,doctor,ordertime);
-		/**向预约表中添加预约信息**/;
-		return orderInfor;
-	}
+//	//病人预约
+//	public	OrderInformation order(HospitalDepartment hospitalDepartment,Doctor doctor,String ordertime){
+//
+//		OrderInformation orderInfor=new OrderInformation(this,hospitalDepartment,doctor,ordertime);
+//		/**向预约表中添加预约信息**/;
+//		return orderInfor;
+//	}
 	//加入病人挂号信息
 	public void insertPatientInformation(String name,String sex,String age,String phoneNumber,String id,String ordertime){
 		this.setName(name);

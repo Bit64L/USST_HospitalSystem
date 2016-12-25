@@ -178,7 +178,7 @@ public class NewClient implements Runnable {
 				Registration reg = new Registration();
 				OrderInformation orderInfor = new OrderInformation();
 				// 判断是否是预约病人
-				boolean re = ((Registration) reg).isOrdered((Patient) patient);
+				boolean re = ((Registration) reg).isOrder((Patient) patient);
 				if (re) {// 如果是预约病人
 					orderInfor = reg.searchOrderInfor((Patient) patient);
 					outObject.writeObject(orderInfor);
