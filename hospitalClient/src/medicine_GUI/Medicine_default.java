@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import person.Patient;
+import staff.ChargeItem;
+import staff.Medicine;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,6 +24,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 
@@ -30,7 +33,7 @@ public class Medicine_default extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtid;
 	private JTable table;
-
+	private Patient wantPatient=null;
 	/**
 	 * Launch the application.
 	 */
@@ -72,7 +75,10 @@ public class Medicine_default extends JFrame {
 		panel.add(txtid);
 		txtid.setColumns(10);
 		
+		
+		
 		JButton button = new JButton("确定");
+		
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Socket socket=null;
@@ -97,6 +103,8 @@ public class Medicine_default extends JFrame {
 								boolean pay=p.getChargestate();
 								if(pay=false){
 									JOptionPane.showMessageDialog(null,"病人未缴费","提示消息", JOptionPane.WARNING_MESSAGE);
+								}else{
+									wantPatient=p;
 								}
 								
 							}	
@@ -126,6 +134,31 @@ public class Medicine_default extends JFrame {
 		panel.add(button);
 		
 		JButton button_1 = new JButton("给药");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Vector<String> rowName=new Vector<>();
+				rowName.add("药品名称");
+				rowName.add("单价");
+				rowName.add("数量");
+				rowName.add("单位");
+				
+				
+				Vector<Vector<String>> vData=new Vector<>();
+				
+				
+				for(Medicine m :wantPatient .getMedicines()){
+					Vector<String> rowData=new Vector<>();
+					rowData.add(m.getName());
+					rowData.add(""+m.getPrice());
+					rowData.add(""+m.getNumber());
+					rowData.add(m.getUnit());
+					
+					vData.add((Vector<String>) rowData.clone());
+				}
+				
+			}
+		});
 		button_1.setBounds(272, 218, 93, 23);
 		panel.add(button_1);
 		
