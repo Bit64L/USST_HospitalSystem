@@ -35,6 +35,7 @@ public class NewClient implements Runnable {
 		DB db = new DB();
 		String sqlStr = "";
 		CachedRowSet crs = null;
+		ResultSet rs=null;
 		try {
 			inObject = new ObjectInputStream(new BufferedInputStream(i.getInputStream()));
 			outObject = new ObjectOutputStream(i.getOutputStream());
@@ -236,14 +237,14 @@ public class NewClient implements Runnable {
 				sqlStr = "select name,cureNum,cureMoney from [Doctor]";
 				crs = db.selectGetCashedRowSet(sqlStr);
 				outObject.writeObject(crs);
-				;
+				
 				outObject.flush();
 			case "院长要科室信息":
 				System.out.println("收到院长要科室信息请求");
 				sqlStr = "select hospitalDepartmentName,registerNum,money from [HospitalDepartment]";
 				crs = db.selectGetCashedRowSet(sqlStr);
 				outObject.writeObject(crs);
-				;
+				
 				outObject.flush();
 				break;
 			case "院长要药品信息":
@@ -251,7 +252,7 @@ public class NewClient implements Runnable {
 				sqlStr = "select name,deposit from [Medicine]";
 				crs = db.selectGetCashedRowSet(sqlStr);
 				outObject.writeObject(crs);
-				;
+				
 				outObject.flush();
 				break;
 			case"药师要registerPatients Arraylist":
@@ -259,7 +260,20 @@ public class NewClient implements Runnable {
 				ArrayList<Patient> repati=Data.registerPatients;
 				outObject.writeObject(repati);
 				outObject.flush();
-				
+			case "预约要科室信息":
+				System.out.println("收到预约端要科室信息请求");
+				sqlStr="select hopitalDepartmentName from [HospitalDepartment]";
+				rs=db.select(sqlStr);
+				String hospitalDepartmentNames="";
+				while(true){
+					if(rs.next()){
+						hospitalDepartmentNames=hospitalDepartmentNames+rs.getString("hopitalDepartmentName")+":";
+					}else{
+						break;
+					}
+				}
+				outObject.writeObject(hospitalDepartmentNames);
+				outObject.flush();
 			}
 			inObject.close();
 			outObject.close();
