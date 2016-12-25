@@ -49,7 +49,7 @@ public class Medicine_search extends JFrame {
 		setContentPane(contentPane);
 		
 		
-		DB db = new DB();
+		//DB db = new DB();
 		//ResultSet rs = db.select("select *from Medicine");
 		President president=new President();// new 
 		

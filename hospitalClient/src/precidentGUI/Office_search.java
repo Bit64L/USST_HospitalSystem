@@ -48,7 +48,7 @@ public class Office_search extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		DB db = new DB();
+		//DB db = new DB();
 		//ResultSet rs = db.select("select * from HospitalDepartment");
 		President president=new President();// new 
 		JPanel panel = new JPanel();

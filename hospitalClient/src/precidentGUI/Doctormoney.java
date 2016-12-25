@@ -14,7 +14,7 @@ public class Doctormoney {
 
 	public static void main(ResultSet rs) {
 		// TODO 自动生成的方法存根
-		DB db = new DB();
+		//DB db = new DB();
 		//db.select("select * from Doctor") = rs
 		 DefaultPieDataset dpd=new DefaultPieDataset(); //建立一个默认的饼图
 		// ResultSet rs = db.select("select * from Doctor");
@@ -43,7 +43,7 @@ public class Doctormoney {
 	        //chart要放在Java容器组件中，ChartFrame继承自java的Jframe类。该第一个参数的数据是放在窗口左上角的，不是正中间的标题。
 	        chartFrame.pack(); //以合适的大小展现图形
 	        chartFrame.setVisible(true);//图形是否可见
-	        db.closeAll();
+	       // db.closeAll();
 	}
 
 }
