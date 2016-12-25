@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.sql.rowset.CachedRowSet;
 
@@ -253,9 +254,16 @@ public class NewClient implements Runnable {
 				;
 				outObject.flush();
 				break;
+			case"药师要registerPatients Arraylist":
+				System.out.println("收到药师要registerPatients Arraylist请求");
+				ArrayList<Patient> repati=Data.registerPatients;
+				outObject.writeObject(repati);
+				outObject.flush();
+				
 			}
 			inObject.close();
 			outObject.close();
+		
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
