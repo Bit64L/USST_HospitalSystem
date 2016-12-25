@@ -20,6 +20,8 @@ public class Data {
     public static ArrayList<OrderInformation> orderInfors=new ArrayList<>();//预约信息
     public static ArrayList<OutPatientRecord> outPatientRecord=new ArrayList<>();//门诊记录
     //public static Patient patientSample;
+    public static Patient patientSample;
+  
     public static void initial(){
         //管理员
         administrators.add(new Administrator("000","000","李玲"));
@@ -38,7 +40,7 @@ public class Data {
         //收费项目
         chargeItems.add(new ChargeItem("红细胞计数","hxbjs","次",50,"000001"));
         //病人例子
-        Patient patientSample=new Patient("张三三","20","男","12345678900","123456789000000000");
+        patientSample=new Patient("张三三","20","男","12345678900","123456789000000000");
         patientSample.getChargeItems().add(new ChargeItem("阿莫西林片",20,"盒",5));
         patientSample.getChargeItems().add(new ChargeItem("12345",12,"盒",5));
         patientSample.getChargeItems().add(new ChargeItem("22222",15,"盒",5));

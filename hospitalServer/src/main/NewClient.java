@@ -167,8 +167,11 @@ public class NewClient implements Runnable {
 				break;
 			case "0027"://更新doctor对象
 				doctor=(Doctor)inObject.readObject();
-				doctor=updateDoctor(doctor);
-				outObject.writeObject(doctor);
+				Doctor newDoctor;
+				newDoctor=updateDoctor(doctor);
+				outObject.writeObject(newDoctor);
+				outObject.flush();
+				System.out.println("更新成功");
 				break;
 			case "0028"://医生病人队列的第一个病人完成看病
 				doctor=(Doctor)inObject.readObject();
@@ -283,7 +286,7 @@ public class NewClient implements Runnable {
 
 		} else if (person instanceof Doctor) {
 			Doctor doctor = (Doctor) person;
-			sqlStr = "select * from [Doctor] where doctorID=" + doctor.getUserName() + " and password='"
+			sqlStr = "select * from [Doctor] where doctorID=" + doctor.getUserName() + " and password="
 					+ doctor.getPassword();
 			rs = db.select(sqlStr);
 
@@ -294,17 +297,20 @@ public class NewClient implements Runnable {
 				doctor.setPassword(rs.getString("password"));
 				doctor.setName(rs.getString("name"));
 				doctor.setCureNum(rs.getInt("cureNum"));
-				doctor.setMoney(rs.getDouble("money"));
-				doctor.setPatients(null);// 病人队列为空
+				doctor.setMoney(rs.getDouble("curemoney"));
 				// 要把hospitalDepartment整个读出来
 				HospitalDepartment hd = new HospitalDepartment();
 				sqlStr = "select * from [HospitalDepartment] where hospitalDepartmentid=" + hospitalDepartmentid;
 				rs = db.select(sqlStr);
+				rs.next();//初始rs引用的位置在结果集的前一行
 				hd.setNo("" + rs.getInt("hospitalDepartmentID"));
 				hd.setName(rs.getString("hospitalDepartmentName"));
 				hd.setMoney(rs.getDouble("money"));
 				hd.setRegisterNum(rs.getInt("registerNum"));
 				doctor.setHospitalDepartment(hd);
+				Data.doctors.add(doctor);
+				/***模拟一个数据****/
+				doctor.getPatients().add(Data.patientSample);
 				return doctor;
 			} else {
 				return null;

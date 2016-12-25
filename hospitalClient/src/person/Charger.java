@@ -19,7 +19,13 @@ public class Charger implements Serializable{
 		this.password=password;
 		
 	}
-
+	public Charger(String userName,String password,String name){
+		this.userName=userName;
+		this.password=password;
+		this.name=name;
+	}
+	
+	
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
 	}

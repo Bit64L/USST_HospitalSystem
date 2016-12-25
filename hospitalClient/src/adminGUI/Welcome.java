@@ -120,7 +120,6 @@ public class Welcome extends JFrame{
 		
 		String[] identify = {"医生","收费人员","管理员","药师","院长"};
 		comboBox = new JComboBox(identify);
-		comboBox.setSelectedIndex(2);
 		
 		comboBox.setBounds(181, 41, 120, 21);
 		panel_1.add(comboBox);
