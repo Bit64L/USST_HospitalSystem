@@ -58,6 +58,9 @@ public class Registration {
 			patient.setDoctor(doctor);
 			doctor.getPatients().add(patient);
 			Data.registerPatients.add(patient);
+			String sqlAdd="update HospitalDepartment set registerNum=registerNum+1 where hospitalDepartmentName='"+patient.getHospitalDepartment().getName()+"';";
+			db.update(sqlAdd);
+			
 			return patient;
 		}
 		else 
@@ -88,6 +91,8 @@ public class Registration {
 			patient.setDoctor(doctor);
 			doctor.getPatients().add(0,patient);
 			Data.registerPatients.add(patient);
+			String sqlAdd="update HospitalDepartment set registerNum=registerNum+1 where hospitalDepartmentName='"+patient.getHospitalDepartment().getName()+"';";
+			db.update(sqlAdd);
 			return patient;
 		}
 		else {
