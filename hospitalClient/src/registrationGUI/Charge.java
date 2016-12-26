@@ -127,8 +127,10 @@ public class Charge extends JFrame {
 				//回传
 				Registration reg=new Registration();
 				Patient inPatient=reg.sendPatientPayment(patient);
-				if(inPatient.getChargestate())
+				if(inPatient.getChargestate()){
 				    JOptionPane.showMessageDialog(null, "付费成功");  
+				    dispose();
+				}
 				else
 				    JOptionPane.showMessageDialog(null, "付费失败");  
 

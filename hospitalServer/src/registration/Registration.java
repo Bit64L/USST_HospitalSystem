@@ -138,9 +138,9 @@ public class Registration {
 		for(Patient p:Data.registerPatients){
 			if(p.getId().equals(patient.getId())){
 				p.setChargestate(true);
-				String sqlUpdate="UPDATE Doctor SET cureMoney="+patient.getAmount()+"+cureMoney  WHERE name='"+patient.getDoctor().getName()+"';";      
-				DB db=new DB();
-				db.update(sqlUpdate);
+//				String sqlUpdate="UPDATE Doctor SET cureMoney="+patient.getAmount()+"+cureMoney  WHERE name='"+patient.getDoctor().getName()+"';";      
+//				DB db=new DB();
+//				db.update(sqlUpdate);
 				return p;
 				
 			}

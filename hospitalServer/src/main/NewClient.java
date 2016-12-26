@@ -28,13 +28,13 @@ public class NewClient implements Runnable {
 		String[] strs = null;
 		Object person = null;
 		Administrator admin = null;
-		Doctor doctor=null;
+		Doctor doctor = null;
 		ObjectInputStream inObject = null;
 		ObjectOutputStream outObject = null;
 		DB db = new DB();
 		String sqlStr = "";
 		CachedRowSet crs = null;
-		ResultSet rs=null;
+		ResultSet rs = null;
 		try {
 			inObject = new ObjectInputStream(new BufferedInputStream(i.getInputStream()));
 			outObject = new ObjectOutputStream(i.getOutputStream());
@@ -73,7 +73,7 @@ public class NewClient implements Runnable {
 				break;
 			case "0013":// 添加科室信息
 				String officeInfo = (String) inObject.readObject();
-				//String[] officeInfos = officeInfo.split("\\s");
+				// String[] officeInfos = officeInfo.split("\\s");
 				admin = (Administrator) inObject.readObject();
 				admin.addHospitalDepartment(officeInfo);
 				System.out.println("添加成功");
@@ -135,8 +135,7 @@ public class NewClient implements Runnable {
 				String medicineInfo1 = (String) inObject.readObject();
 				admin = (Administrator) inObject.readObject();
 				strs = medicineInfo1.split("\\s");
-				admin.addMedicine(strs[0], strs[1], strs[2], Double.parseDouble(strs[3]), Integer.parseInt(strs[4])
-				);
+				admin.addMedicine(strs[0], strs[1], strs[2], Double.parseDouble(strs[3]), Integer.parseInt(strs[4]));
 				System.out.println("添加成功");
 				break;
 			case "0023":// 显示所有收费信息
@@ -159,23 +158,23 @@ public class NewClient implements Runnable {
 				break;
 			case "0026":// 根据简称和数量给病人开处方并返回简称对应的名称
 				String jc = (String) inObject.readObject();
-				doctor = (Doctor)inObject.readObject();
+				doctor = (Doctor) inObject.readObject();
 				String[] jcs = jc.split("\\s");// 简称+数量+类型(药品或者是收费项目)
-				String name = prescribe(doctor,jcs[0],jcs[1],jcs[2]);//开处方
+				String name = prescribe(doctor, jcs[0], jcs[1], jcs[2]);// 开处方
 				outObject.writeObject(name);
 				outObject.flush();
 				outObject.close();
 				break;
-			case "0027"://更新doctor对象
-				doctor=(Doctor)inObject.readObject();
+			case "0027":// 更新doctor对象
+				doctor = (Doctor) inObject.readObject();
 				Doctor newDoctor;
-				newDoctor=updateDoctor(doctor);
+				newDoctor = updateDoctor(doctor);
 				outObject.writeObject(newDoctor);
 				outObject.flush();
 				System.out.println("更新成功");
 				break;
-			case "0028"://医生病人队列的第一个病人完成看病
-				doctor=(Doctor)inObject.readObject();
+			case "0028":// 医生病人队列的第一个病人完成看病
+				doctor = (Doctor) inObject.readObject();
 				finish(doctor);
 				break;
 			case "2000":// 挂号功能
@@ -236,14 +235,14 @@ public class NewClient implements Runnable {
 				sqlStr = "select name,cureNum,cureMoney from [Doctor]";
 				crs = db.selectGetCashedRowSet(sqlStr);
 				outObject.writeObject(crs);
-				
+
 				outObject.flush();
 			case "院长要科室信息":
 				System.out.println("收到院长要科室信息请求");
 				sqlStr = "select hospitalDepartmentName,registerNum,money from [HospitalDepartment]";
 				crs = db.selectGetCashedRowSet(sqlStr);
 				outObject.writeObject(crs);
-				
+
 				outObject.flush();
 				break;
 			case "院长要药品信息":
@@ -251,23 +250,25 @@ public class NewClient implements Runnable {
 				sqlStr = "select name,deposit from [Medicine]";
 				crs = db.selectGetCashedRowSet(sqlStr);
 				outObject.writeObject(crs);
-				
+
 				outObject.flush();
 				break;
-			case"药师要registerPatients Arraylist":
+			case "药师要registerPatients Arraylist":
 				System.out.println("收到药师要registerPatients Arraylist请求");
-				ArrayList<Patient> repati=Data.registerPatients;
+				ArrayList<Patient> repati = Data.registerPatients;
 				outObject.writeObject(repati);
 				outObject.flush();
-				
+
 			case "药房端修改药品库存":
 				System.out.println("收到药房端修改药品库存请求");
+
 				Patient patient2=(Patient) inObject.readObject();
 				ArrayList<Medicine> medicine=patient2.getMedicines();
 				for(Medicine m:medicine){
 					String id=m.getNo();
 					int number=m.getNumber();
 					sqlStr="update [medicine] set deposit=deposit-"+number+" where medicineID="+id;
+
 					db.update(sqlStr);
 				}
 				ArrayList<Patient> patientAlist;
@@ -280,67 +281,60 @@ public class NewClient implements Runnable {
 				}
 				outObject.writeObject("更新库存成功！");
 				outObject.flush();
-				
-				
+
 			case "预约要科室信息":
 				System.out.println("收到预约端要科室信息请求");
-				sqlStr="select hospitalDepartmentName from [HospitalDepartment]";
-				rs=db.select(sqlStr);
-				String hospitalDepartmentNames="";
-				while(true){
-					if(rs.next()){
-						hospitalDepartmentNames=hospitalDepartmentNames+rs.getString("hospitalDepartmentName")+":";
-					}else{
+				sqlStr = "select hospitalDepartmentName from [HospitalDepartment]";
+				rs = db.select(sqlStr);
+				String hospitalDepartmentNames = "";
+				while (true) {
+					if (rs.next()) {
+						hospitalDepartmentNames = hospitalDepartmentNames + rs.getString("hospitalDepartmentName")
+								+ ":";
+					} else {
 						break;
 					}
 				}
 				outObject.writeObject(hospitalDepartmentNames);
 				outObject.flush();
 			case "预约端要预约":
-				Order order=(Order) inObject.readObject();
+				Order order = (Order) inObject.readObject();
 				System.out.println("收到预约端要预约的请求");
-                String patientID=order.patientID;
-       			String name2=order.name;
-       			String sex=order.sex;
-       			int age=order.age;
-       			String phoneNumber=order.phoneNumber;
-       			String hospitalDepartmentName=order.hospitalDepartmentName;
-       			sqlStr="select hospitalDepartmentID from [HospitalDepartment] where hospitalDepartmentName='"+hospitalDepartmentName+"'";
-       			rs=db.select(sqlStr);
-       			int hospitalDepartmentID=0;
-       			if(rs.next()){
-       				hospitalDepartmentID=rs.getInt("hospitalDepartmentID");}
-       			
-       			String orderTime=order.orderTime;
-                   
-       			sqlStr="insert into [Appointment](patientID,name,sex,age,phoneNumber,"
-       					+ "hospitalDepartmentID,hospitalDepartmentName,orderTime) values"+"('"+patientID+"','"+
-       					name2+"','"+sex+"',"+age+",'"+phoneNumber+"',"+hospitalDepartmentID+",'"+hospitalDepartmentName
-       					+"','"+orderTime+"')";
-       			
-                   		//写入数据库
-            
-                   		boolean result=db.insert(sqlStr);
-                   		if(result){
-                   			outObject.writeObject("预约成功");
-                   			outObject.flush();
-                   		}
-                   		
-                   		
-             
-                  
-                   		
-                   		
-                   		
-                   		
-                   		
-                   inObject.close();
-                   outObject.close();
+				String patientID = order.patientID;
+				String name2 = order.name;
+				String sex = order.sex;
+				int age = order.age;
+				String phoneNumber = order.phoneNumber;
+				String hospitalDepartmentName = order.hospitalDepartmentName;
+				sqlStr = "select hospitalDepartmentID from [HospitalDepartment] where hospitalDepartmentName='"
+						+ hospitalDepartmentName + "'";
+				rs = db.select(sqlStr);
+				int hospitalDepartmentID = 0;
+				if (rs.next()) {
+					hospitalDepartmentID = rs.getInt("hospitalDepartmentID");
+				}
+
+				String orderTime = order.orderTime;
+
+				sqlStr = "insert into [Appointment](patientID,name,sex,age,phoneNumber,"
+						+ "hospitalDepartmentID,hospitalDepartmentName,orderTime) values" + "('" + patientID + "','"
+						+ name2 + "','" + sex + "'," + age + ",'" + phoneNumber + "'," + hospitalDepartmentID + ",'"
+						+ hospitalDepartmentName + "','" + orderTime + "')";
+
+				// 写入数据库
+
+				boolean result = db.insert(sqlStr);
+				if (result) {
+					outObject.writeObject("预约成功");
+					outObject.flush();
+				}
+
+				inObject.close();
+				outObject.close();
 			}
 			inObject.close();
 			outObject.close();
-		
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -349,7 +343,7 @@ public class NewClient implements Runnable {
 
 	}
 
-	//验证用户名和密码
+	// 验证用户名和密码
 	public Object verify(Object person) throws SQLException {
 		String sqlStr = "";
 		ResultSet rs = null;
@@ -386,15 +380,15 @@ public class NewClient implements Runnable {
 				HospitalDepartment hd = new HospitalDepartment();
 				sqlStr = "select * from [HospitalDepartment] where hospitalDepartmentid=" + hospitalDepartmentid;
 				rs = db.select(sqlStr);
-				rs.next();//初始rs引用的位置在结果集的前一行
+				rs.next();// 初始rs引用的位置在结果集的前一行
 				hd.setNo("" + rs.getInt("hospitalDepartmentID"));
 				hd.setName(rs.getString("hospitalDepartmentName"));
 				hd.setMoney(rs.getDouble("money"));
 				hd.setRegisterNum(rs.getInt("registerNum"));
 				doctor.setHospitalDepartment(hd);
 				Data.doctors.add(doctor);
-				/***模拟一个数据****/
-				doctor.getPatients().add(Data.patientSample);
+				/*** 模拟一个数据 ****/
+				// doctor.getPatients().add(Data.patientSample);
 				return doctor;
 			} else {
 				return null;
@@ -402,7 +396,8 @@ public class NewClient implements Runnable {
 
 		} else if (person instanceof Charger) {
 			Charger charger = (Charger) person;
-			sqlStr = "select * from [Charger] where chargerID=" + charger.getUserName() + " and password='" + charger.getPassword()+"';";
+			sqlStr = "select * from [Charger] where chargerID=" + charger.getUserName() + " and password='"
+					+ charger.getPassword() + "';";
 			rs = db.select(sqlStr);
 			if (rs.next()) {
 				charger.setUserName("" + rs.getInt("chargerID"));
@@ -415,7 +410,7 @@ public class NewClient implements Runnable {
 		} else if (person instanceof Druggist) {
 			Druggist druggist = (Druggist) person;
 			sqlStr = "select * from [Druggist] where druggistID=" + druggist.getUserName() + " and password='"
-					+ druggist.getPassword()+"'";
+					+ druggist.getPassword() + "'";
 			rs = db.select(sqlStr);
 			if (rs.next()) {
 				druggist.setUserName("" + rs.getInt("druggistID"));
@@ -428,7 +423,7 @@ public class NewClient implements Runnable {
 		} else if (person instanceof President) {
 			President president = (President) person;
 			sqlStr = "select * from [President] where presidentID=" + president.getUserName() + " and password='"
-					+ president.getPassword()+"'";
+					+ president.getPassword() + "'";
 			rs = db.select(sqlStr);
 			if (rs.next()) {
 				president.setUserName("" + rs.getInt("presidentID"));
@@ -465,7 +460,8 @@ public class NewClient implements Runnable {
 		while (true) {
 			try {
 				if (rs.next()) {
-					accountsInfoForEach += rs.getString(type + "ID") +"\t"+ rs.getString("password") + "\t"+rs.getString("name") +"\t";
+					accountsInfoForEach += rs.getString(type + "ID") + "\t" + rs.getString("password") + "\t"
+							+ rs.getString("name") + "\t";
 					accountsInfoForEach += chineseTypeName + "$";
 				} else {
 					break;
@@ -490,13 +486,15 @@ public class NewClient implements Runnable {
 			admin.addCharger(userName, password, name);
 			break;
 		case "医生":
-			DB db=new DB();
-			String sql="select * from hospitalDepartment where hospitalDepartmentName="+"'"+hospitalDepartment+"'";
-			ResultSet rs=null;
-			rs=db.select(sql);	
+			DB db = new DB();
+			String sql = "select * from hospitalDepartment where hospitalDepartmentName=" + "'" + hospitalDepartment
+					+ "'";
+			ResultSet rs = null;
+			rs = db.select(sql);
 			try {
 				rs.next();
-				HospitalDepartment a =new HospitalDepartment(rs.getString("hospitalDepartmentName"),rs.getString("hospitalDepartmentID"));
+				HospitalDepartment a = new HospitalDepartment(rs.getString("hospitalDepartmentName"),
+						rs.getString("hospitalDepartmentID"));
 				admin.addDoctor(userName, password, name, a);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -516,18 +514,19 @@ public class NewClient implements Runnable {
 	// 显示所有收费项目
 	public String showChargeItem() {
 		String str = "";
-		DB db=new DB();
-		String sql="select * from ChargeItem";
-		ResultSet rs=null;
-		try{
-			rs=db.select(sql);
-			String singal="";
-			while(rs.next()){
-				singal=rs.getString("chargeitemID")+" "+rs.getString("name")+" "+rs.getString("shortName")+" "+rs.getString("unit")+" "+rs.getString("price");
-				str+=singal+"$";
+		DB db = new DB();
+		String sql = "select * from ChargeItem";
+		ResultSet rs = null;
+		try {
+			rs = db.select(sql);
+			String singal = "";
+			while (rs.next()) {
+				singal = rs.getString("chargeitemID") + " " + rs.getString("name") + " " + rs.getString("shortName")
+						+ " " + rs.getString("unit") + " " + rs.getString("price");
+				str += singal + "$";
 			}
-		}catch(Exception e){
-			
+		} catch (Exception e) {
+
 		}
 		return str;
 	}
@@ -535,18 +534,19 @@ public class NewClient implements Runnable {
 	// 显示所有药品信息
 	public String showMedicine() {
 		String str = "";
-		DB db=new DB();
-		String sql="select * from Medicine";
-		ResultSet rs=null;
-		try{
-			rs=db.select(sql);
-			String singal="";
-			while(rs.next()){
-				singal=rs.getString("medicineID")+" "+rs.getString("name")+" "+rs.getString("shortName")+" "+rs.getString("unit")+" "+rs.getString("price");
-				str+=singal+"$";
+		DB db = new DB();
+		String sql = "select * from Medicine";
+		ResultSet rs = null;
+		try {
+			rs = db.select(sql);
+			String singal = "";
+			while (rs.next()) {
+				singal = rs.getString("medicineID") + " " + rs.getString("name") + " " + rs.getString("shortName") + " "
+						+ rs.getString("unit") + " " + rs.getString("price");
+				str += singal + "$";
 			}
-		}catch(Exception e){
-			
+		} catch (Exception e) {
+
 		}
 		return str;
 	}
@@ -554,114 +554,118 @@ public class NewClient implements Runnable {
 	// 显示所有科室信息
 	public String showOffice() {
 		String str = "";
-		DB db=new DB();
-		String sql="select * from HospitalDepartment";
-		ResultSet rs=null;
-		try{
-			rs=db.select(sql);
-			String singal="";
-			while(rs.next()){
-				singal=rs.getString("hospitalDepartmentID")+" "+rs.getString("hospitalDepartmentName");
-				str+=singal+"$";
+		DB db = new DB();
+		String sql = "select * from HospitalDepartment";
+		ResultSet rs = null;
+		try {
+			rs = db.select(sql);
+			String singal = "";
+			while (rs.next()) {
+				singal = rs.getString("hospitalDepartmentID") + " " + rs.getString("hospitalDepartmentName");
+				str += singal + "$";
 			}
-		}catch(Exception e){
-			
+		} catch (Exception e) {
+
 		}
+
 		return str;
 	}
 
 	// 开处方
-	public String prescribe(Doctor doctor,String jc, String num,String type) {
+	public String prescribe(Doctor doctor, String jc, String num, String type) {
 		String s = "";
 		DB db = new DB();
 		ResultSet rs = null;
-		for(Doctor a:Data.doctors){
-			if(a.getUserName().equals(doctor.getUserName())){
-				doctor=a;
+		for (Doctor a : Data.doctors) {
+			if (a.getUserName().equals(doctor.getUserName())) {
+				doctor = a;
 				break;
 			}
 		}
 		try {
 			if (type.equals("药品")) {
-				String sql="select * from medicine where shortName="+"'"+jc+"'";
+				String sql = "select * from medicine where shortName=" + "'" + jc + "'";
 				rs = db.select(sql);
-				rs.next();//注意
-				Medicine medicine=new Medicine(rs.getString("name"),rs.getString("shortName"),rs.getString("unit"),rs.getDouble("price"),rs.getString("medicineID"));
-				medicine.setNumber(Integer.parseInt(num));//设置药品数量
-				doctor.getPatients().get(0).setAmount(doctor.getPatients().get(0).getAmount()+medicine.getAmount());//修改病人应支付金额
-				doctor.getPatients().get(0).getMedicines().add(medicine);//添加病人的药品
-				String patientId=doctor.getPatients().get(0).getId();
-				/*for(Patient p:Data.registerPatients){
-					if(p.getId().equals(patientId)){
-						p.getMedicines().add(medicine);
-					}
-				}	*/			
-				s=medicine.getName();//返回名称
-				
+				rs.next();// 注意
+				Medicine medicine = new Medicine(rs.getString("name"), rs.getString("shortName"), rs.getString("unit"),
+						rs.getDouble("price"), rs.getString("medicineID"));
+				medicine.setNumber(Integer.parseInt(num));// 设置药品数量
+				doctor.getPatients().get(0).setAmount(doctor.getPatients().get(0).getAmount() + medicine.getAmount());// 修改病人应支付金额
+				doctor.getPatients().get(0).getMedicines().add(medicine);// 添加病人的药品
+				String patientId = doctor.getPatients().get(0).getId();
+				/*
+				 * for(Patient p:Data.registerPatients){
+				 * if(p.getId().equals(patientId)){
+				 * p.getMedicines().add(medicine); } }
+				 */
+				s = medicine.getName();// 返回名称
+
 			} else {
-				String sql="select * from chargeItem where shortName="+"'"+jc+"'";
+				String sql = "select * from chargeItem where shortName=" + "'" + jc + "'";
 				rs = db.select(sql);
-				rs.next();//注意
-				ChargeItem chargeItem=new ChargeItem(rs.getString("name"),rs.getString("shortName"),rs.getString("unit"),rs.getDouble("price"),rs.getString("chargeItemID"));
-				chargeItem.setNumber(Integer.parseInt(num));//设置检查次数
-				doctor.getPatients().get(0).setAmount(doctor.getPatients().get(0).getAmount()+chargeItem.getAmount());//修改病人应支付金额
-				doctor.getPatients().get(0).getChargeItems().add(chargeItem);//添加病人的收费项目
-				String patientId=doctor.getPatients().get(0).getId();
-				/*for(Patient p:Data.registerPatients){
-					if(p.getId().equals(patientId)){
-						p.getChargeItems().add(chargeItem);
-					}
-				}	*/	
-				s=chargeItem.getName();
+				rs.next();// 注意
+				ChargeItem chargeItem = new ChargeItem(rs.getString("name"), rs.getString("shortName"),
+						rs.getString("unit"), rs.getDouble("price"), rs.getString("chargeItemID"));
+				chargeItem.setNumber(Integer.parseInt(num));// 设置检查次数
+				doctor.getPatients().get(0).setAmount(doctor.getPatients().get(0).getAmount() + chargeItem.getAmount());// 修改病人应支付金额
+				doctor.getPatients().get(0).getChargeItems().add(chargeItem);// 添加病人的收费项目
+				String patientId = doctor.getPatients().get(0).getId();
+				/*
+				 * for(Patient p:Data.registerPatients){
+				 * if(p.getId().equals(patientId)){
+				 * p.getChargeItems().add(chargeItem); } }
+				 */
+				s = chargeItem.getName();
 			}
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return s;
 	}
-	//更新医生对象
-	public Doctor updateDoctor(Doctor doctor){
-		for(Doctor a:Data.doctors){
-			if(doctor.getUserName().equals(a.getUserName())){
+
+	// 更新医生对象
+	public Doctor updateDoctor(Doctor doctor) {
+		for (Doctor a : Data.doctors) {
+			if (doctor.getUserName().equals(a.getUserName())) {
 				return a;
 			}
 		}
 		return null;
 	}
 
-	
-	//医生的病人队列第一个病人完成看病
-	public void finish(Doctor doctor){
-		for(Doctor a:Data.doctors){
-			if(a.getUserName().equals(doctor.getUserName())){
-				doctor=a;
+	// 医生的病人队列第一个病人完成看病
+	public void finish(Doctor doctor) {
+		for (Doctor a : Data.doctors) {
+			if (a.getUserName().equals(doctor.getUserName())) {
+				doctor = a;
 				break;
 			}
 		}
-		//写回医生的cureNum和money
-		
+		// 写回医生的cureNum和money
+
 		DB db = new DB();
-		float money=0;
-		int num=0;
-		ResultSet rs=null;
+		float money = 0;
+		int num = 0;
+		ResultSet rs = null;
 		try {
-			String sql="select * from doctor where doctorID="+"'"+doctor.getUserName()+"'";
-			rs=db.select(sql);
+			String sql = "select * from doctor where doctorID=" + "'" + doctor.getUserName() + "'";
+			rs = db.select(sql);
 			rs.next();
-			money=Float.parseFloat(rs.getString("cureMoney"));
-			num=Integer.parseInt(rs.getString("cureNum"));
+			money = Float.parseFloat(rs.getString("cureMoney"));
+			num = Integer.parseInt(rs.getString("cureNum"));
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		money+=doctor.getPatients().get(0).getAmount();
-		num+=1;
-		String sql = "update Doctor set cureMoney="+"'"+money+"',"+"cureNum="+"'"+num+"'"+"from doctor where doctorID="+"'"+doctor.getUserName()+"'";
+		money += doctor.getPatients().get(0).getAmount();
+		num += 1;
+		String sql = "update Doctor set cureMoney=" + "'" + money + "'," + "cureNum=" + "'" + num + "'"
+				+ "from doctor where doctorID=" + "'" + doctor.getUserName() + "'";
 		db.insert(sql);
 		db.closeAll();
-		//未开处方病人转为已开处方病人
-		Patient temp=doctor.getPatients().get(0);
+		// 未开处方病人转为已开处方病人
+		Patient temp = doctor.getPatients().get(0);
 		doctor.getPatients().remove(0);
 		doctor.getPatientsFinish().add(temp);
 	}

@@ -69,7 +69,7 @@ public class Account_showchange extends JFrame {
 		}
 		/*******************************/
 		JLabel label = new JLabel("输入要修改的账号ID");
-		label.setBounds(61, 171, 113, 15);
+		label.setBounds(39, 171, 135, 15);
 		panel.add(label);
 		
 		textField = new JTextField();

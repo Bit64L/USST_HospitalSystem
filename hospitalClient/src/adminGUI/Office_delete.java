@@ -109,7 +109,7 @@ public class Office_delete extends JFrame {
 		ObjectOutputStream out=null;
 		String info=null;
 		try {
-			s=new Socket("127.0.0.1",8888);
+			s=new Socket(Data.IP,8888);
 			out=new ObjectOutputStream(s.getOutputStream());
 			out.writeObject("0025");
 			out.flush();
