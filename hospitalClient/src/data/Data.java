@@ -42,9 +42,14 @@ public class Data {
         patientSample.getChargeItems().add(new ChargeItem("阿莫西林片",20,"盒",5));
         patientSample.getChargeItems().add(new ChargeItem("12345",12,"盒",5));
         patientSample.getChargeItems().add(new ChargeItem("22222",15,"盒",5));
+        patientSample.setHospitalDepartment(new HospitalDepartment("内科","7"));
         //预约信息
         orderInfors.add(new OrderInformation(patientSample,new HospitalDepartment("内科","7"),new Doctor("2004","111","李达",new HospitalDepartment("内科","7")),"12","12","14"));
         //预约病人
+        registerPatients.add(patientSample);
+        Patient pt = new Patient("张四四","20","女","123415646","132456465748");
+        pt.setHospitalDepartment(new HospitalDepartment("五官科","7"));
+        registerPatients.add(pt);
         
         //orderPatients.add(patientSample);
     }
