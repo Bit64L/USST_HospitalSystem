@@ -262,13 +262,21 @@ public class NewClient implements Runnable {
 				
 			case "药房端修改药品库存":
 				System.out.println("收到药房端修改药品库存请求");
-				
-				ArrayList<Medicine> medicine=(ArrayList<Medicine>) inObject.readObject();
+				Patient patient2=(Patient) inObject.readObject();
+				ArrayList<Medicine> medicine=patient2.getMedicines();
 				for(Medicine m:medicine){
 					String id=m.getNo();
 					int number=m.getNumber();
 					sqlStr="update [medicine] set deposit=deposit-"+number+" where medicineID="+id;
 					db.update(sqlStr);
+				}
+				ArrayList<Patient> patientAlist;
+				patientAlist=Data.registerPatients;
+				
+				for(Patient p:patientAlist){
+					if(p.getId().equals(patient2.getId())){
+						patientAlist.remove(p);
+					}
 				}
 				outObject.writeObject("更新库存成功！");
 				outObject.flush();
