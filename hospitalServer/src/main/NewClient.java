@@ -237,6 +237,7 @@ public class NewClient implements Runnable {
 				outObject.writeObject(crs);
 
 				outObject.flush();
+				break;
 			case "院长要科室信息":
 				System.out.println("收到院长要科室信息请求");
 				sqlStr = "select hospitalDepartmentName,registerNum,money from [HospitalDepartment]";
@@ -258,7 +259,7 @@ public class NewClient implements Runnable {
 				ArrayList<Patient> repati = Data.registerPatients;
 				outObject.writeObject(repati);
 				outObject.flush();
-
+				break;
 			case "药房端修改药品库存":
 				System.out.println("收到药房端修改药品库存请求");
 
@@ -281,7 +282,7 @@ public class NewClient implements Runnable {
 				}
 				outObject.writeObject("更新库存成功！");
 				outObject.flush();
-
+				break;
 			case "预约要科室信息":
 				System.out.println("收到预约端要科室信息请求");
 				sqlStr = "select hospitalDepartmentName from [HospitalDepartment]";
@@ -297,6 +298,7 @@ public class NewClient implements Runnable {
 				}
 				outObject.writeObject(hospitalDepartmentNames);
 				outObject.flush();
+				break;
 			case "预约端要预约":
 				Order order = (Order) inObject.readObject();
 				System.out.println("收到预约端要预约的请求");
@@ -331,6 +333,7 @@ public class NewClient implements Runnable {
 
 				inObject.close();
 				outObject.close();
+				break;
 			}
 			inObject.close();
 			outObject.close();
