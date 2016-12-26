@@ -38,6 +38,7 @@ public class Medicine_default extends JFrame {
 	private Patient wantPatient=null;
 	private JTable table_1;
 	private JScrollPane scrollPane;
+	ArrayList<Medicine> medi=new ArrayList<>();
 	/**
 	 * Launch the application.
 	 */
@@ -58,6 +59,7 @@ public class Medicine_default extends JFrame {
 	 * Create the frame.
 	 */
 	public Medicine_default() {
+		medi=null;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -89,7 +91,7 @@ public class Medicine_default extends JFrame {
 				ObjectOutputStream outobj=null;
 				
 				try {
-					socket=new Socket("127.0.0.1",8889);
+					socket=new Socket("124.76.5.175",8889);
 					outobj=new ObjectOutputStream(socket.getOutputStream());
 					inobj=new ObjectInputStream(socket.getInputStream());
 					outobj.writeObject("药师要registerPatients Arraylist");
@@ -126,6 +128,7 @@ public class Medicine_default extends JFrame {
 									
 									Vector<Vector<String>> vData=new Vector<>();
 									
+									medi=p.getMedicines();
 									
 									for(Medicine m :p.getMedicines()){
 										Vector<String> rowData=new Vector<>();
@@ -185,20 +188,24 @@ public class Medicine_default extends JFrame {
 		JButton button_1 = new JButton("给药");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				if(medi!=null){
 				Socket socket=null;
 				ObjectInputStream inobj=null;
 				ObjectOutputStream outobj=null;
 				
 				try {
-					socket=new Socket("127.0.0.1",8889);
+					socket=new Socket("124.76.5.175",8888);
 					
 					outobj=new ObjectOutputStream(socket.getOutputStream());
 					inobj=new ObjectInputStream(socket.getInputStream());
 					outobj.writeObject("药房端修改药品库存");
 					outobj.flush();
 					
+					outobj.writeObject(medi);
+					outobj.flush();
 					
+					String rec=(String) inobj.readObject();
+					JOptionPane.showMessageDialog(null,rec);
 					
 				} catch (UnknownHostException e1) {
 					// TODO Auto-generated catch block
@@ -206,10 +213,13 @@ public class Medicine_default extends JFrame {
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 				
 				
-				
+				}
 				
 			}
 		});

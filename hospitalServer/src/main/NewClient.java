@@ -12,8 +12,6 @@ import javax.sql.rowset.CachedRowSet;
 
 import person.*;
 import registration.Registration;
-import staff.HospitalDepartment;
-import staff.OrderInformation;
 import utility.DB;
 import data.Data;
 import order_duan.Order;
@@ -265,7 +263,15 @@ public class NewClient implements Runnable {
 			case "药房端修改药品库存":
 				System.out.println("收到药房端修改药品库存请求");
 				
-				sqlStr="update medicine set deposit=deposit-num"
+				ArrayList<Medicine> medicine=(ArrayList<Medicine>) inObject.readObject();
+				for(Medicine m:medicine){
+					String id=m.getNo();
+					int number=m.getNumber();
+					sqlStr="update [medicine] set deposit=deposit-"+number+" where medicineID="+id;
+					db.update(sqlStr);
+				}
+				outObject.writeObject("更新库存成功！");
+				outObject.flush();
 				
 				
 			case "预约要科室信息":
