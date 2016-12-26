@@ -48,7 +48,7 @@ public class Precident_default extends JFrame {
 		JButton button = new JButton("药品信息查询");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				dispose();
 				Medicine_search.main(args);
 			}
 		});
@@ -58,6 +58,7 @@ public class Precident_default extends JFrame {
 		JButton button_1 = new JButton("科室信息查询");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				Office_search.main(args);
 			}
 		});
@@ -67,6 +68,7 @@ public class Precident_default extends JFrame {
 		JButton button_2 = new JButton("医生信息查询");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				Doctor_search.main(args);
 			}
 		});

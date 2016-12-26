@@ -87,6 +87,7 @@ public class Medicine_search extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String[] args = null;
+				dispose();
 				Precident_default.main(args);
 			}
 		});

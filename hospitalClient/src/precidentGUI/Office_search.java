@@ -83,6 +83,7 @@ public class Office_search extends JFrame {
 		JButton button = new JButton("返回");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				String[] args = null;
 				Precident_default.main(args);
 			}
@@ -105,7 +106,7 @@ public class Office_search extends JFrame {
 				OfficeNum.main(rs);
 			}
 		});
-		button_1.setBounds(0, 203, 123, 23);
+		button_1.setBounds(0, 203, 142, 23);
 		panel.add(button_1);
 		
 		JButton button_2 = new JButton("总金额生成报表");
@@ -121,7 +122,7 @@ public class Office_search extends JFrame {
 				OfficeMoney.main(rs);
 			}
 		});
-		button_2.setBounds(135, 203, 158, 23);
+		button_2.setBounds(152, 203, 158, 23);
 		panel.add(button_2);
 	}
 
