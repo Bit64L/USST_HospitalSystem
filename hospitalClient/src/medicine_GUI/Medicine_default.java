@@ -1,3 +1,4 @@
+
 package medicine_GUI;
 
 import java.awt.BorderLayout;
@@ -6,6 +7,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import person.Patient;
 import staff.ChargeItem;
@@ -34,6 +36,8 @@ public class Medicine_default extends JFrame {
 	private JTextField txtid;
 	private JTable table;
 	private Patient wantPatient=null;
+	private JTable table_1;
+	private JScrollPane scrollPane;
 	/**
 	 * Launch the application.
 	 */
@@ -76,7 +80,6 @@ public class Medicine_default extends JFrame {
 		txtid.setColumns(10);
 		
 		
-		
 		JButton button = new JButton("确定");
 		
 		button.addActionListener(new ActionListener() {
@@ -86,30 +89,76 @@ public class Medicine_default extends JFrame {
 				ObjectOutputStream outobj=null;
 				
 				try {
-					socket=new Socket("124.76.5.175",8888);
+					socket=new Socket("127.0.0.1",8889);
 					outobj=new ObjectOutputStream(socket.getOutputStream());
 					inobj=new ObjectInputStream(socket.getInputStream());
 					outobj.writeObject("药师要registerPatients Arraylist");
 					outobj.flush();
 					
 					try {
+						
+						
 						ArrayList<Patient> repatient=(ArrayList<Patient>) inobj.readObject();
 						
 						boolean exist=false;
 //						boolean paymoney=false;
+						
+						//
+					
+						//
+						
+						
 						for(Patient p: repatient){
 							if(p.getId().equals(txtid.getText())){
 								exist=true;
 								boolean pay=p.getChargestate();
-								if(pay=false){
+								if(pay==false){
 									JOptionPane.showMessageDialog(null,"病人未缴费","提示消息", JOptionPane.WARNING_MESSAGE);
 								}else{
 									wantPatient=p;
+									
+									Vector<String> rowName=new Vector<>();
+									rowName.add("药品名称");
+									rowName.add("单价");
+									rowName.add("数量");
+									rowName.add("单位");
+									
+									
+									Vector<Vector<String>> vData=new Vector<>();
+									
+									
+									for(Medicine m :p.getMedicines()){
+										Vector<String> rowData=new Vector<>();
+										rowData.add(m.getName());
+										rowData.add(""+m.getPrice());
+										rowData.add(""+m.getNumber());
+										rowData.add(m.getUnit());
+										
+										vData.add((Vector<String>) rowData.clone());
+									}
+									
+									//应该不要检查项目
+									for(ChargeItem c :p.getChargeItems()){
+										Vector<String> rowData=new Vector<>();
+										rowData.add(c.getName());
+										rowData.add(""+c.getPrice());
+										rowData.add(""+c.getNumber());
+										rowData.add(c.getUnit());
+										vData.add((Vector<String>) rowData.clone());
+										
+									}
+									
+									
+									
+								DefaultTableModel DFM=new DefaultTableModel(vData,rowName);
+								
+								table_1 = new JTable(DFM);
+								scrollPane.setViewportView(table_1);
 								}
 								
 							}	
 						}
-						if(exist=false){
+						if(exist==false){
 							JOptionPane.showMessageDialog(null, "病人ID不存在", "提示消息",JOptionPane.ERROR_MESSAGE); 
 						}
 						
@@ -168,6 +217,7 @@ public class Medicine_default extends JFrame {
 					
 				}
 				
+				
 			}
 		});
 		
@@ -175,8 +225,19 @@ public class Medicine_default extends JFrame {
 		button_1.setBounds(272, 218, 93, 23);
 		panel.add(button_1);
 		
-		table = new JTable();
-		table.setBounds(19, 76, 401, 126);
-		panel.add(table);
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(6, 66, 428, 135);
+		panel.add(scrollPane);
+		
+		table_1 = new JTable();
+		scrollPane.setViewportView(table_1);
+		
+//		information = new JTable();
+//		information.setBounds(33, 76, 381, 133);
+//		panel.add(information);
+		
+//		table = new JTable();
+//		table.setBounds(19, 76, 401, 126);
+//		panel.add(table);
 	}
 }
