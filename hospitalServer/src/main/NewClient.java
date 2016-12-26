@@ -278,6 +278,7 @@ public class NewClient implements Runnable {
 				for(Patient p:patientAlist){
 					if(p.getId().equals(patient2.getId())){
 						patientAlist.remove(p);
+						break;
 					}
 				}
 				outObject.writeObject("更新库存成功！");
