@@ -70,8 +70,8 @@ public class Office_search extends JFrame {
 		try {
 			while(rs.next())
 			{
-				textArea.setText(textArea.getText()+"\n"+"科室名称为："+rs.getString("hospitalDepartmentName"
-						+"科室挂号量为："+rs.getInt("registerNum"+"科室总金额为："+rs.getDouble("money"))));
+				textArea.setText(textArea.getText()+"\n"+"科室名称为："+rs.getString("hospitalDepartmentName")
+						+"科室挂号量为："+rs.getInt("registerNum")+"科室总金额为："+rs.getDouble("money"));
 			}
 		} catch (SQLException e1) {
 			// TODO 自动生成的 catch 块

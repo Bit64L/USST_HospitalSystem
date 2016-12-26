@@ -18,7 +18,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 public class Doctor_search extends JFrame {
-
 	private JPanel contentPane;
 
 	/**

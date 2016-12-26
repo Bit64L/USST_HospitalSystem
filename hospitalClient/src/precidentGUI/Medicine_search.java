@@ -70,9 +70,13 @@ public class Medicine_search extends JFrame {
 			e1.printStackTrace();
 		}
 		try {
-			while(rs.next())
-			textArea.setText(textArea.getText()+"\n"+"药品名称："+rs.getString("medicineID"
-						+"药品库存量："+rs.getInt("deposit")));
+			while(true)
+				if(rs.next()){
+			textArea.setText(textArea.getText()+"\n"+"药品名称："+rs.getString("name")
+						+"药品库存量："+rs.getInt("deposit"));}
+				else {
+					break;
+				}
 		} catch (SQLException e1) {
 			// TODO 自动生成的 catch 块
 			e1.printStackTrace();
