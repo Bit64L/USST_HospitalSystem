@@ -6,12 +6,13 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import data.Data;
 import person.*;
 import staff.OrderInformation;
 import staff.OutPatientRecord;
 
 public class Registration {
-	static String ip="127.0.0.1";//设置服务器端ip地址
+	static String ip=Data.IP;//设置服务器端ip地址
 	private Patient patient;
 	private OutPatientRecord opr;
 	

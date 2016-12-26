@@ -16,6 +16,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import data.Data;
 import staff.*;
 import person.Doctor;
 import javax.swing.SwingConstants;
@@ -76,7 +77,7 @@ public class Doctor_Charge extends JFrame {
 				ObjectInputStream in = null;
 				ObjectOutputStream out =null;
 				try{
-					s=new Socket("127.0.0.1",8888);
+					s=new Socket(Data.IP,8888);
 					out=new ObjectOutputStream(s.getOutputStream());
 					out.writeObject("0026");
 					out.writeObject(jc+" "+mnum.getText()+" "+"药品");//简称+数量+类型
@@ -141,7 +142,7 @@ public class Doctor_Charge extends JFrame {
 				ObjectInputStream in = null;
 				ObjectOutputStream out =null;
 				try{
-					s=new Socket("127.0.0.1",8888);
+					s=new Socket(Data.IP,8888);
 					out=new ObjectOutputStream(s.getOutputStream());
 					out.writeObject("0026");
 					out.writeObject(jc+" "+cnum.getText()+" "+"收费项目");//简称+数量+类型
