@@ -201,7 +201,7 @@ public class Medicine_default extends JFrame {
 					outobj.writeObject("药房端修改药品库存");
 					outobj.flush();
 					
-					outobj.writeObject(medi);
+					outobj.writeObject(wantPatient);
 					outobj.flush();
 					
 					String rec=(String) inobj.readObject();
