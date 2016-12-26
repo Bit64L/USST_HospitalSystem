@@ -57,7 +57,7 @@ public class Office_add extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel label = new JLabel("科室名称");
-		label.setBounds(80, 45, 54, 15);
+		label.setBounds(136, 90, 54, 15);
 		panel.add(label);
 		
 		JLabel label_1 = new JLabel("科室编号");
@@ -70,7 +70,7 @@ public class Office_add extends JFrame {
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(198, 123, 66, 21);
+		textField_1.setBounds(200, 87, 66, 21);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
