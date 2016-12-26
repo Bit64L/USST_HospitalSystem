@@ -91,7 +91,7 @@ public class Charge extends JFrame {
 			rowData.add(c.getUnit());
 			rowData.add(""+c.getAmount());
 			vData.add((Vector<String>) rowData.clone());
-			patient.setAmount(patient.getAmount()+c.getAmount());
+			//patient.setAmount(patient.getAmount()+c.getAmount());
 		}
 		for(Medicine m : patient.getMedicines()){
 			Vector<String> rowData=new Vector<>();
@@ -101,7 +101,7 @@ public class Charge extends JFrame {
 			rowData.add(m.getUnit());
 			rowData.add(""+m.getAmount());
 			vData.add((Vector<String>) rowData.clone());
-			patient.setAmount(patient.getAmount()+m.getAmount());
+			//patient.setAmount(patient.getAmount()+m.getAmount());
 		}
 		DefaultTableModel DFM=new DefaultTableModel(vData,rowName);
 		
