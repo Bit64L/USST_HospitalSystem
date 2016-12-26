@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import data.Data;
 import person.Administrator;
 
 import javax.swing.JScrollPane;
@@ -93,7 +94,7 @@ public class Account_showchange extends JFrame {
 		ObjectOutputStream out=null;
 		String info=null;
 		try {
-			s=new Socket("127.0.0.1",8888);
+			s=new Socket(Data.IP,8888);
 			out=new ObjectOutputStream(s.getOutputStream());
 			out.writeObject("0011");
 			out.flush();

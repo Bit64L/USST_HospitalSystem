@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
+import data.Data;
 import person.Administrator;
 
 import person.Charger;
@@ -33,7 +34,7 @@ public class Login {
 		ObjectOutputStream outObject=null;
 		Object person=null;
 		try {
-			s=new Socket("127.0.0.1",8888);
+			s=new Socket(Data.IP,8888);
 			outObject=new ObjectOutputStream(s.getOutputStream());
 			/*送到服务器*/
 			outObject.writeObject("0001");
