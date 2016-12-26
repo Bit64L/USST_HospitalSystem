@@ -89,4 +89,7 @@ public class Medicine implements Serializable{
         this.price=price;
         this.no=no;
     }
+	public Medicine(String name, int i, String string2, int j) {
+		// TODO Auto-generated constructor stub
+	}
 }

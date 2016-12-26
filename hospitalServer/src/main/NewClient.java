@@ -261,6 +261,13 @@ public class NewClient implements Runnable {
 				ArrayList<Patient> repati=Data.registerPatients;
 				outObject.writeObject(repati);
 				outObject.flush();
+				
+			case "药房端修改药品库存":
+				System.out.println("收到药房端修改药品库存请求");
+				
+				sqlStr="update medicine set deposit=deposit-num"
+				
+				
 			case "预约要科室信息":
 				System.out.println("收到预约端要科室信息请求");
 				sqlStr="select hospitalDepartmentName from [HospitalDepartment]";
@@ -304,6 +311,9 @@ public class NewClient implements Runnable {
                    			outObject.writeObject("预约成功");
                    			outObject.flush();
                    		}
+                   		
+                   		
+             
                   
                    		
                    		

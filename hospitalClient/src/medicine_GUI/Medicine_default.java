@@ -186,36 +186,29 @@ public class Medicine_default extends JFrame {
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Vector<String> rowName=new Vector<>();
-				rowName.add("药品名称");
-				rowName.add("单价");
-				rowName.add("数量");
-				rowName.add("单位");
+				Socket socket=null;
+				ObjectInputStream inobj=null;
+				ObjectOutputStream outobj=null;
 				
-				
-				Vector<Vector<String>> vData=new Vector<>();
-				
-				
-				for(Medicine m :wantPatient .getMedicines()){
-					Vector<String> rowData=new Vector<>();
-					rowData.add(m.getName());
-					rowData.add(""+m.getPrice());
-					rowData.add(""+m.getNumber());
-					rowData.add(m.getUnit());
+				try {
+					socket=new Socket("127.0.0.1",8889);
 					
-					vData.add((Vector<String>) rowData.clone());
+					outobj=new ObjectOutputStream(socket.getOutputStream());
+					inobj=new ObjectInputStream(socket.getInputStream());
+					outobj.writeObject("药房端修改药品库存");
+					outobj.flush();
+					
+					
+					
+				} catch (UnknownHostException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 				
-				//应该不要检查项目
-				for(ChargeItem c : wantPatient.getChargeItems()){
-					Vector<String> rowData=new Vector<>();
-					rowData.add(c.getName());
-					rowData.add(""+c.getPrice());
-					rowData.add(""+c.getNumber());
-					rowData.add(c.getUnit());
-					vData.add((Vector<String>) rowData.clone());
-					
-				}
+				
 				
 				
 			}
