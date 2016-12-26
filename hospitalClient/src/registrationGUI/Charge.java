@@ -136,7 +136,7 @@ public class Charge extends JFrame {
 
 			}
 		});
-		button.setBounds(150, 218, 105, 23);
+		button.setBounds(150, 218, 150, 23);
 		panel.add(button);
 	}
 }
