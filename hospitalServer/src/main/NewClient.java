@@ -666,7 +666,7 @@ public class NewClient implements Runnable {
 		num += 1;
 		String sql = "update Doctor set cureMoney=" + "'" + money + "'," + "cureNum=" + "'" + num + "'"
 				+ "from doctor where doctorID=" + "'" + doctor.getUserName() + "'";
-		String sqlAddHospitalDepartmentMoney="update HospitalDepartment set money=money+"+money+" where hospitalDepartmentName='"+doctor.getHospitalDepartment().getName()+""'";
+		String sqlAddHospitalDepartmentMoney="update HospitalDepartment set money=money+"+money+" where hospitalDepartmentName='"+doctor.getHospitalDepartment().getName()+"'";
 		db.insert(sql);
 		db.update(sqlAddHospitalDepartmentMoney);
 		db.closeAll();
