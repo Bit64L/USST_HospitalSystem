@@ -45,6 +45,7 @@ public class Data {
         patientSample.getChargeItems().add(new ChargeItem("12345",12,"盒",5));
         patientSample.getChargeItems().add(new ChargeItem("22222",15,"盒",5));
         patientSample.setDoctor(new Doctor("2004","123","马意识",new HospitalDepartment("外科","8")));
+        patientSample.setChargestate(true);
         //预约信息
         orderInfors.add(new OrderInformation(patientSample,new HospitalDepartment("内科","12"),new Doctor("2004","123","马意识",new HospitalDepartment("外科","8")),"12","12","14"));
         //预约病人
