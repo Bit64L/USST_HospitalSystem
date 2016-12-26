@@ -60,19 +60,11 @@ public class Office_add extends JFrame {
 		label.setBounds(136, 90, 54, 15);
 		panel.add(label);
 		
-		JLabel label_1 = new JLabel("科室编号");
-		label_1.setBounds(80, 126, 54, 15);
-		//panel.add(label_1);
-		
 		textField = new JTextField();
-		textField.setBounds(198, 42, 66, 21);
-		//panel.add(textField);
+		textField.setBounds(202, 86, 66, 21);
+		panel.add(textField);
 		textField.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(200, 87, 66, 21);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+
 		
 		JButton button = new JButton("确认添加");
 		button.addActionListener(new ActionListener() {
@@ -84,7 +76,7 @@ public class Office_add extends JFrame {
 					s=new Socket(Data.IP,8888);
 					out=new ObjectOutputStream(s.getOutputStream());
 					out.writeObject("0013");
-					out.writeObject(textField.getText()+" "+textField_1.getText());
+					out.writeObject(textField.getText());
 					out.writeObject(admin);
 					out.flush();
 					s.close();

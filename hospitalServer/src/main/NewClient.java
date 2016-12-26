@@ -73,9 +73,9 @@ public class NewClient implements Runnable {
 				break;
 			case "0013":// 添加科室信息
 				String officeInfo = (String) inObject.readObject();
-				String[] officeInfos = officeInfo.split("\\s");
+				//String[] officeInfos = officeInfo.split("\\s");
 				admin = (Administrator) inObject.readObject();
-				admin.addHospitalDepartment(officeInfos[0], officeInfos[1]);
+				admin.addHospitalDepartment(officeInfo);
 				System.out.println("添加成功");
 				break;
 			case "0014":// 修改账户信息

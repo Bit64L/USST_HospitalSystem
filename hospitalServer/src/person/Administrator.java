@@ -94,7 +94,7 @@ public class Administrator implements Serializable{
 	}
 
 	//添加科室
-	public void addHospitalDepartment(String name,String no) throws IOException{
+	public void addHospitalDepartment(String name) throws IOException{
 		String sqlStr="insert into [HospitalDepartment](hospitalDepartmentName) values('"+name+"')";
 		DB db=new DB();
 		boolean result=db.insert(sqlStr);
