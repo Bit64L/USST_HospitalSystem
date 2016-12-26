@@ -157,7 +157,7 @@ public class Doctor_Result extends JFrame {
 			amount += a.getAmount();
 		}
 		for (Medicine a : doctor.getPatients().get(0).getMedicines()) {
-			textArea.append(a.getName() + " " + a.getNumber() + "\n");
+			textArea.append(a.getName() + " "+ "x" + a.getNumber() + "\n");
 			amount += a.getAmount();
 		}
 		textField.setText(String.valueOf(amount));
