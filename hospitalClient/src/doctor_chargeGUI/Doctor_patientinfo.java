@@ -71,9 +71,9 @@ public class Doctor_patientinfo extends JFrame {
 		panel.add(button_1);
 	}
 	public void showInfo(){
-		textArea.append(doctor.getPatients().get(0).getName()+" "
-				+doctor.getPatients().get(0).getId()+" "
-				+doctor.getPatients().get(0).getSex()+" "+doctor.getPatients().get(0).getPhoneNumber()
+		textArea.append(doctor.getPatients().get(0).getName()+"\t"
+				+doctor.getPatients().get(0).getId()+"\t"
+				+doctor.getPatients().get(0).getSex()+"\t"+doctor.getPatients().get(0).getPhoneNumber()
 			);
 	}	
 	// 更新医生对象

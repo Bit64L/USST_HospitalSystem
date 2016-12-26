@@ -85,7 +85,7 @@ public class Doctor_default extends JFrame {
 	//显示病人队列
 	public void showPatients(){
 		for(Patient a:doctor.getPatients()){
-			textArea.append(a.getName()+" "+a.getId()+'\n');
+			textArea.append(a.getName()+"\t"+a.getId()+'\n');
 		}
 	}
 	//更新医生对象
