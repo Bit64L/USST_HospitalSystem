@@ -581,13 +581,13 @@ public class NewClient implements Runnable {
 				Medicine medicine=new Medicine(rs.getString("name"),rs.getString("shortName"),rs.getString("unit"),rs.getDouble("price"),rs.getString("medicineID"));
 				medicine.setNumber(Integer.parseInt(num));//设置药品数量
 				doctor.getPatients().get(0).setAmount(doctor.getPatients().get(0).getAmount()+medicine.getAmount());//修改病人应支付金额
-				doctor.getPatients().get(0).getMedicines().add(medicine);//添加病人的收费项目
+				doctor.getPatients().get(0).getMedicines().add(medicine);//添加病人的药品
 				String patientId=doctor.getPatients().get(0).getId();
-				for(Patient p:Data.registerPatients){
+				/*for(Patient p:Data.registerPatients){
 					if(p.getId().equals(patientId)){
 						p.getMedicines().add(medicine);
 					}
-				}				
+				}	*/			
 				s=medicine.getName();//返回名称
 				
 			} else {
@@ -599,11 +599,11 @@ public class NewClient implements Runnable {
 				doctor.getPatients().get(0).setAmount(doctor.getPatients().get(0).getAmount()+chargeItem.getAmount());//修改病人应支付金额
 				doctor.getPatients().get(0).getChargeItems().add(chargeItem);//添加病人的收费项目
 				String patientId=doctor.getPatients().get(0).getId();
-				for(Patient p:Data.registerPatients){
+				/*for(Patient p:Data.registerPatients){
 					if(p.getId().equals(patientId)){
 						p.getChargeItems().add(chargeItem);
 					}
-				}		
+				}	*/	
 				s=chargeItem.getName();
 			}
 			
@@ -632,6 +632,27 @@ public class NewClient implements Runnable {
 				break;
 			}
 		}
+		//写回医生的cureNum和money
+		
+		DB db = new DB();
+		float money=0;
+		int num=0;
+		ResultSet rs=null;
+		try {
+			String sql="select * from doctor where doctorID="+"'"+doctor.getUserName()+"'";
+			rs=db.select(sql);
+			rs.next();
+			money=Float.parseFloat(rs.getString("cureMoney"));
+			num=Integer.parseInt(rs.getString("cureNum"));
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		money+=doctor.getPatients().get(0).getAmount();
+		num+=1;
+		String sql = "update Doctor set cureMoney="+"'"+money+"',"+"cureNum="+"'"+num+"'"+"from doctor where doctorID="+"'"+doctor.getUserName()+"'";
+		db.insert(sql);
+		db.closeAll();
+		//未开处方病人转为已开处方病人
 		Patient temp=doctor.getPatients().get(0);
 		doctor.getPatients().remove(0);
 		doctor.getPatientsFinish().add(temp);

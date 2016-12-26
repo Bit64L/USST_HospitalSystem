@@ -42,9 +42,9 @@ public class Data {
         //病人例子
         patientSample=new Patient("张三三","20","男","12345678900","123456789000000000");
 //        patientSample.getMedicines().add(new Medicine("999感冒灵",30,"盒",5));
-        patientSample.getChargeItems().add(new ChargeItem("阿莫西林片",20,"盒",5));
-        patientSample.getChargeItems().add(new ChargeItem("12345",12,"盒",5));
-        patientSample.getChargeItems().add(new ChargeItem("22222",15,"盒",5));
+       // patientSample.getChargeItems().add(new ChargeItem("阿莫西林片",20,"盒",5));
+       // patientSample.getChargeItems().add(new ChargeItem("12345",12,"盒",5));
+        //patientSample.getChargeItems().add(new ChargeItem("22222",15,"盒",5));
         patientSample.setDoctor(new Doctor("2004","123","马意识",new HospitalDepartment("外科","8")));
         patientSample.setChargestate(true);
         //预约信息

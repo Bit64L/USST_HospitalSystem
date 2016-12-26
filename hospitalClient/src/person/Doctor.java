@@ -13,8 +13,8 @@ public class Doctor implements Serializable{
 	private ArrayList<Patient> patients=new ArrayList<>();//未开处方的病人
 	private ArrayList<Patient> patientsFinish=new ArrayList<>();//已经开处方的病人
 	private HospitalDepartment hospitalDepartment;
-	private int cureNum;//医生就诊数量
-	private double money;//医生总金额
+	private int cureNum=0;//医生就诊数量
+	private double money=0;//医生总金额
 	private String userName;
 	private String password;
 	private String name;

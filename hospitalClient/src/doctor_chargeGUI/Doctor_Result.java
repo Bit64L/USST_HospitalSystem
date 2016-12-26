@@ -31,11 +31,13 @@ public class Doctor_Result extends JFrame {
 	private Doctor doctor;
 	private JTextField textField;
 	private JTextArea textArea;
-	//private JTable table;
+	// private JTable table;
 	private JTable table;
+
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("unchecked")
 	public Doctor_Result(Doctor doctor) {
 		updateDoctor(doctor);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -49,71 +51,65 @@ public class Doctor_Result extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
-		JScrollPane scrollPane = new JScrollPane();
+		/*JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 10, 404, 142);
-		panel.add(scrollPane);
-		
-		//table_1 = new JTable();
-	
-		
-		Vector<String> rowName=new Vector<>();
+		panel.add(scrollPane);*/
+
+		// table_1 = new JTable();
+
+		/*Vector<String> rowName = new Vector<>();
 		rowName.add("收费项目");
 		rowName.add("单价");
 		rowName.add("数量");
 		rowName.add("单位");
 		rowName.add("总价");
-		Vector<Vector<String>> vData=new Vector<>();
-		for(ChargeItem c : doctor.getPatients().get(0).getChargeItems()){
-			Vector<String> rowData=new Vector<>();
+		Vector<Vector<String>> vData = new Vector<>();
+		for (ChargeItem c : doctor.getPatients().get(0).getChargeItems()) {
+			Vector<String> rowData = new Vector<>();
 			rowData.add(c.getName());
-			rowData.add(""+c.getPrice());
-			rowData.add(""+c.getNumber());
+			rowData.add("" + c.getPrice());
+			rowData.add("" + c.getNumber());
 			rowData.add(c.getUnit());
-			rowData.add(""+c.getAmount());
+			rowData.add("" + c.getAmount());
 			vData.add((Vector<String>) rowData.clone());
-			doctor.getPatients().get(0).setAmount(doctor.getPatients().get(0).getAmount()+c.getAmount());
 		}
-		for(Medicine m : doctor.getPatients().get(0).getMedicines()){
-			Vector<String> rowData=new Vector<>();
+		for (Medicine m : doctor.getPatients().get(0).getMedicines()) {
+			Vector<String> rowData = new Vector<>();
 			rowData.add(m.getName());
-			rowData.add(""+m.getPrice());
-			rowData.add(""+m.getNumber());
+			rowData.add("" + m.getPrice());
+			rowData.add("" + m.getNumber());
 			rowData.add(m.getUnit());
-			rowData.add(""+m.getAmount());
+			rowData.add("" + m.getAmount());
 			vData.add((Vector<String>) rowData.clone());
-			doctor.getPatients().get(0).setAmount(doctor.getPatients().get(0).getAmount()+m.getAmount());
 		}
-		DefaultTableModel DFM=new DefaultTableModel(vData,rowName);
-		
-		table = new JTable(DFM);
-		scrollPane.setViewportView(table);
-				textArea = new JTextArea();
-				textArea.setBounds(0, 0, 402, 140);
-				panel.add(textArea);
-				textArea.setVisible(false);
-		
-		
-		
-		
+		DefaultTableModel DFM = new DefaultTableModel(vData, rowName);
+
+		table = new JTable(DFM);*/
+		//scrollPane.setViewportView(table);
+		textArea = new JTextArea();
+		textArea.setBounds(0, 0, 402, 140);
+		panel.add(textArea);
+		textArea.setVisible(true);
+
 		JLabel label = new JLabel("总金额");
 		label.setBounds(10, 180, 54, 15);
 		panel.add(label);
-		
+
 		JButton button = new JButton("确定");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				Socket s=null;
+				Socket s = null;
 				ObjectInputStream in = null;
-				ObjectOutputStream out =null;
-				try{
-					s=new Socket("127.0.0.1",8888);
-					out=new ObjectOutputStream(s.getOutputStream());
+				ObjectOutputStream out = null;
+				try {
+					s = new Socket("127.0.0.1", 8888);
+					out = new ObjectOutputStream(s.getOutputStream());
 					out.writeObject("0028");
 					out.writeObject(doctor);
 					out.flush();
-				}catch(Exception ee){
-					
+				} catch (Exception ee) {
+
 				}
 			}
 		});
@@ -125,7 +121,7 @@ public class Doctor_Result extends JFrame {
 		textField.setBounds(80, 175, 54, 24);
 		panel.add(textField);
 		textField.setColumns(10);
-		//显示信息
+		// 显示信息
 		showInfo();
 	}
 
@@ -151,16 +147,17 @@ public class Doctor_Result extends JFrame {
 
 		}
 	}
-	//显示药品和收费项目并显示总金额
-	public void showInfo(){
-		double amount=0;
-		for(ChargeItem a:doctor.getPatients().get(0).getChargeItems()){
-			textArea.append(a.getName()+" "+"x"+a.getNumber()+"\n");
-			amount+=a.getAmount();
+
+	// 显示药品和收费项目并显示总金额
+	public void showInfo() {
+		double amount = 0;
+		for (ChargeItem a : doctor.getPatients().get(0).getChargeItems()) {
+			textArea.append(a.getName() + " " + "x" + a.getNumber() + "\n");
+			amount += a.getAmount();
 		}
-		for(Medicine a:doctor.getPatients().get(0).getMedicines()){
-			textArea.append(a.getName()+" "+a.getNumber()+"\n");
-			amount+=a.getAmount();
+		for (Medicine a : doctor.getPatients().get(0).getMedicines()) {
+			textArea.append(a.getName() + " " + a.getNumber() + "\n");
+			amount += a.getAmount();
 		}
 		textField.setText(String.valueOf(amount));
 	}
