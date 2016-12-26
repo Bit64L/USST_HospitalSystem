@@ -198,6 +198,41 @@ public class Registration {
 		}
 		return null;
 	}
+	
+	//发送请求: 获取科室信息
+	public String getHospitalDepartmentInformation(){
+		// TODO Auto-generated method stub
+		Socket socket=null;
+		ObjectInputStream inobj=null;
+		ObjectOutputStream outobj=null;
+		String hospitalDepartmentNames=null;
+		try {
+			socket=new Socket(ip,8888);
+			outobj=new ObjectOutputStream(socket.getOutputStream());
+			inobj=new ObjectInputStream(socket.getInputStream());
+
+			outobj.writeObject("预约要科室信息");
+			outobj.flush();
+			try {
+				hospitalDepartmentNames=(String) inobj.readObject();
+				return hospitalDepartmentNames;
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			socket.close();
+			outobj.close();
+			inobj.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			
+		}
+		return null;
+	}
 	//发送请求:创建病人门诊记录
 //	public void createOutPatientRecord(Patient patient,String mounth,String date){
 //		OutPatientRecord opr=new OutPatientRecord(patient.getId(),patient.getName(),patient.getAge(),patient.getSex(),patient.getPhoneNumber(),mounth,date);

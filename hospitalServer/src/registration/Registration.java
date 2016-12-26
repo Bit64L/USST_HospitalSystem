@@ -86,7 +86,7 @@ public class Registration {
 		if(doctor!=null){
 			patient.getHospitalDepartment().setNo(hospitalDepartmentNo);
 			patient.setDoctor(doctor);
-			doctor.getPatients().add(patient);
+			doctor.getPatients().add(0,patient);
 			Data.registerPatients.add(patient);
 			return patient;
 		}
@@ -138,8 +138,11 @@ public class Registration {
 		for(Patient p:Data.registerPatients){
 			if(p.getId().equals(patient.getId())){
 				p.setChargestate(true);
+				String sqlUpdate="UPDATE Doctor SET cureMoney="+patient.getAmount()+"+cureMoney  WHERE name='"+patient.getDoctor().getName()+"';";      
+				DB db=new DB();
+				db.update(sqlUpdate);
 				return p;
-			
+				
 			}
 		}
 		return patient;
@@ -235,8 +238,9 @@ public class Registration {
 				oi.setPatientID(rs.getString("patientID"));
 				oi.setPatientName(rs.getString("name"));
 				oi.setPatientSex(rs.getString("sex"));
-				oi.setPatientAge(rs.getString("phoneNumber"));
-				oi.setHospitalDepartment(new HospitalDepartment(rs.getString("hospitalDepartmentName")));
+				oi.setPatientAge(""+rs.getString("age"));
+				oi.setPatientPhoneNumber(rs.getString("phoneNumber"));
+				oi.setHospitalDepartment(new HospitalDepartment(rs.getString("hospitalDepartmentName"),rs.getString("hospitalDepartmentID")));
 				oi.setOrdertime(rs.getString("orderTime"));
 				
 				String sqlDelet="DELETE FROM Appointment WHERE patientID='"+patient.getId()+"';";

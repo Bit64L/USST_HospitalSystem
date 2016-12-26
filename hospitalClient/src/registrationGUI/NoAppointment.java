@@ -14,6 +14,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
+import javax.swing.ButtonGroup;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 
@@ -33,9 +34,12 @@ public class NoAppointment extends JFrame{
 	private JTextField patientPhoneNumber;
 	private JTextField patientAge;
 	private JTextField patientName;
-	private JTextField patientSex;
-	private JTextField hospitalDepartmentName;
-
+	private JRadioButton rdbtnNewRadioButton;
+	private JRadioButton rdbtnNewRadioButton_1;
+	private ButtonGroup btnGroup;
+	private JComboBox comboBox;
+	private String[] hdNames;
+	private String hospitalDepartmentNames;
 	/**
 	 * Launch the application.
 	 */
@@ -98,12 +102,20 @@ public class NoAppointment extends JFrame{
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Patient patient=new Patient();
+				
+				String sex="";
+				if(rdbtnNewRadioButton.isSelected()){
+					sex="男";
+				}else if(rdbtnNewRadioButton_1.isSelected()){
+					sex="女";
+				}
+				
 				patient.setId(patinetId);
 				patient.setName(patientName.getText());
 				patient.setAge(patientAge.getText());
-				patient.setSex(patientSex.getText());
+				patient.setSex(sex);
 				patient.setPhoneNumber(patientPhoneNumber.getText().toString());
-				patient.setHospitalDepartment(new HospitalDepartment(hospitalDepartmentName.getText().toString()));
+				patient.setHospitalDepartment(new HospitalDepartment(comboBox.getSelectedItem().toString()));
 				Registration reg=new Registration();
 				Patient inPatient=reg.sendAddDoctorNoAppointmentdPatient(patient);
 				if(inPatient!=null){
@@ -142,16 +154,27 @@ public class NoAppointment extends JFrame{
 		label_5.setBounds(135, 73, 54, 15);
 		panel.add(label_5);
 		
-		patientSex = new JTextField();
-		patientSex.setText("sex");
-		patientSex.setBounds(200, 70, 140, 21);
-		panel.add(patientSex);
-		patientSex.setColumns(10);
+		rdbtnNewRadioButton = new JRadioButton("男",true);
+		rdbtnNewRadioButton.setBounds(200, 70, 57, 23);
+		panel.add(rdbtnNewRadioButton);
 		
-		hospitalDepartmentName = new JTextField();
-		hospitalDepartmentName.setText("hospitalDepartmentName");
-		hospitalDepartmentName.setBounds(200, 145, 140, 21);
-		panel.add(hospitalDepartmentName);
-		hospitalDepartmentName.setColumns(10);
+		rdbtnNewRadioButton_1 = new JRadioButton("女");
+		rdbtnNewRadioButton_1.setBounds(280, 70, 48, 23);
+		panel.add(rdbtnNewRadioButton_1);
+		
+		btnGroup=new ButtonGroup();
+		btnGroup.add(rdbtnNewRadioButton);
+		btnGroup.add(rdbtnNewRadioButton_1);
+		
+		Registration reg=new Registration();
+		hospitalDepartmentNames=reg.getHospitalDepartmentInformation();
+		hdNames=hospitalDepartmentNames.split(":");
+		
+		
+		comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(hdNames));
+		comboBox.setSelectedIndex(0);
+		comboBox.setBounds(199, 145, 68, 21);
+		panel.add(comboBox);
 	}
 }
