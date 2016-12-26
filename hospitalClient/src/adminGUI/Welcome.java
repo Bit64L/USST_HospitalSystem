@@ -15,8 +15,10 @@ import javax.swing.JTextField;
 
 import doctor_chargeGUI.Doctor_default;
 import function.Login;
+import medicine_GUI.Medicine_default;
 import person.*
 ;
+import precidentGUI.Precident_default;
 import registrationGUI.Register;
 
 public class Welcome extends JFrame{
@@ -100,9 +102,14 @@ public class Welcome extends JFrame{
 			        	re.setVisible(true);
 			        	
 			        }else if(person instanceof Druggist){//药师
-			            
+			        	dispose();
+						Druggist  druggist = (Druggist)person;//获得服务器传送来的管理员对象
+						JFrame default_=new Medicine_default();
+						default_.setVisible(true);
 			        }else if(person instanceof President){//院长
-			            
+			        	dispose();
+						JFrame default_=new Precident_default();
+						default_.setVisible(true);
 			        }else{
 			            
 			        }

@@ -14,6 +14,8 @@ import person.Administrator;
 import person.Charger;
 
 import person.Doctor;
+import person.Druggist;
+import person.President;
 
 
 public class Login {
@@ -47,12 +49,18 @@ public class Login {
 					outObject.flush();
 					break;
 				case "药师":
+					person=new Druggist(userName,password);
+					outObject.writeObject(person);
+					outObject.flush();
 					break;
 				case "收费人员":
 					person=new Charger(userName,password);
 					outObject.writeObject(person);
 					break;
 				case "院长":
+					person=new President(userName,password);
+					outObject.writeObject(person);
+					outObject.flush();
 					break;
 			}
 			outObject.flush();

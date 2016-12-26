@@ -407,10 +407,10 @@ public class NewClient implements Runnable {
 		} else if (person instanceof Druggist) {
 			Druggist druggist = (Druggist) person;
 			sqlStr = "select * from [Druggist] where druggistID=" + druggist.getUserName() + " and password='"
-					+ druggist.getPassword();
+					+ druggist.getPassword()+"'";
 			rs = db.select(sqlStr);
 			if (rs.next()) {
-				druggist.setUserName("" + rs.getInt("chargerID"));
+				druggist.setUserName("" + rs.getInt("druggistID"));
 				druggist.setPassword(rs.getString("password"));
 				druggist.setName(rs.getString("name"));
 				return druggist;
@@ -420,10 +420,10 @@ public class NewClient implements Runnable {
 		} else if (person instanceof President) {
 			President president = (President) person;
 			sqlStr = "select * from [President] where presidentID=" + president.getUserName() + " and password='"
-					+ president.getPassword();
+					+ president.getPassword()+"'";
 			rs = db.select(sqlStr);
 			if (rs.next()) {
-				president.setUserName("" + rs.getInt("chargerID"));
+				president.setUserName("" + rs.getInt("presidentID"));
 				president.setPassword(rs.getString("password"));
 				president.setName(rs.getString("name"));
 				return president;
