@@ -48,8 +48,6 @@ public class Doctor_search extends JFrame {
 		setContentPane(contentPane);
 		
 		
-		DB db = new DB();
-		//ResultSet rs = db.select("select * from Doctor");
 		President president=new President();// new 
 		
 		JPanel panel = new JPanel();
@@ -101,7 +99,7 @@ public class Doctor_search extends JFrame {
 				///////需要关掉界面
 			}
 		});
-		button.setBounds(306, 186, 93, 23);
+		button.setBounds(321, 186, 93, 23);
 		panel.add(button);
 		
 		JButton button_1 = new JButton("就诊数量生成报表");
@@ -118,7 +116,7 @@ public class Doctor_search extends JFrame {
 				DoctornumPie.main(rs);
 			}
 		});
-		button_1.setBounds(10, 186, 136, 23);
+		button_1.setBounds(10, 186, 147, 23);
 		panel.add(button_1);
 		
 		JButton button_2 = new JButton("就诊金额生成报表");
@@ -135,7 +133,7 @@ public class Doctor_search extends JFrame {
 				Doctormoney.main(rs);
 			}
 		});
-		button_2.setBounds(156, 186, 140, 23);
+		button_2.setBounds(167, 186, 140, 23);
 		panel.add(button_2);
 	}
 }

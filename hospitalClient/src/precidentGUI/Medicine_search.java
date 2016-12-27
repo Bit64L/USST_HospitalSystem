@@ -47,10 +47,7 @@ public class Medicine_search extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
-		
-		//DB db = new DB();
-		//ResultSet rs = db.select("select *from Medicine");
+
 		President president=new President();// new 
 		
 		JPanel panel = new JPanel();
