@@ -23,18 +23,29 @@ public class RollScreen extends JFrame{
 	Patient p = new Patient();
 	Data data = new Data();
 	
+
 	RollScreen(){
-		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-		MPanel mp =new MPanel(null);
 		textField = new JTextField();
-		textField.setBounds(418, 240, 6, 21);
+		textField.setBounds(418, 240,500, 21);
 		panel.add(textField);
 		textField.setColumns(10);
 		
+		JButton btn = new JButton("New button");
+		btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				String[] args = null;
+				RollScreen.main(args);
+			}
+		});
+		btn.setBounds(413, 239, 200, 23);
+		panel.add(btn);
 		
+		//while(true)
+		{
 		//**通讯**//
 		Socket socket=null;
 		ObjectInputStream inobj=null;
@@ -63,8 +74,10 @@ public class RollScreen extends JFrame{
 					System.out.println(repatient.get(i).getName());
 					arr1[i]=repatient.get(i).getName();
 					arr2[i]=repatient.get(i).getHospitalDepartment().getName();
+					System.out.println(arr1[i]+arr2[i]);
 					textField.setText(textField.getText()+"        第"+(i+1)+"号病人姓名: "+arr1[i]+"    就诊科室    "+arr2[i]+"  ");
 					getContentPane().add(new MPanel(textField.getText()));
+					//mp.setMessage(textField.getText());
 				}
 			}
 			else {
@@ -78,13 +91,13 @@ public class RollScreen extends JFrame{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();}
 		}
-
+	}
 	public static void main(String[] args) {
 		// TODO 自动生成的方法存根
-		JFrame frame = new RollScreen();
-		JTextField frame1 = new JTextField();
+		
+		RollScreen frame = new RollScreen();
 		frame.setTitle("RollScreen");
-		frame.setSize(260, 100);
+		frame.setSize(1366, 100);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
@@ -99,13 +112,13 @@ static class MPanel extends JPanel{
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	private int xZuoBiao = 0;
+	private int xZuoBiao = -1500;
 	private int yZuoBiao = 30;
 	
 	
 	public MPanel(String message){
 		this.message=message;
-		Timer timer = new Timer(500,new TimerListener());
+		Timer timer = new Timer(250,new TimerListener());
 	    timer.start(); 
 	}
 	
@@ -113,23 +126,21 @@ protected void paintComponent(Graphics g){
 	super.paintComponent(g);
 	g.setColor(Color.MAGENTA);
 	if(xZuoBiao>getWidth()){
-		xZuoBiao=-20;
+		xZuoBiao=-1500;
+		String[] args = null;
+		RollScreen.main(args);
+		
 	}
-	xZuoBiao+=10;
+	xZuoBiao+=50;
 	g.drawString(message, xZuoBiao, yZuoBiao);
-	
-	String[] args = null;
-	RollScreen.main(args);
 }
 
 class TimerListener implements ActionListener{
 	public void actionPerformed(ActionEvent e){
 		repaint();
-		Timer t =null;
-		t = new Timer(500,this);
-		t.start();
 	}
 }
 
 }
 }
+
