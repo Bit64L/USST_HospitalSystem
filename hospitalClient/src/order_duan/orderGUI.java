@@ -125,22 +125,22 @@ public class orderGUI {
 		panel.setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(206, 10, 93, 21);
+		textField.setBounds(206, 10, 110, 21);
 		panel.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(206, 41, 93, 21);
+		textField_1.setBounds(206, 41, 110, 21);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
 		textField_3 = new JTextField();
-		textField_3.setBounds(206, 103, 93, 21);
+		textField_3.setBounds(206, 103, 110, 21);
 		panel.add(textField_3);
 		textField_3.setColumns(10);
 		
 		textField_4 = new JTextField();
-		textField_4.setBounds(206, 134, 93, 21);
+		textField_4.setBounds(206, 134, 110, 21);
 		panel.add(textField_4);
 		textField_4.setColumns(10);
 		
@@ -190,7 +190,7 @@ public class orderGUI {
 		comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(hdNames));
 		comboBox.setSelectedIndex(0);
-		comboBox.setBounds(216, 159, 69, 21);
+		comboBox.setBounds(206, 160, 100, 21);
 		panel.add(comboBox);
 		
 		JLabel label_4 = new JLabel("选择科室");
@@ -200,7 +200,7 @@ public class orderGUI {
 		comboBox_1 = new JComboBox();
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"}));
 		comboBox_1.setSelectedIndex(0);
-		comboBox_1.setBounds(216, 190, 69, 21);
+		comboBox_1.setBounds(206, 193, 100, 21);
 		panel.add(comboBox_1);
 		
 		JLabel label_5 = new JLabel("预约明天");
