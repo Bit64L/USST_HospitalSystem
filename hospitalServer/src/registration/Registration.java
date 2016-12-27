@@ -91,7 +91,7 @@ public class Registration {
 			patient.setDoctor(doctor);
 			doctor.getPatients().add(0,patient);
 			Data.registerPatients.add(patient);
-			String sqlAdd="update HospitalDepartment set registerNum=registerNum+1 where hospitalDepartmentName="+hospitalDepartmentNo+";";
+			String sqlAdd="update HospitalDepartment set registerNum=registerNum+1 where hospitalDepartmentID="+hospitalDepartmentNo+";";
 			db.update(sqlAdd);
 			return patient;
 		}
