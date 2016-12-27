@@ -17,6 +17,11 @@ public class President implements Serializable{
 		this.name=name;
 		// TODO Auto-generated constructor stub
 	}
+	public President(String userName, String password) {
+		this.userName=userName;
+		this.password=password;
+		// TODO Auto-generated constructor stub
+	}
 
 	public String getUserName() {
 		return userName;

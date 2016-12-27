@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import data.Data;
 import person.Doctor;
 import staff.ChargeItem;
 import staff.Medicine;
@@ -87,7 +88,7 @@ public class Doctor_Result extends JFrame {
 		table = new JTable(DFM);*/
 		//scrollPane.setViewportView(table);
 		textArea = new JTextArea();
-		textArea.setBounds(0, 0, 402, 140);
+		textArea.setBounds(10, 10, 402, 140);
 		panel.add(textArea);
 		textArea.setVisible(true);
 
@@ -103,7 +104,7 @@ public class Doctor_Result extends JFrame {
 				ObjectInputStream in = null;
 				ObjectOutputStream out = null;
 				try {
-					s = new Socket("127.0.0.1", 8888);
+					s = new Socket(Data.IP, 8888);
 					out = new ObjectOutputStream(s.getOutputStream());
 					out.writeObject("0028");
 					out.writeObject(doctor);
@@ -135,7 +136,7 @@ public class Doctor_Result extends JFrame {
 		ObjectInputStream in = null;
 		ObjectOutputStream out = null;
 		try {
-			s = new Socket("127.0.0.1", 8888);
+			s = new Socket(Data.IP, 8888);
 			out = new ObjectOutputStream(s.getOutputStream());
 			out.writeObject("0027");
 			out.writeObject(doctor);
@@ -156,7 +157,7 @@ public class Doctor_Result extends JFrame {
 			amount += a.getAmount();
 		}
 		for (Medicine a : doctor.getPatients().get(0).getMedicines()) {
-			textArea.append(a.getName() + " " + a.getNumber() + "\n");
+			textArea.append(a.getName() + " "+ "x" + a.getNumber() + "\n");
 			amount += a.getAmount();
 		}
 		textField.setText(String.valueOf(amount));

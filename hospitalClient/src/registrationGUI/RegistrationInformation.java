@@ -53,7 +53,7 @@ public class RegistrationInformation extends JFrame {
 		lblNewLabel.setBounds(175, 5, 54, 15);
 		panel.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("姓名:");
+		JLabel lblNewLabel_1 = new JLabel("姓名");
 		lblNewLabel_1.setBounds(125, 20, 54, 15);
 		panel.add(lblNewLabel_1);
 		
@@ -65,15 +65,15 @@ public class RegistrationInformation extends JFrame {
 		lblNewLabel_3.setBounds(125, 60, 54, 15);
 		panel.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("ID:");
+		JLabel lblNewLabel_4 = new JLabel("ID");
 		lblNewLabel_4.setBounds(125, 80, 54, 15);
 		panel.add(lblNewLabel_4);
 		
-		JLabel lblNewLabel_5 = new JLabel("联系电话:");
-		lblNewLabel_5.setBounds(125, 100, 54, 15);
+		JLabel lblNewLabel_5 = new JLabel("联系电话");
+		lblNewLabel_5.setBounds(125, 100, 60, 15);
 		panel.add(lblNewLabel_5);
 		
-		JLabel lblNewLabel_6 = new JLabel("科室:");
+		JLabel lblNewLabel_6 = new JLabel("科室");
 		lblNewLabel_6.setBounds(125, 120, 54, 15);
 		panel.add(lblNewLabel_6);
 		
@@ -118,7 +118,7 @@ public class RegistrationInformation extends JFrame {
 		button.setBounds(153, 218, 93, 23);
 		panel.add(button);
 		
-		JLabel lblNewLabel_15 = new JLabel("挂号费:");
+		JLabel lblNewLabel_15 = new JLabel("挂号费");
 		lblNewLabel_15.setBounds(125, 180, 54, 15);
 		panel.add(lblNewLabel_15);
 		
@@ -127,11 +127,11 @@ public class RegistrationInformation extends JFrame {
 		panel.add(lblNewLabel_16);
 		
 		JLabel lblNewLabel_17 = new JLabel("预约时间");
-		lblNewLabel_17.setBounds(125, 160, 54, 15);
+		lblNewLabel_17.setBounds(125, 160, 60, 15);
 		panel.add(lblNewLabel_17);
 		
 		JLabel lblNewLabel_18 = new JLabel(patient.getOrderTime());
-		lblNewLabel_18.setBounds(200, 160, 100, 15);
+		lblNewLabel_18.setBounds(200, 160, 150, 15);
 		panel.add(lblNewLabel_18);
 	}
 }

@@ -10,6 +10,7 @@ import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.JTextComponent;
 
+import data.Data;
 import person.Doctor;
 import person.Patient;
 
@@ -84,7 +85,7 @@ public class Doctor_default extends JFrame {
 	//显示病人队列
 	public void showPatients(){
 		for(Patient a:doctor.getPatients()){
-			textArea.append(a.getName()+" "+a.getId()+'\n');
+			textArea.append(a.getName()+"\t"+a.getId()+'\n');
 		}
 	}
 	//更新医生对象
@@ -93,7 +94,7 @@ public class Doctor_default extends JFrame {
 		ObjectInputStream in = null;
 		ObjectOutputStream out =null;
 		try{
-			s=new Socket("127.0.0.1",8888);
+			s=new Socket(Data.IP,8888);
 			out=new ObjectOutputStream(s.getOutputStream());
 			out.writeObject("0027");
 			out.writeObject(doctor);

@@ -58,6 +58,9 @@ public class Registration {
 			patient.setDoctor(doctor);
 			doctor.getPatients().add(patient);
 			Data.registerPatients.add(patient);
+			String sqlAdd="update HospitalDepartment set registerNum=registerNum+1 where hospitalDepartmentID="+hospitalDepartmentNo+";";
+			db.update(sqlAdd);
+			
 			return patient;
 		}
 		else 
@@ -88,6 +91,8 @@ public class Registration {
 			patient.setDoctor(doctor);
 			doctor.getPatients().add(0,patient);
 			Data.registerPatients.add(patient);
+			String sqlAdd="update HospitalDepartment set registerNum=registerNum+1 where hospitalDepartmentID="+hospitalDepartmentNo+";";
+			db.update(sqlAdd);
 			return patient;
 		}
 		else {
@@ -138,9 +143,9 @@ public class Registration {
 		for(Patient p:Data.registerPatients){
 			if(p.getId().equals(patient.getId())){
 				p.setChargestate(true);
-				String sqlUpdate="UPDATE Doctor SET cureMoney="+patient.getAmount()+"+cureMoney  WHERE name='"+patient.getDoctor().getName()+"';";      
-				DB db=new DB();
-				db.update(sqlUpdate);
+//				String sqlUpdate="UPDATE Doctor SET cureMoney="+patient.getAmount()+"+cureMoney  WHERE name='"+patient.getDoctor().getName()+"';";      
+//				DB db=new DB();
+//				db.update(sqlUpdate);
 				return p;
 				
 			}

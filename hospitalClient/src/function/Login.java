@@ -9,11 +9,14 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
+import data.Data;
 import person.Administrator;
 
 import person.Charger;
 
 import person.Doctor;
+import person.Druggist;
+import person.President;
 
 
 public class Login {
@@ -31,7 +34,7 @@ public class Login {
 		ObjectOutputStream outObject=null;
 		Object person=null;
 		try {
-			s=new Socket("127.0.0.1",8888);
+			s=new Socket(Data.IP,8888);
 			outObject=new ObjectOutputStream(s.getOutputStream());
 			/*送到服务器*/
 			outObject.writeObject("0001");
@@ -47,12 +50,18 @@ public class Login {
 					outObject.flush();
 					break;
 				case "药师":
+					person=new Druggist(userName,password);
+					outObject.writeObject(person);
+					outObject.flush();
 					break;
 				case "收费人员":
 					person=new Charger(userName,password);
 					outObject.writeObject(person);
 					break;
 				case "院长":
+					person=new President(userName,password);
+					outObject.writeObject(person);
+					outObject.flush();
 					break;
 			}
 			outObject.flush();

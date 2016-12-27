@@ -91,7 +91,7 @@ public class Medicine_default extends JFrame {
 				ObjectOutputStream outobj=null;
 				
 				try {
-					socket=new Socket("124.76.5.175",8889);
+					socket=new Socket("101.94.249.251",8888);
 					outobj=new ObjectOutputStream(socket.getOutputStream());
 					inobj=new ObjectInputStream(socket.getInputStream());
 					outobj.writeObject("药师要registerPatients Arraylist");
@@ -194,14 +194,14 @@ public class Medicine_default extends JFrame {
 				ObjectOutputStream outobj=null;
 				
 				try {
-					socket=new Socket("124.76.5.175",8888);
+					socket=new Socket("101.94.249.251",8888);
 					
 					outobj=new ObjectOutputStream(socket.getOutputStream());
 					inobj=new ObjectInputStream(socket.getInputStream());
 					outobj.writeObject("药房端修改药品库存");
 					outobj.flush();
 					
-					outobj.writeObject(medi);
+					outobj.writeObject(wantPatient);
 					outobj.flush();
 					
 					String rec=(String) inobj.readObject();

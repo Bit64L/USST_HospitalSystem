@@ -14,7 +14,11 @@ public class Druggist implements Serializable{
 		this.name=name;
 		// TODO Auto-generated constructor stub
 	}
-
+	public Druggist(String userName, String password) {
+		this.userName=userName;
+		this.password=password;
+		// TODO Auto-generated constructor stub
+	}
 	public String getUserName() {
 		return userName;
 	}

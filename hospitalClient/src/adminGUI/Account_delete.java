@@ -17,6 +17,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import data.Data;
 import person.Administrator;
 
 public class Account_delete extends JFrame {
@@ -106,7 +107,7 @@ public class Account_delete extends JFrame {
 		ObjectOutputStream out=null;
 		String info=null;
 		try {
-			s=new Socket("127.0.0.1",8888);
+			s=new Socket(Data.IP,8888);
 			out=new ObjectOutputStream(s.getOutputStream());
 			out.writeObject("0011");
 			out.flush();
@@ -125,7 +126,7 @@ public class Account_delete extends JFrame {
 		ObjectInputStream in=null;
 		ObjectOutputStream out=null;
 		try {
-			s=new Socket("127.0.0.1",8888);
+			s=new Socket(Data.IP,8888);
 			out=new ObjectOutputStream(s.getOutputStream());
 			out.writeObject("0012");//发送协议
 			out.writeObject(userName);//发送用户名

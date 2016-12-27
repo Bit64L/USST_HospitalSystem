@@ -7,6 +7,7 @@ import staff.*;
 import java.util.ArrayList;
 
 public class Data {
+	public static String IP="101.94.249.251";
     public static ArrayList<Administrator> administrators=new ArrayList<>();
     public static ArrayList<Doctor> doctors=new ArrayList<>();//登录的医生
     public static ArrayList<Charger> chargers=new ArrayList<>();//登陆的收费人员

@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import data.Data;
 import person.Administrator;
 
 import javax.swing.JLabel;
@@ -132,7 +133,7 @@ public class Medicine_add extends JFrame {
 				ObjectOutputStream out=null;
 				ObjectInputStream in=null;
 				try{
-					s=new Socket("127.0.0.1",8888);
+					s=new Socket(Data.IP,8888);
 					out=new ObjectOutputStream(s.getOutputStream());
 					
 					String str="0022";
