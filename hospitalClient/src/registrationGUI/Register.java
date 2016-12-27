@@ -91,7 +91,7 @@ public class Register extends JFrame {
 					ch.setVisible(true);
 				}
 				else
-					JOptionPane.showMessageDialog(null, "无该用户收费信息"); 
+					JOptionPane.showMessageDialog(null, "该病人未挂号"); 
 			}
 		});
 		btnNewButton.setBounds(224, 165, 93, 23);

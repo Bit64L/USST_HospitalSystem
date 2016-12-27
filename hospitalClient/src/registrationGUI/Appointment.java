@@ -95,7 +95,7 @@ public class Appointment extends JFrame {
 		panel.add(label_5);
 
 		JLabel label_7 = new JLabel("预约时间:");
-		label_7.setBounds(118, 170, 54, 15);
+		label_7.setBounds(118, 170, 60, 15);
 		panel.add(label_7);
 
 		JButton button = new JButton("确认");
@@ -135,7 +135,7 @@ public class Appointment extends JFrame {
 		panel.add(button);
 
 		JLabel label_11 = new JLabel("联系方式:");
-		label_11.setBounds(118, 120, 54, 15);
+		label_11.setBounds(118, 120, 60, 15);
 		panel.add(label_11);
 
 		button_1 = new JButton("编辑");

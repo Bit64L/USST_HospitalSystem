@@ -91,7 +91,7 @@ public class NoAppointment extends JFrame {
 		panel.add(label_2);
 
 		JLabel label_3 = new JLabel("联系方式:");
-		label_3.setBounds(135, 123, 54, 15);
+		label_3.setBounds(135, 123, 60, 15);
 		panel.add(label_3);
 
 		JLabel label_4 = new JLabel("科室:");
