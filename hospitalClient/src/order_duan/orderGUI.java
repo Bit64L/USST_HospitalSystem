@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JTextField;
 
+import data.Data;
 import utility.Time;
 
 import javax.swing.JLabel;
@@ -82,7 +83,7 @@ public class orderGUI {
 		ObjectOutputStream outobj=null;
 		
 		try {
-			socket=new Socket("101.94.249.251",8888);
+			socket=new Socket(Data.IP,8888);
 			outobj=new ObjectOutputStream(socket.getOutputStream());
 			inobj=new ObjectInputStream(socket.getInputStream());
 
