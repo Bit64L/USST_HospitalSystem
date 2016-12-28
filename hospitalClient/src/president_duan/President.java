@@ -16,6 +16,8 @@ import javax.swing.JOptionPane;
 
 import org.omg.CORBA.INV_OBJREF;
 
+import data.Data;
+
 public class President implements Serializable{
 	public String presidentID;
 	public String name;
@@ -36,7 +38,7 @@ public class President implements Serializable{
 		ObjectOutputStream outobj=null;
 		
 		try {
-			socket=new Socket("101.94.249.251",8888);
+			socket=new Socket(Data.IP,8888);
 			outobj=new ObjectOutputStream(socket.getOutputStream());
 			inobj=new ObjectInputStream(socket.getInputStream());
 //			outobj.writeObject("院长登录");
@@ -90,7 +92,7 @@ public class President implements Serializable{
 		ObjectOutputStream outobj=null;
 		
 		try {
-			socket=new Socket("101.94.249.251",8888);
+			socket=new Socket(Data.IP,8888);
 			outobj=new ObjectOutputStream(socket.getOutputStream());
 			inobj=new ObjectInputStream(socket.getInputStream());
 
@@ -127,7 +129,7 @@ public class President implements Serializable{
 		ObjectOutputStream outobj=null;
 		
 		try {
-			socket=new Socket("101.94.249.251",8888);
+			socket=new Socket(Data.IP,8888);
 			outobj=new ObjectOutputStream(socket.getOutputStream());
 			inobj=new ObjectInputStream(socket.getInputStream());
 

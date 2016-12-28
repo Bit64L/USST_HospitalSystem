@@ -9,6 +9,8 @@ import java.net.Socket;
 
 import javax.swing.JOptionPane;
 
+import data.Data;
+
 public class Order implements Serializable{
 	public String patientID;
 	public String name;
@@ -33,7 +35,7 @@ public class Order implements Serializable{
 		ObjectInputStream inobj=null;
 		ObjectOutputStream outobj=null;
 		try {
-			socket=new Socket("101.94.249.251",8888);
+			socket=new Socket(Data.IP,8888);
 			outobj=new ObjectOutputStream(socket.getOutputStream());
 			outobj.writeObject("预约端要预约");
 			outobj.flush();

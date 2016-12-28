@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import data.Data;
 import person.Patient;
 import staff.ChargeItem;
 import staff.Medicine;
@@ -91,7 +92,7 @@ public class Medicine_default extends JFrame {
 				ObjectOutputStream outobj=null;
 				
 				try {
-					socket=new Socket("101.94.249.251",8888);
+					socket=new Socket(Data.IP,8888);
 					outobj=new ObjectOutputStream(socket.getOutputStream());
 					inobj=new ObjectInputStream(socket.getInputStream());
 					outobj.writeObject("药师要registerPatients Arraylist");
@@ -194,7 +195,7 @@ public class Medicine_default extends JFrame {
 				ObjectOutputStream outobj=null;
 				
 				try {
-					socket=new Socket("101.94.249.251",8888);
+					socket=new Socket(Data.IP,8888);
 					
 					outobj=new ObjectOutputStream(socket.getOutputStream());
 					inobj=new ObjectInputStream(socket.getInputStream());
